@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_offset">4dp</dimen>
+    <dimen name="progress_loading_md">48dp</dimen>
+    <dimen name="icon_button_sm">24dp</dimen>
+    <dimen name="icon_sm">24dp</dimen>
+
+    <!-- fonts size -->
+    <dimen name="font_xxs">8sp</dimen>
+    <dimen name="font_xs">10sp</dimen>
+    <dimen name="font_sm">12sp</dimen>
+    <dimen name="font_mds">14sp</dimen>
+    <dimen name="font_md">16sp</dimen>
+    <dimen name="font_lg">18sp</dimen>
+    <dimen name="font_xlg">20sp</dimen>
+    <dimen name="font_xxlg">24sp</dimen>
+    <dimen name="font_xxxlg">30sp</dimen>
+    <dimen name="font_xxxxlg">38sp</dimen>
+
+    <!-- padding size -->
+    <dimen name="padding_xsm">4dp</dimen>
+    <dimen name="padding_sm">8dp</dimen>
+    <dimen name="padding_md">16dp</dimen>
+    <dimen name="padding_lg">32dp</dimen>
+    <dimen name="padding_xlg">48dp</dimen>
+
+    <!-- margin size -->
+    <dimen name="margin_xsm">4dp</dimen>
+    <dimen name="margin_sm">8dp</dimen>
+    <dimen name="margin_md">16dp</dimen>
+    <dimen name="margin_lg">32dp</dimen>
+    <dimen name="margin_xlg">48dp</dimen>
+
+</resources>
