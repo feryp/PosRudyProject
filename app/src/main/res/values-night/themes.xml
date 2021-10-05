@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/neon_blue_primary</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/neon_blue_primary</item>
+        <item name="android:windowAnimationStyle">@style/animation</item>
         <!-- Customize your theme here. -->
 
         <!-- Status bar color. -->
@@ -12,8 +13,15 @@
         <item name="android:windowLightStatusBar" tools:targetApi="M">true</item>
     </style>
 
+    <!-- Splash Theme. -->
     <style name="SplashTheme" parent ="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- Animation. -->
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 </resources>

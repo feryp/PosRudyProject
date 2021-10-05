@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">PosRudyProject</string>
     <string name="todo">TODO</string>
+
+    //Login Screen
     <string name="title_masuk">MASUK</string>
     <string name="subtitle_pos_rudy_project">POS Rudy Project</string>
     <string name="hint_nama_pengguna">Nama Pengguna</string>
     <string name="hint_kata_sandi">Kata Sandi</string>
     <string name="btn_lupa_kata_sandi">Lupa Kata Sandi?</string>
     <string name="btn_masuk">Masuk</string>
+
+    //Lupa Sandi Screen
+    <string name="title_lupa_sandi">Lupa Sandi</string>
+    <string name="btn_kirim">Kirim</string>
+
+    //dialog konfirmasi lupa sandi
+    <string name="title_dialog_konfirmasi">Konfirmasi</string>
+    <string name="permintaan_lupa_sandi_anda_akan_dikirim_sesuai_dengan_nama_pengguna_anda">Permintaan lupa sandi anda akan dikirim sesuai dengan nama pengguna anda:</string>
+    <string name="btn_oke">Oke</string>
+
 </resources>
