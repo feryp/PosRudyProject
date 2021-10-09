@@ -12,8 +12,10 @@
         <item name="android:windowLightStatusBar" tools:targetApi="M">true</item>
     </style>
 
+    <!-- splash screen theme. -->
     <style name="SplashTheme" parent ="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
 </resources>
