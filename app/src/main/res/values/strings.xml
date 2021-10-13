@@ -15,4 +15,6 @@
     <string name="nav_rekap_kas">Rekap Kas</string>
     <string name="nav_keranjang">Keranjang</string>
     <string name="nav_akun">Akun</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
