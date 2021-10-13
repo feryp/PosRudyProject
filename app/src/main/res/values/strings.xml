@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name">PosRudyProject</string>
     <string name="todo">TODO</string>
+
+    //Login Screen
     <string name="title_masuk">MASUK</string>
     <string name="subtitle_pos_rudy_project">POS Rudy Project</string>
     <string name="hint_nama_pengguna">Nama Pengguna</string>
     <string name="hint_kata_sandi">Kata Sandi</string>
     <string name="btn_lupa_kata_sandi">Lupa Kata Sandi?</string>
     <string name="btn_masuk">Masuk</string>
+
+    //Navigation String
+    <string name="nav_beranda">Beranda</string>
+    <string name="nav_rekap_kas">Rekap Kas</string>
+    <string name="nav_keranjang">Keranjang</string>
+    <string name="nav_akun">Akun</string>
 </resources>

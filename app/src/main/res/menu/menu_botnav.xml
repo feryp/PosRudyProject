@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:checked="true"
+        android:icon="@drawable/ic_home_nav"
+        android:title="@string/nav_beranda" />
+
+
+    <item
+        android:id="@+id/nav_schedule"
+        android:icon="@drawable/ic_chart_nav"
+        android:title="@string/nav_rekap_kas" />
+
+    <item
+        android:id="@+id/nav_barcode"
+        android:title=""/>
+
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_cart_nav"
+        android:title="@string/nav_keranjang" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_account_nav"
+        android:title="@string/nav_akun" />
+
+</menu>
