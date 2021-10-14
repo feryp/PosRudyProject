@@ -19,6 +19,7 @@
         android:layout_gravity="bottom"
         app:backgroundTint="@color/white"
         app:contentInsetStart="0dp"
+        app:hideOnScroll="true"
         app:contentInsetStartWithNavigation="0dp"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="10dp"
@@ -43,9 +44,9 @@
         android:contentDescription="@string/todo"
         android:src="@drawable/ic_barcode_nav"
         app:backgroundTint="@color/neon_blue_primary"
-        app:tint="@color/white"
+        app:fabSize="auto"
         app:layout_anchor="@id/bottom_app_bar"
-        app:fabSize="auto"/>
+        app:tint="@color/white" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

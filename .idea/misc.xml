@@ -9,6 +9,8 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_cart_nav.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_chart_nav.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_close_black.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_features_inventory.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_features_sale.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_home_nav.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_invisible.xml" value="0.2564102564102564" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_logo_black.xml" value="0.1953125" />
@@ -28,6 +30,8 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_beranda.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_keranjang.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_rekap_kas.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_image_slider.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/menu_kategori.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_botnav.xml" value="0.24427083333333333" />
       </map>
     </option>
