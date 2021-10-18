@@ -1,11 +1,10 @@
-package com.example.posrudyproject.ui.beranda;
+package com.example.posrudyproject.ui.beranda.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -17,7 +16,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.beranda.adapter.ImageSliderAdapter;
@@ -25,8 +23,7 @@ import com.example.posrudyproject.ui.beranda.model.ImageSliderItem;
 import com.example.posrudyproject.ui.karyawan.KaryawanActivity;
 import com.example.posrudyproject.ui.laporan.LaporanActivity;
 import com.example.posrudyproject.ui.pelanggan.PelangganActivity;
-import com.example.posrudyproject.ui.penjualan.KategoriActivity;
-import com.example.posrudyproject.ui.penjualan.PenjualanActivity;
+import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.example.posrudyproject.ui.penyimpanan.PenyimpananActivity;
 import com.example.posrudyproject.ui.produk.ProdukActivity;
 import com.google.android.material.card.MaterialCardView;

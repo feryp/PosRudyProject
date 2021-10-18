@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.keranjang.activity.KeranjangActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.laporan.LaporanActivity"
             android:exported="true" />
         <activity
@@ -25,10 +28,10 @@
             android:name=".ui.penyimpanan.PenyimpananActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.penjualan.KategoriActivity"
+            android:name=".ui.penjualan.activity.KategoriActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.penjualan.PenjualanActivity"
+            android:name=".ui.penjualan.activity.PenjualanActivity"
             android:exported="true" />
         <activity
             android:name=".ui.splash.SplashActivity"

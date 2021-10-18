@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.penjualan;
+package com.example.posrudyproject.ui.penjualan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.posrudyproject.R;
 
-public class KategoriActivity extends AppCompatActivity {
+public class PenjualanActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kategori);
+        setContentView(R.layout.activity_penjualan);
     }
 }

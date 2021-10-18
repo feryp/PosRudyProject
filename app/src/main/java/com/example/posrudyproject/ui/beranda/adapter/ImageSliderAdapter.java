@@ -11,7 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.beranda.model.ImageSliderItem;
-import com.example.posrudyproject.ui.beranda.viewHolder.ImageSliderViewHolder;
+import com.example.posrudyproject.ui.beranda.viewholder.ImageSliderViewHolder;
 
 import java.util.List;
 

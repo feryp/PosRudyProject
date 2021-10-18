@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.beranda.viewHolder;
+package com.example.posrudyproject.ui.beranda.viewholder;
 
 import android.view.View;
 

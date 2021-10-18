@@ -26,4 +26,7 @@
     <string name="menu_produk">Produk</string>
     <string name="menu_laporan">Laporan</string>
 
+    //Keranjang Screen
+    <string name="menu_keranjang">Keranjang</string>
+
 </resources>
