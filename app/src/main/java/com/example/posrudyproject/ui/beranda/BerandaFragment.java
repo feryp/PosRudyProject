@@ -1,8 +1,11 @@
 package com.example.posrudyproject.ui.beranda;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -14,19 +17,29 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.beranda.adapter.ImageSliderAdapter;
 import com.example.posrudyproject.ui.beranda.model.ImageSliderItem;
+import com.example.posrudyproject.ui.karyawan.KaryawanActivity;
+import com.example.posrudyproject.ui.laporan.LaporanActivity;
+import com.example.posrudyproject.ui.pelanggan.PelangganActivity;
+import com.example.posrudyproject.ui.penjualan.KategoriActivity;
+import com.example.posrudyproject.ui.penjualan.PenjualanActivity;
+import com.example.posrudyproject.ui.penyimpanan.PenyimpananActivity;
+import com.example.posrudyproject.ui.produk.ProdukActivity;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BerandaFragment extends Fragment {
+public class BerandaFragment extends Fragment implements View.OnClickListener {
 
     private ViewPager2 vp2;
     private ImageSliderAdapter imageSliderAdapter;
     private final Handler sliderHandler = new Handler();
+    MaterialCardView cardPenjualan, cardPenyimpanan, cardPelanggan, cardKaryawan, cardProduk, cardLaporan;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +49,12 @@ public class BerandaFragment extends Fragment {
 
         //INIT VIEW
         vp2 = v.findViewById(R.id.vp_image_slider);
+        cardPenjualan = v.findViewById(R.id.card_penjualan);
+        cardPenyimpanan = v.findViewById(R.id.card_penyimpanan);
+        cardPelanggan = v.findViewById(R.id.card_pelanggan);
+        cardKaryawan = v.findViewById(R.id.card_karyawan);
+        cardProduk = v.findViewById(R.id.card_produk);
+        cardLaporan = v.findViewById(R.id.card_laporan);
 
         List<ImageSliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new ImageSliderItem(R.drawable.im_slide_1));
@@ -70,6 +89,13 @@ public class BerandaFragment extends Fragment {
             }
         });
 
+        cardPenjualan.setOnClickListener(BerandaFragment.this);
+        cardPenyimpanan.setOnClickListener(BerandaFragment.this);
+        cardPelanggan.setOnClickListener(BerandaFragment.this);
+        cardKaryawan.setOnClickListener(BerandaFragment.this);
+        cardProduk.setOnClickListener(BerandaFragment.this);
+        cardLaporan.setOnClickListener(BerandaFragment.this);
+
         return v;
     }
 
@@ -90,5 +116,36 @@ public class BerandaFragment extends Fragment {
     public void onResume() {
         super.onResume();
         sliderHandler.postDelayed(sliderRunnable, 3000);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.card_penjualan:
+                Intent penjualan = new Intent(getActivity(), KategoriActivity.class);
+                startActivity(penjualan);
+                break;
+            case R.id.card_penyimpanan:
+                Intent penyimpanan = new Intent(getActivity(), PenyimpananActivity.class);
+                startActivity(penyimpanan);
+                break;
+            case R.id.card_pelanggan:
+                Intent pelanggan = new Intent(getActivity(), PelangganActivity.class);
+                startActivity(pelanggan);
+                break;
+            case R.id.card_karyawan:
+                Intent karyawan =  new Intent(getActivity(), KaryawanActivity.class);
+                startActivity(karyawan);
+                break;
+            case R.id.card_produk:
+                Intent produk = new Intent(getActivity(), ProdukActivity.class);
+                startActivity(produk);
+                break;
+            case R.id.card_laporan:
+                Intent laporan = new Intent(getActivity(), LaporanActivity.class);
+                startActivity(laporan);
+                break;
+        }
     }
 }
