@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.keranjang;
+package com.example.posrudyproject.ui.keranjang.fragment;
 
 import android.os.Bundle;
 

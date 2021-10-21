@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_border_bottom_grey.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_border_bottom_silver.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_bottom_sheet.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_dialog.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_rounded_cultured.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_rounded_neon_blue.xml" value="0.2604166666666667" />
@@ -25,6 +28,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_visible.xml" value="0.2564102564102564" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/im_logo_black.xml" value="0.1953125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/im_logo_white.xml" value="0.1953125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/toggle_botsheet.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/toggle_visibility.xml" value="0.2564102564102564" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_karyawan.xml" value="0.23020833333333332" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_kategori.xml" value="0.24427083333333333" />
@@ -41,11 +45,14 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_konfirmasi.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_akun.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_beranda.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_blank.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_bot_sheet_filter_tipe.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_keranjang.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_rekap_kas.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_barang.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_image_slider.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_kategori.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_list_botsheet.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/menu_kategori.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_botnav.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_filter.xml" value="0.24427083333333333" />
