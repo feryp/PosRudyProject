@@ -26,4 +26,12 @@
     <string name="menu_produk">Produk</string>
     <string name="menu_laporan">Laporan</string>
 
+    //Keranjang Screen
+    <string name="menu_keranjang">Keranjang</string>
+
+    //Penjualan Screen
+    <string name="menu_filter">Filter</string>
+    <string name="txt_hint_0">0</string>
+    <string name="btn_masuk_keranjang">Masuk Keranjang</string>
+
 </resources>

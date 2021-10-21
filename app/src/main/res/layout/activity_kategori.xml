@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.penjualan.activity.PenjualanActivity">
+    tools:context=".ui.penjualan.activity.KategoriActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,18 +20,18 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_penjualan"
+                android:id="@+id/toolbar_kategori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
                 app:contentInsetStart="0dp"
                 app:contentInsetEnd="0dp"
-                app:title="Penjualan"
+                app:title="Kategori"
                 app:titleTextColor="@color/black"
                 app:navigationIcon="@drawable/ic_arrow_left_black"
                 app:titleCentered="true"
                 app:titleTextAppearance="@style/TextAppearance.Tab"
-                app:menu="@menu/menu_filter"/>
+                app:menu="@menu/menu_keranjang"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,12 +48,12 @@
                 android:background="@drawable/bg_searchview">
 
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_barang"
+                    android:id="@+id/search_kategori"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:iconifiedByDefault="false"
                     app:queryBackground="@android:color/transparent"
-                    app:queryHint="Cari Barang"
+                    app:queryHint="Cari Kategori"
                     app:searchIcon="@drawable/ic_search"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +74,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/search_barang"
+                    app:layout_constraintStart_toEndOf="@id/search_kategori"
                     tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -82,54 +82,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_penjualan"
+            android:id="@+id/rv_kategori"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/layout_button"
-            app:layout_constraintTop_toBottomOf="@id/layout_search" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="@dimen/padding_md"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_qty"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginEnd="@dimen/margin_sm"
-                android:hint="@string/txt_hint_0"
-                android:textSize="@dimen/font_lg"
-                android:textColor="@color/black"
-                android:fontFamily="@font/work_sans_medium"
-                android:gravity="center"
-                android:background="@drawable/bg_rounded_primary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btn_masuk_keranjang"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_masuk_keranjang"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                style="@style/TextAppearance.AppCompat.Button"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:text="@string/btn_masuk_keranjang"
-                android:textSize="@dimen/font_md"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:fontFamily="@font/work_sans_semi_bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_total_qty"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@id/layout_search"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

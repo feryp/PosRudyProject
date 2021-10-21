@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.beranda.BerandaFragment">
+    tools:context=".ui.beranda.fragment.BerandaFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -78,22 +78,27 @@
                     android:id="@+id/container_menu_kategori"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/padding_md"
+                    android:layout_marginTop="@dimen/margin_md"
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/title_kategori"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_md"
                         android:text="@string/title_menu_kategori"
                         android:textSize="@dimen/font_xlg"
                         android:textColor="@color/black_gunmetal"
                         android:fontFamily="@font/work_sans_bold" />
 
                     <include
+                        android:id="@+id/menu_kategori"
                         layout="@layout/menu_kategori"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:layout_marginStart="@dimen/margin_sm"
+                        android:layout_marginEnd="@dimen/margin_sm"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

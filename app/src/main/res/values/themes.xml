@@ -18,4 +18,10 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!-- App Bar. -->
+    <style name="TextAppearance.Tab" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textSize">@dimen/font_xlg</item>
+    </style>
+
 </resources>
