@@ -33,5 +33,7 @@
     <string name="menu_filter">Filter</string>
     <string name="txt_hint_0">0</string>
     <string name="btn_masuk_keranjang">Masuk Keranjang</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

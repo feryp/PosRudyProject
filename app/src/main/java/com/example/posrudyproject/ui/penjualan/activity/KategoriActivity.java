@@ -55,6 +55,7 @@ public class KategoriActivity extends AppCompatActivity implements OnItemClickLi
         adapter = new KategoriAdapter(kategoriItems,this);
         rvKategori.setLayoutManager(new LinearLayoutManager(this));
         rvKategori.setAdapter(adapter);
+        rvKategori.setHasFixedSize(true);
 
 
     }

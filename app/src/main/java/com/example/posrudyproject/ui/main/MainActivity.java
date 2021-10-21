@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.akun.AkunFragment;
 import com.example.posrudyproject.ui.beranda.fragment.BerandaFragment;
-import com.example.posrudyproject.ui.keranjang.KeranjangFragment;
+import com.example.posrudyproject.ui.keranjang.fragment.KeranjangFragment;
 import com.example.posrudyproject.ui.rekapKas.RekapKasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
