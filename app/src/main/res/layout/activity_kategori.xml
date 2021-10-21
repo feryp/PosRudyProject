@@ -27,7 +27,7 @@
                 app:contentInsetStart="0dp"
                 app:contentInsetEnd="0dp"
                 app:title="Kategori"
-                app:titleTextColor="@color/black_gunmetal"
+                app:titleTextColor="@color/black"
                 app:navigationIcon="@drawable/ic_arrow_left_black"
                 app:titleCentered="true"
                 app:titleTextAppearance="@style/TextAppearance.Tab"

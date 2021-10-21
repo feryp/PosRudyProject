@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.penjualan.adapter.KategoriAdapter;
@@ -20,7 +22,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KategoriActivity extends AppCompatActivity {
+public class KategoriActivity extends AppCompatActivity implements OnItemClickListener {
 
     MaterialToolbar mToolbar;
     SearchView searchView;
@@ -75,5 +77,12 @@ public class KategoriActivity extends AppCompatActivity {
         searchView = findViewById(R.id.search_kategori);
         btnBarcode = findViewById(R.id.btn_barcode);
         rvKategori = findViewById(R.id.rv_kategori);
+    }
+
+    @Override
+    public void onItemClickListener(View view, int position) {
+        Toast.makeText(this, "Pilih " + kategoriItems.get(position).getNamaKetegori(), Toast.LENGTH_SHORT).show();
+        Intent kategori = new Intent(this, PenjualanActivity.class);
+        startActivity(kategori);
     }
 }

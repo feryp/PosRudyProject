@@ -1,5 +1,6 @@
 package com.example.posrudyproject.ui.penjualan.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
 import com.example.posrudyproject.ui.penjualan.model.KategoriItem;
@@ -20,11 +22,11 @@ import java.util.List;
 public class KategoriAdapter extends RecyclerView.Adapter<KategoriViewHolder> {
 
     private List<KategoriItem> kategoriItems;
-    private Context mContext;
+    private OnItemClickListener listener;
 
-    public KategoriAdapter(List<KategoriItem> kategoriItems, Context mContext) {
+    public KategoriAdapter(List<KategoriItem> kategoriItems, OnItemClickListener listener) {
         this.kategoriItems = kategoriItems;
-        this.mContext = mContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,15 +37,14 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KategoriViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull KategoriViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
         holder.namaKetegori.setText(kategoriItems.get(position).getNamaKetegori());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"Kategori",Toast.LENGTH_SHORT).show();
-                Intent kategori = new Intent(mContext, PenjualanActivity.class);
-                mContext.startActivity(kategori);
+                listener.onItemClickListener(view,position);
             }
         });
     }

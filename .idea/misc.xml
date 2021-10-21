@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_dialog.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_rounded_cultured.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_rounded_neon_blue.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_rounded_platinum.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_rounded_primary.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/bg_searchview.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_account_nav.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_arrow_left_black.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_barcode_nav.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_cart_nav.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_chart_nav.xml" value="0.2604166666666667" />
@@ -30,6 +34,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_lupa_sandi.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_pelanggan.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_penjualan.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_produk.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_splash.xml" value="0.152" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/content_main.xml" value="0.24427083333333333" />
@@ -38,10 +43,12 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_beranda.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_keranjang.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_rekap_kas.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_barang.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_image_slider.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_kategori.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/menu_kategori.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_botnav.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_filter.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_keranjang.xml" value="0.24427083333333333" />
       </map>
     </option>
