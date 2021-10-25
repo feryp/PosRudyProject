@@ -62,6 +62,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         adapter = new PenjualanAdapter(penjualanItems, this);
         rvPenjualan.setLayoutManager(new GridLayoutManager(this, 2));
         rvPenjualan.setAdapter(adapter);
+        rvPenjualan.setHasFixedSize(true);
     }
 
     private void initToolbar() {

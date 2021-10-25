@@ -103,7 +103,7 @@
         android:id="@+id/btn_masuk"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        style="@style/TextAppearance.AppCompat.Button"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_marginTop="20dp"
         android:text="@string/btn_masuk"
         android:textSize="@dimen/font_md"

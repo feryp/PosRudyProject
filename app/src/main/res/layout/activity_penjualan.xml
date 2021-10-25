@@ -117,7 +117,7 @@
                 android:id="@+id/btn_masuk_keranjang"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                style="@style/TextAppearance.AppCompat.Button"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:text="@string/btn_masuk_keranjang"
                 android:textSize="@dimen/font_md"
