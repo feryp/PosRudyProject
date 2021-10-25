@@ -26,14 +26,19 @@
     <string name="menu_produk">Produk</string>
     <string name="menu_laporan">Laporan</string>
 
-    //Keranjang Screen
-    <string name="menu_keranjang">Keranjang</string>
-
     //Penjualan Screen
     <string name="menu_filter">Filter</string>
     <string name="txt_hint_0">0</string>
     <string name="btn_masuk_keranjang">Masuk Keranjang</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Keranjang Screen
+    <string name="menu_keranjang">Keranjang</string>
+    <string name="menu_notes">Notes</string>
+    <string name="btn_diskon">Diskon</string>
+    <string name="btn_simpan_pesanan">Simpan</string>
+    <string name="kali">X</string>
+    <string name="sama_dengan">=</string>
+    <string name="tv_hapus">Hapus</string>
+
 
 </resources>

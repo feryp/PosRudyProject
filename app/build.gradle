@@ -40,4 +40,5 @@ dependencies {
     //library
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 }
