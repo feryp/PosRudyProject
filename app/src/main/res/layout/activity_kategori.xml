@@ -35,59 +35,76 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_search"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout_kategori"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_md"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_searchview">
+                android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_kategori"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_search"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:iconifiedByDefault="false"
-                    app:queryBackground="@android:color/transparent"
-                    app:queryHint="Cari Kategori"
-                    app:searchIcon="@drawable/ic_search"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btn_barcode"
+                    android:padding="@dimen/padding_md"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_searchview">
+
+                        <androidx.appcompat.widget.SearchView
+                            android:id="@+id/search_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:iconifiedByDefault="false"
+                            app:queryBackground="@android:color/transparent"
+                            app:queryHint="Cari Kategori"
+                            app:searchIcon="@drawable/ic_search"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/btn_barcode"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_barcode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:src="@drawable/ic_barcode_black"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/search_kategori"
+                            tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_kategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scrollbars="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/layout_search"
                     app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_barcode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:src="@drawable/ic_barcode_black"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/search_kategori"
-                    tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_kategori"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@id/layout_search"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
