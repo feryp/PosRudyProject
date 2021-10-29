@@ -17,8 +17,8 @@ import java.util.List;
 
 public class FilterTipeAdapter extends RecyclerView.Adapter<FilterTipeViewHolder> {
 
-    private List<TipeItem> tipeItems;
-    private OnItemClickListener listener;
+    private final List<TipeItem> tipeItems;
+    private final OnItemClickListener listener;
 
     public FilterTipeAdapter(List<TipeItem> tipeItems, OnItemClickListener listener) {
         this.tipeItems = tipeItems;
@@ -36,12 +36,7 @@ public class FilterTipeAdapter extends RecyclerView.Adapter<FilterTipeViewHolder
     public void onBindViewHolder(@NonNull FilterTipeViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.tipeBarang.setText(tipeItems.get(position).getNamaTipe());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClickListener(view, position);
-            }
-        });
+        holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }
 
     @Override
