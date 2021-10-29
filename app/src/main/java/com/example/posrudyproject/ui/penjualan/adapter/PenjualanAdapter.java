@@ -16,8 +16,8 @@ import java.util.List;
 
 public class PenjualanAdapter extends RecyclerView.Adapter<PenjualanViewHolder> {
 
-    private List<PenjualanItem> penjualanItems;
-    private Context mContext;
+    private final List<PenjualanItem> penjualanItems;
+    private final Context mContext;
 
     public PenjualanAdapter(List<PenjualanItem> penjualanItems, Context mContext) {
         this.penjualanItems = penjualanItems;
@@ -40,11 +40,8 @@ public class PenjualanAdapter extends RecyclerView.Adapter<PenjualanViewHolder> 
         holder.hargaBarang.setText(penjualanItems.get(position).getHargaBarang());
         holder.kuantitasBarang.setText(penjualanItems.get(position).getKuantitasBarang());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //FUNCTION PENJUALAN AND INTENT TO NEXT STEP SALE
-            }
+        holder.itemView.setOnClickListener(view -> {
+            //FUNCTION PENJUALAN AND INTENT TO NEXT STEP SALE
         });
     }
 

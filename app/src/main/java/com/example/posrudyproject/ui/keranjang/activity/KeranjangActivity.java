@@ -1,13 +1,12 @@
 package com.example.posrudyproject.ui.keranjang.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +14,9 @@ import android.view.View;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
+import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,8 +76,9 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     private void initToolbar() {
         mToolbar.setNavigationOnClickListener(view -> finish());
         mToolbar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.menu_filter){
-
+            if (item.getItemId() == R.id.menu_notes_order){
+                Intent pesananTunggu = new Intent(this, PesananTungguActivity.class);
+                startActivity(pesananTunggu);
                 return true;
             }
 

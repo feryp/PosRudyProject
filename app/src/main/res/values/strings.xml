@@ -39,6 +39,21 @@
     <string name="kali">X</string>
     <string name="sama_dengan">=</string>
     <string name="tv_hapus">Hapus</string>
+    <string name="title_ringkasan_keranjang">Ringkasan</string>
+    <string name="title_pelanggan">Pelanggan</string>
+    <string name="title_penjual">Penjual</string>
+    <string name="title_diskon">Diskon</string>
+    <string name="title_ongkir">Ongkir</string>
+    <string name="title_subtotal">Subtotal</string>
+    <string name="rp_0">Rp 0.</string>
+    <string name="title_total_harga">Total Harga</string>
+    <string name="btn_custom">Custom</string>
+    <string name="btn_konfirmasi">Konfirmasi</string>
+
+    //Pesanan Tunggu Screen
+    <string name="menu_delete">Delete</string>
+    <string name="title_total">Total</string>
+    <string name="title_keterangan">Keterangan</string>
 
 
 </resources>

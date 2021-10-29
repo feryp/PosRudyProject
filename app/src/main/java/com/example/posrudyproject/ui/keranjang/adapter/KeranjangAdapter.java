@@ -22,9 +22,9 @@ import java.util.List;
 
 public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> {
 
-    private List<KeranjangItem> keranjangItems;
-    private Context mContext;
-    private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
+    private final List<KeranjangItem> keranjangItems;
+    private final Context mContext;
+    private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
     public KeranjangAdapter(List<KeranjangItem> keranjangItems, Context mContext) {
         this.keranjangItems = keranjangItems;
@@ -52,29 +52,24 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
         //bind data by tipe
         viewBinderHelper.bind(holder.swipeRevealLayout, keranjangItems.get(position).getTipeBarang());
         //onclick layout delete item
-        holder.layoutDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new MaterialAlertDialogBuilder(mContext)
-                        .setTitle("Konfirmasi Hapus")
-                        .setMessage("Pesanan akan dihapus, lanjutkan ?")
-                        .setPositiveButton("Lanjutkan", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                holder.hapusItem();
-                                keranjangItems.remove(holder.getAdapterPosition());
-                                notifyItemRemoved(holder.getAdapterPosition());
-                            }
-                        })
-                        .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        })
-                        .show();
-            }
-        });
+        holder.layoutDelete.setOnClickListener(view -> new MaterialAlertDialogBuilder(mContext)
+                .setTitle("Konfirmasi Hapus")
+                .setMessage("Pesanan akan dihapus, lanjutkan ?")
+                .setPositiveButton("Lanjutkan", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        holder.hapusItem();
+                        keranjangItems.remove(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
+                    }
+                })
+                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                })
+                .show());
 
     }
 

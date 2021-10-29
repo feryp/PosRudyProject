@@ -21,8 +21,8 @@ import java.util.List;
 
 public class KategoriAdapter extends RecyclerView.Adapter<KategoriViewHolder> {
 
-    private List<KategoriItem> kategoriItems;
-    private OnItemClickListener listener;
+    private final List<KategoriItem> kategoriItems;
+    private final OnItemClickListener listener;
 
     public KategoriAdapter(List<KategoriItem> kategoriItems, OnItemClickListener listener) {
         this.kategoriItems = kategoriItems;
@@ -41,12 +41,7 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriViewHolder> {
 
         holder.namaKetegori.setText(kategoriItems.get(position).getNamaKetegori());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClickListener(view,position);
-            }
-        });
+        holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view,position));
     }
 
     @Override
