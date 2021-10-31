@@ -33,4 +33,10 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <!-- Animation -->
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
 </resources>
