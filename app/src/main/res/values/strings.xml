@@ -34,7 +34,7 @@
     //Keranjang Screen
     <string name="menu_keranjang">Keranjang</string>
     <string name="menu_notes">Notes</string>
-    <string name="btn_diskon">Diskon</string>
+    <string name="btn_ubah_harga">Ubah Harga</string>
     <string name="btn_simpan_pesanan">Simpan</string>
     <string name="kali">X</string>
     <string name="sama_dengan">=</string>
@@ -57,5 +57,8 @@
     <string name="title_simpan_pesanan">Simpan Pesanan</string>
     <string name="hint_keterangan">Keterangan</string>
 
+    //Ubah Harga Screen
+    <string name="title_ubah_harga">Ubah Harga</string>
+    <string name="hint_nominal">Nominal</string>
 
 </resources>

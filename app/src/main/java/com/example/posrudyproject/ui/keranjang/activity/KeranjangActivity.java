@@ -2,26 +2,23 @@ package com.example.posrudyproject.ui.keranjang.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
+import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -32,7 +29,6 @@ import java.util.List;
 public class KeranjangActivity extends AppCompatActivity implements View.OnClickListener {
 
     SearchView searchView;
-    Dialog dialog;
     AppCompatImageButton btnBarcode;
     MaterialToolbar mToolbar;
     MaterialButton btnPotonganHarga, btnSimpanPesanan, btnCustom, btnKonfirmasi;
@@ -117,7 +113,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 openDialog();
                 break;
             case R.id.btn_potongan_harga:
-                //Function Button
+                Intent potonganHarga = new Intent(this, UbahHargaActivity.class);
+                startActivity(potonganHarga);
                 break;
             case R.id.btn_custom_item_keranjang:
                 //Function Button
@@ -136,7 +133,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
         //init view
         final TextInputEditText etKetPesanan = mView.findViewById(R.id.et_ket_simpan_pesanan);
-        MaterialButton btnSimpan = mView.findViewById(R.id.btn_simpan);
+        MaterialButton btnSimpan = mView.findViewById(R.id.btn_simpan_keterangan_pesanan);
         MaterialButton btnCancel = mView.findViewById(R.id.btn_cancel_dialog);
 
         alert.setView(mView);
