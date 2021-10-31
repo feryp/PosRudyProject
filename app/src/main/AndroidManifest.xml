@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.ubahHarga.activity.UbahHargaActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.pesananTunggu.activity.PesananTungguActivity"
             android:exported="true" />
         <activity

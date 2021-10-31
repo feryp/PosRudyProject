@@ -115,7 +115,7 @@
                         android:layout_height="56dp"
                         android:layout_marginStart="@dimen/margin_md"
                         android:fontFamily="@font/work_sans_semi_bold"
-                        android:text="@string/btn_diskon"
+                        android:text="@string/btn_ubah_harga"
                         android:textAllCaps="false"
                         android:textColor="@color/neon_blue_primary"
                         android:textSize="@dimen/font_md"

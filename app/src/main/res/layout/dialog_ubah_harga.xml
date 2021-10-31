@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/work_sans_medium"
             android:gravity="center"
-            android:text="@string/title_simpan_pesanan"
+            android:text="@string/title_ubah_harga"
             android:textColor="@color/black"
             android:textSize="@dimen/font_md"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,20 +50,41 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_et_ket_pesanan"
+        android:id="@+id/layout_et_nominal_ubah_harga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_lg"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_dialog">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nominal_ubah_harga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_nominal"
+            android:imeOptions="actionDone"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_et_ket_ubah_harga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_md"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:errorEnabled="true"
         app:counterEnabled="true"
         app:counterMaxLength="100"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_dialog">
+        app:layout_constraintTop_toBottomOf="@id/layout_et_nominal_ubah_harga">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_ket_simpan_pesanan"
+            android:id="@+id/et_ket_ubah_harga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_keterangan"
@@ -78,7 +99,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_simpan_keterangan_pesanan"
+        android:id="@+id/btn_simpan_harga"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         style="@style/TextAppearance.AppCompat.Button"
@@ -88,7 +109,7 @@
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:fontFamily="@font/work_sans_semi_bold"
-        app:layout_constraintTop_toBottomOf="@id/layout_et_ket_pesanan"
+        app:layout_constraintTop_toBottomOf="@id/layout_et_ket_ubah_harga"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
