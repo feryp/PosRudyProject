@@ -25,6 +25,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_cart_nav.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_chart_nav.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_close_black.xml" value="0.2604166666666667" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_close_circle.xml" value="0.21367521367521367" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_features_inventory.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_features_sale.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_home_nav.xml" value="0.2604166666666667" />
@@ -55,6 +56,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_splash.xml" value="0.152" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/content_main.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_konfirmasi.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_simpan_pesanan.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_akun.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_beranda.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_blank.xml" value="0.24427083333333333" />

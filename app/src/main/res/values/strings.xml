@@ -54,6 +54,8 @@
     <string name="menu_delete">Delete</string>
     <string name="title_total">Total</string>
     <string name="title_keterangan">Keterangan</string>
+    <string name="title_simpan_pesanan">Simpan Pesanan</string>
+    <string name="hint_keterangan">Keterangan</string>
 
 
 </resources>
