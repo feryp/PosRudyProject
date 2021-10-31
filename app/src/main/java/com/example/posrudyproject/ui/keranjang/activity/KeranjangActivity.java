@@ -144,6 +144,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         final AlertDialog alertDialog = alert.create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.bg_rounded_white));
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
