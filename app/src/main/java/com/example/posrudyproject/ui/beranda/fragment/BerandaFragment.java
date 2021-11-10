@@ -22,7 +22,7 @@ import com.example.posrudyproject.ui.beranda.adapter.ImageSliderAdapter;
 import com.example.posrudyproject.ui.beranda.model.ImageSliderItem;
 import com.example.posrudyproject.ui.karyawan.KaryawanActivity;
 import com.example.posrudyproject.ui.laporan.LaporanActivity;
-import com.example.posrudyproject.ui.pelanggan.PelangganActivity;
+import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.example.posrudyproject.ui.penyimpanan.PenyimpananActivity;
 import com.example.posrudyproject.ui.produk.ProdukActivity;

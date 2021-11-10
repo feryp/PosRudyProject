@@ -28,7 +28,7 @@
             android:name=".ui.karyawan.KaryawanActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.pelanggan.PelangganActivity"
+            android:name=".ui.pelanggan.activity.PelangganActivity"
             android:exported="true" />
         <activity
             android:name=".ui.penyimpanan.PenyimpananActivity"

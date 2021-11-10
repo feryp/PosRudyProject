@@ -127,7 +127,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_masuk_keranjang"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="56dp"
                         style="@style/Widget.MaterialComponents.Button"
                         android:layout_marginStart="@dimen/margin_sm"
                         android:text="@string/btn_masuk_keranjang"
@@ -145,8 +145,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
