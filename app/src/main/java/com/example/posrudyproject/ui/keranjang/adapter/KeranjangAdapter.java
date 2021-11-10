@@ -40,14 +40,15 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull KeranjangViewHolder holder, int position) {
-        holder.imBarang.setImageResource(keranjangItems.get(position).getImBarang());
-        holder.tipeBarang.setText(keranjangItems.get(position).getTipeBarang());
-        holder.artikelBarang.setText(keranjangItems.get(position).getArtikelBarang());
-        holder.namaBarang.setText(keranjangItems.get(position).getNamaBarang());
-        holder.hargaBarang.setText(keranjangItems.get(position).getHargaBarang());
-        holder.jumlahBarang.setText(keranjangItems.get(position).getJumlahBarang());
-        holder.totalHargaBarang.setText(keranjangItems.get(position).getTotalHargaBarang());
-        holder.kuantitasBarang.setText(keranjangItems.get(position).getKuantitasBarang());
+        KeranjangItem item = keranjangItems.get(position);
+        holder.imBarang.setImageResource(item.getImBarang());
+        holder.tipeBarang.setText(item.getTipeBarang());
+        holder.artikelBarang.setText(item.getArtikelBarang());
+        holder.namaBarang.setText(item.getNamaBarang());
+        holder.hargaBarang.setText(item.getHargaBarang());
+        holder.jumlahBarang.setText(item.getJumlahBarang());
+        holder.totalHargaBarang.setText(item.getTotalHargaBarang());
+        holder.kuantitasBarang.setText(item.getKuantitasBarang());
 
         //bind data by tipe
         viewBinderHelper.bind(holder.swipeRevealLayout, keranjangItems.get(position).getTipeBarang());

@@ -68,5 +68,10 @@
     <string name="et_hint_no_handphone">No. Handphone</string>
     <string name="et_hint_email">Email</string>
     <string name="et_hint_alamat">Alamat</string>
+    <string name="title_email_pelanggan">Email</string>
+    <string name="title_alamat_pelanggan">Alamat</string>
+    <string name="title_total_kunjungan">Total Kunjungan</string>
+    <string name="title_kunjungan_terakhir">Kunjungan Terakhir</string>
+    <string name="title_total_poin">Total Poin</string>
 
 </resources>

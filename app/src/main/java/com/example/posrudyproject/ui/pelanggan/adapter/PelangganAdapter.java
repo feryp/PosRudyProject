@@ -32,8 +32,9 @@ public class PelangganAdapter extends RecyclerView.Adapter<PelangganViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull PelangganViewHolder holder, int position) {
-        holder.namaPelanggan.setText(pelangganItems.get(position).getNamaPelanggan());
-        holder.noHpPelanggan.setText(pelangganItems.get(position).getNohpPelanggan());
+        PelangganItem item = pelangganItems.get(position);
+        holder.namaPelanggan.setText(item.getNamaPelanggan());
+        holder.noHpPelanggan.setText(item.getNohpPelanggan());
 
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
         holder.btnEdit.setOnClickListener(view -> listener.onItemClickListener(view, position));

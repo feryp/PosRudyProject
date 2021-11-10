@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.pelanggan.activity.RiwayatPelangganActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.pelanggan.activity.TambahPelangganActivity"
             android:exported="true"
             android:screenOrientation="locked"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.ubahHarga.activity.UbahHargaActivity"
             android:exported="true"

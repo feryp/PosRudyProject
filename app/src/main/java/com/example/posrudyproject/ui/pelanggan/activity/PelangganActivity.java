@@ -56,7 +56,7 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                     "",
                     0,
                     "",
-                    0
+                    ""
             ));
         }
 
@@ -71,6 +71,8 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
         mToolbar.setNavigationOnClickListener(view -> finish());
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_riwayat_pelanggan){
+                Intent riwayatPelanggan = new Intent(this, RiwayatPelangganActivity.class);
+                startActivity(riwayatPelanggan);
                 return true;
             }
             return false;
