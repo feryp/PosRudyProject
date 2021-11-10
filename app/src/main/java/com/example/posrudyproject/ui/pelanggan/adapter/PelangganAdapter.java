@@ -1,12 +1,11 @@
 package com.example.posrudyproject.ui.pelanggan.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.pelanggan.model.PelangganItem;
@@ -37,6 +36,7 @@ public class PelangganAdapter extends RecyclerView.Adapter<PelangganViewHolder> 
         holder.noHpPelanggan.setText(pelangganItems.get(position).getNohpPelanggan());
 
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
+        holder.btnEdit.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }
 
     @Override
