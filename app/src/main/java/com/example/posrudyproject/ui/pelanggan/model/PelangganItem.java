@@ -7,9 +7,9 @@ public class PelangganItem {
     private String alamatPelanggan;
     private int totalKunjungan;
     private String kunjunganTerakhir;
-    private int totalPoin;
+    private String totalPoin;
 
-    public PelangganItem(String namaPelanggan, String nohpPelanggan, String emailPelanggan, String alamatPelanggan, int totalKunjungan, String kunjunganTerakhir, int totalPoin) {
+    public PelangganItem(String namaPelanggan, String nohpPelanggan, String emailPelanggan, String alamatPelanggan, int totalKunjungan, String kunjunganTerakhir, String totalPoin) {
         this.namaPelanggan = namaPelanggan;
         this.nohpPelanggan = nohpPelanggan;
         this.emailPelanggan = emailPelanggan;
@@ -67,11 +67,11 @@ public class PelangganItem {
         this.kunjunganTerakhir = kunjunganTerakhir;
     }
 
-    public int getTotalPoin() {
+    public String getTotalPoin() {
         return totalPoin;
     }
 
-    public void setTotalPoin(int totalPoin) {
+    public void setTotalPoin(String totalPoin) {
         this.totalPoin = totalPoin;
     }
 }

@@ -33,12 +33,13 @@ public class PenjualanAdapter extends RecyclerView.Adapter<PenjualanViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull PenjualanViewHolder holder, int position) {
-        holder.imBarang.setImageResource(penjualanItems.get(position).getImBarang());
-        holder.tipeBarang.setText(penjualanItems.get(position).getTipeBarang());
-        holder.artikelBarang.setText(penjualanItems.get(position).getArtikelBarang());
-        holder.namaBarang.setText(penjualanItems.get(position).getNamaBarang());
-        holder.hargaBarang.setText(penjualanItems.get(position).getHargaBarang());
-        holder.kuantitasBarang.setText(penjualanItems.get(position).getKuantitasBarang());
+        PenjualanItem item = penjualanItems.get(position);
+        holder.imBarang.setImageResource(item.getImBarang());
+        holder.tipeBarang.setText(item.getTipeBarang());
+        holder.artikelBarang.setText(item.getArtikelBarang());
+        holder.namaBarang.setText(item.getNamaBarang());
+        holder.hargaBarang.setText(item.getHargaBarang());
+        holder.kuantitasBarang.setText(item.getKuantitasBarang());
 
         holder.itemView.setOnClickListener(view -> {
             //FUNCTION PENJUALAN AND INTENT TO NEXT STEP SALE

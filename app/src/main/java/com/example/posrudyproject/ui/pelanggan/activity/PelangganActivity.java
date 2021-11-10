@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +24,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PelangganActivity extends AppCompatActivity implements OnItemClickListener {
+public class PelangganActivity extends AppCompatActivity implements OnItemClickListener, View.OnClickListener {
 
     MaterialToolbar mToolbar;
     SearchView searchView;
@@ -42,6 +43,9 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
 
         initToolbar();
 
+        //SET LISTENER
+        btnTambahPelanggan.setOnClickListener(this);
+
         //Pelanggan List
         pelangganItems = new ArrayList<>();
         for (int i=0; i<100; i++){
@@ -52,7 +56,7 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                     "",
                     0,
                     "",
-                    0
+                    ""
             ));
         }
 
@@ -67,6 +71,8 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
         mToolbar.setNavigationOnClickListener(view -> finish());
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_riwayat_pelanggan){
+                Intent riwayatPelanggan = new Intent(this, RiwayatPelangganActivity.class);
+                startActivity(riwayatPelanggan);
                 return true;
             }
             return false;
@@ -81,10 +87,28 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
         btnTambahPelanggan = findViewById(R.id.btn_tambah_pelanggan);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onItemClickListener(View view, int position) {
-        Toast.makeText(this, "Pilih " + pelangganItems.get(position).getNamaPelanggan(), Toast.LENGTH_SHORT).show();
-        Intent tambahPelanggan = new Intent(this, KeranjangActivity.class);
+        switch (view.getId()){
+            case R.id.item_pelanggan:
+                Toast.makeText(this, "Pilih " + pelangganItems.get(position).getNamaPelanggan(), Toast.LENGTH_SHORT).show();
+                Intent tambahPelanggan = new Intent(this, KeranjangActivity.class);
+                startActivity(tambahPelanggan);
+                break;
+            case R.id.btn_edit_pelanggan:
+                Toast.makeText(this, "Ubah " + pelangganItems.get(position).getNamaPelanggan(), Toast.LENGTH_SHORT).show();
+                Intent editPelanggan = new Intent(this, TambahPelangganActivity.class);
+                startActivity(editPelanggan);
+                break;
+        }
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        Toast.makeText(this, "Tambah Pelanggan", Toast.LENGTH_SHORT).show();
+        Intent tambahPelanggan = new Intent(this, TambahPelangganActivity.class);
         startActivity(tambahPelanggan);
     }
 }

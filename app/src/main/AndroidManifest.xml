@@ -10,35 +10,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
-            android:name=".ui.ubahHarga.activity.UbahHargaActivity"
+            android:name=".ui.pelanggan.activity.RiwayatPelangganActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.pelanggan.activity.TambahPelangganActivity"
+            android:exported="true"
+            android:screenOrientation="locked"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.ubahHarga.activity.UbahHargaActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.pesananTunggu.activity.PesananTungguActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.keranjang.activity.KeranjangActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.laporan.LaporanActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.produk.ProdukActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.karyawan.KaryawanActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.pelanggan.activity.PelangganActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.penyimpanan.PenyimpananActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.penjualan.activity.KategoriActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.penjualan.activity.PenjualanActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
@@ -52,10 +70,12 @@
         </activity>
         <activity
             android:name=".ui.lupaSandi.LupaSandiActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
