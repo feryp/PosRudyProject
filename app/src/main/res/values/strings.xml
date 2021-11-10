@@ -61,4 +61,8 @@
     <string name="title_ubah_harga">Ubah Harga</string>
     <string name="hint_nominal">Nominal</string>
 
+    //Pelanggan Screen
+    <string name="menu_riwayat">Riwayat</string>
+    <string name="btn_tambah_pelanggan">Tambah Pelanggan</string>
+
 </resources>

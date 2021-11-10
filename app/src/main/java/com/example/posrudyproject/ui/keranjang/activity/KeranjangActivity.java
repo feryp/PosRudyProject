@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
+import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -31,7 +32,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     SearchView searchView;
     AppCompatImageButton btnBarcode;
     MaterialToolbar mToolbar;
-    MaterialButton btnPotonganHarga, btnSimpanPesanan, btnCustom, btnKonfirmasi;
+    MaterialButton btnPotonganHarga, btnSimpanPesanan, btnAddPelanggan, btnAddPenjual, btnAddDiskon, btnAddOngkir, btnCustom, btnKonfirmasi;
     RecyclerView rvKeranjang;
     KeranjangAdapter adapter;
     List<KeranjangItem> keranjangItems;
@@ -50,6 +51,10 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         //SET LISTENER
         btnPotonganHarga.setOnClickListener(this);
         btnSimpanPesanan.setOnClickListener(this);
+        btnAddPelanggan.setOnClickListener(this);
+        btnAddPenjual.setOnClickListener(this);
+        btnAddDiskon.setOnClickListener(this);
+        btnAddOngkir.setOnClickListener(this);
         btnCustom.setOnClickListener(this);
         btnKonfirmasi.setOnClickListener(this);
 
@@ -100,6 +105,10 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         btnBarcode = findViewById(R.id.btn_barcode);
         btnPotonganHarga = findViewById(R.id.btn_potongan_harga);
         btnSimpanPesanan = findViewById(R.id.btn_simpan_pesanan);
+        btnAddPelanggan = findViewById(R.id.btn_add_pelanggan);
+        btnAddPenjual = findViewById(R.id.btn_add_penjual);
+        btnAddDiskon = findViewById(R.id.btn_add_diskon);
+        btnAddOngkir = findViewById(R.id.btn_add_ongkir);
         btnCustom = findViewById(R.id.btn_custom_item_keranjang);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_keranjang);
         rvKeranjang = findViewById(R.id.rv_keranjang);
@@ -115,6 +124,19 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             case R.id.btn_potongan_harga:
                 Intent potonganHarga = new Intent(this, UbahHargaActivity.class);
                 startActivity(potonganHarga);
+                break;
+            case R.id.btn_add_pelanggan:
+                Intent tambahPelanggan = new Intent(this, PelangganActivity.class);
+                startActivity(tambahPelanggan);
+                break;
+            case R.id.btn_add_penjual:
+                //Function Button
+                break;
+            case R.id.btn_add_diskon:
+                //Function Button
+                break;
+            case R.id.btn_add_ongkir:
+                //Function Button
                 break;
             case R.id.btn_custom_item_keranjang:
                 //Function Button

@@ -193,6 +193,7 @@
                         tools:text="John Doe" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_pelanggan"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -243,6 +244,7 @@
                         tools:text="John Doe" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_penjual"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -293,6 +295,7 @@
                         tools:text="10%" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_diskon"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -343,6 +346,7 @@
                         tools:text="JNE - Rp 10.000" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_ongkir"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
