@@ -22,7 +22,7 @@
     <string name="menu_penjualan">Penjualan</string>
     <string name="menu_penyimpanan">Penyimpanan</string>
     <string name="menu_pelanggan">Pelanggan</string>
-    <string name="menu_karyawan">Karyawan</string>
+    <string name="menu_penjual">Penjual</string>
     <string name="menu_produk">Produk</string>
     <string name="menu_laporan">Laporan</string>
 
@@ -73,5 +73,8 @@
     <string name="title_total_kunjungan">Total Kunjungan</string>
     <string name="title_kunjungan_terakhir">Kunjungan Terakhir</string>
     <string name="title_total_poin">Total Poin</string>
+
+    //Penjual Screen
+    <string name="btn_pindahkan_penjual">Pindahkan Penjual</string>
 
 </resources>

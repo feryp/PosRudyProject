@@ -93,7 +93,7 @@
             app:cardUseCompatPadding="true"
             app:layout_constraintDimensionRatio="W,H,1:1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/card_karyawan"
+            app:layout_constraintEnd_toStartOf="@id/card_penjual"
             app:layout_constraintTop_toBottomOf="@id/card_penjualan">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -122,7 +122,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_karyawan"
+            android:id="@+id/card_penjual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -150,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
-                    android:text="@string/menu_karyawan"
+                    android:text="@string/menu_penjual"
                     android:textSize="@dimen/font_md"
                     android:fontFamily="@font/work_sans_semi_bold"
                     android:textColor="@color/black_gunmetal"/>
@@ -208,7 +208,7 @@
             app:layout_constraintDimensionRatio="W,H,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_produk"
-            app:layout_constraintTop_toBottomOf="@id/card_karyawan">
+            app:layout_constraintTop_toBottomOf="@id/card_penjual">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
