@@ -11,7 +11,8 @@
         android:theme="@style/Theme.PosRudyProject">
         <activity
             android:name=".ui.pelanggan.activity.RiwayatPelangganActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".ui.pelanggan.activity.TambahPelangganActivity"
             android:exported="true"
@@ -38,7 +39,7 @@
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
-            android:name=".ui.karyawan.KaryawanActivity"
+            android:name=".ui.penjual.activity.PenjualActivity"
             android:exported="true"
             android:screenOrientation="locked" />
         <activity

@@ -18,6 +18,7 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
+import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -130,7 +131,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 startActivity(tambahPelanggan);
                 break;
             case R.id.btn_add_penjual:
-                //Function Button
+                Intent tambahPenjual = new Intent(this, PenjualActivity.class);
+                startActivity(tambahPenjual);
                 break;
             case R.id.btn_add_diskon:
                 //Function Button

@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.beranda.adapter.ImageSliderAdapter;
 import com.example.posrudyproject.ui.beranda.model.ImageSliderItem;
-import com.example.posrudyproject.ui.karyawan.KaryawanActivity;
+import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.laporan.LaporanActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
@@ -36,7 +36,7 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
     private ViewPager2 vp2;
     private ImageSliderAdapter imageSliderAdapter;
     private final Handler sliderHandler = new Handler();
-    MaterialCardView cardPenjualan, cardPenyimpanan, cardPelanggan, cardKaryawan, cardProduk, cardLaporan;
+    MaterialCardView cardPenjualan, cardPenyimpanan, cardPelanggan, cardPenjual, cardProduk, cardLaporan;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +49,7 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
         cardPenjualan = v.findViewById(R.id.card_penjualan);
         cardPenyimpanan = v.findViewById(R.id.card_penyimpanan);
         cardPelanggan = v.findViewById(R.id.card_pelanggan);
-        cardKaryawan = v.findViewById(R.id.card_karyawan);
+        cardPenjual = v.findViewById(R.id.card_penjual);
         cardProduk = v.findViewById(R.id.card_produk);
         cardLaporan = v.findViewById(R.id.card_laporan);
 
@@ -89,7 +89,7 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
         cardPenjualan.setOnClickListener(BerandaFragment.this);
         cardPenyimpanan.setOnClickListener(BerandaFragment.this);
         cardPelanggan.setOnClickListener(BerandaFragment.this);
-        cardKaryawan.setOnClickListener(BerandaFragment.this);
+        cardPenjual.setOnClickListener(BerandaFragment.this);
         cardProduk.setOnClickListener(BerandaFragment.this);
         cardLaporan.setOnClickListener(BerandaFragment.this);
 
@@ -131,9 +131,9 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
                 Intent pelanggan = new Intent(getActivity(), PelangganActivity.class);
                 startActivity(pelanggan);
                 break;
-            case R.id.card_karyawan:
-                Intent karyawan =  new Intent(getActivity(), KaryawanActivity.class);
-                startActivity(karyawan);
+            case R.id.card_penjual:
+                Intent penjual =  new Intent(getActivity(), PenjualActivity.class);
+                startActivity(penjual);
                 break;
             case R.id.card_produk:
                 Intent produk = new Intent(getActivity(), ProdukActivity.class);
