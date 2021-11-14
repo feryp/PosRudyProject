@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:fontFamily="@font/work_sans_medium"
-            android:text="Filter"
+            android:text="@string/title_filter"
             android:textColor="@color/black"
             android:textSize="@dimen/font_mds"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:fontFamily="@font/work_sans_semi_bold"
-            android:text="Pilih Tipe"
+            android:text="@string/subtitle_pilih_tipe"
             android:textColor="@color/black"
             android:textSize="@dimen/font_xlg"
             app:layout_constraintBottom_toBottomOf="parent"
