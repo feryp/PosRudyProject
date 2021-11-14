@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/btn_cancel_dialog"
             app:layout_constraintBottom_toBottomOf="@id/btn_cancel_dialog"
-            app:layout_constraintEnd_toStartOf="@id/btn_cancel_dialog"/>
+            app:layout_constraintEnd_toEndOf="@id/btn_cancel_dialog"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cancel_dialog"
@@ -102,7 +102,7 @@
         android:id="@+id/btn_simpan_harga"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        style="@style/TextAppearance.AppCompat.Button"
+        style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_marginTop="@dimen/margin_lg"
         android:text="@string/btn_simpan_pesanan"
         android:textSize="@dimen/font_md"
