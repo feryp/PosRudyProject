@@ -18,6 +18,7 @@
             android:layout_height="134dp"
             tools:src="@drawable/im_example"
             android:scaleType="fitCenter"
+            android:background="@color/white"
             app:riv_corner_radius_top_left="8dp"
             app:riv_corner_radius_top_right="8dp"
             app:layout_constraintTop_toTopOf="parent" />

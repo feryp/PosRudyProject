@@ -56,7 +56,7 @@ public class PenjualActivity extends AppCompatActivity implements OnItemClickLis
 
         //Setup adapter
         adapter = new PenjualAdapter(penjualItems, this);
-        rvPenjual.setLayoutManager(new GridLayoutManager(this, 3));
+        rvPenjual.setLayoutManager(new GridLayoutManager(this, 2));
         rvPenjual.setAdapter(adapter);
         rvPenjual.setHasFixedSize(true);
 

@@ -1,5 +1,6 @@
 package com.example.posrudyproject.ui.penjual.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.penjual.model.PenjualItem;
 import com.example.posrudyproject.ui.penjual.viewholder.PenjualViewHolder;
-import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
 
 import java.util.List;
 
@@ -19,6 +19,8 @@ public class PenjualAdapter extends RecyclerView.Adapter<PenjualViewHolder> {
 
     private final List<PenjualItem> penjualItems;
     private final OnItemClickListener listener;
+
+    PenjualItem selectedItemPositon = null;
 
     public PenjualAdapter(List<PenjualItem> penjualItems, OnItemClickListener listener) {
         this.penjualItems = penjualItems;
@@ -33,17 +35,39 @@ public class PenjualAdapter extends RecyclerView.Adapter<PenjualViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PenjualViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PenjualViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PenjualItem item = penjualItems.get(position);
         holder.fotoPenjual.setImageResource(item.getImPenjual());
         holder.namaPenjual.setText(item.getNamaPenjual());
         holder.jabatanPenjual.setText(item.getJabatanPenjual());
 
-        holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
+        if (selectedItemPositon != null){
+            if (selectedItemPositon.getNamaPenjual().equals(penjualItems.get(position).getNamaPenjual())){
+                holder.itemView.setBackgroundResource(R.drawable.bg_rounded_neon_blue_shadow_outlined);
+            } else {
+                holder.itemView.setBackgroundResource(R.drawable.bg_container_shadow);
+            }
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onClick(View view) {
+                if (listener != null) listener.onItemClickListener(view, position);
+                selectItem(penjualItems.get(position));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return penjualItems.size();
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void selectItem(PenjualItem selected){
+        selectedItemPositon = selected;
+        notifyDataSetChanged();
+    }
+
 }
