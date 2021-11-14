@@ -80,6 +80,7 @@
     <string name="btn_pindahkan_penjual">Pindahkan Penjual</string>
     <string name="title_toko_tujuan">Toko Tujuan</string>
     <string name="subtitle_pilih_toko">Pilih Toko</string>
+    <string name="btn_oke">Oke</string>
 
 
 </resources>
