@@ -15,6 +15,7 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.TambahPelangganActivity;
 import com.example.posrudyproject.ui.penjual.adapter.PenjualAdapter;
+import com.example.posrudyproject.ui.penjual.fragment.BotSheetTokoTujuanFragment;
 import com.example.posrudyproject.ui.penjual.model.PenjualItem;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -85,6 +86,10 @@ public class PenjualActivity extends AppCompatActivity implements OnItemClickLis
     @Override
     public void onClick(View view) {
         Toast.makeText(this, "Pindahkan Penjual", Toast.LENGTH_SHORT).show();
-        //function pindahkan karyawan
+        //function pindahkan karyawan dengan action klik salah satu penjual/karyawan dahulu,
+        //lalu pilih toko tujuan.
+
+        BotSheetTokoTujuanFragment botSheetToko = new BotSheetTokoTujuanFragment();
+        botSheetToko.show(getSupportFragmentManager(), botSheetToko.getTag());
     }
 }

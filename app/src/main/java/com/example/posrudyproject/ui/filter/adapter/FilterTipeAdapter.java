@@ -28,13 +28,14 @@ public class FilterTipeAdapter extends RecyclerView.Adapter<FilterTipeViewHolder
     @NonNull
     @Override
     public FilterTipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tipe_botsheet, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_botsheet, parent, false);
         return new FilterTipeViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FilterTipeViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.tipeBarang.setText(tipeItems.get(position).getNamaTipe());
+        TipeItem item = tipeItems.get(position);
+        holder.tipeBarang.setText(item.getNamaTipe());
 
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bg_bottom_sheet"
-    tools:context=".ui.filter.fragment.BotSheetFilterTipeFragment">
+    tools:context=".ui.penjual.fragment.BotSheetTokoTujuanFragment">
 
     <View
-        android:layout_width="63dp"
-        android:layout_height="5dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_md"
-        android:background="@drawable/toggle_botsheet" />
+    android:layout_width="63dp"
+    android:layout_height="5dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/margin_md"
+    android:background="@drawable/toggle_botsheet" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,30 +22,30 @@
         android:padding="16dp">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_filter"
+            android:id="@+id/title_botsheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:fontFamily="@font/work_sans_medium"
-            android:text="@string/title_filter"
+            android:text="@string/title_toko_tujuan"
             android:textColor="@color/black"
             android:textSize="@dimen/font_mds"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/subtitle_filter"/>
+            app:layout_constraintBottom_toTopOf="@id/subtitle_botsheet"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/subtitle_filter"
+            android:id="@+id/subtitle_botsheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:fontFamily="@font/work_sans_semi_bold"
-            android:text="@string/subtitle_pilih_tipe"
+            android:text="@string/subtitle_pilih_toko"
             android:textColor="@color/black"
             android:textSize="@dimen/font_xlg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_filter"/>
+            app:layout_constraintTop_toBottomOf="@id/title_botsheet"/>
 
         <ImageButton
             android:id="@+id/btn_close_botsheet"
@@ -74,7 +73,7 @@
         android:background="@color/line"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tipe_botsheet"
+        android:id="@+id/rv_toko_botsheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />

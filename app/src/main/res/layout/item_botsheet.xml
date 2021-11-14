@@ -15,7 +15,7 @@
     tools:ignore="UnusedAttribute">
 
     <TextView
-        android:id="@+id/tv_tipe_barang_filter"
+        android:id="@+id/tv_item_botsheet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="CUTLINE"

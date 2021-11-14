@@ -49,6 +49,8 @@
     <string name="title_total_harga">Total Harga</string>
     <string name="btn_custom">Custom</string>
     <string name="btn_konfirmasi">Konfirmasi</string>
+    <string name="title_filter">Filter</string>
+    <string name="subtitle_pilih_tipe">Pilih Tipe</string>
 
     //Pesanan Tunggu Screen
     <string name="menu_delete">Delete</string>
@@ -76,5 +78,8 @@
 
     //Penjual Screen
     <string name="btn_pindahkan_penjual">Pindahkan Penjual</string>
+    <string name="title_toko_tujuan">Toko Tujuan</string>
+    <string name="subtitle_pilih_toko">Pilih Toko</string>
+
 
 </resources>

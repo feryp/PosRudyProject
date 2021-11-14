@@ -15,6 +15,6 @@ public class FilterTipeViewHolder extends RecyclerView.ViewHolder {
     public FilterTipeViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        tipeBarang = itemView.findViewById(R.id.tv_tipe_barang_filter);
+        tipeBarang = itemView.findViewById(R.id.tv_item_botsheet);
     }
 }
