@@ -59,7 +59,7 @@
     <string name="title_simpan_pesanan">Simpan Pesanan</string>
     <string name="hint_keterangan">Keterangan</string>
 
-    //Ubah Harga Screen
+    //Ubah Harga Dialog Screen
     <string name="title_ubah_harga">Ubah Harga</string>
     <string name="hint_nominal">Nominal</string>
 
@@ -89,6 +89,11 @@
     <string name="et_hint_deskripsi">Deskripsi <i>(Optional)</i></string>
     <string name="btn_batal">Batal</string>
     <string name="btn_tambah">Tambah</string>
+
+    //Ongkos Dialog Screen
+    <string name="title_ongkos_kirim">Ongkos Kirim</string>
+    <string name="et_hint_nama_ekspedisi">Nama Ekspedisi</string>
+    <string name="et_hint_ongkos_kirim">Ongkos Kirim</string>
 
 
 </resources>
