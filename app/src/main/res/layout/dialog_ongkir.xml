@@ -86,7 +86,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/et_hint_ongkos_kirim"
             android:imeOptions="actionDone"
-            android:inputType="number"/>
+            android:inputType="number"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
