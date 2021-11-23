@@ -121,7 +121,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_simpan_pesanan:
-                openDialog();
+                dialogSimpanPesanan();
                 break;
             case R.id.btn_potongan_harga:
                 Intent potonganHarga = new Intent(this, UbahHargaActivity.class);
@@ -141,7 +141,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 botSheetDiskon.show(getSupportFragmentManager(), botSheetDiskon.getTag());
                 break;
             case R.id.btn_add_ongkir:
-                //Function Button
+                dialogOngkir();
                 break;
             case R.id.btn_custom_item_keranjang:
                 //Function Button
@@ -153,7 +153,43 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void openDialog() {
+    private void dialogOngkir() {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(KeranjangActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_ongkir,null);
+
+        //init view
+        final TextInputEditText etNamaEkspedisi = mView.findViewById(R.id.et_nama_ekspedisi);
+        final TextInputEditText etOngkosKirim = mView.findViewById(R.id.et_ongkos_kirim);
+        MaterialButton btnSimpan = mView.findViewById(R.id.btn_simpan_ongkir);
+        MaterialButton btnCancel = mView.findViewById(R.id.btn_cancel_dialog);
+
+        alert.setView(mView);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.bg_rounded_white));
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        btnSimpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(KeranjangActivity.this, "Simpan", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void dialogSimpanPesanan() {
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(KeranjangActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_simpan_pesanan,null);
