@@ -70,6 +70,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_filter){
                 BotSheetFilterTipeFragment botSheetTipe = new BotSheetFilterTipeFragment();
+                botSheetTipe.setCancelable(false);
                 botSheetTipe.show(getSupportFragmentManager(), botSheetTipe.getTag());
                 return true;
             }

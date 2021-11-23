@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_md"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.diskon.fragment.PercentFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_et_jumlah_persen_diskon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_jumlah_persen_diskon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_hint_jumlah_persen"
+            android:imeOptions="actionDone"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_et_desk_persen_diskon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_md"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:counterEnabled="true"
+        app:counterMaxLength="100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_et_jumlah_persen_diskon">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_desk_persen_diskon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_hint_deskripsi"
+            android:imeOptions="actionDone"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:minLines="4"
+            android:maxLines="10"
+            android:scrollbars="vertical" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/margin_md"
+        app:layout_constraintTop_toBottomOf="@id/layout_et_desk_persen_diskon">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_batal_diskon"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:text="@string/btn_batal"
+            android:textSize="@dimen/font_md"
+            android:textColor="@color/neon_blue_primary"
+            android:textAllCaps="false"
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:strokeColor="@color/neon_blue_primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_tambah_persen_diskon"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_tambah_persen_diskon"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:text="@string/btn_tambah"
+            android:textSize="@dimen/font_md"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_batal_diskon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

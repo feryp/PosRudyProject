@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.diskon.fragment.BotSheetDiskonFragment;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
@@ -135,7 +136,9 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 startActivity(tambahPenjual);
                 break;
             case R.id.btn_add_diskon:
-                //Function Button
+                BotSheetDiskonFragment botSheetDiskon = new BotSheetDiskonFragment();
+                botSheetDiskon.setCancelable(false);
+                botSheetDiskon.show(getSupportFragmentManager(), botSheetDiskon.getTag());
                 break;
             case R.id.btn_add_ongkir:
                 //Function Button
