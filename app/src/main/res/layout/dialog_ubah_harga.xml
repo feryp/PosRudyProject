@@ -76,7 +76,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_md"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:errorEnabled="true"
         app:counterEnabled="true"
         app:counterMaxLength="100"
         app:layout_constraintStart_toStartOf="parent"

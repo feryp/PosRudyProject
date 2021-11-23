@@ -82,5 +82,13 @@
     <string name="subtitle_pilih_toko">Pilih Toko</string>
     <string name="btn_oke">Oke</string>
 
+    //Diskon Screen
+    <string name="title_tambah_diskon">Tambah Diskon</string>
+    <string name="et_hint_jumlah_persen">Jumlah <i>(%)</i></string>
+    <string name="et_hint_jumlah_rupiah">Jumlah <i>(Rp)</i></string>
+    <string name="et_hint_deskripsi">Deskripsi <i>(Optional)</i></string>
+    <string name="btn_batal">Batal</string>
+    <string name="btn_tambah">Tambah</string>
+
 
 </resources>
