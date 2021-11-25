@@ -28,8 +28,8 @@ import java.util.List;
 
 public class BotSheetDiskonFragment extends BottomSheetDialogFragment {
 
-    ImageButton btnClose;
-    TabLayout tabLayout;
+    private ImageButton btnClose;
+    private TabLayout tabLayout;
     private ViewPagerDiskonAdapter adapter;
 
     @Override

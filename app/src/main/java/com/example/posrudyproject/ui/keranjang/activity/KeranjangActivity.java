@@ -19,6 +19,7 @@ import com.example.posrudyproject.ui.diskon.fragment.BotSheetDiskonFragment;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
+import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
@@ -147,7 +148,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 //Function Button
                 break;
             case R.id.btn_konfirmasi_keranjang:
-                //Function Button
+                Intent konfirmasi = new Intent(this, PembayaranActivity.class);
+                startActivity(konfirmasi);
                 break;
         }
     }
