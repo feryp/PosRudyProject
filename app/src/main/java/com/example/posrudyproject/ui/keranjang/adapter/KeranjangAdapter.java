@@ -55,8 +55,8 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
         //onclick layout delete item
         holder.layoutDelete.setOnClickListener(view -> new MaterialAlertDialogBuilder(mContext)
                 .setTitle("Konfirmasi Hapus")
-                .setMessage("Pesanan akan dihapus, lanjutkan ?")
-                .setPositiveButton("Lanjutkan", new DialogInterface.OnClickListener() {
+                .setMessage("Barang akan dihapus, Lanjutkan ?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         holder.hapusItem();
@@ -64,7 +64,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
                         notifyItemRemoved(holder.getAdapterPosition());
                     }
                 })
-                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

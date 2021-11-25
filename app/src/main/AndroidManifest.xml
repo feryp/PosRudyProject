@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
-            android:name=".ui.pelanggan.activity.RiwayatPelangganActivity"
+            android:name=".ui.pembayaran.activity.PembayaranActivity"
             android:exported="true"
             android:screenOrientation="locked"/>
+        <activity
+            android:name=".ui.pelanggan.activity.RiwayatPelangganActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.pelanggan.activity.TambahPelangganActivity"
             android:exported="true"

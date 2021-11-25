@@ -39,9 +39,16 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <!-- Tab Layout -->
+    <!-- Custom Tab Layout -->
     <style name="TabLayout" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">12sp</item>
         <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Tab Layout -->
+    <style name="CustomTextApprearance" parent="Widget.Design.TabLayout">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/work_sans_medium</item>
     </style>
 </resources>
