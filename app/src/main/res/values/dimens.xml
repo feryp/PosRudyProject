@@ -30,5 +30,6 @@
     <dimen name="margin_md">16dp</dimen>
     <dimen name="margin_lg">32dp</dimen>
     <dimen name="margin_xlg">48dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.posrudyproject.ui.pembayaran.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatEditText;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.penjualan.activity.TransaksiSuksesActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class TunaiFragment extends Fragment implements View.OnClickListener {
@@ -148,7 +150,8 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                 display();
                 break;
             case R.id.btn_lanjut:
-                //Function konfimasi pembayaran
+                Intent lanjut = new Intent(getActivity(), TransaksiSuksesActivity.class);
+                startActivity(lanjut);
                 break;
 
         }

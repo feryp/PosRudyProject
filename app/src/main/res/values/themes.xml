@@ -51,6 +51,13 @@
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/work_sans_medium</item>
     </style>
+    <style name="Theme.PosRudyProject.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.PosRudyProject.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.PosRudyProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

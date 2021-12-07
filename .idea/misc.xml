@@ -73,6 +73,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_riwayat_pelanggan.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_splash.xml" value="0.152" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_tambah_pelanggan.xml" value="0.21126126126126127" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_transaksi_sukses.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_ubah_harga.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/content_main.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_alert_message.xml" value="0.264" />
@@ -97,6 +98,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_barang_keranjang.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_barang_pesanan_tunggu.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_barang_potongan_harga.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_barang_transaksi_selesai.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_barang_ubah_harga.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_card_bank.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_image_slider.xml" value="0.24427083333333333" />
