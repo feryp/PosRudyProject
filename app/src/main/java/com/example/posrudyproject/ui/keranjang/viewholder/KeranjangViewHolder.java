@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +22,7 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder {
     public AppCompatTextView hargaBarang;
     public AppCompatTextView jumlahBarang;
     public AppCompatTextView totalHargaBarang;
-    public AppCompatTextView kuantitasBarang;
+    public AppCompatEditText kuantitasBarang;
     public SwipeRevealLayout swipeRevealLayout;
     public LinearLayoutCompat layoutDelete;
 
@@ -37,7 +38,7 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder {
         hargaBarang = itemView.findViewById(R.id.tv_harga_barang_keranjang);
         jumlahBarang = itemView.findViewById(R.id.tv_jumlah_barang_keranjang);
         totalHargaBarang = itemView.findViewById(R.id.tv_total_harga_barang_keranjang);
-        kuantitasBarang = itemView.findViewById(R.id.tv_qty_item_keranjang);
+        kuantitasBarang = itemView.findViewById(R.id.et_qty_item_keranjang);
         swipeRevealLayout = itemView.findViewById(R.id.swipe_reveal_layout);
         layoutDelete = itemView.findViewById(R.id.layout_delete);
     }

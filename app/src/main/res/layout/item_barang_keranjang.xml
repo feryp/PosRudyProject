@@ -75,6 +75,18 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_artikel_barang_keranjang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="SP633846-0011"
+                android:textSize="@dimen/font_mds"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_semi_bold"
+                android:layout_marginTop="@dimen/margin_xsm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_tipe_barang_keranjang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,19 +95,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/work_sans_medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_artikel_barang_keranjang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="SP633846-0011"
-                android:textSize="@dimen/font_sm"
-                android:textColor="@color/black"
-                android:fontFamily="@font/work_sans_semi_bold"
-                android:layout_marginTop="@dimen/margin_xsm"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_keranjang"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_keranjang"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_nama_barang_keranjang"
@@ -108,7 +108,7 @@
                 android:layout_marginTop="@dimen/margin_xsm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_keranjang"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_keranjang"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -195,27 +195,30 @@
                 app:iconPadding="0dp"
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_qty_item_keranjang"
+                app:layout_constraintEnd_toStartOf="@id/et_qty_item_keranjang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck,UnusedAttribute,TouchTargetSizeCheck" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_qty_item_keranjang"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_qty_item_keranjang"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_xsm"
                 android:layout_marginEnd="@dimen/margin_xsm"
+                android:background="@android:color/transparent"
+                android:enabled="false"
                 android:fontFamily="@font/work_sans_medium"
                 android:gravity="center"
-                android:text="@string/txt_hint_0"
+                android:hint="@string/txt_hint_0"
+                android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_sm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btn_plus_keranjang"
                 app:layout_constraintStart_toEndOf="@id/btn_minus_keranjang"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_plus_keranjang"
@@ -232,7 +235,7 @@
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_qty_item_keranjang"
+                app:layout_constraintStart_toEndOf="@id/et_qty_item_keranjang"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck,UnusedAttribute,TouchTargetSizeCheck" />
 
