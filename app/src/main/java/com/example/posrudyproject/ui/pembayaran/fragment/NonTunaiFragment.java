@@ -1,5 +1,6 @@
 package com.example.posrudyproject.ui.pembayaran.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,19 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.pembayaran.adapter.PembayaranKartuAdapter;
 import com.example.posrudyproject.ui.pembayaran.adapter.PembayaranTransferAdapter;
 import com.example.posrudyproject.ui.pembayaran.model.BankItem;
+import com.example.posrudyproject.ui.penjualan.activity.TransaksiSuksesActivity;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NonTunaiFragment extends Fragment {
+public class NonTunaiFragment extends Fragment implements OnItemClickListener {
 
     private RecyclerView rvDebit, rvKredit, rvTransfer;
-    private MaterialButton btnLanjut;
     private List<BankItem> bankItems;
     private PembayaranKartuAdapter cardAdapter;
     private PembayaranTransferAdapter transferAdapter;
@@ -49,23 +51,29 @@ public class NonTunaiFragment extends Fragment {
         }
 
         //Setup adapter Debit
-        cardAdapter = new PembayaranKartuAdapter(bankItems, getActivity());
+        cardAdapter = new PembayaranKartuAdapter(bankItems, this);
         rvDebit.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rvDebit.setAdapter(cardAdapter);
         rvDebit.setHasFixedSize(true);
 
         //Setup adapter Kartu Kredit
-        cardAdapter = new PembayaranKartuAdapter(bankItems, getActivity());
+        cardAdapter = new PembayaranKartuAdapter(bankItems, this);
         rvKredit.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rvKredit.setAdapter(cardAdapter);
         rvKredit.setHasFixedSize(true);
 
         //Setup adapter Transfer Bank
-        transferAdapter = new PembayaranTransferAdapter(bankItems, getActivity());
+        transferAdapter = new PembayaranTransferAdapter(bankItems, this);
         rvTransfer.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvTransfer.setAdapter(transferAdapter);
         rvTransfer.setHasFixedSize(true);
 
         return v;
+    }
+
+    @Override
+    public void onItemClickListener(View view, int position) {
+        Intent bayarNonTunai = new Intent(getActivity(), TransaksiSuksesActivity.class);
+        startActivity(bayarNonTunai);
     }
 }

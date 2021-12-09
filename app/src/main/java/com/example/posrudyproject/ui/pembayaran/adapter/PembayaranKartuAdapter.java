@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.pembayaran.model.BankItem;
 import com.example.posrudyproject.ui.pembayaran.viewholder.PembayaranKartuViewHolder;
@@ -17,11 +18,11 @@ import java.util.List;
 public class PembayaranKartuAdapter extends RecyclerView.Adapter<PembayaranKartuViewHolder> {
 
     private final List<BankItem> bankItems;
-    private final Context mContext;
+    private final OnItemClickListener listener;
 
-    public PembayaranKartuAdapter(List<BankItem> bankItems, Context mContext) {
+    public PembayaranKartuAdapter(List<BankItem> bankItems, OnItemClickListener listener) {
         this.bankItems = bankItems;
-        this.mContext = mContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,6 +36,8 @@ public class PembayaranKartuAdapter extends RecyclerView.Adapter<PembayaranKartu
     public void onBindViewHolder(@NonNull PembayaranKartuViewHolder holder, int position) {
         BankItem item = bankItems.get(position);
         holder.logoBank.setImageResource(item.getLogoBank());
+
+        holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }
 
     @Override

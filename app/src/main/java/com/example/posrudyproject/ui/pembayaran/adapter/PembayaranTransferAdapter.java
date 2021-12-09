@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.pembayaran.model.BankItem;
 import com.example.posrudyproject.ui.pembayaran.viewholder.PembayaranTransferViewHolder;
@@ -17,11 +18,11 @@ import java.util.List;
 public class PembayaranTransferAdapter extends RecyclerView.Adapter<PembayaranTransferViewHolder> {
 
     private final List<BankItem> bankItems;
-    private final Context mContext;
+    private final OnItemClickListener listener;
 
-    public PembayaranTransferAdapter(List<BankItem> bankItems, Context mContext) {
+    public PembayaranTransferAdapter(List<BankItem> bankItems, OnItemClickListener listener) {
         this.bankItems = bankItems;
-        this.mContext = mContext;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,6 +38,8 @@ public class PembayaranTransferAdapter extends RecyclerView.Adapter<PembayaranTr
         holder.logoBank.setImageResource(item.getLogoBank());
         holder.namaBank.setText(item.getNamaBank());
         holder.noRek.setText(item.getNoRekening());
+
+        holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }
 
     @Override

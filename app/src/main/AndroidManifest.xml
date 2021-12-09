@@ -10,8 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.penjualan.activity.StrukPenjualanActivity"
+            android:exported="true"
+            android:screenOrientation="locked"/>
+        <activity
             android:name=".ui.penjualan.activity.TransaksiSuksesActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".ui.pembayaran.activity.PembayaranActivity"
             android:exported="true"
