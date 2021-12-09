@@ -128,6 +128,42 @@
                         app:layout_constraintStart_toEndOf="@+id/title_kembalian_transaksi_selesai"
                         app:layout_constraintTop_toBottomOf="@id/tv_jumlah_nominal_transaksi" />
 
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="@dimen/padding_md"
+                        android:paddingEnd="@dimen/padding_md"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/bg_circle_primary"
+                        app:layout_constraintTop_toBottomOf="@id/title_kembalian_transaksi_selesai"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_xsm"
+                            android:gravity="end"
+                            android:text="@string/title_metode_pembayaran"
+                            android:textSize="@dimen/font_sm"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:textColor="@color/white" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_metode_pembayaran_transaksi_selesai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:text="TRANSFER - BCA"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_sm" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -161,7 +197,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title_detail_pesanan"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_detail_pesanan_transaksi"
+                    android:id="@+id/rv_item_pesanan_transaksi_selesai"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
@@ -172,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_md"
-                    app:layout_constraintTop_toBottomOf="@id/rv_detail_pesanan_transaksi">
+                    app:layout_constraintTop_toBottomOf="@id/rv_item_pesanan_transaksi_selesai">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"

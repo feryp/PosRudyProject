@@ -125,6 +125,18 @@
     <string name="title_poin">Poin</string>
     <string name="btn_cetak_struk">Cetak Struk</string>
     <string name="btn_buat_pesanan_baru">Buat Pesanan Baru</string>
+    <string name="title_metode_pembayaran">Metode Pembayaran :</string>
+
+    //Struk Penjualan Screen
+    <string name="menu_print">Print</string>
+    <string name="title_telp_struk">Telp :</string>
+    <string name="title_penjual_struk">Penjual :</string>
+    <string name="title_harga_subtotal_struk">Harga Subtotal</string>
+    <string name="title_no_struk">No. Struk :</string>
+    <string name="title_dibayar_struk">Dibayar</string>
+    <string name="title_kembalian_struk">Kembalian</string>
+    <string name="terima_kasih_sudah_belanja">Terima kasih sudah belanja!</string>
+    <string name="kami_mengirimkan_struk_ini_atas_permintaan_anda_dan_berikut_ini_daftar_barang_berlanjaan_anda">Kami mengirimkan struk ini atas permintaan anda dan berikut ini daftar barang berlanjaan Anda:</string>
 
 
 </resources>
