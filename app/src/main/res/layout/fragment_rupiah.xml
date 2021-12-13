@@ -9,7 +9,7 @@
     tools:context=".ui.diskon.fragment.RupiahFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_et_jumlah_persen_diskon"
+        android:id="@+id/layout_et_jumlah_rupiah_diskon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_jumlah_persen_diskon"
+            android:id="@+id/et_jumlah_rupiah_diskon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/et_hint_jumlah_rupiah"
@@ -29,7 +29,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_et_desk_persen_diskon"
+        android:id="@+id/layout_et_desk_rupiah_diskon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_md"
@@ -38,10 +38,10 @@
         app:counterMaxLength="100"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_et_jumlah_persen_diskon">
+        app:layout_constraintTop_toBottomOf="@id/layout_et_jumlah_rupiah_diskon">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_desk_persen_diskon"
+            android:id="@+id/et_desk_rupiah_diskon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/et_hint_deskripsi"
@@ -61,10 +61,10 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:layout_marginTop="@dimen/margin_md"
-        app:layout_constraintTop_toBottomOf="@id/layout_et_desk_persen_diskon">
+        app:layout_constraintTop_toBottomOf="@id/layout_et_desk_rupiah_diskon">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_batal_diskon"
+            android:id="@+id/btn_batal_rupiah_diskon"
             android:layout_width="0dp"
             android:layout_height="56dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -94,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_batal_diskon"/>
+            app:layout_constraintStart_toEndOf="@id/btn_batal_rupiah_diskon"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
