@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@id/layout_et_desk_persen_diskon">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_batal_diskon"
+            android:id="@+id/btn_batal_persen_diskon"
             android:layout_width="0dp"
             android:layout_height="56dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -94,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_batal_diskon"/>
+            app:layout_constraintStart_toEndOf="@id/btn_batal_persen_diskon"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
