@@ -58,6 +58,7 @@
     <string name="title_keterangan">Keterangan</string>
     <string name="title_simpan_pesanan">Simpan Pesanan</string>
     <string name="hint_keterangan">Keterangan</string>
+    <string name="btn_hapus">Hapus</string>
 
     //Ubah Harga Dialog Screen
     <string name="title_ubah_harga">Ubah Harga</string>
@@ -137,6 +138,7 @@
     <string name="title_kembalian_struk">Kembalian</string>
     <string name="terima_kasih_sudah_belanja">Terima kasih sudah belanja!</string>
     <string name="kami_mengirimkan_struk_ini_atas_permintaan_anda_dan_berikut_ini_daftar_barang_berlanjaan_anda">Kami mengirimkan struk ini atas permintaan anda dan berikut ini daftar barang berlanjaan Anda:</string>
+
 
 
 </resources>

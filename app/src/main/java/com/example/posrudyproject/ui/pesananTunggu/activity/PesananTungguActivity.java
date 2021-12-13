@@ -48,6 +48,7 @@ public class PesananTungguActivity extends AppCompatActivity implements OnItemCl
             PesananTungguItem item = new PesananTungguItem(
                     "Pesanan Tunggu ",
                     "31 Okt 2021",
+                    "10:15 AM",
                     "Rp 9.503.000",
                     "Masih mencari barang yg ingin dibeli",
                     "Bambang", buildSubItemList());
@@ -69,15 +70,6 @@ public class PesananTungguActivity extends AppCompatActivity implements OnItemCl
 
     private void initToolbar() {
         mToolbar.setNavigationOnClickListener(view -> finish());
-        mToolbar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.menu_delete){
-                //FUNCTION DELETE
-
-                return true;
-            }
-
-            return false;
-        });
     }
 
     private void initComponent() {

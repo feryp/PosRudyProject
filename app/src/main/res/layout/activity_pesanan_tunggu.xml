@@ -26,8 +26,7 @@
             app:titleTextColor="@color/black"
             app:navigationIcon="@drawable/ic_arrow_left_black"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/TextAppearance.Tab"
-            app:menu="@menu/menu_delete"/>
+            app:titleTextAppearance="@style/TextAppearance.Tab" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

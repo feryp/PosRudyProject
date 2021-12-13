@@ -1,6 +1,7 @@
 package com.example.posrudyproject.ui.pesananTunggu.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.pesananTunggu.model.PesananTungguItem;
 import com.example.posrudyproject.ui.pesananTunggu.viewholder.PesananTungguViewHolder;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 
@@ -39,9 +41,32 @@ public class PesananTungguAdapter extends RecyclerView.Adapter<PesananTungguView
         PesananTungguItem item = pesananTungguItems.get(position);
         holder.noPesanan.setText(item.getNoPesanan());
         holder.tglPesanan.setText(item.getTglPesanan());
+        holder.jamPesanan.setText(item.getJamPesanan());
         holder.totalHargaPesanan.setText(item.getTotalHargaPesanan());
         holder.ketPesanan.setText(item.getKetPesanan());
         holder.pelangganPesanan.setText(item.getPelangganPesanan());
+        holder.btnHapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialAlertDialogBuilder(view.getContext())
+                        .setTitle("Konfirmasi Hapus")
+                        .setMessage("Pesanan tunggu akan dihapus, Lanjutkan ?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Function delete
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .show();
+            }
+        });
 
         //Create layout manager with initial prefetch item count
         LinearLayoutManager layoutManager = new LinearLayoutManager(
