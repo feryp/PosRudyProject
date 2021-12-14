@@ -9,11 +9,15 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.barang.barangKeluar.BarangKeluarActivity;
+import com.example.posrudyproject.ui.barang.barangMasuk.BarangMasukActivity;
+import com.example.posrudyproject.ui.barang.barangPindah.BarangPindahActivity;
 import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
 import com.example.posrudyproject.ui.penyimpanan.adapter.KategoriPenyimpananAdapter;
 import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
@@ -49,11 +53,14 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
         kategoriPenyimpananItems.add(new KategoriPenyimpananItem(1, "100","Barang Keluar"));
         kategoriPenyimpananItems.add(new KategoriPenyimpananItem(2, "100","Barang Pindah"));
 
+//        selectedKategori = katPenyimpananAdapter.getItemId(0);
+
         //Setup Adapter Kategori Penyimpanan
         katPenyimpananAdapter = new KategoriPenyimpananAdapter(kategoriPenyimpananItems, this);
         rvKategoriPenyimpanan.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvKategoriPenyimpanan.setAdapter(katPenyimpananAdapter);
         rvKategoriPenyimpanan.setHasFixedSize(true);
+
 
         //Produk Tersedia
         produkTersediaItems = new ArrayList<>();
@@ -87,6 +94,22 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
 
     @Override
     public void onItemClickListener(View view, int position) {
+        switch (position){
+            case 0:
+                Intent barangMasuk = new Intent(this, BarangMasukActivity.class);
+                startActivity(barangMasuk);
+                break;
 
+            case 1:
+                Intent barangKeluar = new Intent(this, BarangKeluarActivity.class);
+                startActivity(barangKeluar);
+                break;
+
+            case 2:
+                Intent barangPindah = new Intent(this, BarangPindahActivity.class);
+                startActivity(barangPindah);
+                break;
+
+        }
     }
 }

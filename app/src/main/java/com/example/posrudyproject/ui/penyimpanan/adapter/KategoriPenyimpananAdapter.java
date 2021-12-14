@@ -1,5 +1,6 @@
 package com.example.posrudyproject.ui.penyimpanan.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class KategoriPenyimpananAdapter extends RecyclerView.Adapter<KategoriPen
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KategoriPenyimpananViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull KategoriPenyimpananViewHolder holder, @SuppressLint("RecyclerView") int position) {
         KategoriPenyimpananItem item = kategoriPenyimpananItems.get(position);
         holder.jumlahBarang.setText(item.getJmlBarangPenyimpanan());
         holder.kategoriBarang.setText(item.getKatBarangPenyimpanan());
@@ -44,4 +45,5 @@ public class KategoriPenyimpananAdapter extends RecyclerView.Adapter<KategoriPen
     public int getItemCount() {
         return kategoriPenyimpananItems.size();
     }
+
 }
