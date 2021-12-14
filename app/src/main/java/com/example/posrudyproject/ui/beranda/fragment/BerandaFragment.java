@@ -24,7 +24,7 @@ import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.laporan.LaporanActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
-import com.example.posrudyproject.ui.penyimpanan.PenyimpananActivity;
+import com.example.posrudyproject.ui.penyimpanan.activity.PenyimpananActivity;
 import com.example.posrudyproject.ui.produk.ProdukActivity;
 import com.google.android.material.card.MaterialCardView;
 
