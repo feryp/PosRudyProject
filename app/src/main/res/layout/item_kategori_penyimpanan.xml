@@ -8,7 +8,6 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true"
-    android:background="@drawable/bg_card_gradient_purple"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
