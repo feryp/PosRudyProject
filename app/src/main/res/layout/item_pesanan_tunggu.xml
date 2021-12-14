@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,24 +60,24 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_hapus_pesanan_tunggu"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:text="@string/btn_hapus"
-                android:textSize="@dimen/font_sm"
-                android:textColor="@color/neon_blue_primary"
-                android:textAllCaps="false"
                 android:fontFamily="@font/work_sans_semi_bold"
-                app:icon="@drawable/ic_trash_black"
-                app:iconTint="@color/neon_blue_primary"
-                app:iconGravity="textStart"
-                app:iconSize="24dp"
-                app:iconPadding="@dimen/padding_sm"
-                app:strokeColor="@color/neon_blue_primary"
+                android:text="@string/btn_hapus"
+                android:textAllCaps="false"
+                android:textColor="#3949AB"
+                android:textSize="@dimen/font_sm"
                 app:cornerRadius="16dp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:icon="@drawable/ic_trash_black"
+                app:iconGravity="textStart"
+                app:iconPadding="@dimen/padding_sm"
+                app:iconSize="24dp"
+                app:iconTint="@color/neon_blue_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/neon_blue_primary" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
