@@ -125,29 +125,17 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_button"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_simpan_pelanggan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_simpan_pelanggan"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                style="@style/Widget.MaterialComponents.Button"
-                android:text="@string/btn_simpan_pesanan"
-                android:textSize="@dimen/font_md"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:fontFamily="@font/work_sans_semi_bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="56dp"
+            style="@style/Widget.MaterialComponents.Button"
+            android:text="@string/btn_simpan_pesanan"
+            android:textSize="@dimen/font_md"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

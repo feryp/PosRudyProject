@@ -75,6 +75,17 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tipe_barang_keranjang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="CUTLINE"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_artikel_barang_keranjang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,18 +95,7 @@
                 android:fontFamily="@font/work_sans_semi_bold"
                 android:layout_marginTop="@dimen/margin_xsm"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_tipe_barang_keranjang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="CUTLINE"
-                android:textSize="@dimen/font_sm"
-                android:textColor="@color/black"
-                android:fontFamily="@font/work_sans_medium"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_keranjang"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_keranjang"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_nama_barang_keranjang"
@@ -108,7 +108,7 @@
                 android:layout_marginTop="@dimen/margin_xsm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_keranjang"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_keranjang"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"

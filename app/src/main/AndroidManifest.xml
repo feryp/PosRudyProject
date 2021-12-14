@@ -10,13 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.barang.barangPindah.BarangPindahActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.barang.barangKeluar.BarangKeluarActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.barang.barangMasuk.BarangMasukActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.barang.barang.barangKeluar.BarangKeluarActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.penjualan.activity.StrukPenjualanActivity"
             android:exported="true"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.penjualan.activity.TransaksiSuksesActivity"
             android:exported="true"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.pembayaran.activity.PembayaranActivity"
             android:exported="true"
@@ -59,7 +71,7 @@
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
-            android:name=".ui.penyimpanan.PenyimpananActivity"
+            android:name=".ui.penyimpanan.activity.PenyimpananActivity"
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
