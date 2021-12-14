@@ -138,5 +138,11 @@
     <string name="terima_kasih_sudah_belanja">Terima kasih sudah belanja!</string>
     <string name="kami_mengirimkan_struk_ini_atas_permintaan_anda_dan_berikut_ini_daftar_barang_berlanjaan_anda">Kami mengirimkan struk ini atas permintaan anda dan berikut ini daftar barang berlanjaan Anda:</string>
 
+    //Penyimpanan Screen
+    <string name="btn_pemindahan_barang">Pemindahan Barang</string>
+    <string name="barang">Barang</string>
+    <string name="title_persediaan_stok">Persediaan Stok</string>
+    <string name="alert_stok_tinggal_sedikit">Stok Tinggal Sedikit</string>
+
 
 </resources>

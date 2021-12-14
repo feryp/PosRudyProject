@@ -59,7 +59,7 @@
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
-            android:name=".ui.penyimpanan.PenyimpananActivity"
+            android:name=".ui.penyimpanan.activity.PenyimpananActivity"
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
