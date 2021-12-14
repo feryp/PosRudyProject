@@ -5,14 +5,16 @@ import java.util.List;
 public class PesananTungguItem {
     private String noPesanan;
     private String tglPesanan;
+    private String jamPesanan;
     private String totalHargaPesanan;
     private String ketPesanan;
     private String pelangganPesanan;
     private List<BarangPesananTungguItem> barangPesanan;
 
-    public PesananTungguItem(String noPesanan, String tglPesanan, String totalHargaPesanan, String ketPesanan, String pelangganPesanan, List<BarangPesananTungguItem> barangPesanan) {
+    public PesananTungguItem(String noPesanan, String tglPesanan, String jamPesanan, String totalHargaPesanan, String ketPesanan, String pelangganPesanan, List<BarangPesananTungguItem> barangPesanan) {
         this.noPesanan = noPesanan;
         this.tglPesanan = tglPesanan;
+        this.jamPesanan = jamPesanan;
         this.totalHargaPesanan = totalHargaPesanan;
         this.ketPesanan = ketPesanan;
         this.pelangganPesanan = pelangganPesanan;
@@ -33,6 +35,14 @@ public class PesananTungguItem {
 
     public void setTglPesanan(String tglPesanan) {
         this.tglPesanan = tglPesanan;
+    }
+
+    public String getJamPesanan() {
+        return jamPesanan;
+    }
+
+    public void setJamPesanan(String jamPesanan) {
+        this.jamPesanan = jamPesanan;
     }
 
     public String getTotalHargaPesanan() {

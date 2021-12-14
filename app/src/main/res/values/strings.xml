@@ -58,6 +58,7 @@
     <string name="title_keterangan">Keterangan</string>
     <string name="title_simpan_pesanan">Simpan Pesanan</string>
     <string name="hint_keterangan">Keterangan</string>
+    <string name="btn_hapus">Hapus</string>
 
     //Ubah Harga Dialog Screen
     <string name="title_ubah_harga">Ubah Harga</string>
@@ -143,6 +144,7 @@
     <string name="barang">Barang</string>
     <string name="title_persediaan_stok">Persediaan Stok</string>
     <string name="alert_stok_tinggal_sedikit">Stok Tinggal Sedikit</string>
+
 
 
 </resources>

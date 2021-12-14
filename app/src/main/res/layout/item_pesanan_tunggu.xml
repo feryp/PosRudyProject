@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,26 +25,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="#INV011"
-                android:textSize="@dimen/font_sm"
+                android:textSize="@dimen/font_md"
                 android:textColor="@color/black_gunmetal"
                 android:fontFamily="@font/work_sans_semi_bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_tgl_nomor_pesanan_tunggu"
+                android:id="@+id/tv_tgl_pesanan_tunggu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="08 Aug 2021"
                 android:textSize="@dimen/font_sm"
                 android:textColor="@color/black_gunmetal"
-                android:fontFamily="@font/work_sans_semi_bold"
-                android:drawableStart="@drawable/ic_calendar"
+                android:fontFamily="@font/work_sans_medium"
                 android:drawablePadding="@dimen/padding_xsm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_nomor_pesanan_tunggu"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_jam_pesanan_tunggu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xsm"
+                tools:text="10:15 AM"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawablePadding="@dimen/padding_xsm"
+                app:layout_constraintStart_toEndOf="@id/tv_tgl_pesanan_tunggu"
+               app:layout_constraintTop_toTopOf="@id/tv_tgl_pesanan_tunggu"
+                app:layout_constraintBottom_toBottomOf="@id/tv_tgl_pesanan_tunggu"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_hapus_pesanan_tunggu"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_semi_bold"
+                android:text="@string/btn_hapus"
+                android:textAllCaps="false"
+                android:textColor="@color/neon_blue_primary"
+                android:textSize="@dimen/font_sm"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_trash_black"
+                app:iconGravity="textStart"
+                app:iconPadding="@dimen/padding_sm"
+                app:iconSize="24dp"
+                app:iconTint="@color/neon_blue_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:strokeColor="@color/neon_blue_primary" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
