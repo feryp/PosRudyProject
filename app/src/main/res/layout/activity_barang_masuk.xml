@@ -21,147 +21,33 @@
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:contentInsetStart="0dp"
-            app:contentInsetEnd="16dp"
-            app:navigationIcon="@drawable/ic_arrow_left_black">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_searchview">
-
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_barang"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:iconifiedByDefault="false"
-                    app:queryBackground="@android:color/transparent"
-                    app:queryHint="Cari Barang"
-                    app:searchIcon="@drawable/ic_search"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btn_barcode"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_barcode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:src="@drawable/ic_barcode_black"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/search_barang"
-                    tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.appbar.MaterialToolbar>
+            app:contentInsetEnd="0dp"
+            app:title="Barang Masuk"
+            app:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/ic_arrow_left_black"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Tab"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_filter"
+        android:id="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_md"
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_filter_status"
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_barang_masuk"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_sm"
-            android:background="@drawable/bg_border_rounded_davy_grey"
-            android:drawableEnd="@drawable/ic_arrow_down_gray"
-            android:fontFamily="@font/work_sans_regular"
-            android:paddingStart="@dimen/padding_md"
-            android:paddingTop="@dimen/padding_sm"
-            android:paddingEnd="@dimen/padding_md"
-            android:paddingBottom="@dimen/padding_sm"
-            android:text="Semua Status"
-            android:textAllCaps="false"
-            android:textColor="@color/davys_grey"
-            android:textSize="@dimen/font_sm"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/et_filter_tanggal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_filter_tanggal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_sm"
-            android:background="@drawable/bg_border_rounded_davy_grey"
-            android:drawableEnd="@drawable/ic_arrow_down_gray"
-            android:fontFamily="@font/work_sans_regular"
-            android:paddingStart="@dimen/padding_md"
-            android:paddingTop="@dimen/padding_sm"
-            android:paddingEnd="@dimen/padding_md"
-            android:paddingBottom="@dimen/padding_sm"
-            android:text="Semua Tanggal"
-            android:textAllCaps="false"
-            android:textColor="@color/davys_grey"
-            android:textSize="@dimen/font_sm"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/et_filter_status"
+            android:background="@drawable/bg_searchview"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="Cari Barang"
+            app:searchIcon="@drawable/ic_search"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/davys_grey" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/header_barang_masuk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_md"
-        android:layout_marginStart="@dimen/margin_md"
-        android:layout_marginEnd="@dimen/margin_md"
-        android:background="@drawable/bg_card_gradient_purple"
-        app:layout_constraintTop_toBottomOf="@id/layout_filter"
-        app:layout_constraintBottom_toTopOf="@id/rv_barang_masuk">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_header_barang_masuk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Barang Masuk"
-            android:textSize="@dimen/font_md"
-            android:textColor="@color/white"
-            android:fontFamily="@font/work_sans_medium"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_jumlah_barang_masuk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_md"
-            android:text="100"
-            android:textSize="@dimen/font_xxxxlg"
-            android:textColor="@color/white"
-            android:fontFamily="@font/work_sans_semi_bold"
-            app:layout_constraintTop_toBottomOf="@id/title_header_barang_masuk"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_sm"
-            android:text="Pcs"
-            android:textSize="@dimen/font_sm"
-            android:textColor="@color/white"
-            android:fontFamily="@font/work_sans_medium"
-            app:layout_constraintBottom_toBottomOf="@id/tv_jumlah_barang_masuk"
-            app:layout_constraintStart_toEndOf="@id/tv_jumlah_barang_masuk" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -169,7 +55,56 @@
         android:id="@+id/rv_barang_masuk"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/header_barang_masuk"
+        app:layout_constraintTop_toBottomOf="@id/layout_search"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_ilustrasi_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/layout_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/il_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/il_searching_empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/title_ilustrasi"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_ilustrasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_md"
+            android:text="@string/tidak_ada_barang_masuk"
+            android:textSize="@dimen/font_xlg"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_empty"
+            app:layout_constraintBottom_toTopOf="@id/subtitle_ilustrasi"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subtitle_ilustrasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_md"
+            android:text="@string/pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/gray_hint"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_ilustrasi"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

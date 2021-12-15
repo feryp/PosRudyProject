@@ -25,8 +25,9 @@
     <color name="platinum">#EBEBEB</color>
     <color name="misty_rose">#FFE4E4</color>
     <color name="red_alert">#FF3838</color>
-    <color name="neon_green">#56E532</color>
     <color name="red_danger">#F5222D</color>
+    <color name="lincoln_green">#1B5E20</color>
+    <color name="neon_green">#56E532</color>
     <color name="green_success">#52C41A</color>
     <color name="orange_warning">#FA8C16</color>
 </resources>

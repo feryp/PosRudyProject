@@ -7,7 +7,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:layout_margin="@dimen/margin_xsm">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             app:layout_constraintBottom_toTopOf="@id/layout_bottom">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_tipe_barang_persediaan"
+                android:id="@+id/tv_tipe_barang_masuk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -29,13 +30,13 @@
                 android:fontFamily="@font/work_sans_medium"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_sm"
-                app:layout_constraintBottom_toTopOf="@id/tv_artikel_barang_persediaan"
+                app:layout_constraintBottom_toTopOf="@id/tv_artikel_barang_masuk"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="CUTLINE" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_artikel_barang_persediaan"
+                android:id="@+id/tv_artikel_barang_masuk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -43,23 +44,24 @@
                 android:fontFamily="@font/work_sans_semi_bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_mds"
-                app:layout_constraintBottom_toTopOf="@id/tv_nama_barang_persediaan"
+                app:layout_constraintBottom_toTopOf="@id/tv_nama_barang_masuk"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_persediaan"
+                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_masuk"
                 tools:text="SP633846-0011" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_nama_barang_persediaan"
+                android:id="@+id/tv_nama_barang_masuk"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
                 android:layout_marginTop="@dimen/margin_xsm"
                 android:fontFamily="@font/work_sans_regular"
                 android:textColor="@color/black_coral"
                 android:textSize="@dimen/font_sm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_persediaan"
+                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_masuk"
                 tools:text="Mandarin Fade/Coral Matte - RP Optics Multilaser Red" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -72,78 +74,90 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="@dimen/padding_md"
                 android:paddingBottom="10dp"
-                android:text="Masuk"
-                android:textColor="@color/white"
+                android:text="@string/status_masuk"
+                android:textColor="@color/lincoln_green"
                 android:textSize="@dimen/font_sm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layout_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_top">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_waktu_barang_masuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/work_sans_medium"
-                android:text="Tanggal/Jam"
-                android:textColor="@color/cadet_blue_crayola"
-                android:textSize="@dimen/font_sm"
-                app:layout_constraintBottom_toTopOf="@+id/tv_waktu_barang_masuk"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/padding_md"
+                android:paddingEnd="0dp"
+                android:paddingBottom="@dimen/padding_md"
+                android:paddingTop="@dimen/padding_lg"
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_waktu_barang_masuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="@font/work_sans_medium"
-                android:textColor="@color/black_coral"
-                android:textSize="@dimen/font_md"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_waktu_barang_masuk"
-                tools:text="10-08-2021, 15:55" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_waktu_barang_masuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:text="@string/title_tanggal_jam"
+                    android:textColor="@color/sonic_silver"
+                    android:textSize="@dimen/font_sm" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_kuantitas_barang_masuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/work_sans_medium"
-                android:text="Kuantitas"
-                android:textColor="@color/cadet_blue_crayola"
-                android:textSize="@dimen/font_sm"
-                app:layout_constraintBottom_toTopOf="@+id/tv_kuantitas_barang_masuk"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_waktu_barang_masuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:textColor="@color/black_coral"
+                    android:textSize="@dimen/font_md"
+                    tools:text="10-08-2021, 15:55" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_kuantitas_barang_masuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/work_sans_medium"
-                android:textColor="@color/black_coral"
-                android:textSize="@dimen/font_md"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/title_kuantitas_barang_masuk"
-                app:layout_constraintTop_toBottomOf="@id/title_kuantitas_barang_masuk"
-                tools:text="200 Pcs" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="end"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:paddingTop="@dimen/padding_lg"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_stok_barang_masuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:text="@string/title_stok"
+                    android:textColor="@color/sonic_silver"
+                    android:textSize="@dimen/font_sm"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_stok_barang_masuk"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_stok_barang_masuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/work_sans_medium"
+                    android:textColor="@color/black_coral"
+                    android:textSize="@dimen/font_md"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/title_stok_barang_masuk"
+                    app:layout_constraintTop_toBottomOf="@id/title_stok_barang_masuk"
+                    tools:text="200 Pcs" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
