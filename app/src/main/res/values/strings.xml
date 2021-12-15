@@ -145,6 +145,12 @@
     <string name="title_persediaan_stok">Persediaan Stok</string>
     <string name="alert_stok_tinggal_sedikit">Stok Tinggal Sedikit</string>
 
+    //Barang Masuk Screen
+    <string name="tidak_ada_barang_masuk">Tidak Ada Barang Masuk</string>
+    <string name="pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi">Pilih rentang waktu yang lain atau lakukan transaksi</string>
+    <string name="title_tanggal_jam">Tanggal/Jam</string>
+    <string name="title_stok">Stok</string>
+    <string name="status_masuk">Masuk</string>
 
 
 </resources>
