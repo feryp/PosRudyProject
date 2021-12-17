@@ -22,7 +22,7 @@
             app:layout_constraintBottom_toTopOf="@id/layout_bottom">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_tipe_barang_masuk"
+                android:id="@+id/tv_tipe_barang_keluar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -30,13 +30,13 @@
                 android:fontFamily="@font/work_sans_medium"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_sm"
-                app:layout_constraintBottom_toTopOf="@id/tv_artikel_barang_masuk"
+                app:layout_constraintBottom_toTopOf="@id/tv_artikel_barang_keluar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="CUTLINE" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_artikel_barang_masuk"
+                android:id="@+id/tv_artikel_barang_keluar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -44,13 +44,13 @@
                 android:fontFamily="@font/work_sans_semi_bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_mds"
-                app:layout_constraintBottom_toTopOf="@id/tv_nama_barang_masuk"
+                app:layout_constraintBottom_toTopOf="@id/tv_nama_barang_keluar"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_masuk"
+                app:layout_constraintTop_toBottomOf="@id/tv_tipe_barang_keluar"
                 tools:text="SP633846-0011" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_nama_barang_masuk"
+                android:id="@+id/tv_nama_barang_keluar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_md"
@@ -61,21 +61,21 @@
                 android:textSize="@dimen/font_sm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_masuk"
+                app:layout_constraintTop_toBottomOf="@id/tv_artikel_barang_keluar"
                 tools:text="Mandarin Fade/Coral Matte - RP Optics Multilaser Red" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_status_barang_masuk"
+                android:id="@+id/tv_status_barang_keluar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_rounded_half_green"
+                android:background="@drawable/bg_rounded_half_red"
                 android:fontFamily="@font/work_sans_medium"
                 android:paddingStart="@dimen/padding_md"
                 android:paddingTop="10dp"
                 android:paddingEnd="@dimen/padding_md"
                 android:paddingBottom="10dp"
-                android:text="@string/status_masuk"
-                android:textColor="@color/lincoln_green"
+                android:text="@string/status_keluar"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_sm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -109,7 +109,7 @@
                     android:textSize="@dimen/font_sm" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_waktu_barang_masuk"
+                    android:id="@+id/tv_waktu_barang_keluar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/work_sans_medium"
@@ -139,7 +139,7 @@
                     android:textSize="@dimen/font_sm" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_stok_barang_masuk"
+                    android:id="@+id/tv_stok_barang_keluar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/work_sans_medium"

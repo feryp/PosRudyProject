@@ -152,5 +152,10 @@
     <string name="title_stok">Stok</string>
     <string name="status_masuk">Masuk</string>
 
+    //Barang Keluar Screen
+    <string name="coba_lakukan_transaksi_dulu_ya">Coba lakukan transaksi dulu, ya.</string>
+    <string name="tidak_ada_barang_keluar">Tidak Ada Barang Keluar</string>
+    <string name="status_keluar">Keluar</string>
+
 
 </resources>
