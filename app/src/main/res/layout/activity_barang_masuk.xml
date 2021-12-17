@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.barang.barangMasuk.BarangMasukActivity">
+    tools:context=".ui.barang.barangMasuk.activity.BarangMasukActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_ilustrasi_empty"
+        android:id="@+id/layout_ilustrasi_empty_barang_masuk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/layout_search"
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_md"
-            android:text="@string/pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi"
+            android:text="@string/coba_lakukan_transaksi_dulu_ya"
             android:textSize="@dimen/font_sm"
             android:textColor="@color/gray_hint"
             android:fontFamily="@font/work_sans_regular"

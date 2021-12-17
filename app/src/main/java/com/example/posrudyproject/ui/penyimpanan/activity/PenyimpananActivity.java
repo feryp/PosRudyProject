@@ -1,13 +1,8 @@
 package com.example.posrudyproject.ui.penyimpanan.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +10,9 @@ import android.view.View;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.barang.barangKeluar.BarangKeluarActivity;
-import com.example.posrudyproject.ui.barang.barangMasuk.BarangMasukActivity;
+import com.example.posrudyproject.ui.barang.barangKeluar.activity.BarangKeluarActivity;
+import com.example.posrudyproject.ui.barang.barangMasuk.activity.BarangMasukActivity;
 import com.example.posrudyproject.ui.barang.barangPindah.BarangPindahActivity;
-import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
 import com.example.posrudyproject.ui.penyimpanan.adapter.KategoriPenyimpananAdapter;
 import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.KategoriPenyimpananItem;

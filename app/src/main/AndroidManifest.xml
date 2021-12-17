@@ -13,10 +13,10 @@
             android:name=".ui.barang.barangPindah.BarangPindahActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.barang.barangKeluar.BarangKeluarActivity"
+            android:name=".ui.barang.barangKeluar.activity.BarangKeluarActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.barang.barangMasuk.BarangMasukActivity"
+            android:name=".ui.barang.barangMasuk.activity.BarangMasukActivity"
             android:exported="true" />
         <activity
             android:name=".ui.barang.barang.barangKeluar.BarangKeluarActivity"
