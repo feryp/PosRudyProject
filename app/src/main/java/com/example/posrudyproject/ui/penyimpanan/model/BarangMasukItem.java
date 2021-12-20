@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.barang.barangMasuk.model;
+package com.example.posrudyproject.ui.penyimpanan.model;
 
 public class BarangMasukItem {
     private String tipeBarangMasuk;

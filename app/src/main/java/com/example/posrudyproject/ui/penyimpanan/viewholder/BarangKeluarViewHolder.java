@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.barang.barangKeluar.viewholder;
+package com.example.posrudyproject.ui.penyimpanan.viewholder;
 
 import android.view.View;
 
