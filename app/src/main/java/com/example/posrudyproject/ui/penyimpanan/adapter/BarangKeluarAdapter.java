@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.barang.barangKeluar.adapter;
+package com.example.posrudyproject.ui.penyimpanan.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.barang.barangKeluar.model.BarangKeluarItem;
-import com.example.posrudyproject.ui.barang.barangKeluar.viewholder.BarangKeluarViewHolder;
-import com.example.posrudyproject.ui.barang.barangMasuk.model.BarangMasukItem;
+import com.example.posrudyproject.ui.penyimpanan.model.BarangKeluarItem;
+import com.example.posrudyproject.ui.penyimpanan.viewholder.BarangKeluarViewHolder;
 
 import java.util.List;
 

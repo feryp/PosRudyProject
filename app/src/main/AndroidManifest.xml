@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
-            android:name=".ui.barang.barangPindah.BarangPindahActivity"
+            android:name=".ui.penyimpanan.activity.RiwayatPenyimpananActivity"
             android:exported="true" />
         <activity
             android:name=".ui.barang.barangKeluar.activity.BarangKeluarActivity"

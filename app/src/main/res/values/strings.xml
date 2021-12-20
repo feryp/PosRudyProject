@@ -157,5 +157,11 @@
     <string name="tidak_ada_barang_keluar">Tidak Ada Barang Keluar</string>
     <string name="status_keluar">Keluar</string>
 
+    //Barang Pindah Screen
+    <string name="title_dokumen_pemindahan_barang">Dokumen Pemindahan Barang</string>
+    <string name="status_pindah">Pindah</string>
+    <string name="title_jumlah_barang">Jumlah Barang</string>
+    <string name="tidak_ada_pemindahan_barang">Tidak Ada Pemindahan Barang</string>
+
 
 </resources>

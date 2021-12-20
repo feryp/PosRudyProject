@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -28,9 +29,10 @@ import java.util.List;
 
 public class BotSheetDiskonFragment extends BottomSheetDialogFragment {
 
-    private ImageButton btnClose;
-    private TabLayout tabLayout;
-    private ViewPagerDiskonAdapter adapter;
+    ImageButton btnClose;
+    TabLayout tabLayout;
+    ViewPager2 viewPager;
+    ViewPagerDiskonAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,12 +43,7 @@ public class BotSheetDiskonFragment extends BottomSheetDialogFragment {
         //INIT VIEW
         btnClose = v.findViewById(R.id.btn_close_botsheet);
         tabLayout = v.findViewById(R.id.tablayout_diskon);
-
-        final ViewPager2  viewPager = v.findViewById(R.id.vp_diskon);
-
-        //set tablayout
-        tabLayout.addTab(tabLayout.newTab().setText("%"));
-        tabLayout.addTab(tabLayout.newTab().setText("Rp"));
+        viewPager = v.findViewById(R.id.vp_diskon);
 
 
         setupViewPager(viewPager);

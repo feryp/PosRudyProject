@@ -5,40 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.barang.barangKeluar.activity.BarangKeluarActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation="0dp"
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_barang_keluar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            app:contentInsetStart="0dp"
-            app:contentInsetEnd="0dp"
-            app:title="Barang Keluar"
-            app:titleTextColor="@color/black"
-            app:navigationIcon="@drawable/ic_arrow_left_black"
-            app:titleCentered="true"
-            app:titleTextAppearance="@style/TextAppearance.Tab"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
+    tools:context=".ui.penyimpanan.fragment.BarangMasukFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_md"
-        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_barang_keluar"
+            android:id="@+id/search_barang_masuk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_searchview"
@@ -52,14 +29,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_barang_keluar"
+        android:id="@+id/rv_barang_masuk"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/layout_search"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_ilustrasi_empty_barang_keluar"
+        android:id="@+id/layout_ilustrasi_empty_barang_masuk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/layout_search"
@@ -82,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_md"
-            android:text="@string/tidak_ada_barang_keluar"
+            android:text="@string/tidak_ada_barang_masuk"
             android:textSize="@dimen/font_xlg"
             android:textColor="@color/black"
             android:fontFamily="@font/work_sans_semi_bold"

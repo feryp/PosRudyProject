@@ -76,7 +76,7 @@
             app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/neon_blue_primary"
             app:tabTextAppearance="@style/TabLayout"
-            app:tabTextColor="@color/silver"
+            app:tabTextColor="@color/davys_grey"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.viewpager2.widget.ViewPager2
