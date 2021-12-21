@@ -1,37 +1,57 @@
 package com.example.posrudyproject.ui.penyimpanan.model;
 
 public class BarangPindahItem {
-    private String noDocBarang;
-    private String waktuBarangPindah;
-    private String jumlahBarangPindah;
+    private int imBarang;
+    private String tipeBarangPindah;
+    private String artikelBarangPindah;
+    private String namaBarangPindah;
+    private String kuantitasBarangPindah;
 
-    public BarangPindahItem(String noDocBarang, String waktuBarangPindah, String jumlahBarangPindah) {
-        this.noDocBarang = noDocBarang;
-        this.waktuBarangPindah = waktuBarangPindah;
-        this.jumlahBarangPindah = jumlahBarangPindah;
+    public BarangPindahItem(int imBarang, String tipeBarangPindah, String artikelBarangPindah, String namaBarangPindah, String kuantitasBarangPindah) {
+        this.imBarang = imBarang;
+        this.tipeBarangPindah = tipeBarangPindah;
+        this.artikelBarangPindah = artikelBarangPindah;
+        this.namaBarangPindah = namaBarangPindah;
+        this.kuantitasBarangPindah = kuantitasBarangPindah;
     }
 
-    public String getNoDocBarang() {
-        return noDocBarang;
+    public int getImBarang() {
+        return imBarang;
     }
 
-    public void setNoDocBarang(String noDocBarang) {
-        this.noDocBarang = noDocBarang;
+    public void setImBarang(int imBarang) {
+        this.imBarang = imBarang;
     }
 
-    public String getWaktuBarangPindah() {
-        return waktuBarangPindah;
+    public String getTipeBarangPindah() {
+        return tipeBarangPindah;
     }
 
-    public void setWaktuBarangPindah(String waktuBarangPindah) {
-        this.waktuBarangPindah = waktuBarangPindah;
+    public void setTipeBarangPindah(String tipeBarangPindah) {
+        this.tipeBarangPindah = tipeBarangPindah;
     }
 
-    public String getJumlahBarangPindah() {
-        return jumlahBarangPindah;
+    public String getArtikelBarangPindah() {
+        return artikelBarangPindah;
     }
 
-    public void setJumlahBarangPindah(String jumlahBarangPindah) {
-        this.jumlahBarangPindah = jumlahBarangPindah;
+    public void setArtikelBarangPindah(String artikelBarangPindah) {
+        this.artikelBarangPindah = artikelBarangPindah;
+    }
+
+    public String getNamaBarangPindah() {
+        return namaBarangPindah;
+    }
+
+    public void setNamaBarangPindah(String namaBarangPindah) {
+        this.namaBarangPindah = namaBarangPindah;
+    }
+
+    public String getKuantitasBarangPindah() {
+        return kuantitasBarangPindah;
+    }
+
+    public void setKuantitasBarangPindah(String kuantitasBarangPindah) {
+        this.kuantitasBarangPindah = kuantitasBarangPindah;
     }
 }

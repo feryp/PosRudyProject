@@ -1,5 +1,6 @@
 package com.example.posrudyproject.ui.penyimpanan.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,21 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.penyimpanan.model.BarangPindahItem;
 import com.example.posrudyproject.ui.penyimpanan.viewholder.BarangPindahViewHolder;
 
 import java.util.List;
 
-public class BarangPindahAdapter extends RecyclerView.Adapter<BarangPindahViewHolder> {
+public class BarangPindahAdapter extends RecyclerView.Adapter<BarangPindahViewHolder>{
 
     private final List<BarangPindahItem> barangPindahItems;
-    private final OnItemClickListener listener;
+    private final Context mContext;
 
-    public BarangPindahAdapter(List<BarangPindahItem> barangPindahItems, OnItemClickListener listener) {
+    public BarangPindahAdapter(List<BarangPindahItem> barangPindahItems, Context mContext) {
         this.barangPindahItems = barangPindahItems;
-        this.listener = listener;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -34,10 +34,11 @@ public class BarangPindahAdapter extends RecyclerView.Adapter<BarangPindahViewHo
     @Override
     public void onBindViewHolder(@NonNull BarangPindahViewHolder holder, int position) {
         BarangPindahItem item = barangPindahItems.get(position);
-        holder.noDokumen.setText(item.getNoDocBarang());
-        holder.waktu.setText(item.getWaktuBarangPindah());
-        holder.jumlahBarang.setText(item.getJumlahBarangPindah());
-        holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view,position));
+        holder.imBarang.setImageResource(item.getImBarang());
+        holder.tipeBarang.setText(item.getTipeBarangPindah());
+        holder.artikelBarang.setText(item.getArtikelBarangPindah());
+        holder.namaBarang.setText(item.getNamaBarangPindah());
+        holder.kuantitasBarang.setText(item.getKuantitasBarangPindah());
     }
 
     @Override
