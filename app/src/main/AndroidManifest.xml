@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.penyimpanan.activity.DetailRiwayatActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.penyimpanan.activity.RiwayatPenyimpananActivity"
             android:exported="true" />
         <activity

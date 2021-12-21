@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
@@ -21,6 +22,8 @@ public class RiwayatPenyimpananActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerMenuAdapter adapter;
+
+    int betweenSpace = 16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,14 @@ public class RiwayatPenyimpananActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         //connect tab layout with view pager
         tabLayout.setupWithViewPager(viewPager);
+
+        //Setting margin tab layout
+        ViewGroup slidingTabStrip = (ViewGroup) tabLayout.getChildAt(0);
+        for (int i=0; i<slidingTabStrip.getChildCount()-1; i++){
+            View v = slidingTabStrip.getChildAt(i);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            params.rightMargin = betweenSpace;
+        }
 
 
     }

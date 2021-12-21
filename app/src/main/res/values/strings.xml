@@ -162,6 +162,11 @@
     <string name="status_pindah">Pindah</string>
     <string name="title_jumlah_barang">Jumlah Barang</string>
     <string name="tidak_ada_pemindahan_barang">Tidak Ada Pemindahan Barang</string>
+    <string name="title_no_dokumen">No. Dokumen</string>
+    <string name="title_tanggal_pemindahan">Tanggal Pemindahan</string>
+    <string name="title_nama_penjual">Nama Penjual</string>
+    <string name="title_catatan">Catatan</string>
+    <string name="title_detail_barang">Detail Barang</string>
 
 
 </resources>
