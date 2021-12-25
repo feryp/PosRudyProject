@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_rounded_half_lavender">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_nomor_pesanan_tunggu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="#INV011"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tgl_pesanan_tunggu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="08 Aug 2021"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawablePadding="@dimen/padding_xsm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_nomor_pesanan_tunggu"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_jam_pesanan_tunggu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xsm"
+                tools:text="10:15 AM"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawablePadding="@dimen/padding_xsm"
+                app:layout_constraintStart_toEndOf="@id/tv_tgl_pesanan_tunggu"
+               app:layout_constraintTop_toTopOf="@id/tv_tgl_pesanan_tunggu"
+                app:layout_constraintBottom_toBottomOf="@id/tv_tgl_pesanan_tunggu"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_hapus_pesanan_tunggu"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_semi_bold"
+                android:text="@string/btn_hapus"
+                android:textAllCaps="false"
+                android:textColor="@color/neon_blue_primary"
+                android:textSize="@dimen/font_sm"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_trash_black"
+                app:iconGravity="textStart"
+                app:iconPadding="@dimen/padding_sm"
+                app:iconSize="24dp"
+                app:iconTint="@color/neon_blue_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/neon_blue_primary" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_bottom_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_total"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_harga_pesanan_tunggu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Rp 9.503.000"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_item_pesanan_tunggu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_ket_pesanan_tunggu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/layout_pelanggan_pesanan_tunggu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/work_sans_regular"
+                    android:text="@string/title_keterangan"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xs" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_ket_pesanan_tunggu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_xsm"
+                    android:fontFamily="@font/work_sans_regular"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xs"
+                    tools:text="Masih mencari barang yg ingin dibeli" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_pelanggan_pesanan_tunggu"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:gravity="end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/layout_ket_pesanan_tunggu">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_pelanggan"
+                    android:textSize="@dimen/font_xs"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/work_sans_regular"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_pelanggan_pesanan_tunggu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_xsm"
+                    tools:text="Bambang"
+                    android:textSize="@dimen/font_xs"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/work_sans_regular"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

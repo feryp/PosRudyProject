@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.penjualan.activity.TransaksiSuksesActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_header_transaksi_selesai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_rounded_cultured"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/app_bar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:elevation="0dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/toolbar_transaksi_sukses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="?attr/actionBarSize"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetEnd="0dp"
+                        app:navigationIcon="@drawable/ic_arrow_left_black" />
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/padding_md"
+                    android:paddingStart="@dimen/padding_md"
+                    android:paddingEnd="@dimen/padding_md"
+                    app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_checkmark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_checkmark"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:text="@string/title_transaksi_selesai"
+                        android:textSize="@dimen/font_lg"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_gunmetal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ic_checkmark"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_jumlah_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/title_jumlah"
+                        android:textSize="@dimen/font_sm"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:textColor="@color/davys_grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_transaksi_selesai"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_jumlah_nominal_transaksi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_xsm"
+                        android:text="Rp9.999.999"
+                        android:textSize="@dimen/font_lg"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:textColor="@color/black_gunmetal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_jumlah_transaksi_selesai"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_kembalian_transaksi_selesai"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_xsm"
+                        android:layout_marginEnd="@dimen/margin_xsm"
+                        android:gravity="end"
+                        android:text="@string/title_kembalian"
+                        android:textSize="@dimen/font_sm"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:textColor="@color/davys_grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tv_kembalian_transaksi_selesai"
+                        app:layout_constraintTop_toBottomOf="@id/tv_jumlah_nominal_transaksi"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_kembalian_transaksi_selesai"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_xsm"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:text="@string/rp_0"
+                        android:textColor="@color/davys_grey"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/title_kembalian_transaksi_selesai"
+                        app:layout_constraintTop_toBottomOf="@id/tv_jumlah_nominal_transaksi" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="@dimen/padding_md"
+                        android:paddingEnd="@dimen/padding_md"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/bg_circle_primary"
+                        app:layout_constraintTop_toBottomOf="@id/title_kembalian_transaksi_selesai"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_xsm"
+                            android:gravity="end"
+                            android:text="@string/title_metode_pembayaran"
+                            android:textSize="@dimen/font_sm"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:textColor="@color/white" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_metode_pembayaran_transaksi_selesai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:text="TRANSFER - BCA"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_sm" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_detail_pesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                app:layout_constraintTop_toBottomOf="@id/layout_header_transaksi_selesai">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_detail_pesanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_detail_pesanan"
+                    android:textSize="@dimen/font_xlg"
+                    android:textColor="@color/black_gunmetal"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_no_invoice_detail_pesanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="#INV001"
+                    android:textSize="@dimen/font_md"
+                    android:textColor="@color/black_coral"
+                    android:fontFamily="@font/work_sans_medium"
+                    app:layout_constraintTop_toBottomOf="@id/title_detail_pesanan"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_item_pesanan_transaksi_selesai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/tv_no_invoice_detail_pesanan"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_diskon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_md"
+                    app:layout_constraintTop_toBottomOf="@id/rv_item_pesanan_transaksi_selesai">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:text="@string/title_diskon"
+                        android:textColor="@color/black_gunmetal"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_diskon_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_coral"
+                        android:textSize="@dimen/font_sm"
+                        android:text="10%"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_ongkir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    app:layout_constraintTop_toBottomOf="@id/layout_diskon">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:text="@string/title_ongkir"
+                        android:textColor="@color/black_gunmetal"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_ongkir_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_coral"
+                        android:textSize="@dimen/font_sm"
+                        android:text="JNE - Rp 10.000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/dotted_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    android:contentDescription="@string/todo"
+                    android:layerType="software"
+                    android:src="@drawable/dotted_line"
+                    app:layout_constraintTop_toBottomOf="@id/layout_ongkir" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_total_harga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    app:layout_constraintTop_toBottomOf="@id/dotted_line">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:text="@string/title_total_harga"
+                        android:textColor="@color/black_gunmetal"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_total_harga_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_coral"
+                        android:textSize="@dimen/font_sm"
+                        android:text="Rp 10.000.000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_kembalian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    app:layout_constraintTop_toBottomOf="@id/layout_total_harga">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:text="@string/title_total_kembalian"
+                        android:textColor="@color/black_gunmetal"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_total_kembalian_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_coral"
+                        android:textSize="@dimen/font_sm"
+                        android:text="Rp 0"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    app:layout_constraintTop_toBottomOf="@id/layout_kembalian">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:text="@string/title_poin"
+                        android:textColor="@color/black_gunmetal"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_point_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_coral"
+                        android:textSize="@dimen/font_sm"
+                        android:text="Rp 10.000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_pelanggan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    app:layout_constraintTop_toBottomOf="@id/layout_point">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:text="@string/title_pelanggan"
+                        android:textColor="@color/black_gunmetal"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_pelanggan_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_coral"
+                        android:textSize="@dimen/font_sm"
+                        android:text="Ahmad"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_penjual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    app:layout_constraintTop_toBottomOf="@id/layout_pelanggan">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:text="@string/title_penjual"
+                        android:textColor="@color/black_gunmetal"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_penjual_transaksi_selesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:textColor="@color/black_coral"
+                        android:textSize="@dimen/font_sm"
+                        android:text="Alex Parkinson"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/layout_detail_pesanan">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_cetak_struk"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="@string/btn_cetak_struk"
+                    android:textSize="@dimen/font_md"
+                    android:textColor="@color/neon_blue_primary"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:strokeColor="@color/neon_blue_primary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/btn_buat_pesanan_baru" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_buat_pesanan_baru"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:text="@string/btn_buat_pesanan_baru"
+                    android:textSize="@dimen/font_md"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:layout_constraintTop_toBottomOf="@id/btn_cetak_struk"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,63 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.PosRudyProject" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.PosRudyProject" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/neon_blue_primary</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/neon_blue_primary</item>
         <!-- Customize your theme here. -->
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="M">true</item>
     </style>
 
-    <style name="SplashTheme" parent ="Theme.AppCompat.Light.NoActionBar">
+    <!-- splash screen theme. -->
+    <style name="SplashTheme" parent ="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <!-- App Bar. -->
+    <style name="TextAppearance.Tab" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textSize">@dimen/font_xlg</item>
+    </style>
+
+    <!-- Bottom Sheet Bar -->
+    <style name="BottomSheetDialogTheme" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!-- Animation -->
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!-- Custom Tab Layout -->
+    <style name="TabLayout" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Tab Layout -->
+    <style name="CustomTextApprearance" parent="Widget.Design.TabLayout">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/work_sans_medium</item>
+    </style>
+    <style name="Theme.PosRudyProject.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.PosRudyProject.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.PosRudyProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

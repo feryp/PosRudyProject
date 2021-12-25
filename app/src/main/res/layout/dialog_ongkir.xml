@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/padding_md"
+    android:background="@drawable/bg_rounded_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/work_sans_medium"
+            android:gravity="center"
+            android:text="@string/title_ongkos_kirim"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_md"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_cancel_dialog"
+            app:layout_constraintBottom_toBottomOf="@id/btn_cancel_dialog"
+            app:layout_constraintEnd_toEndOf="@id/btn_cancel_dialog"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel_dialog"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_close_circle"
+            app:iconTint="@color/black"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_et_nama_ekspedisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_lg"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_dialog">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nama_ekspedisi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_hint_nama_ekspedisi"
+            android:imeOptions="actionDone"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_et_ongkir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_lg"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_et_nama_ekspedisi">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ongkos_kirim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_hint_ongkos_kirim"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_simpan_ongkir"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        style="@style/TextAppearance.MaterialComponents.Button"
+        android:layout_marginTop="@dimen/margin_lg"
+        android:text="@string/btn_simpan_pesanan"
+        android:textSize="@dimen/font_md"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/work_sans_semi_bold"
+        app:layout_constraintTop_toBottomOf="@id/layout_et_ongkir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

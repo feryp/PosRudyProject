@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_print"
+        android:icon="@drawable/ic_print"
+        android:contentDescription="@string/todo"
+        app:showAsAction="ifRoom"
+        android:title="@string/menu_print" />
+</menu>
