@@ -57,7 +57,7 @@ public class BarangMasukFragment extends Fragment {
         rvBarangMasuk.setAdapter(adapter);
         rvBarangMasuk.setHasFixedSize(true);
 
-        //Jika ada list item ilustrasi hilang
+        //Jikaada list item ilustrasi hilang
         if (adapter.getItemCount() > 0){
             layoutEmpty.setVisibility(View.GONE);
         }
