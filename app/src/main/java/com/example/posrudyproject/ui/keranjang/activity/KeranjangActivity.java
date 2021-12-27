@@ -3,6 +3,7 @@ package com.example.posrudyproject.ui.keranjang.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +40,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     RecyclerView rvKeranjang;
     KeranjangAdapter adapter;
     List<KeranjangItem> keranjangItems;
+    ConstraintLayout layoutKeranjang, layoutEmpty;
 
 
     @Override
@@ -87,6 +89,12 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         rvKeranjang.setAdapter(adapter);
         rvKeranjang.setHasFixedSize(true);
 
+        //Jika ada list item ilustrasi hilang
+        if (adapter.getItemCount() > 0){
+            layoutEmpty.setVisibility(View.GONE);
+            layoutKeranjang.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void initToolbar() {
@@ -115,6 +123,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         btnCustom = findViewById(R.id.btn_custom_item_keranjang);
         btnKonfirmasi = findViewById(R.id.btn_konfirmasi_keranjang);
         rvKeranjang = findViewById(R.id.rv_keranjang);
+        layoutKeranjang = findViewById(R.id.layout_keranjang);
+        layoutEmpty = findViewById(R.id.layout_ilustrasi_empty_keranjang);
     }
 
     @SuppressLint("NonConstantResourceId")

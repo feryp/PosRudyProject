@@ -21,18 +21,16 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
                 android:background="@color/white"
                 app:contentInsetStart="0dp"
-                app:contentInsetEnd="0dp"
-                android:paddingStart="@dimen/padding_md"
-                android:paddingEnd="@dimen/padding_md"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                app:contentInsetEnd="0dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/margin_md">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_nama_toko"
