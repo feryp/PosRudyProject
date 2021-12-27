@@ -30,7 +30,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -38,10 +38,12 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_header_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/font_md"
-            android:background="@drawable/bg_border_bottom_silver">
+            android:background="@drawable/bg_border_bottom_silver"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_no_dokumen_barang_pindah"
@@ -85,9 +87,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_desc_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_md">
+            android:padding="@dimen/padding_md"
+            app:layout_constraintTop_toBottomOf="@id/container_header_detail">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_tgl_pemindahan"
@@ -198,6 +202,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_detail_barang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_md"
@@ -205,17 +210,69 @@
             android:text="@string/title_detail_barang"
             android:textSize="@dimen/font_md"
             android:textColor="@color/black"
-            android:fontFamily="@font/work_sans_semi_bold"/>
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:layout_constraintTop_toBottomOf="@id/container_desc_detail"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_detail_barang_pindah"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="@dimen/padding_sm"
-            android:paddingBottom="@dimen/padding_sm"
+            android:layout_height="0dp"
             android:paddingStart="@dimen/padding_sm"
-            android:paddingEnd="@dimen/padding_sm"/>
+            android:paddingTop="@dimen/padding_sm"
+            android:paddingEnd="@dimen/padding_sm"
+            android:paddingBottom="@dimen/padding_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_detail_barang" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_ilustrasi_empty_detail_barang_pindah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_detail_barang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/il_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/il_searching_empty"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/title_ilustrasi"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_ilustrasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                android:text="@string/tidak_ada_barang"
+                android:textSize="@dimen/font_xlg"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/il_empty"
+                app:layout_constraintBottom_toTopOf="@id/subtitle_ilustrasi"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subtitle_ilustrasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                android:text="@string/coba_lakukan_transaksi_dulu_ya"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/gray_hint"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_ilustrasi"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

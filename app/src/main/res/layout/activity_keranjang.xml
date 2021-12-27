@@ -454,20 +454,20 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_custom_item_keranjang"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_marginStart="@dimen/margin_sm"
-                android:text="@string/btn_custom"
-                android:textSize="@dimen/font_md"
-                android:textColor="@color/neon_blue_primary"
-                android:textAllCaps="false"
                 android:fontFamily="@font/work_sans_semi_bold"
-                app:strokeColor="@color/neon_blue_primary"
+                android:text="@string/btn_custom"
+                android:textAllCaps="false"
+                android:textColor="@color/neon_blue_primary"
+                android:textSize="@dimen/font_md"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_konfirmasi_keranjang"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btn_konfirmasi_keranjang"/>
+                app:strokeColor="@color/neon_blue_primary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_konfirmasi_keranjang"
