@@ -98,7 +98,6 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "Pimindahan Barang", Toast.LENGTH_SHORT).show();
         Intent pemindahanBarang = new Intent(this, PemindahanBarangActivity.class);
         startActivity(pemindahanBarang);
     }
