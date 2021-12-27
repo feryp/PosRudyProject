@@ -1,10 +1,12 @@
 package com.example.posrudyproject.ui.penyimpanan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.penyimpanan.adapter.BarangPindahAdapter;
@@ -18,6 +20,7 @@ public class DetailRiwayatActivity extends AppCompatActivity {
 
     MaterialToolbar mToolbar;
     RecyclerView rvBarangPindah;
+    ConstraintLayout layoutEmpty;
     BarangPindahAdapter adapter;
     List<BarangPindahItem> barangPindahItems;
 
@@ -48,6 +51,11 @@ public class DetailRiwayatActivity extends AppCompatActivity {
         rvBarangPindah.setLayoutManager(new LinearLayoutManager(this));
         rvBarangPindah.setAdapter(adapter);
         rvBarangPindah.setHasFixedSize(true);
+
+        //Jika ada list item ilustrasi hilang
+        if (adapter.getItemCount() > 0){
+            layoutEmpty.setVisibility(View.GONE);
+        }
     }
 
     private void initToolbar() {
@@ -57,5 +65,6 @@ public class DetailRiwayatActivity extends AppCompatActivity {
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_detail_riwayat_barang_pindah);
         rvBarangPindah = findViewById(R.id.rv_detail_barang_pindah);
+        layoutEmpty = findViewById(R.id.layout_ilustrasi_empty_detail_barang_pindah);
     }
 }

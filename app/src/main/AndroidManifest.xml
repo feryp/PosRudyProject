@@ -9,20 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
+        <activity android:name=".ui.penyimpanan.activity.PemindahanBarangActivity"
+            android:exported="true"/>
         <activity
             android:name=".ui.penyimpanan.activity.DetailRiwayatActivity"
             android:exported="true" />
         <activity
             android:name=".ui.penyimpanan.activity.RiwayatPenyimpananActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.barang.barangKeluar.activity.BarangKeluarActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.barang.barangMasuk.activity.BarangMasukActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.barang.barang.barangKeluar.BarangKeluarActivity"
             android:exported="true" />
         <activity
             android:name=".ui.penjualan.activity.StrukPenjualanActivity"

@@ -11,18 +11,21 @@ import android.widget.Toast;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.pelanggan.activity.TambahPelangganActivity;
 import com.example.posrudyproject.ui.penyimpanan.adapter.KategoriPenyimpananAdapter;
 import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.KategoriPenyimpananItem;
 import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PenyimpananActivity extends AppCompatActivity implements OnItemClickListener {
+public class PenyimpananActivity extends AppCompatActivity implements OnItemClickListener, View.OnClickListener{
 
     MaterialToolbar mToolbar;
+    MaterialButton btnPemindahanBarang;
     RecyclerView rvKategoriPenyimpanan, rvProdukTersedia;
     KategoriPenyimpananAdapter katPenyimpananAdapter;
     List<KategoriPenyimpananItem> kategoriPenyimpananItems;
@@ -44,8 +47,6 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
         kategoriPenyimpananItems.add(new KategoriPenyimpananItem(0, "100","Barang Masuk"));
         kategoriPenyimpananItems.add(new KategoriPenyimpananItem(1, "100","Barang Keluar"));
         kategoriPenyimpananItems.add(new KategoriPenyimpananItem(2, "100","Barang Pindah"));
-
-//        selectedKategori = katPenyimpananAdapter.getItemId(0);
 
         //Setup Adapter Kategori Penyimpanan
         katPenyimpananAdapter = new KategoriPenyimpananAdapter(kategoriPenyimpananItems, this);
@@ -72,6 +73,9 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
         rvProdukTersedia.setLayoutManager(new LinearLayoutManager(this));
         rvProdukTersedia.setAdapter(proTersediaAdapter);
         rvProdukTersedia.setHasFixedSize(true);
+
+        //SET LISTENER
+        btnPemindahanBarang.setOnClickListener(this);
     }
 
     private void initToolbar() {
@@ -80,6 +84,7 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_penyimpanan);
+        btnPemindahanBarang = findViewById(R.id.btn_pemindahan_barang);
         rvKategoriPenyimpanan = findViewById(R.id.rv_kategori_penyimpanan);
         rvProdukTersedia = findViewById(R.id.rv_produk_tersedia);
     }
@@ -89,23 +94,11 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
         Toast.makeText(this, "Pilih " + kategoriPenyimpananItems.get(position).getKatBarangPenyimpanan(), Toast.LENGTH_SHORT).show();
         Intent pilihKategori = new Intent(this, RiwayatPenyimpananActivity.class);
         startActivity(pilihKategori);
+    }
 
-//        switch (position){
-//            case 0:
-//                Intent barangMasuk = new Intent(this, BarangMasukActivity.class);
-//                startActivity(barangMasuk);
-//                break;
-//
-//            case 1:
-//                Intent barangKeluar = new Intent(this, BarangKeluarActivity.class);
-//                startActivity(barangKeluar);
-//                break;
-//
-//            case 2:
-//                Intent barangPindah = new Intent(this, RiwayatBarangPindahActivity.class);
-//                startActivity(barangPindah);
-//                break;
-//
-//        }
+    @Override
+    public void onClick(View view) {
+        Intent pemindahanBarang = new Intent(this, PemindahanBarangActivity.class);
+        startActivity(pemindahanBarang);
     }
 }
