@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.penyimpanan.adapter;
+package com.example.posrudyproject.ui.akun.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,7 +8,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class ViewPagerMenuAdapter extends FragmentPagerAdapter {
+public class PagerRiwayatTransaksiAdapter extends FragmentPagerAdapter {
+
     //Initialize array list
     ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
     ArrayList<String> stringArrayList = new ArrayList<>();
@@ -20,7 +21,8 @@ public class ViewPagerMenuAdapter extends FragmentPagerAdapter {
         //Add string
         stringArrayList.add(s);
     }
-    public ViewPagerMenuAdapter(@NonNull FragmentManager fm) {
+
+    public PagerRiwayatTransaksiAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 

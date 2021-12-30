@@ -106,7 +106,7 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
         rvKeranjang.setHasFixedSize(true);
 
         //Jika ada list item ilustrasi hilang
-        if (adapter.getItemCount() > 0){
+        if (adapter.getItemCount() < 0){
             layoutEmpty.setVisibility(View.GONE);
             layoutKeranjang.setVisibility(View.VISIBLE);
         }

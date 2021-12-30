@@ -62,7 +62,7 @@
                         app:layout_constraintEnd_toEndOf="parent"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/title_transaksi_selesai"
+                        android:id="@+id/title_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_md"
@@ -75,7 +75,7 @@
                         app:layout_constraintTop_toBottomOf="@id/ic_checkmark"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/title_jumlah_transaksi_selesai"
+                        android:id="@+id/title_jumlah_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -85,7 +85,7 @@
                         android:textColor="@color/davys_grey"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/title_transaksi_selesai"/>
+                        app:layout_constraintTop_toBottomOf="@id/title_transaksi_sukses"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_jumlah_nominal_transaksi"
@@ -98,10 +98,10 @@
                         android:textColor="@color/black_gunmetal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/title_jumlah_transaksi_selesai"/>
+                        app:layout_constraintTop_toBottomOf="@id/title_jumlah_transaksi_sukses"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/title_kembalian_transaksi_selesai"
+                        android:id="@+id/title_kembalian_transaksi_sukses"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_xsm"
@@ -112,11 +112,11 @@
                         android:fontFamily="@font/work_sans_regular"
                         android:textColor="@color/davys_grey"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tv_kembalian_transaksi_selesai"
+                        app:layout_constraintEnd_toStartOf="@id/tv_kembalian_transaksi_sukses"
                         app:layout_constraintTop_toBottomOf="@id/tv_jumlah_nominal_transaksi"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_kembalian_transaksi_selesai"
+                        android:id="@+id/tv_kembalian_transaksi_sukses"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_xsm"
@@ -125,7 +125,7 @@
                         android:textColor="@color/davys_grey"
                         android:textSize="@dimen/font_sm"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/title_kembalian_transaksi_selesai"
+                        app:layout_constraintStart_toEndOf="@+id/title_kembalian_transaksi_sukses"
                         app:layout_constraintTop_toBottomOf="@id/tv_jumlah_nominal_transaksi" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -139,7 +139,7 @@
                         android:orientation="horizontal"
                         android:gravity="center"
                         android:background="@drawable/bg_circle_primary"
-                        app:layout_constraintTop_toBottomOf="@id/title_kembalian_transaksi_selesai"
+                        app:layout_constraintTop_toBottomOf="@id/title_kembalian_transaksi_sukses"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
@@ -155,7 +155,7 @@
                             android:textColor="@color/white" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_metode_pembayaran_transaksi_selesai"
+                            android:id="@+id/tv_metode_pembayaran_transaksi_sukses"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/work_sans_medium"
@@ -222,7 +222,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_diskon_transaksi_selesai"
+                        android:id="@+id/tv_diskon_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_semi_bold"
@@ -254,7 +254,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_ongkir_transaksi_selesai"
+                        android:id="@+id/tv_ongkir_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_semi_bold"
@@ -296,7 +296,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_total_harga_transaksi_selesai"
+                        android:id="@+id/tv_total_harga_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_semi_bold"
@@ -328,7 +328,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_total_kembalian_transaksi_selesai"
+                        android:id="@+id/tv_total_kembalian_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_semi_bold"
@@ -360,7 +360,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_point_transaksi_selesai"
+                        android:id="@+id/tv_point_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_semi_bold"
@@ -392,7 +392,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_pelanggan_transaksi_selesai"
+                        android:id="@+id/tv_pelanggan_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_semi_bold"
@@ -424,7 +424,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_penjual_transaksi_selesai"
+                        android:id="@+id/tv_penjual_transaksi_sukses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_semi_bold"

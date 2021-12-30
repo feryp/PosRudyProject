@@ -10,21 +10,13 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.diskon.adapter.ViewPagerDiskonAdapter;
+import com.example.posrudyproject.ui.diskon.adapter.PagerDiskonAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class BotSheetDiskonFragment extends BottomSheetDialogFragment {
@@ -32,7 +24,7 @@ public class BotSheetDiskonFragment extends BottomSheetDialogFragment {
     ImageButton btnClose;
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    ViewPagerDiskonAdapter adapter;
+    PagerDiskonAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +54,7 @@ public class BotSheetDiskonFragment extends BottomSheetDialogFragment {
     }
 
     private void setupViewPager(ViewPager2 viewPager) {
-        adapter = new ViewPagerDiskonAdapter(getActivity().getSupportFragmentManager(),
+        adapter = new PagerDiskonAdapter(getActivity().getSupportFragmentManager(),
                 getActivity().getLifecycle());
         adapter.addFragment(new PercentFragment(), "%");
         adapter.addFragment(new RupiahFragment(), "Rp");

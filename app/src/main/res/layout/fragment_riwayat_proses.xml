@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.akun.fragment.RiwayatProsesFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_proses_transaksi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_ilustrasi_empty_transaksi_proses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/il_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/il_searching_empty"
+            app:layout_constraintBottom_toTopOf="@id/title_ilustrasi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_ilustrasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_md"
+            android:fontFamily="@font/work_sans_semi_bold"
+            android:gravity="center"
+            android:text="@string/title_belum_ada_transaksi"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_xlg"
+            app:layout_constraintBottom_toTopOf="@id/subtitle_ilustrasi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_empty" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subtitle_ilustrasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_md"
+            android:fontFamily="@font/work_sans_regular"
+            android:gravity="center"
+            android:text="@string/pilih_barang_yang_ingin_anda_jual_dan_lakukan_transaksi_anda"
+            android:textColor="@color/gray_hint"
+            android:textSize="@dimen/font_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_ilustrasi" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

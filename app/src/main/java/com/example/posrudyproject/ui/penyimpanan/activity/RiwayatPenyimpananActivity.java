@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.penyimpanan.adapter.ViewPagerMenuAdapter;
+import com.example.posrudyproject.ui.penyimpanan.adapter.PagerMenuAdapter;
 import com.example.posrudyproject.ui.penyimpanan.fragment.BarangKeluarFragment;
 import com.example.posrudyproject.ui.penyimpanan.fragment.BarangMasukFragment;
 import com.example.posrudyproject.ui.penyimpanan.fragment.BarangPindahFragment;
@@ -21,7 +20,7 @@ public class RiwayatPenyimpananActivity extends AppCompatActivity {
     MaterialToolbar mToolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
-    ViewPagerMenuAdapter adapter;
+    PagerMenuAdapter adapter;
 
     int betweenSpace = 16;
 
@@ -36,7 +35,7 @@ public class RiwayatPenyimpananActivity extends AppCompatActivity {
         initToolbar();
 
         //initialize adapter
-        adapter = new ViewPagerMenuAdapter(getSupportFragmentManager());
+        adapter = new PagerMenuAdapter(getSupportFragmentManager());
         //add fragment
         adapter.AddFragment(new BarangMasukFragment(), "Barang Masuk");
         adapter.AddFragment(new BarangKeluarFragment(), "Barang Keluar");
