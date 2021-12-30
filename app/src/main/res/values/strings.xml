@@ -122,7 +122,7 @@
     <string name="title_activity_transaksi_sukses">TransaksiSuksesActivity</string>
 
     //Transaksi Sukses Screen
-    <string name="title_transaksi_selesai">Transaksi Selesai!</string>
+    <string name="title_transaksi_selesai">Transaksi Sukses!</string>
     <string name="title_jumlah">Jumlah</string>
     <string name="title_detail_pesanan">Detail Pesanan</string>
     <string name="title_total_kembalian">Kembalian</string>
@@ -172,6 +172,16 @@
     <string name="title_detail_barang">Detail Barang</string>
     <string name="tidak_ada_barang">Tidak Ada Barang</string>
 
+    //Akun Screen
+    <string name="menu_notifikasi">Notifikasi</string>
+    <string name="menu_ubah_akun">Ubah Akun</string>
+    <string name="menu_riwayat_transaksi">Riwayat Transaksi</string>
+    <string name="menu_pengaturan">Pengaturan</string>
+    <string name="menu_bantuan">Bantuan</string>
+    <string name="menu_kebijakan_pribadi">Kebijakan Pribadi</string>
+    <string name="menu_syarat_dan_ketentuan">Syarat dan Ketentuan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

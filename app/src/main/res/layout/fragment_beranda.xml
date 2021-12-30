@@ -16,13 +16,15 @@
             android:id="@+id/appbar_beranda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             app:elevation="0dp">
 
             <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_beranda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
-                android:background="@color/white"
+                app:menu="@menu/menu_notification"
                 app:contentInsetStart="0dp"
                 app:contentInsetEnd="0dp">
 
@@ -55,19 +57,20 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vp_image_slider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padding_sm"
                     android:paddingStart="@dimen/padding_lg"
                     android:paddingEnd="@dimen/padding_lg"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -102,7 +105,7 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.core.widget.NestedScrollView>
+        </ScrollView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

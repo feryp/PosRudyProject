@@ -1,11 +1,15 @@
-package com.example.posrudyproject.ui.pesananTunggu.activity;
+package com.example.posrudyproject.ui.akun.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
@@ -13,33 +17,38 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.pesananTunggu.adapter.PesananTungguAdapter;
 import com.example.posrudyproject.ui.pesananTunggu.model.BarangPesananTungguItem;
 import com.example.posrudyproject.ui.pesananTunggu.model.PesananTungguItem;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PesananTungguActivity extends AppCompatActivity implements OnItemClickListener {
+public class RiwayatProsesFragment extends Fragment implements OnItemClickListener {
 
-    MaterialToolbar mToolbar;
-    RecyclerView rvPesananTunggu;
+    RecyclerView rvProsesTransaksi;
     PesananTungguAdapter pesananTungguAdapter;
+    ConstraintLayout layoutEmpty;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pesanan_tunggu);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_riwayat_proses, container, false);
 
         //INIT VIEW
-        initComponent();
-
-        initToolbar();
-
+        rvProsesTransaksi = v.findViewById(R.id.rv_proses_transaksi);
+        layoutEmpty = v.findViewById(R.id.layout_ilustrasi_empty_transaksi_proses);
 
         //Setup Adapter
         pesananTungguAdapter = new PesananTungguAdapter(buildItemList(), this);
-        rvPesananTunggu.setLayoutManager(new LinearLayoutManager(this));
-        rvPesananTunggu.setAdapter(pesananTungguAdapter);
-        rvPesananTunggu.setHasFixedSize(true);
+        rvProsesTransaksi.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvProsesTransaksi.setAdapter(pesananTungguAdapter);
+        rvProsesTransaksi.setHasFixedSize(true);
+
+        //Jika ada list item ilustrasi hilang
+        if (pesananTungguAdapter.getItemCount() > 0){
+            layoutEmpty.setVisibility(View.GONE);
+        }
+
+        return v;
     }
 
     private List<PesananTungguItem> buildItemList() {
@@ -68,18 +77,8 @@ public class PesananTungguActivity extends AppCompatActivity implements OnItemCl
         return barangPesananTungguItems;
     }
 
-    private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
-    }
-
-    private void initComponent() {
-        // init
-        mToolbar = findViewById(R.id.toolbar_pesanan_tunggu);
-        rvPesananTunggu = findViewById(R.id.rv_pesanan_tunggu);
-    }
-
     @Override
     public void onItemClickListener(View view, int position) {
-        Toast.makeText(this, "Pilih " + buildItemList().get(position).getNoPesanan(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Pilih " + buildItemList().get(position).getNoPesanan(), Toast.LENGTH_SHORT).show();
     }
 }

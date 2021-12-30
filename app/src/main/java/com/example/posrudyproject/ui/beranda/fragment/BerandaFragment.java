@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -14,6 +15,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Handler;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -26,6 +30,7 @@ import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.example.posrudyproject.ui.penyimpanan.activity.PenyimpananActivity;
 import com.example.posrudyproject.ui.produk.ProdukActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
@@ -37,6 +42,7 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
     private ImageSliderAdapter imageSliderAdapter;
     private final Handler sliderHandler = new Handler();
     MaterialCardView cardPenjualan, cardPenyimpanan, cardPelanggan, cardPenjual, cardProduk, cardLaporan;
+    MaterialToolbar mToolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +51,7 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         //INIT VIEW
+        mToolbar = v.findViewById(R.id.toolbar_beranda);
         vp2 = v.findViewById(R.id.vp_image_slider);
         cardPenjualan = v.findViewById(R.id.card_penjualan);
         cardPenyimpanan = v.findViewById(R.id.card_penyimpanan);
@@ -52,6 +59,8 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
         cardPenjual = v.findViewById(R.id.card_penjual);
         cardProduk = v.findViewById(R.id.card_produk);
         cardLaporan = v.findViewById(R.id.card_laporan);
+
+        initToolbar();
 
         List<ImageSliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new ImageSliderItem(R.drawable.im_slide_1));
@@ -96,6 +105,17 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    private void initToolbar() {
+        mToolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.menu_notifikasi){
+
+                return true;
+            }
+
+            return false;
+        });
+    }
+
     private final Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
@@ -114,6 +134,7 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         sliderHandler.postDelayed(sliderRunnable, 3000);
     }
+
 
     @SuppressLint("NonConstantResourceId")
     @Override

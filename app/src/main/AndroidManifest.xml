@@ -9,14 +9,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
-        <activity android:name=".ui.penyimpanan.activity.PemindahanBarangActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".ui.akun.activity.TermsConditionActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.akun.activity.PrivacyPolicyActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.akun.activity.BantuanActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.akun.activity.PengaturanActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.akun.activity.RiwayatTransaksiActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.akun.activity.UbahAkunActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.penyimpanan.activity.PemindahanBarangActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.penyimpanan.activity.DetailRiwayatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.penyimpanan.activity.RiwayatPenyimpananActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.penjualan.activity.StrukPenjualanActivity"
             android:exported="true"

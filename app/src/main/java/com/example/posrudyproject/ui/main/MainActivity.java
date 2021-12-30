@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.akun.AkunFragment;
+import com.example.posrudyproject.ui.akun.fragment.AkunFragment;
 import com.example.posrudyproject.ui.beranda.fragment.BerandaFragment;
 import com.example.posrudyproject.ui.keranjang.fragment.KeranjangFragment;
 import com.example.posrudyproject.ui.rekapKas.RekapKasFragment;

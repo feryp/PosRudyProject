@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="?attr/actionBarSize"
+    style="?attr/actionButtonStyle"
+    android:clipToPadding="false"
+    android:focusable="true">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_bell" />
+
+    <View
+        android:id="@+id/badge_notif"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/badge_notification" />
+
+</FrameLayout>

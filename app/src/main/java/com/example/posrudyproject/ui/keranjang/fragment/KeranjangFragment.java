@@ -52,7 +52,6 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_keranjang, container, false);
 
-
         //INIT VIEW
         mToolbar = v.findViewById(R.id.toolbar_keranjang);
         searchView = v.findViewById(R.id.search_barang);
@@ -107,7 +106,7 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
         rvKeranjang.setHasFixedSize(true);
 
         //Jika ada list item ilustrasi hilang
-        if (adapter.getItemCount() > 0){
+        if (adapter.getItemCount() < 0){
             layoutEmpty.setVisibility(View.GONE);
             layoutKeranjang.setVisibility(View.VISIBLE);
         }
