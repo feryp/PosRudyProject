@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.akun.activity.RiwayatTransaksiActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_riwayata_transaksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:title="Riwayat Transaksi"
+            app:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/ic_arrow_left_black"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Tab" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_riwayat_transaksi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/neon_blue_primary"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/neon_blue_primary"
+        app:tabTextAppearance="@style/TabLayout"
+        app:tabTextColor="@color/davys_grey"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_riwayat_transaksi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_riwayat_transaksi"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

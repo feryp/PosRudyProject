@@ -52,7 +52,6 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_keranjang, container, false);
 
-
         //INIT VIEW
         mToolbar = v.findViewById(R.id.toolbar_keranjang);
         searchView = v.findViewById(R.id.search_barang);
