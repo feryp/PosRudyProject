@@ -1,9 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.akun.activity.PengaturanActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_pengaturan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:title="Pengaturan"
+            app:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/ic_arrow_left_black"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Tab" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_notifikasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        android:text="@string/menu_notifikasi"
+        android:textSize="@dimen/font_xlg"
+        android:textColor="@color/black"
+        android:fontFamily="@font/work_sans_semi_bold"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/push_notif_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        android:background="@drawable/bg_border_bottom_silver"
+        app:layout_constraintTop_toBottomOf="@+id/title_notifikasi">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/push_notification"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_mds"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/toogle_switch_push_notif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:minHeight="48dp"
+            android:theme="@style/SCBSwitch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:switchMinWidth="25dp"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/email_notif_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        android:background="@drawable/bg_border_bottom_silver"
+        app:layout_constraintTop_toBottomOf="@+id/push_notif_setting">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/et_hint_email"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_mds"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/toogle_switch_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:minHeight="48dp"
+            android:theme="@style/SCBSwitch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:switchMinWidth="25dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_perangkat_tambahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        android:text="@string/title_perangkat_tambahan"
+        android:textSize="@dimen/font_xlg"
+        android:textColor="@color/black"
+        android:fontFamily="@font/work_sans_semi_bold"
+        android:layout_marginTop="@dimen/margin_xsm"
+        app:layout_constraintTop_toBottomOf="@id/email_notif_setting"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/printer_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        android:background="@drawable/bg_border_bottom_silver"
+        app:layout_constraintTop_toBottomOf="@+id/title_perangkat_tambahan">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_printer"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_mds"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_setting_printer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/work_sans_medium"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:minHeight="48dp"
+            android:text="@string/tv_printer_belum_terhubung"
+            android:textColor="@color/cadet_blue_crayola"
+            android:textSize="@dimen/font_mds"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
