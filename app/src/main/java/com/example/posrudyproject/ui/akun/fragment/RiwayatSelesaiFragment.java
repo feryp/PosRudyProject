@@ -1,5 +1,6 @@
 package com.example.posrudyproject.ui.akun.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,9 +15,9 @@ import android.widget.Toast;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.akun.activity.DetailTransaksiSelesaiActivity;
 import com.example.posrudyproject.ui.akun.adapter.TransaksiSelesaiAdapter;
 import com.example.posrudyproject.ui.akun.model.TransaksiSelesaiItem;
-import com.example.posrudyproject.ui.pesananTunggu.adapter.PesananTungguAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,5 +67,7 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
     @Override
     public void onItemClickListener(View view, int position) {
         Toast.makeText(getActivity(), "Pilih " + transaksiSelesaiItems.get(position).getNoInvoice(), Toast.LENGTH_SHORT).show();
+        Intent detailTransaksi = new Intent(getActivity(), DetailTransaksiSelesaiActivity.class);
+        startActivity(detailTransaksi);
     }
 }

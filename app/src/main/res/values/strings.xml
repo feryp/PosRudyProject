@@ -180,8 +180,21 @@
     <string name="menu_bantuan">Bantuan</string>
     <string name="menu_kebijakan_pribadi">Kebijakan Pribadi</string>
     <string name="menu_syarat_dan_ketentuan">Syarat dan Ketentuan</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Detail Transaksi Screen
+    <string name="title_no_invoice">No. Invoice</string>
+    <string name="title_tipe_pembayaran">Tipe Pembayaran</string>
+    <string name="title_tanggal_transaksi">Tanggal Transaksi</string>
+    <string name="title_nama_pelanggan">Nama Pelanggan</string>
+    <string name="title_detail_penjualan">Detail Penjualan</string>
+    <string name="title_dibayar">Dibayar</string>
+    <string name="btn_penukaran_barang">Penukaran Barang</string>
+
+    //Pengaturan Screen
+    <string name="push_notification">Push Notification</string>
+    <string name="title_perangkat_tambahan">Perangkat Tambahan</string>
+    <string name="setting_printer">Printer</string>
+    <string name="tv_printer_belum_terhubung">Belum Terhubung</string>
 
 
 </resources>
