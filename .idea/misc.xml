@@ -80,6 +80,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/toggle_botsheet.xml" value="0.2604166666666667" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/toggle_visibility.xml" value="0.2564102564102564" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/action_notification.xml" value="0.536" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_bantuan.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_barang_keluar.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_barang_masuk.xml" value="0.16" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_barang_pindah.xml" value="0.183203125" />
@@ -131,7 +132,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_keranjang.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_non_tunai.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_percent.xml" value="0.21126126126126127" />
-        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_rekap_kas.xml" value="0.24427083333333333" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_rekap_kas.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_riwayat_proses.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_riwayat_selesai.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_rupiah.xml" value="0.21126126126126127" />
@@ -165,7 +166,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_riwayat_pelanggan.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_selesai_transaksi.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_tipe_botsheet.xml" value="0.24427083333333333" />
-        <entry key="..\:/AndroidProjects/app/src/main/res/layout/menu_kategori.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/menu_kategori.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/tab_custom.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_botnav.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/menu/menu_delete.xml" value="0.20042735042735044" />
