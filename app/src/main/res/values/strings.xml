@@ -196,5 +196,14 @@
     <string name="setting_printer">Printer</string>
     <string name="tv_printer_belum_terhubung">Belum Terhubung</string>
 
+    //Rekap Kas Screen
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="status_mingguan">Se-Minggu</string>
+    <string name="status_bulanan">Se-Bulan</string>
+    <string name="status_tahunan">Se-Tahun</string>
+    <string name="title_total_pendapatan">Total Pendapatan</string>
+    <string name="btn_uang_masuk">Uang Masuk</string>
+    <string name="btn_uang_keluar">Uang Keluar</string>
+
 
 </resources>

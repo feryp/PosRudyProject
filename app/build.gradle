@@ -47,4 +47,5 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation 'com.shuhart.stepview:stepview:1.5.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

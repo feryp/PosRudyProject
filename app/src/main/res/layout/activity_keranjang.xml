@@ -508,7 +508,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
-                android:layout_marginStart="@dimen/margin_sm"
+                android:layout_marginEnd="@dimen/margin_sm"
                 android:fontFamily="@font/work_sans_semi_bold"
                 android:text="@string/btn_custom"
                 android:textAllCaps="false"

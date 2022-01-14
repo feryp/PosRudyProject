@@ -13,7 +13,7 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.akun.fragment.AkunFragment;
 import com.example.posrudyproject.ui.beranda.fragment.BerandaFragment;
 import com.example.posrudyproject.ui.keranjang.fragment.KeranjangFragment;
-import com.example.posrudyproject.ui.rekapKas.RekapKasFragment;
+import com.example.posrudyproject.ui.rekapKas.fragment.RekapKasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

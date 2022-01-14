@@ -1,19 +1,367 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.rekapKas.RekapKasFragment">
+    tools:context=".ui.rekapKas.fragment.RekapKasFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rekap Kas"
-        android:textSize="@dimen/font_xxxxlg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:elevation="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_rekap_kas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:title="Rekap Kas"
+            app:titleTextColor="@color/black"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Tab" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_waktu_rekap_kas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        android:text="Kamis, 20 Januari 2022 | 10:59"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_mds"
+        android:fontFamily="@font/work_sans_medium"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_data_toko"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginEnd="@dimen/margin_sm"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@id/tv_waktu_rekap_kas">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_md">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_shop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_nama_toko_rekap_kas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_md"
+                android:fontFamily="@font/work_sans_medium"
+                android:text="Rudy Project Tangerang"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintStart_toEndOf="@id/ic_shop"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_nama_toko_rekap_kas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginTop="@dimen/margin_xsm"
+                android:fontFamily="@font/work_sans_medium"
+                android:text="Toko"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ic_shop"
+                app:layout_constraintTop_toBottomOf="@id/tv_nama_toko_rekap_kas" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_next_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="100dp"
+        app:layout_constraintTop_toBottomOf="@id/card_data_toko"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_pendapatan_mingguan"
+                android:layout_width="match_parent"
+                android:layout_height="334dp"
+                android:layout_marginStart="@dimen/margin_sm"
+                android:layout_marginEnd="@dimen/margin_sm"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_md">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_total_pendapatan_mingguan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_total_pendapatan"
+                            android:textSize="@dimen/font_sm"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_pendapatan_mingguan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 100.000.000"
+                            android:textSize="@dimen/font_xlg"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintTop_toBottomOf="@id/title_total_pendapatan_mingguan"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_sm"
+                            android:background="@drawable/bg_rounded_primary"
+                            android:text="@string/status_mingguan"
+                            android:textSize="@dimen/font_md"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/bar_chart_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_sm"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_pendapatan_bulanan"
+                android:layout_width="match_parent"
+                android:layout_height="334dp"
+                android:layout_marginStart="@dimen/margin_sm"
+                android:layout_marginEnd="@dimen/margin_sm"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_md">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_total_pendapatan_bulanan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_total_pendapatan"
+                            android:textSize="@dimen/font_sm"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_pendapatan_bulanan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 100.000.000"
+                            android:textSize="@dimen/font_xlg"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintTop_toBottomOf="@id/title_total_pendapatan_bulanan"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_sm"
+                            android:background="@drawable/bg_rounded_primary"
+                            android:text="@string/status_bulanan"
+                            android:textSize="@dimen/font_md"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/line_chart_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_sm"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_pendapatan_tahunan"
+                android:layout_width="match_parent"
+                android:layout_height="334dp"
+                android:layout_marginStart="@dimen/margin_sm"
+                android:layout_marginEnd="@dimen/margin_sm"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_md">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_total_pendapatan_tahunan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_total_pendapatan"
+                            android:textSize="@dimen/font_sm"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_pendapatan_tahunan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 100.000.000"
+                            android:textSize="@dimen/font_xlg"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintTop_toBottomOf="@id/title_total_pendapatan_tahunan"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_sm"
+                            android:background="@drawable/bg_rounded_primary"
+                            android:text="@string/status_tahunan"
+                            android:textSize="@dimen/font_md"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/bar_chart_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_sm"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_md">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_uang_masuk"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_marginEnd="@dimen/margin_sm"
+                    android:backgroundTint="@color/neon_green"
+                    android:text="@string/btn_uang_masuk"
+                    android:textSize="@dimen/font_md"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_uang_keluar"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_uang_keluar"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_marginStart="@dimen/margin_sm"
+                    android:backgroundTint="@color/red_alert"
+                    android:text="@string/btn_uang_keluar"
+                    android:textSize="@dimen/font_md"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_uang_masuk"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
