@@ -1,5 +1,8 @@
 package com.example.posrudyproject.ui.rekapKas.fragment;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,8 +13,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.rekapKas.activity.DetailKasActivity;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -24,12 +29,13 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
-public class RekapKasFragment extends Fragment {
+public class RekapKasFragment extends Fragment implements View.OnClickListener{
 
-    MaterialCardView cardDetailToko;
+    MaterialCardView cardDetailKasToko;
     LineChart chartWeek;
     LineChart chartMonth;
     LineChart chartYear;
@@ -42,7 +48,7 @@ public class RekapKasFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_rekap_kas, container, false);
 
         //INIT VIEW
-        cardDetailToko = v.findViewById(R.id.card_data_toko);
+        cardDetailKasToko = v.findViewById(R.id.card_detail_kas_toko);
         chartWeek = v.findViewById(R.id.bar_chart_week);
         chartMonth = v.findViewById(R.id.line_chart_month);
         chartYear = v.findViewById(R.id.bar_chart_year);
@@ -271,8 +277,99 @@ public class RekapKasFragment extends Fragment {
         legendYear.setFormToTextSpace(4);
         legendYear.setXEntrySpace(10);
 
+        //SET LISTENER
+        cardDetailKasToko.setOnClickListener(RekapKasFragment.this);
+        btnUangMasuk.setOnClickListener(RekapKasFragment.this);
+        btnUangKeluar.setOnClickListener(RekapKasFragment.this);
 
         return v;
     }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.card_detail_kas_toko:
+                Intent detailKas = new Intent(getActivity(), DetailKasActivity.class);
+                startActivity(detailKas);
+                break;
+            case R.id.btn_uang_masuk:
+                dialogUangMasuk();
+                break;
+
+            case R.id.btn_uang_keluar:
+                dialogUangKeluar();
+                break;
+        }
+    }
+
+    private void dialogUangMasuk() {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_uang_masuk, null);
+
+        //init view
+        final TextInputEditText etJmlUangMasuk = mView.findViewById(R.id.et_jml_uang_masuk);
+        final TextInputEditText etCatatan = mView.findViewById(R.id.et_catatan_uang_masuk);
+        MaterialButton btnSimpan = mView.findViewById(R.id.btn_simpan_uang_masuk);
+        MaterialButton btnCancel = mView.findViewById(R.id.btn_cancel_dialog);
+
+        alert.setView(mView);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_rounded_white);
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        btnSimpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Simpan", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    private void dialogUangKeluar() {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_uang_keluar, null);
+
+        //init view
+        final TextInputEditText etJmlUangKeluar = mView.findViewById(R.id.et_jml_uang_keluar);
+        final TextInputEditText etCatatan = mView.findViewById(R.id.et_catatan_uang_keluar);
+        MaterialButton btnSimpan = mView.findViewById(R.id.btn_simpan_uang_keluar);
+        MaterialButton btnCancel = mView.findViewById(R.id.btn_cancel_dialog);
+
+        alert.setView(mView);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_rounded_white);
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        btnSimpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Simpan", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }
 }

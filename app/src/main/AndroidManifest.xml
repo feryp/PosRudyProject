@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.rekapKas.activity.DetailKasActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.akun.activity.DetailTransaksiSelesaiActivity"
             android:exported="true"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.akun.activity.TermsConditionActivity"
             android:exported="true"

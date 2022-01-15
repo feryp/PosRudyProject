@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/padding_md"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/margin_sm"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_kas_keluar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/title_kas_masuk"
+            android:textSize="@dimen/font_mds"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_medium"
+            android:drawableStart="@drawable/ic_cash_in"
+            android:drawablePadding="@dimen/padding_md"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nominal_kas_masuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            tools:text="+Rp 1.000.000"
+            android:textSize="@dimen/font_mds"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/margin_md"
+        android:layout_marginBottom="@dimen/margin_md"
+        android:background="@color/line" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_keterangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_hint"
+            android:fontFamily="@font/work_sans_regular"
+            android:text="@string/title_keterangan_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/title_waktu_kas_masuk"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_waktu_kas_masuk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xsm"
+            android:fontFamily="@font/work_sans_regular"
+            android:text="@string/title_waktu"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_sm"
+            app:layout_constraintEnd_toStartOf="@+id/tv_waktu_kas_masuk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_keterangan" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_waktu_kas_masuk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xsm"
+            android:gravity="end"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_regular"
+            tools:text="Kamis, 20 Jan 2022 16:06 "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/title_waktu_kas_masuk"
+            app:layout_constraintTop_toBottomOf="@id/title_keterangan"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_nama_penjual_kas_masuk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xsm"
+            android:fontFamily="@font/work_sans_regular"
+            android:text="@string/title_nama_penjual"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_sm"
+            app:layout_constraintEnd_toStartOf="@+id/tv_nama_penjual_kas_masuk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_waktu_kas_masuk" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nama_penjual_kas_masuk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xsm"
+            android:gravity="end"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_regular"
+            tools:text="Alex Parkinson"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/title_nama_penjual_kas_masuk"
+            app:layout_constraintTop_toBottomOf="@id/tv_waktu_kas_masuk"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/margin_md"
+        android:layout_marginBottom="@dimen/margin_md"
+        android:background="@color/line" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_catatan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_hint"
+            android:fontFamily="@font/work_sans_regular"
+            android:text="@string/title_catatan_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_catatan_kas_masuk"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_catatan_kas_masuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xsm"
+            android:fontFamily="@font/work_sans_regular"
+            android:hint="@string/hint_catatan"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_sm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_catatan"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

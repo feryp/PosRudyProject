@@ -205,5 +205,28 @@
     <string name="btn_uang_masuk">Uang Masuk</string>
     <string name="btn_uang_keluar">Uang Keluar</string>
 
+    //Uang Masuk Screen
+    <string name="title_uang_masuk">Uang Masuk</string>
+    <string name="hint_jumlah_uang_masuk">Jumlah Uang Masuk</string>
+    <string name="hint_catatan">Catatan</string>
+
+    //Uang Keluar Screen
+    <string name="title_uang_keluar">Uang Keluar</string>
+    <string name="hint_jumlah_uang_keluar">Jumlah Uang Keluar</string>
+
+    //Detail Kas Screen
+    <string name="btn_tutup_kasir">Tutup Kasir</string>
+    <string name="title_keterangan_item">Keterangan :</string>
+    <string name="title_waktu">Waktu</string>
+    <string name="title_catatan_item">Catatan :</string>
+    <string name="title_kas_keluar">Kas Keluar</string>
+    <string name="title_kas_masuk">Kas Masuk</string>
+    <string name="title_penerimaan_di_kasir">Penerimaan di Kasir</string>
+    <string name="hint_tunai_diterima">Tunai Diterima</string>
+    <string name="hint_non_tunai_diterima">Non Tunai Diterima</string>
+    <string name="title_selisih">Selisih</string>
+    <string name="title_total_penerimaan_di_sistem">Total Penerimaan di Sistem</string>
+    <string name="title_total_penerimaan_di_kasir">Total Penerimaan di Kasir</string>
+
 
 </resources>
