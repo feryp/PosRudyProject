@@ -1,9 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.laporan.LaporanActivity">
+    android:orientation="vertical"
+    tools:context=".ui.laporan.activity.LaporanActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_laporan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:title="Laporan"
+            app:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/ic_arrow_left_black"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Tab" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menu_rangkuman_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
+                android:text="@string/menu_rangkuman_laporan"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawableEnd="@drawable/ic_arrow_next_black"
+                android:background="@drawable/bg_border_bottom_silver"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menu_penjualan_produk_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
+                android:text="@string/menu_penjualan_per_produk_laporan"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawableEnd="@drawable/ic_arrow_next_black"
+                android:background="@drawable/bg_border_bottom_silver"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menu_penjualan_kategori_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
+                android:text="@string/menu_penjualan_per_kategori_laporan"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawableEnd="@drawable/ic_arrow_next_black"
+                android:background="@drawable/bg_border_bottom_silver"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menu_penjualan_tipe_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
+                android:text="@string/menu_penjualan_per_tipe_laporan"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawableEnd="@drawable/ic_arrow_next_black"
+                android:background="@drawable/bg_border_bottom_silver"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menu_penjualan_artikel_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
+                android:text="@string/menu_penjualan_per_artikel_laporan"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawableEnd="@drawable/ic_arrow_next_black"
+                android:background="@drawable/bg_border_bottom_silver"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menu_pelanggan_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
+                android:text="@string/menu_pelanggan_laporan"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawableEnd="@drawable/ic_arrow_next_black"
+                android:background="@drawable/bg_border_bottom_silver"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menu_penjual_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_md"
+                android:paddingBottom="@dimen/padding_md"
+                android:layout_marginStart="@dimen/margin_md"
+                android:layout_marginEnd="@dimen/margin_md"
+                android:text="@string/menu_penjual_laporan"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawableEnd="@drawable/ic_arrow_next_black"
+                android:background="@drawable/bg_border_bottom_silver"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

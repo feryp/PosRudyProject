@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -15,9 +14,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Handler;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,7 +21,7 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.beranda.adapter.ImageSliderAdapter;
 import com.example.posrudyproject.ui.beranda.model.ImageSliderItem;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
-import com.example.posrudyproject.ui.laporan.LaporanActivity;
+import com.example.posrudyproject.ui.laporan.activity.LaporanActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.example.posrudyproject.ui.penyimpanan.activity.PenyimpananActivity;

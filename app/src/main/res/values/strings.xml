@@ -228,5 +228,26 @@
     <string name="title_total_penerimaan_di_sistem">Total Penerimaan di Sistem</string>
     <string name="title_total_penerimaan_di_kasir">Total Penerimaan di Kasir</string>
 
+    //Laporan Screen
+    <string name="menu_rangkuman_laporan">Rangkuman</string>
+    <string name="menu_penjualan_per_produk_laporan">Penjualan Per Produk</string>
+    <string name="menu_penjualan_per_kategori_laporan">Penjualan Per Kategori</string>
+    <string name="menu_penjualan_per_tipe_laporan">Penjualan Per Tipe</string>
+    <string name="menu_penjualan_per_artikel_laporan">Penjualan Per Artikel</string>
+    <string name="menu_pelanggan_laporan">Pelanggan</string>
+    <string name="menu_penjual_laporan">Penjual</string>
+
+    //Rangkuman Laporan Screen
+    <string name="title_pilih_periode">Pilih Periode</string>
+    <string name="btn_lihat_detail">Lihat Detail</string>
+    <string name="tv_tidak_ada_data">Tidak Ada Data</string>
+    <string name="title_produk_terlaris">Produk Terlaris</string>
+    <string name="title_kategori_terlaris">Kategori Terlaris</string>
+    <string name="title_tipe_terlaris">Tipe Terlaris</string>
+    <string name="hint_0">0</string>
+    <string name="title_total_transaksi">Total Transaksi</string>
+    <string name="title_transaksi_terakhir">Transaksi Terakhir</string>
+    <string name="subtitle_transaksi_yang_terakhir_tercatat_oleh_sistem">Transaksi yang terakhir tercatat oleh sistem</string>
+
 
 </resources>
