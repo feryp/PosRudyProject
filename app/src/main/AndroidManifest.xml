@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.laporan.activity.RangkumanLaporanActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.rekapKas.activity.DetailKasActivity"
             android:exported="true" />
         <activity
@@ -87,7 +90,7 @@
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
-            android:name=".ui.laporan.LaporanActivity"
+            android:name=".ui.laporan.activity.LaporanActivity"
             android:exported="true"
             android:screenOrientation="locked" />
         <activity

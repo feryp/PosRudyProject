@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/tv_rangkuman_terlaris"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:text="1. Mandarin Fade/Coral Matte - RP Optics Multilaser Red"
+    android:textColor="@color/davys_grey"
+    android:textSize="@dimen/font_md"
+    android:fontFamily="@font/work_sans_semi_bold"
+    android:layout_marginStart="@dimen/margin_md"
+    android:layout_marginEnd="@dimen/margin_md"
+    android:layout_marginTop="@dimen/margin_xsm"
+    android:layout_marginBottom="@dimen/margin_xsm">
+
+</androidx.appcompat.widget.AppCompatTextView>
