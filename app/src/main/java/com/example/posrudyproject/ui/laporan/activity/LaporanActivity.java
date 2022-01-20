@@ -10,11 +10,12 @@ import android.view.View;
 
 import com.example.posrudyproject.R;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
 
 public class LaporanActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialToolbar mToolbar;
-    AppCompatTextView laporanRangkuman, laporanPenjualanProduk, laporanPenjualanKategori , laporanPenjualanTipe, laporanPenjualanArtikel, laporanPelanggan, laporanPenjual;
+    MaterialCardView laporanRangkuman, laporanPenjualanProduk, laporanPenjualanKategori , laporanPenjualanTipe, laporanPenjualanArtikel, laporanPelanggan, laporanPenjual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,4 +62,5 @@ public class LaporanActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
 }

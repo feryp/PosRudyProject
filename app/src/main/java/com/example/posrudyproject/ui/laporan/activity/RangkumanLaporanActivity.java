@@ -11,10 +11,17 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.laporan.adapter.KategoriTerlarisAdapter;
 import com.example.posrudyproject.ui.laporan.adapter.ProdukTerlarisAdapter;
+import com.example.posrudyproject.ui.laporan.adapter.TipeTerlarisAdapter;
+import com.example.posrudyproject.ui.laporan.adapter.TransaksiTerakhirAdapter;
+import com.example.posrudyproject.ui.laporan.model.KategoriTerlarisItem;
 import com.example.posrudyproject.ui.laporan.model.ProdukTerlarisItem;
+import com.example.posrudyproject.ui.laporan.model.TipeTerlarisItem;
+import com.example.posrudyproject.ui.laporan.model.TransaksiTerakhirItem;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -26,15 +33,27 @@ import java.util.List;
 public class RangkumanLaporanActivity extends AppCompatActivity {
 
     MaterialToolbar mToolbar;
-    SwipeRefreshLayout mSwipeRefresh;
     AppCompatTextView produkTerlarisEmpty, kategoriTerlarisEmpty, tipeTerlarisEmpty, transaksiEmpty;
     RecyclerView rvProdukTerlaris, rvKategoriTerlaris, rvTipeTerlaris, rvTransaksiTerakhir;
     MaterialButton btnDetailProduk, btnDetailKategori, btnDetailTipe, btnDetailTotalTransaksi, btnDetailTransaksiTerakhir;
     private ConstraintLayout btnPilihPeriode;
     private AppCompatTextView mSelectedPeriod;
 
+    //PRODUK TERLARIS
     List<ProdukTerlarisItem> produkTerlarisItems;
     ProdukTerlarisAdapter produkTerlarisAdapter;
+
+    //KATEGORI TERLARIS
+    List<KategoriTerlarisItem> kategoriTerlarisItems;
+    KategoriTerlarisAdapter kategoriTerlarisAdapter;
+
+    //TIPE TERLARIS
+    List<TipeTerlarisItem> tipeTerlarisItems;
+    TipeTerlarisAdapter tipeTerlarisAdapter;
+
+    //TRANSAKSI TERAKHIR
+    List<TransaksiTerakhirItem> transaksiTerakhirItems;
+    TransaksiTerakhirAdapter transaksiTerakhirAdapter;
 
 
     @Override
@@ -46,14 +65,6 @@ public class RangkumanLaporanActivity extends AppCompatActivity {
         initComponent();
 
         initToolbar();
-
-        //SWIPE REFRESH LAYOUT
-        mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mSwipeRefresh.setRefreshing(false);
-            }
-        });
 
         //Material Date Picker
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
@@ -92,11 +103,66 @@ public class RangkumanLaporanActivity extends AppCompatActivity {
         if (produkTerlarisAdapter.getItemCount() > 0){
             produkTerlarisEmpty.setVisibility(View.GONE);
         }
+
+        //DATA KATEGORI TERLARIS LIST
+        kategoriTerlarisItems = new ArrayList<>();
+        kategoriTerlarisItems.add(new KategoriTerlarisItem("1. BIKE"));
+        kategoriTerlarisItems.add(new KategoriTerlarisItem("2. RX/OPTICAL"));
+        kategoriTerlarisItems.add(new KategoriTerlarisItem("3. RUN"));
+
+        //SET ADAPTER KATEGORI TERLARIS
+        kategoriTerlarisAdapter = new KategoriTerlarisAdapter(kategoriTerlarisItems, this);
+        rvKategoriTerlaris.setLayoutManager(new LinearLayoutManager(this));
+        rvKategoriTerlaris.setAdapter(kategoriTerlarisAdapter);
+        rvKategoriTerlaris.setHasFixedSize(true);
+
+        //JIKA ADA KATEGORI TERLARIS, TEXT EMPTY HILANG
+        if (kategoriTerlarisAdapter.getItemCount() > 0){
+            kategoriTerlarisEmpty.setVisibility(View.GONE);
+        }
+
+        //DATA TIPE TERLARIS LIST
+        tipeTerlarisItems = new ArrayList<>();
+        tipeTerlarisItems.add(new TipeTerlarisItem("1. CUTLINE"));
+        tipeTerlarisItems.add(new TipeTerlarisItem("2. RYDON"));
+        tipeTerlarisItems.add(new TipeTerlarisItem("3. DEFENDER"));
+
+        //SET ADAPTER TIPE TERLARIS
+        tipeTerlarisAdapter = new TipeTerlarisAdapter(tipeTerlarisItems, this);
+        rvTipeTerlaris.setLayoutManager(new LinearLayoutManager(this));
+        rvTipeTerlaris.setAdapter(tipeTerlarisAdapter);
+        rvTipeTerlaris.setHasFixedSize(true);
+
+        //JIKA ADA TIPE TERLARIS, TEXT EMPTY HILANG
+        if (tipeTerlarisAdapter.getItemCount() > 0){
+            tipeTerlarisEmpty.setVisibility(View.GONE);
+        }
+
+        //DATA TRANSAKSI TERAKHIR LIST
+        transaksiTerakhirItems = new ArrayList<>();
+        for (int i=0; i<5; i++){
+            transaksiTerakhirItems.add(new TransaksiTerakhirItem(
+                    "Rp 1.000.000",
+                    "#INV001",
+                    "Lunas",
+                    "20 Jan 2022 16:50"));
+        }
+
+        //SET ADAPTER TRANSAKSI TERAKHIR
+        transaksiTerakhirAdapter = new TransaksiTerakhirAdapter(transaksiTerakhirItems, this);
+        rvTransaksiTerakhir.setLayoutManager(new LinearLayoutManager(this));
+        rvTransaksiTerakhir.setAdapter(transaksiTerakhirAdapter);
+        rvTransaksiTerakhir.setHasFixedSize(true);
+
+        //JIKA ADA TRANSAKSI TERAKHIR, TEXT EMPTY HILANG
+        if (transaksiTerakhirAdapter.getItemCount() > 0){
+            transaksiEmpty.setVisibility(View.GONE);
+        }
+
     }
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_rangkuman_laporan);
-        mSwipeRefresh = findViewById(R.id.swipe_refresh_rangkuman);
         btnPilihPeriode = findViewById(R.id.btn_pilih_periode);
         mSelectedPeriod = findViewById(R.id.tv_selected_period);
         produkTerlarisEmpty = findViewById(R.id.tv_no_data_produk);

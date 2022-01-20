@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/padding_md"
+    android:paddingBottom="@dimen/padding_md"
+    android:layout_marginStart="@dimen/margin_md"
+    android:layout_marginEnd="@dimen/margin_md"
+    android:background="@drawable/bg_border_bottom_silver">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_invoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_invoice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_nominal_transaksi_terakhir"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/ic_invoice"
+        app:layout_constraintTop_toTopOf="@id/ic_invoice"
+        app:layout_constraintBottom_toBottomOf="@id/ic_invoice"
+        app:layout_constraintEnd_toStartOf="@id/layout_status_transaksi_terakhir">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nominal_transaksi_terakhir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Rp 1.000.000"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black_gunmetal"
+            android:fontFamily="@font/work_sans_medium"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_no_invoice_transaksi_terakhir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="#INV001"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/gray_hint"
+            android:fontFamily="@font/work_sans_regular"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_status_transaksi_terakhir"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="end"
+        app:layout_constraintStart_toEndOf="@id/layout_nominal_transaksi_terakhir"
+        app:layout_constraintTop_toTopOf="@id/ic_invoice"
+        app:layout_constraintBottom_toBottomOf="@id/ic_invoice"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_status_transaksi_terakhir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            tools:text="Lunas"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black_gunmetal"
+            android:fontFamily="@font/work_sans_medium"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_waktu_transaksi_terakhir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            tools:text="07 Agu 2021 16:50"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/gray_hint"
+            android:fontFamily="@font/work_sans_regular"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
