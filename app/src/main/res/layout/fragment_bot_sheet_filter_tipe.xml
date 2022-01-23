@@ -19,14 +19,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:padding="16dp">
+        android:layout_marginTop="@dimen/margin_md"
+        android:padding="@dimen/padding_md">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:fontFamily="@font/work_sans_medium"
             android:text="@string/title_filter"
             android:textColor="@color/black"
@@ -48,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_filter"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_close_botsheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

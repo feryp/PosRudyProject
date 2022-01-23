@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fixed_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/bg_container_cultured_border_silver">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nama_produk_penjualan_laporan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Fire Red Matte - RP Optics Smoke Black"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_expand_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/btn_expand_arrow"
+            app:layout_constraintEnd_toStartOf="@id/layout_harga_qty_produk"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_harga_qty_produk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end"
+            app:layout_constraintStart_toEndOf="@id/tv_nama_produk_penjualan_laporan"
+            app:layout_constraintEnd_toStartOf="@id/btn_expand_arrow"
+            app:layout_constraintTop_toTopOf="@id/btn_expand_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/btn_expand_arrow">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_penjualan_kotor_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="Rp 3.000.000"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_qty_penjualan_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="1 Pcs"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_expand_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_round_expand_more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layout_harga_qty_produk"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/sub_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/fixed_view">
+
+        <!--Child ConstrainLayout 1-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_artikel_penjualan_produk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_artikel"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_artikel_penjualan_produk_laporan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_artikel_penjualan_produk_laporan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="SP631054-0000"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toEndOf="@id/title_artikel_penjualan_produk"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Child ConstrainLayout 2-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_kategori_penjualan_produk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_kategori"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_kategori_penjualan_produk_laporan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_kategori_penjualan_produk_laporan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="RX/OPTICAL"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toEndOf="@id/title_kategori_penjualan_produk"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Child ConstrainLayout 2-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_pajak_penjualan_produk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_pajak"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_pajak_penjualan_produk_laporan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_pajak_penjualan_produk_laporan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="Rp 0"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toEndOf="@id/title_pajak_penjualan_produk"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Child ConstrainLayout 2-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_total_harga_penjualan_produk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_penjualan"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_total_harga_penjualan_produk_laporan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_harga_penjualan_produk_laporan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="Rp 3.000.000"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toEndOf="@id/title_total_harga_penjualan_produk"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -106,9 +106,9 @@ public class RangkumanLaporanActivity extends AppCompatActivity {
 
         //DATA KATEGORI TERLARIS LIST
         kategoriTerlarisItems = new ArrayList<>();
-        kategoriTerlarisItems.add(new KategoriTerlarisItem("1. BIKE"));
-        kategoriTerlarisItems.add(new KategoriTerlarisItem("2. RX/OPTICAL"));
-        kategoriTerlarisItems.add(new KategoriTerlarisItem("3. RUN"));
+        kategoriTerlarisItems.add(new KategoriTerlarisItem("1. EYEWEAR"));
+        kategoriTerlarisItems.add(new KategoriTerlarisItem("2. HEALMETS"));
+        kategoriTerlarisItems.add(new KategoriTerlarisItem("3. SPAREPART"));
 
         //SET ADAPTER KATEGORI TERLARIS
         kategoriTerlarisAdapter = new KategoriTerlarisAdapter(kategoriTerlarisItems, this);

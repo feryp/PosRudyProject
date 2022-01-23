@@ -60,6 +60,10 @@ public class LaporanActivity extends AppCompatActivity implements View.OnClickLi
                 Intent rangkuman = new Intent(this, RangkumanLaporanActivity.class);
                 startActivity(rangkuman);
                 break;
+            case R.id.menu_penjualan_produk_laporan:
+                Intent penjualanProduk = new Intent(this, PenjualanPerProdukActivity.class);
+                startActivity(penjualanProduk);
+                break;
         }
     }
 

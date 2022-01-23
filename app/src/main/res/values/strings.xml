@@ -249,5 +249,28 @@
     <string name="title_transaksi_terakhir">Transaksi Terakhir</string>
     <string name="subtitle_transaksi_yang_terakhir_tercatat_oleh_sistem">Transaksi yang terakhir tercatat oleh sistem</string>
 
+    //Penjualan Per Produk Laporan Screen
+    <string name="title_total_terjual">Total Terjual</string>
+    <string name="title_total_pajak">Total Pajak</string>
+    <string name="title_total_penjualan_kotor">Total Penjualan Kotor</string>
+    <string name="title_total_penjualan">Total Penjualan</string>
+    <string name="title_produk">Produk</string>
+    <string name="title_penjualan_kotor">Penjualan Kotor</string>
+    <string name="title_artikel">Artikel</string>
+    <string name="title_kategori">Kategori</string>
+    <string name="title_pajak">Pajak</string>
+    <string name="title_penjualan">Penjualan</string>
+    <string name="btn_ekspor">Ekspor</string>
+    <string name="title_filter_urutkan">Urutkan</string>
+    <string name="nama_produk_a_z">Nama Produk (A-Z)</string>
+    <string name="nama_produk_z_a">Nama Produk (Z-A)</string>
+    <string name="kategori_a_z">Kategori (A-Z)</string>
+    <string name="kategori_z_a">Kategori (Z-A)</string>
+    <string name="penjualan_terbesar">Penjualan (Terbesar)</string>
+    <string name="penjualan_terkecil">Penjualan (Terkecil)</string>
+    <string name="penjualan_kotgor_terbesar">Penjualan Kotgor (Terbesar)</string>
+    <string name="penjualan_kotor_terkecil">Penjualan Kotor (Terkecil)</string>
+    <string name="btn_terapkan">Terapkan</string>
+
 
 </resources>
