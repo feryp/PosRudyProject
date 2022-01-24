@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.laporan.activity.PenjualanPerKategoriActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.laporan.activity.PenjualanPerProdukActivity"
             android:exported="true" />
         <activity

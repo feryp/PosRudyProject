@@ -27,14 +27,13 @@ public class PenjualanPerProdukAdapter extends RecyclerView.Adapter<PenjualanPer
     @NonNull
     @Override
     public PenjualanPerProdukViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_penjualan_per_produk,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_laporan_per_produk,parent,false);
         return new PenjualanPerProdukViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PenjualanPerProdukViewHolder holder, int position) {
         PenjualanPerProdukItem item = penjualanPerProdukItems.get(position);
-
 
         holder.bind(item);
         holder.itemView.setOnClickListener(v -> {

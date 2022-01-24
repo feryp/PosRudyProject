@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.laporan.activity.PenjualanPerProdukActivity">
+    tools:context=".ui.laporan.activity.PenjualanPerKategoriActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_penjualan_produk_laporan"
+            android:id="@+id/toolbar_penjualan_kategori_laporan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:contentInsetStart="0dp"
             app:contentInsetEnd="0dp"
-            app:title="Penjualan Per Produk"
+            app:title="Penjualan Per Kategori"
             app:titleTextColor="@color/black"
             app:navigationIcon="@drawable/ic_arrow_left_black"
             app:titleCentered="true"
@@ -96,10 +96,8 @@
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/layout_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line">
+            app:layout_constraintTop_toBottomOf="@id/line"
+            app:layout_constraintBottom_toTopOf="@id/layout_button">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -111,8 +109,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_border_rounded_silver"
-                    android:padding="@dimen/padding_md"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/padding_md">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/layout_total_terjual"
@@ -133,7 +131,7 @@
                             android:textSize="@dimen/font_mds" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_total_terjual_per_produk"
+                            android:id="@+id/tv_total_terjual_per_kategori"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/work_sans_semi_bold"
@@ -149,27 +147,27 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_md"
                         android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/layout_total_penjualan"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_total_terjual">
+                        app:layout_constraintTop_toBottomOf="@id/layout_total_terjual"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/layout_total_penjualan">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/work_sans_regular"
                             android:text="@string/title_total_pajak"
+                            android:textSize="@dimen/font_mds"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/font_mds" />
+                            android:fontFamily="@font/work_sans_regular" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_total_pajak_per_produk"
+                            android:id="@+id/tv_total_pajak_per_kategori"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/work_sans_semi_bold"
                             android:text="@string/rp_0"
+                            android:textSize="@dimen/font_mds"
                             android:textColor="@color/black_coral"
-                            android:textSize="@dimen/font_mds" />
+                            android:fontFamily="@font/work_sans_semi_bold" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -178,27 +176,27 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintBottom_toTopOf="@id/layout_total_penjualan"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@id/layout_total_terjual"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintBottom_toTopOf="@id/layout_total_penjualan">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/work_sans_regular"
                             android:text="@string/title_total_penjualan_kotor"
+                            android:textSize="@dimen/font_mds"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/font_mds" />
+                            android:fontFamily="@font/work_sans_regular" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_total_penjualan_kotor_per_produk"
+                            android:id="@+id/tv_total_penjualan_kotor_per_kategori"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/work_sans_semi_bold"
                             android:text="@string/rp_0"
+                            android:textSize="@dimen/font_mds"
                             android:textColor="@color/black_coral"
-                            android:textSize="@dimen/font_mds" />
+                            android:fontFamily="@font/work_sans_semi_bold" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -208,27 +206,27 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_md"
                         android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/layout_total_pajak"
                         app:layout_constraintTop_toBottomOf="@id/layout_total_penjualan_kotor">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/work_sans_regular"
                             android:text="@string/title_total_penjualan"
+                            android:textSize="@dimen/font_mds"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/font_mds" />
+                            android:fontFamily="@font/work_sans_regular" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_total_penjualan_per_produk"
+                            android:id="@+id/tv_total_penjualan_per_kategori"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/work_sans_semi_bold"
                             android:text="@string/rp_0"
+                            android:textSize="@dimen/font_mds"
                             android:textColor="@color/black_coral"
-                            android:textSize="@dimen/font_mds" />
+                            android:fontFamily="@font/work_sans_semi_bold" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -243,58 +241,58 @@
                     android:padding="@dimen/padding_md">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/title_produk"
+                        android:id="@+id/title_kategori"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/work_sans_medium"
-                        android:text="@string/title_produk"
-                        android:textColor="@color/black"
+                        android:text="@string/title_kategori"
                         android:textSize="@dimen/font_mds"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/work_sans_medium"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_md"
                         android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/title_produk">
+                        app:layout_constraintTop_toBottomOf="@id/title_kategori"
+                        app:layout_constraintBottom_toBottomOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/neon_blue_primary"
-                            android:padding="@dimen/padding_md">
+                            android:padding="@dimen/padding_md"
+                            android:background="@color/neon_blue_primary">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/work_sans_medium"
                                 android:text="@string/title_produk"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/font_sm"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:fontFamily="@font/work_sans_medium"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/work_sans_medium"
                                 android:text="@string/title_penjualan_kotor"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/font_sm"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:fontFamily="@font/work_sans_medium"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_penjualan_produk_laporan"
+                            android:id="@+id/rv_penjualan_kategori_laporan"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"/>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -314,7 +312,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_ekspor_laporan_produk"
+                android:id="@+id/btn_ekspor_laporan_kategori"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 style="@style/Widget.MaterialComponents.Button"

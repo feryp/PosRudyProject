@@ -272,5 +272,9 @@
     <string name="penjualan_kotor_terkecil">Penjualan Kotor (Terkecil)</string>
     <string name="btn_terapkan">Terapkan</string>
 
+    //Penjualan Per Kategori Laporan Screen
+    <string name="subtitle_pilih_kategori">Pilih Kategori</string>
+    <string name="title_terjual">Terjual</string>
+
 
 </resources>

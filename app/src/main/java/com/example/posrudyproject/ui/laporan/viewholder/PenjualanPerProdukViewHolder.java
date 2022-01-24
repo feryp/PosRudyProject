@@ -22,7 +22,7 @@ public class PenjualanPerProdukViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
 
         namaProduk = itemView.findViewById(R.id.tv_nama_produk_penjualan_laporan);
-        penjualanKotorProduk = itemView.findViewById(R.id.tv_penjualan_kotor_laporan);
+        penjualanKotorProduk = itemView.findViewById(R.id.tv_penjualan_kotor_produk_laporan);
         qtyProduk = itemView.findViewById(R.id.tv_qty_penjualan_laporan);
         artikelProduk = itemView.findViewById(R.id.tv_artikel_penjualan_produk_laporan);
         kategoriProduk = itemView.findViewById(R.id.tv_kategori_penjualan_produk_laporan);
