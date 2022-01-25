@@ -276,5 +276,8 @@
     <string name="subtitle_pilih_kategori">Pilih Kategori</string>
     <string name="title_terjual">Terjual</string>
 
+    //Penjualan Per Tipe Laporan Screen
+    <string name="title_tipe">Tipe</string>
+
 
 </resources>

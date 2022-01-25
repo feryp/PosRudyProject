@@ -111,6 +111,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_penjualan.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_penjualan_per_kategori.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_penjualan_per_produk.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_penjualan_per_tipe.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_penyimpanan.xml" value="0.176" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_pesanan_tunggu.xml" value="0.20042735042735044" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_potongan_harga.xml" value="0.20042735042735044" />
@@ -183,6 +184,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_kategori_penyimpanan.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_laporan_per_kategori.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_laporan_per_produk.xml" value="0.183203125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_laporan_per_tipe.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_laporan_transaksi.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_list_bank.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_list_botsheet.xml" value="0.24427083333333333" />
