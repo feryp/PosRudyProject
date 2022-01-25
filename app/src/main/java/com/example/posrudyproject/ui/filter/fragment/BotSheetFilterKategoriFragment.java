@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
 
     RecyclerView rvKategoriBarang;
     AppCompatImageButton btnClose;
+    SearchView searchView;
     FilterKategoriAdapter adapter;
     List<KategoriItem> kategoriItems;
 
@@ -43,6 +45,7 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
         //INIT VIEW
         rvKategoriBarang = v.findViewById(R.id.rv_kategori_botsheet);
         btnClose = v.findViewById(R.id.btn_close_botsheet);
+        searchView = v.findViewById(R.id.search_filter_kategori);
 
         //Tipe List
         kategoriItems = new ArrayList<>();

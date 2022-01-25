@@ -279,5 +279,8 @@
     //Penjualan Per Tipe Laporan Screen
     <string name="title_tipe">Tipe</string>
 
+    //Penjualan Per Artikel Laporan Screen
+    <string name="subtiitle_pilih_artikel">Pilih Artikel</string>
+
 
 </resources>

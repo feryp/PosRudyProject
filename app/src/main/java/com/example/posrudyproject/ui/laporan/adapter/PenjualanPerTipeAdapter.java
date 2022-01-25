@@ -17,11 +17,11 @@ import java.util.List;
 
 public class PenjualanPerTipeAdapter extends RecyclerView.Adapter<PenjualanPerTipeViewHolder>{
 
-    private final List<PenjualanPerTipeItem> penjualanPerTipeItems;
+    private final List<PenjualanPerTipeItem> perTipeItemList;
     private final Context mContext;
 
-    public PenjualanPerTipeAdapter(List<PenjualanPerTipeItem> penjualanPerTipeItems, Context mContext) {
-        this.penjualanPerTipeItems = penjualanPerTipeItems;
+    public PenjualanPerTipeAdapter(List<PenjualanPerTipeItem> perTipeItemList, Context mContext) {
+        this.perTipeItemList = perTipeItemList;
         this.mContext = mContext;
     }
 
@@ -34,7 +34,7 @@ public class PenjualanPerTipeAdapter extends RecyclerView.Adapter<PenjualanPerTi
 
     @Override
     public void onBindViewHolder(@NonNull PenjualanPerTipeViewHolder holder, int position) {
-        PenjualanPerTipeItem item = penjualanPerTipeItems.get(position);
+        PenjualanPerTipeItem item = perTipeItemList.get(position);
 
         holder.bind(item);
         holder.itemView.setOnClickListener(v -> {
@@ -49,6 +49,6 @@ public class PenjualanPerTipeAdapter extends RecyclerView.Adapter<PenjualanPerTi
 
     @Override
     public int getItemCount() {
-        return penjualanPerTipeItems.size();
+        return perTipeItemList.size();
     }
 }
