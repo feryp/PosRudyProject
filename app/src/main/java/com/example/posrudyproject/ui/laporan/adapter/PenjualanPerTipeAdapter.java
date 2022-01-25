@@ -10,30 +10,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.laporan.model.PenjualanPerKategoriItem;
-import com.example.posrudyproject.ui.laporan.viewholder.PenjualanPerKategoriViewHolder;
+import com.example.posrudyproject.ui.laporan.model.PenjualanPerTipeItem;
+import com.example.posrudyproject.ui.laporan.viewholder.PenjualanPerTipeViewHolder;
 
 import java.util.List;
 
-public class PenjualanPerKategoriAdapter extends RecyclerView.Adapter<PenjualanPerKategoriViewHolder> {
+public class PenjualanPerTipeAdapter extends RecyclerView.Adapter<PenjualanPerTipeViewHolder>{
 
-    private final List<PenjualanPerKategoriItem> perKategoriItemList;
+    private final List<PenjualanPerTipeItem> perTipeItemList;
     private final Context mContext;
 
-    public PenjualanPerKategoriAdapter(List<PenjualanPerKategoriItem> perKategoriItemList, Context mContext) {
-        this.perKategoriItemList = perKategoriItemList;
+    public PenjualanPerTipeAdapter(List<PenjualanPerTipeItem> perTipeItemList, Context mContext) {
+        this.perTipeItemList = perTipeItemList;
         this.mContext = mContext;
     }
 
     @NonNull
     @Override
-    public PenjualanPerKategoriViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_laporan_per_kategori,parent,false);
-        return new PenjualanPerKategoriViewHolder(v);
+    public PenjualanPerTipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_laporan_per_tipe,parent,false);
+        return new PenjualanPerTipeViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PenjualanPerKategoriViewHolder holder, int position) {
-        PenjualanPerKategoriItem item = perKategoriItemList.get(position);
+    public void onBindViewHolder(@NonNull PenjualanPerTipeViewHolder holder, int position) {
+        PenjualanPerTipeItem item = perTipeItemList.get(position);
 
         holder.bind(item);
         holder.itemView.setOnClickListener(v -> {
@@ -48,6 +49,6 @@ public class PenjualanPerKategoriAdapter extends RecyclerView.Adapter<PenjualanP
 
     @Override
     public int getItemCount() {
-        return perKategoriItemList.size();
+        return perTipeItemList.size();
     }
 }

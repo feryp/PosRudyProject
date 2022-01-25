@@ -116,6 +116,7 @@
                         android:id="@+id/layout_total_terjual"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_xsm"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toTopOf="@id/layout_total_pajak"
                         app:layout_constraintEnd_toStartOf="@+id/layout_total_penjualan_kotor"
@@ -123,7 +124,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/work_sans_regular"
                             android:text="@string/title_total_terjual"
@@ -132,7 +133,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_total_terjual_per_kategori"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/work_sans_semi_bold"
                             android:text="@string/btn_0"
@@ -146,6 +147,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_md"
+                        android:layout_marginEnd="@dimen/margin_xsm"
                         android:orientation="vertical"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/layout_total_terjual"
@@ -153,7 +155,7 @@
                         app:layout_constraintEnd_toStartOf="@id/layout_total_penjualan">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/title_total_pajak"
                             android:textSize="@dimen/font_mds"
@@ -162,7 +164,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_total_pajak_per_kategori"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/rp_0"
                             android:textSize="@dimen/font_mds"
@@ -175,6 +177,7 @@
                         android:id="@+id/layout_total_penjualan_kotor"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_xsm"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -182,7 +185,7 @@
                         app:layout_constraintBottom_toTopOf="@id/layout_total_penjualan">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/title_total_penjualan_kotor"
                             android:textSize="@dimen/font_mds"
@@ -191,7 +194,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_total_penjualan_kotor_per_kategori"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/rp_0"
                             android:textSize="@dimen/font_mds"
@@ -205,6 +208,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_md"
+                        android:layout_marginStart="@dimen/margin_xsm"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -212,7 +216,7 @@
                         app:layout_constraintTop_toBottomOf="@id/layout_total_penjualan_kotor">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/title_total_penjualan"
                             android:textSize="@dimen/font_mds"
@@ -221,7 +225,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_total_penjualan_per_kategori"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/rp_0"
                             android:textSize="@dimen/font_mds"

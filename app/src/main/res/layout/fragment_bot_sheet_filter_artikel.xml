@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_bottom_sheet"
-    tools:context=".ui.filter.fragment.BotSheetFilterKategoriFragment">
+    tools:context=".ui.filter.fragment.BotSheetFilterArtikelFragment">
 
     <View
         android:layout_width="63dp"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:fontFamily="@font/work_sans_semi_bold"
-            android:text="@string/subtitle_pilih_kategori"
+            android:text="@string/subtiitle_pilih_artikel"
             android:textColor="@color/black"
             android:textSize="@dimen/font_xlg"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,12 +83,12 @@
             android:background="@drawable/bg_rounded_soft_grey">
 
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_filter_kategori"
+                android:id="@+id/search_filter_artikel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                app:queryHint="Cari Kategori"
+                app:queryHint="Cari Artikel"
                 app:searchIcon="@drawable/ic_search_grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -100,7 +100,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_kategori_botsheet"
+        android:id="@+id/rv_artikel_botsheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
