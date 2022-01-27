@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fixed_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/lavender_blue_secondary">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_tgl_riwayat_pelanggan_laporan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="SP633846-0011"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black_gunmetal"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_expand_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/btn_expand_arrow"
+            app:layout_constraintEnd_toStartOf="@id/layout_total_transaksi_pelanggan"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_total_transaksi_pelanggan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            app:layout_constraintEnd_toStartOf="@id/btn_expand_arrow"
+            app:layout_constraintTop_toTopOf="@id/btn_expand_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/btn_expand_arrow"
+            app:layout_constraintStart_toEndOf="@id/tv_tgl_riwayat_pelanggan_laporan">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_total_transaksi_pelanggan_laporan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="Total :"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_transaksi_pelanggan_laporan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xsm"
+                android:gravity="end"
+                tools:text="Rp 3.000.000"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_expand_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_sort_down_filled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layout_total_transaksi_pelanggan"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sub_item_transaksi_laporan_pelanggan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/fixed_view">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

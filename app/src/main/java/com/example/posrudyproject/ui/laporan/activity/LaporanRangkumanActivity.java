@@ -6,12 +6,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.laporan.adapter.KategoriTerlarisAdapter;
@@ -30,7 +27,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.util.ArrayList;
 import java.util.List;
 
-public class RangkumanLaporanActivity extends AppCompatActivity {
+public class LaporanRangkumanActivity extends AppCompatActivity {
 
     MaterialToolbar mToolbar;
     AppCompatTextView produkTerlarisEmpty, kategoriTerlarisEmpty, tipeTerlarisEmpty, transaksiEmpty;
@@ -59,7 +56,7 @@ public class RangkumanLaporanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rangkuman_laporan);
+        setContentView(R.layout.activity_laporan_rangkuman);
 
         //INIT VIEW
         initComponent();
