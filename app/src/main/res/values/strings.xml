@@ -282,5 +282,18 @@
     //Penjualan Per Artikel Laporan Screen
     <string name="subtiitle_pilih_artikel">Pilih Artikel</string>
 
+    //Pelanggan Laporan Screen
+    <string name="subtitle_nama">Nama</string>
+    <string name="title_informasi">Informasi</string>
+    <string name="btn_detail_laporan_pelanggan">Detail</string>
+    <string name="title_no_hp">No. Hp</string>
+    <string name="title_transaksi">Transaksi</string>
+    <string name="title_no_handphone">No. Handphone</string>
+    <string name="title_riwayat_transaksi_pelanggan">Riwayat Transaksi Pelanggan</string>
+    <string name="kedatangan_terbesar">Kedatangan (Terbesar)</string>
+    <string name="kedatangan_terkecil">Kedatangan (Terkecil)</string>
+    <string name="total_transaksi_terbesar">Total Transaksi (Terbesar)</string>
+    <string name="total_transaksi_terkecil">Total Transaksi (Terkecil)</string>
+
 
 </resources>

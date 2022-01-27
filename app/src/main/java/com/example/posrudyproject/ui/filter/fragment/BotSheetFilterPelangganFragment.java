@@ -15,28 +15,24 @@ import com.example.posrudyproject.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
 
-public class BotSheetFilterPenjualanProdukFragment extends BottomSheetDialogFragment {
+public class BotSheetFilterPelangganFragment extends BottomSheetDialogFragment {
 
     AppCompatImageButton btnClose;
-    Chip chipNamaProdukAZ, chipNamaProdukZA, chipKategoriAZ, chipKategoriZA, chipPenjualanTerbesar,
-         chipPenjualanTerkecil, chipPenKotorTerbesar, chipPenKotorTerkecil;
+    Chip chipKedatanganTerbesar, chipKedatanganTerkecil, chipTotTransaksiTerbesar, chipTotTransaksiTerkecil;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_bot_sheet_filter_penjualan_produk, container, false);
+        View v = inflater.inflate(R.layout.fragment_bot_sheet_filter_pelanggan, container, false);
 
         //INIT VIEW
         btnClose = v.findViewById(R.id.btn_close_botsheet);
-        chipNamaProdukAZ = v.findViewById(R.id.chip_nama_produk_a_z);
-        chipNamaProdukZA = v.findViewById(R.id.chip_nama_produk_z_a);
-        chipKategoriZA = v.findViewById(R.id.chip_kategori_z_a);
-        chipKategoriAZ = v.findViewById(R.id.chip_kategori_a_z);
-        chipPenjualanTerbesar = v.findViewById(R.id.chip_penjualan_terbesar);
-        chipPenjualanTerkecil = v.findViewById(R.id.chip_penjualan_terkecil);
-        chipPenKotorTerbesar = v.findViewById(R.id.chip_penjualan_kotor_terbesar);
-        chipPenKotorTerkecil = v.findViewById(R.id.chip_penjualan_kotor_terkecil);
+        chipKedatanganTerbesar = v.findViewById(R.id.chip_kedatangan_terbesar);
+        chipKedatanganTerkecil = v.findViewById(R.id.chip_kedatangan_terkecil);
+        chipTotTransaksiTerbesar = v.findViewById(R.id.chip_total_transaksi_terbesar);
+        chipTotTransaksiTerkecil = v.findViewById(R.id.chip_total_transaksi_terkecil);
 
         return v;
     }

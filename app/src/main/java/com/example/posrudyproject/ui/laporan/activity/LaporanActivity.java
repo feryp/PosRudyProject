@@ -1,7 +1,6 @@
 package com.example.posrudyproject.ui.laporan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -57,7 +56,7 @@ public class LaporanActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.menu_rangkuman_laporan:
-                Intent rangkuman = new Intent(this, RangkumanLaporanActivity.class);
+                Intent rangkuman = new Intent(this, LaporanRangkumanActivity.class);
                 startActivity(rangkuman);
                 break;
             case R.id.menu_penjualan_produk_laporan:
@@ -75,6 +74,10 @@ public class LaporanActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.menu_penjualan_artikel_laporan:
                 Intent penjualanArtikel = new Intent(this, PenjualanPerArtikelActivity.class);
                 startActivity(penjualanArtikel);
+                break;
+            case R.id.menu_pelanggan_laporan:
+                Intent pelanggan = new Intent(this, LaporanPelangganActivity.class);
+                startActivity(pelanggan);
                 break;
         }
     }

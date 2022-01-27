@@ -18,6 +18,7 @@ import com.example.posrudyproject.ui.laporan.adapter.PenjualanPerTipeAdapter;
 import com.example.posrudyproject.ui.laporan.model.PenjualanPerKategoriItem;
 import com.example.posrudyproject.ui.laporan.model.PenjualanPerTipeItem;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
@@ -28,6 +29,8 @@ public class PenjualanPerTipeActivity extends AppCompatActivity {
 
     MaterialToolbar mToolbar;
     RecyclerView rvPenjualanPerTipe;
+    MaterialButton btnEkspor;
+    AppCompatTextView tvTotalTerjual, tvTotalPajak, tvTotPenjualanKotor, tvTotalPenjualan;
     private ConstraintLayout btnPilihPeriode;
     private AppCompatTextView mSelectedPeriod;
 
@@ -102,5 +105,10 @@ public class PenjualanPerTipeActivity extends AppCompatActivity {
         btnPilihPeriode = findViewById(R.id.btn_pilih_periode);
         mSelectedPeriod = findViewById(R.id.tv_selected_period);
         rvPenjualanPerTipe = findViewById(R.id.rv_penjualan_tipe_laporan);
+        tvTotalTerjual = findViewById(R.id.tv_total_terjual_per_tipe);
+        tvTotalPajak = findViewById(R.id.tv_total_pajak_per_tipe);
+        tvTotPenjualanKotor = findViewById(R.id.tv_total_penjualan_kotor_per_tipe);
+        tvTotalPenjualan = findViewById(R.id.tv_total_penjualan_per_tipe);
+        btnEkspor = findViewById(R.id.btn_ekspor_laporan_tipe);
     }
 }
