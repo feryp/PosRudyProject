@@ -1,0 +1,83 @@
+package com.example.posrudyproject.ui.produk.activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+
+import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterTipeFragment;
+import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
+import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
+import com.example.posrudyproject.ui.produk.adapter.ProdukAdapter;
+import com.example.posrudyproject.ui.produk.model.ProdukItem;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProdukActivity extends AppCompatActivity {
+
+    MaterialToolbar mToolbar;
+    SearchView searchView;
+    AppCompatImageButton btnBarcode;
+    RecyclerView rvProduk;
+    MaterialButton btnCustomBarang;
+
+    List<ProdukItem> produkItems;
+    ProdukAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_produk);
+
+        //INIT VIEW
+        initComponent();
+
+        initToolbar();
+
+        //Produk Tersedia
+        produkItems = new ArrayList<>();
+        for (int i=0; i<10; i++){
+            produkItems.add(new ProdukItem(
+                    R.drawable.im_example,
+                    "CUTLINE",
+                    "SP633846-0011",
+                    "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
+                    "100 Pcs"
+            ));
+        }
+
+        //Setup Adapter Produk Tersedia
+        adapter = new ProdukAdapter(produkItems, this);
+        rvProduk.setLayoutManager(new LinearLayoutManager(this));
+        rvProduk.setAdapter(adapter);
+        rvProduk.setHasFixedSize(true);
+    }
+
+    private void initComponent() {
+        mToolbar = findViewById(R.id.toolbar_produk);
+        searchView = findViewById(R.id.search_barang_produk);
+        btnBarcode = findViewById(R.id.btn_barcode_produk);
+        btnCustomBarang = findViewById(R.id.btn_custom_barang);
+        rvProduk = findViewById(R.id.rv_produk);
+    }
+
+    private void initToolbar() {
+        mToolbar.setNavigationOnClickListener(view -> finish());
+        mToolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.menu_filter){
+                BotSheetFilterTipeFragment botSheetTipe = new BotSheetFilterTipeFragment();
+                botSheetTipe.setCancelable(false);
+                botSheetTipe.show(getSupportFragmentManager(), botSheetTipe.getTag());
+                return true;
+            }
+            return false;
+        });
+    }
+}

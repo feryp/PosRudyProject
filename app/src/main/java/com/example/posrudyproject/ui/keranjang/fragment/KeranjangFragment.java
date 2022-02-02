@@ -54,8 +54,8 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
 
         //INIT VIEW
         mToolbar = v.findViewById(R.id.toolbar_keranjang);
-        searchView = v.findViewById(R.id.search_barang);
-        btnBarcode = v.findViewById(R.id.btn_barcode);
+        searchView = v.findViewById(R.id.search_barang_keranjang);
+        btnBarcode = v.findViewById(R.id.btn_barcode_keranjang);
         btnPotonganHarga = v.findViewById(R.id.btn_potongan_harga);
         btnSimpanPesanan = v.findViewById(R.id.btn_simpan_pesanan);
         btnAddPelanggan = v.findViewById(R.id.btn_add_pelanggan);
