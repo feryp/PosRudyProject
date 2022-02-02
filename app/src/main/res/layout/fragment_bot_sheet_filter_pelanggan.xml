@@ -153,7 +153,7 @@
         android:padding="@dimen/padding_md">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_terapkan_filter"
+            android:id="@+id/btn_terapkan_filter_pelanggan"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             style="@style/Widget.MaterialComponents.Button"

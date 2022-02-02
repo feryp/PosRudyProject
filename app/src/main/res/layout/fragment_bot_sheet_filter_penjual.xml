@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bg_bottom_sheet"
-    tools:context=".ui.filter.fragment.BotSheetFilterPenjualanProdukFragment">
+    tools:context=".ui.filter.fragment.BotSheetFilterPenjualFragment">
 
     <View
         android:id="@+id/toogle_botshet_filter"
@@ -88,11 +87,11 @@
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_nama_produk_a_z"
+            android:id="@+id/chip_jml_uang_masuk_terbesar"
             style="@style/CustomChipChoice"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="@string/nama_produk_a_z"
+            android:text="@string/jumlah_uang_masuk_terbesar"
             android:textSize="@dimen/font_sm"
             android:checkable="true"
             android:clickable="true"
@@ -102,11 +101,11 @@
             app:chipStrokeWidth="1dp" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_nama_produk_z_a"
+            android:id="@+id/chip_jml_uang_masuk_terkecil"
             style="@style/CustomChipChoice"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="@string/nama_produk_z_a"
+            android:text="@string/jumlah_uang_masuk_terkecil"
             android:textSize="@dimen/font_sm"
             android:checkable="true"
             android:clickable="true"
@@ -115,89 +114,6 @@
             app:chipEndPadding="16dp"
             app:chipStrokeWidth="1dp" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_kategori_a_z"
-            style="@style/CustomChipChoice"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/kategori_a_z"
-            android:textSize="@dimen/font_sm"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:chipStartPadding="16dp"
-            app:chipEndPadding="16dp"
-            app:chipStrokeWidth="1dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_kategori_z_a"
-            style="@style/CustomChipChoice"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/kategori_z_a"
-            android:textSize="@dimen/font_sm"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:chipStartPadding="16dp"
-            app:chipEndPadding="16dp"
-            app:chipStrokeWidth="1dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_penjualan_terbesar"
-            style="@style/CustomChipChoice"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/penjualan_terbesar"
-            android:textSize="@dimen/font_sm"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:chipStartPadding="16dp"
-            app:chipEndPadding="16dp"
-            app:chipStrokeWidth="1dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_penjualan_terkecil"
-            style="@style/CustomChipChoice"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/penjualan_terkecil"
-            android:textSize="@dimen/font_sm"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:chipStartPadding="16dp"
-            app:chipEndPadding="16dp"
-            app:chipStrokeWidth="1dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_penjualan_kotor_terbesar"
-            style="@style/CustomChipChoice"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/penjualan_kotgor_terbesar"
-            android:textSize="@dimen/font_sm"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:chipStartPadding="16dp"
-            app:chipEndPadding="16dp"
-            app:chipStrokeWidth="1dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_penjualan_kotor_terkecil"
-            style="@style/CustomChipChoice"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="@string/penjualan_kotor_terkecil"
-            android:textSize="@dimen/font_sm"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:chipStartPadding="16dp"
-            app:chipEndPadding="16dp"
-            app:chipStrokeWidth="1dp" />
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -209,7 +125,7 @@
         android:padding="@dimen/padding_md">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_terapkan_filter_produk"
+            android:id="@+id/btn_terapkan_filter_penjual"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             style="@style/Widget.MaterialComponents.Button"

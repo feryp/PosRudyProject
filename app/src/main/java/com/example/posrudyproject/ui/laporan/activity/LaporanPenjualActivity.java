@@ -15,11 +15,11 @@ import android.view.View;
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterPelangganFragment;
-import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterPenjualanProdukFragment;
+import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterPenjualFragment;
 import com.example.posrudyproject.ui.laporan.adapter.LaporanPelangganAdapter;
-import com.example.posrudyproject.ui.laporan.adapter.PenjualanPerArtikelAdapter;
+import com.example.posrudyproject.ui.laporan.adapter.LaporanPenjualAdapter;
 import com.example.posrudyproject.ui.laporan.model.LaporanPelangganItem;
-import com.example.posrudyproject.ui.laporan.model.PenjualanPerArtikelItem;
+import com.example.posrudyproject.ui.laporan.model.LaporanPenjualItem;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -28,21 +28,21 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaporanPelangganActivity extends AppCompatActivity implements OnItemClickListener {
+public class LaporanPenjualActivity extends AppCompatActivity implements OnItemClickListener {
 
     MaterialToolbar mToolbar;
-    RecyclerView rvLaporanPelanggan;
+    RecyclerView rvLaporanPenjual;
     MaterialButton btnEkspor;
     private ConstraintLayout btnPilihPeriode;
     private AppCompatTextView mSelectedPeriod;
 
-    List<LaporanPelangganItem> items;
-    LaporanPelangganAdapter adapter;
+    List<LaporanPenjualItem> items;
+    LaporanPenjualAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_laporan_pelanggan);
+        setContentView(R.layout.activity_laporan_penjual);
 
         //INIT VIEW
         initComponent();
@@ -69,32 +69,31 @@ public class LaporanPelangganActivity extends AppCompatActivity implements OnIte
         });
 
         // Removes blinks
-        ((SimpleItemAnimator) rvLaporanPelanggan.getItemAnimator()).setSupportsChangeAnimations(false);
+        ((SimpleItemAnimator) rvLaporanPenjual.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        //DATA LAPORAN PELANGGAN LIST
+        //DATA LAPORAN PENJUAL LIST
         items = new ArrayList<>();
         for (int i=0; i<10; i++){
-            items.add(new LaporanPelangganItem(
-                    "Ahmad",
-                    "0812364589",
-                    "2",
-                    "Rp 5.000.000"));
+            items.add(new LaporanPenjualItem(
+                    "John Doe",
+                    "Rp 14.000.000",
+                    "2 Transaksi"));
         }
 
         //SET ADAPTER
-        adapter = new LaporanPelangganAdapter(items, this);
-        rvLaporanPelanggan.setLayoutManager(new LinearLayoutManager(this));
-        rvLaporanPelanggan.setAdapter(adapter);
-        rvLaporanPelanggan.setHasFixedSize(true);
+        adapter = new LaporanPenjualAdapter(items, this);
+        rvLaporanPenjual.setLayoutManager(new LinearLayoutManager(this));
+        rvLaporanPenjual.setAdapter(adapter);
+        rvLaporanPenjual.setHasFixedSize(true);
     }
 
     private void initToolbar() {
         mToolbar.setNavigationOnClickListener(view -> finish());
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_filter){
-                BotSheetFilterPelangganFragment botSheetPelanggan = new BotSheetFilterPelangganFragment();
-                botSheetPelanggan.setCancelable(false);
-                botSheetPelanggan.show(getSupportFragmentManager(), botSheetPelanggan.getTag());
+                BotSheetFilterPenjualFragment botSheetPenjual = new BotSheetFilterPenjualFragment();
+                botSheetPenjual.setCancelable(false);
+                botSheetPenjual.show(getSupportFragmentManager(), botSheetPenjual.getTag());
                 return true;
             }
 
@@ -103,16 +102,16 @@ public class LaporanPelangganActivity extends AppCompatActivity implements OnIte
     }
 
     private void initComponent() {
-        mToolbar = findViewById(R.id.toolbar_pelanggan_laporan);
+        mToolbar = findViewById(R.id.toolbar_penjual_laporan);
         btnPilihPeriode = findViewById(R.id.btn_pilih_periode);
         mSelectedPeriod = findViewById(R.id.tv_selected_period);
-        rvLaporanPelanggan = findViewById(R.id.rv_pelanggan_laporan);
-        btnEkspor = findViewById(R.id.btn_ekspor_laporan_pelanggan);
+        rvLaporanPenjual = findViewById(R.id.rv_penjual_laporan);
+        btnEkspor = findViewById(R.id.btn_ekspor_laporan_penjual);
     }
 
     @Override
     public void onItemClickListener(View view, int position) {
-        Intent detail = new Intent(this, DetailLaporanPelangganActivity.class);
-        startActivity(detail);
+        Intent detailLaporan = new Intent(this, DetailLaporanPenjualActivity.class);
+        startActivity(detailLaporan);
     }
 }
