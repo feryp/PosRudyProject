@@ -2,6 +2,7 @@ package com.example.posrudyproject.ui.laporan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +33,8 @@ public class PenjualanPerKategoriActivity extends AppCompatActivity {
     RecyclerView rvPenjualanPerKategori;
     MaterialButton btnEkspor;
     AppCompatTextView tvTotalTerjual, tvTotalPajak, tvTotPenjualanKotor, tvTotalPenjualan;
+    ConstraintLayout layoutEmpty;
+    LinearLayoutCompat layoutLaporan;
     private ConstraintLayout btnPilihPeriode;
     private AppCompatTextView mSelectedPeriod;
 
@@ -86,6 +89,12 @@ public class PenjualanPerKategoriActivity extends AppCompatActivity {
         rvPenjualanPerKategori.setLayoutManager(new LinearLayoutManager(this));
         rvPenjualanPerKategori.setAdapter(adapter);
         rvPenjualanPerKategori.setHasFixedSize(true);
+
+        //Jika ada list item ilustrasi hilang
+        if (adapter.getItemCount() > 0){
+            layoutEmpty.setVisibility(View.GONE);
+            layoutLaporan.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initComponent() {
@@ -98,6 +107,8 @@ public class PenjualanPerKategoriActivity extends AppCompatActivity {
         tvTotPenjualanKotor = findViewById(R.id.tv_total_penjualan_kotor_per_kategori);
         tvTotalPenjualan = findViewById(R.id.tv_total_penjualan_per_kategori);
         btnEkspor = findViewById(R.id.btn_ekspor_laporan_kategori);
+        layoutLaporan = findViewById(R.id.layout_laporan_penjualan_per_kategori);
+        layoutEmpty = findViewById(R.id.layout_ilustrasi_empty_laporan_kategori);
     }
 
     private void initToolbar() {

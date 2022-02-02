@@ -302,6 +302,7 @@
     <string name="jumlah_uang_masuk_terkecil">Jumlah Uang Masuk (Terkecil)</string>
     <string name="title_riwayat_transaksi">Riwayat Transaksi</string>
     <string name="title_produk_terjual">Produk Terjual</string>
+    <string name="pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi_di_kasir">Pilih rentang waktu yang lain atau lakukan transaksi di kasir</string>
 
 
 </resources>
