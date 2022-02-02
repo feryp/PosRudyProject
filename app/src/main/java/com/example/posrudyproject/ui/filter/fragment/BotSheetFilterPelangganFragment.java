@@ -13,12 +13,14 @@ import android.view.ViewGroup;
 
 import com.example.posrudyproject.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 
 public class BotSheetFilterPelangganFragment extends BottomSheetDialogFragment {
 
     AppCompatImageButton btnClose;
     Chip chipKedatanganTerbesar, chipKedatanganTerkecil, chipTotTransaksiTerbesar, chipTotTransaksiTerkecil;
+    MaterialButton btnTerapkan;
 
 
     @Override
@@ -33,6 +35,7 @@ public class BotSheetFilterPelangganFragment extends BottomSheetDialogFragment {
         chipKedatanganTerkecil = v.findViewById(R.id.chip_kedatangan_terkecil);
         chipTotTransaksiTerbesar = v.findViewById(R.id.chip_total_transaksi_terbesar);
         chipTotTransaksiTerkecil = v.findViewById(R.id.chip_total_transaksi_terkecil);
+        btnTerapkan = v.findViewById(R.id.btn_terapkan_filter_pelanggan);
 
         return v;
     }

@@ -289,11 +289,19 @@
     <string name="title_no_hp">No. Hp</string>
     <string name="title_transaksi">Transaksi</string>
     <string name="title_no_handphone">No. Handphone</string>
-    <string name="title_riwayat_transaksi_pelanggan">Riwayat Transaksi Pelanggan</string>
     <string name="kedatangan_terbesar">Kedatangan (Terbesar)</string>
     <string name="kedatangan_terkecil">Kedatangan (Terkecil)</string>
     <string name="total_transaksi_terbesar">Total Transaksi (Terbesar)</string>
     <string name="total_transaksi_terkecil">Total Transaksi (Terkecil)</string>
+
+    //Penjual Laporan Screen
+    <string name="title_detail_laporan">Detail Laporan</string>
+    <string name="title_total_omset">Total Omset</string>
+    <string name="title_jumlah_transaksi">Jumlah Transaksi</string>
+    <string name="jumlah_uang_masuk_terbesar">Jumlah Uang Masuk (Terbesar)</string>
+    <string name="jumlah_uang_masuk_terkecil">Jumlah Uang Masuk (Terkecil)</string>
+    <string name="title_riwayat_transaksi">Riwayat Transaksi</string>
+    <string name="title_produk_terjual">Produk Terjual</string>
 
 
 </resources>
