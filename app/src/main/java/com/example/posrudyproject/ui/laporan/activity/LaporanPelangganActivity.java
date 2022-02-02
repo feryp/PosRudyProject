@@ -2,6 +2,7 @@ package com.example.posrudyproject.ui.laporan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +34,8 @@ public class LaporanPelangganActivity extends AppCompatActivity implements OnIte
     MaterialToolbar mToolbar;
     RecyclerView rvLaporanPelanggan;
     MaterialButton btnEkspor;
+    ConstraintLayout layoutEmpty;
+    LinearLayoutCompat layoutLaporan;
     private ConstraintLayout btnPilihPeriode;
     private AppCompatTextView mSelectedPeriod;
 
@@ -86,6 +89,12 @@ public class LaporanPelangganActivity extends AppCompatActivity implements OnIte
         rvLaporanPelanggan.setLayoutManager(new LinearLayoutManager(this));
         rvLaporanPelanggan.setAdapter(adapter);
         rvLaporanPelanggan.setHasFixedSize(true);
+
+        //Jika ada list item ilustrasi hilang
+        if (adapter.getItemCount() > 0){
+            layoutEmpty.setVisibility(View.GONE);
+            layoutLaporan.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initToolbar() {
@@ -108,6 +117,8 @@ public class LaporanPelangganActivity extends AppCompatActivity implements OnIte
         mSelectedPeriod = findViewById(R.id.tv_selected_period);
         rvLaporanPelanggan = findViewById(R.id.rv_pelanggan_laporan);
         btnEkspor = findViewById(R.id.btn_ekspor_laporan_pelanggan);
+        layoutLaporan = findViewById(R.id.layout_laporan_pelanggan);
+        layoutEmpty = findViewById(R.id.layout_ilustrasi_empty_laporan_pelanggan);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.posrudyproject.ui.laporan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +34,8 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
     MaterialToolbar mToolbar;
     RecyclerView rvLaporanPenjual;
     MaterialButton btnEkspor;
+    ConstraintLayout layoutEmpty;
+    LinearLayoutCompat layoutLaporan;
     private ConstraintLayout btnPilihPeriode;
     private AppCompatTextView mSelectedPeriod;
 
@@ -85,6 +88,12 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
         rvLaporanPenjual.setLayoutManager(new LinearLayoutManager(this));
         rvLaporanPenjual.setAdapter(adapter);
         rvLaporanPenjual.setHasFixedSize(true);
+
+        //Jika ada list item ilustrasi hilang
+        if (adapter.getItemCount() < 0){
+            layoutEmpty.setVisibility(View.GONE);
+            layoutLaporan.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initToolbar() {
@@ -107,6 +116,8 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
         mSelectedPeriod = findViewById(R.id.tv_selected_period);
         rvLaporanPenjual = findViewById(R.id.rv_penjual_laporan);
         btnEkspor = findViewById(R.id.btn_ekspor_laporan_penjual);
+        layoutLaporan = findViewById(R.id.layout_laporan_penjual);
+        layoutEmpty = findViewById(R.id.layout_ilustrasi_empty_laporan_penjual);
     }
 
     @Override
