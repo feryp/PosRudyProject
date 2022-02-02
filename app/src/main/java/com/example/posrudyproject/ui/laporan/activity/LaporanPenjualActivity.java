@@ -90,7 +90,7 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
         rvLaporanPenjual.setHasFixedSize(true);
 
         //Jika ada list item ilustrasi hilang
-        if (adapter.getItemCount() > 0){
+        if (adapter.getItemCount() < 0){
             layoutEmpty.setVisibility(View.GONE);
             layoutLaporan.setVisibility(View.VISIBLE);
         }
