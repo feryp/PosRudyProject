@@ -171,6 +171,7 @@
     <string name="title_catatan">Catatan</string>
     <string name="title_detail_barang">Detail Barang</string>
     <string name="tidak_ada_barang">Tidak Ada Barang</string>
+    <string name="title_kuantitas">Kuantitas</string>
 
     //Akun Screen
     <string name="menu_notifikasi">Notifikasi</string>
@@ -303,6 +304,11 @@
     <string name="title_riwayat_transaksi">Riwayat Transaksi</string>
     <string name="title_produk_terjual">Produk Terjual</string>
     <string name="pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi_di_kasir">Pilih rentang waktu yang lain atau lakukan transaksi di kasir</string>
+
+    //Produk Screen
+    <string name="btn_custom_barang">Custom Barang</string>
+    <string name="title_stok_barang">Stok Barang</string>
+
 
 
 </resources>

@@ -81,8 +81,8 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_penjualan);
-        searchView = findViewById(R.id.search_barang);
-        btnBarcode = findViewById(R.id.btn_barcode);
+        searchView = findViewById(R.id.search_barang_penjualan);
+        btnBarcode = findViewById(R.id.btn_barcode_penjualan);
         btnMasukKeranjang = findViewById(R.id.btn_masuk_keranjang);
         rvPenjualan = findViewById(R.id.rv_penjualan);
     }

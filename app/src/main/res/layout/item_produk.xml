@@ -5,10 +5,9 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="@dimen/padding_md"
-    android:layout_margin="@dimen/margin_sm"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_rounded_platinum">
+    android:background="@drawable/bg_border_bottom_silver">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
@@ -17,10 +16,10 @@
         android:gravity="center_vertical">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/im_detail_barang_pindah"
+            android:id="@+id/im_produk"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/bg_rounded_white"
+            android:background="@drawable/bg_border_cultured"
             tools:src="@drawable/im_example"
             android:scaleType="fitCenter"
             android:cropToPadding="true"
@@ -30,14 +29,13 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/container_desc_barang_pindah"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_detail_tipe_barang_pindah"
+            android:id="@+id/tv_tipe_produk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/work_sans_medium"
@@ -46,7 +44,7 @@
             tools:text="CUTLINE" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_detail_artikel_barang_pindah"
+            android:id="@+id/tv_artikel_produk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="SP633846-0011"
@@ -56,7 +54,7 @@
             android:layout_marginTop="@dimen/margin_xsm" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_detail_nama_barang_pindah"
+            android:id="@+id/tv_nama_produk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Mandarin Fade/Coral Matte - RP Optics Multilaser Red"
@@ -68,7 +66,6 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/container_kuantitas_barang"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -76,24 +73,23 @@
         android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_kuantitas_barang_pindah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/work_sans_regular"
-            android:text="@string/title_kuantitas"
+            android:fontFamily="@font/work_sans_medium"
+            android:text="@string/title_stok_barang"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_sm" />
+            android:textSize="@dimen/font_xs" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_detail_kuantitas_barang_pindah"
+            android:id="@+id/tv_stok_produk"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            tools:text="5"
+            tools:text="30 Pcs"
             android:textSize="@dimen/font_mds"
-            android:textColor="@color/black"
-            android:fontFamily="@font/work_sans_medium" />
+            android:textColor="@color/black_coral"
+            android:fontFamily="@font/work_sans_semi_bold" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
