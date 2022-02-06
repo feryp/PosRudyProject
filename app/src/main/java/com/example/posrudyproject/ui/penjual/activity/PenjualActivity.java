@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -243,6 +244,82 @@ public class PenjualActivity extends AppCompatActivity implements OnItemClickLis
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    Call<List<PenjualItem>> call = penjualEndpoint.searchForStore(authToken, "", id_store);
+                    call.enqueue(new Callback<List<PenjualItem>>() {
+                        @Override
+                        public void onResponse(Call<List<PenjualItem>> call, Response<List<PenjualItem>> response) {
+                            penjualItems = new ArrayList<>();
+                            for (int i=0; i<response.body().size(); i++){
+                                penjualItems.add(new PenjualItem(
+                                        response.body().get(i).getId(),
+                                        response.body().get(i).getTanggal_join(),
+                                        response.body().get(i).getNama_karyawan(),
+                                        response.body().get(i).getId_office(),
+                                        response.body().get(i).getLokasi_office(),
+                                        response.body().get(i).getId_store(),
+                                        response.body().get(i).getLokasi_store(),
+                                        response.body().get(i).getJabatan(),
+                                        response.body().get(i).getNo_hp(),
+                                        response.body().get(i).getEmail(),
+                                        response.body().get(i).getAlamat(),
+                                        response.body().get(i).getTotal_transaksi(),
+                                        response.body().get(i).getRowstatus(),
+                                        response.body().get(i).getImage()
+                                ));
+                            }
+                            PenjualAdapter adapter = new PenjualAdapter(penjualItems,PenjualActivity.this);
+                            rvPenjual.setAdapter(adapter);
+                            rvPenjual.setHasFixedSize(true);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<PenjualItem>> call, Throwable t) {
+                            new SweetAlertDialog(PenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                } else {
+                    Call<List<PenjualItem>> call = penjualEndpoint.searchForStore(authToken, newText, id_store);
+                    call.enqueue(new Callback<List<PenjualItem>>() {
+                        @Override
+                        public void onResponse(Call<List<PenjualItem>> call, Response<List<PenjualItem>> response) {
+                            penjualItems = new ArrayList<>();
+                            for (int i=0; i<response.body().size(); i++){
+                                penjualItems.add(new PenjualItem(
+                                        response.body().get(i).getId(),
+                                        response.body().get(i).getTanggal_join(),
+                                        response.body().get(i).getNama_karyawan(),
+                                        response.body().get(i).getId_office(),
+                                        response.body().get(i).getLokasi_office(),
+                                        response.body().get(i).getId_store(),
+                                        response.body().get(i).getLokasi_store(),
+                                        response.body().get(i).getJabatan(),
+                                        response.body().get(i).getNo_hp(),
+                                        response.body().get(i).getEmail(),
+                                        response.body().get(i).getAlamat(),
+                                        response.body().get(i).getTotal_transaksi(),
+                                        response.body().get(i).getRowstatus(),
+                                        response.body().get(i).getImage()
+                                ));
+                            }
+                            PenjualAdapter adapter = new PenjualAdapter(penjualItems,PenjualActivity.this);
+                            rvPenjual.setAdapter(adapter);
+                            rvPenjual.setHasFixedSize(true);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<PenjualItem>> call, Throwable t) {
+                            new SweetAlertDialog(PenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                }
+
                 return false;
             }
         });
