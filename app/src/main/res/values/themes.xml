@@ -71,4 +71,11 @@
         <item name="chipStrokeColor">@color/stroke_color_chip_state_list</item>
     </style>
 
+    <!-- Spinner Custom -->
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+    </style>
+
 </resources>

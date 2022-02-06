@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterProdukFragment;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterTipeFragment;
 import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
@@ -72,9 +73,9 @@ public class ProdukActivity extends AppCompatActivity {
         mToolbar.setNavigationOnClickListener(view -> finish());
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_filter){
-                BotSheetFilterTipeFragment botSheetTipe = new BotSheetFilterTipeFragment();
-                botSheetTipe.setCancelable(false);
-                botSheetTipe.show(getSupportFragmentManager(), botSheetTipe.getTag());
+                BotSheetFilterProdukFragment botSheetProduk = new BotSheetFilterProdukFragment();
+                botSheetProduk.setCancelable(false);
+                botSheetProduk.show(getSupportFragmentManager(), botSheetProduk.getTag());
                 return true;
             }
             return false;

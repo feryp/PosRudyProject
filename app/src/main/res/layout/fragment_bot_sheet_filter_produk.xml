@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    tools:context=".ui.filter.fragment.BotSheetFilterProdukFragment">
+
+    <View
+        android:layout_width="63dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_md"
+        android:background="@drawable/toggle_botsheet" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_md"
+        android:padding="@dimen/padding_md">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/work_sans_medium"
+            android:text="@string/title_filter"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_mds"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/subtitle_filter"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subtitle_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/work_sans_semi_bold"
+            android:text="@string/subtitle_berdasarkan"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_xlg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_filter"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_close_botsheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/todo"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_close_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_spinner_kategori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/margin_md"
+            android:layout_marginEnd="@dimen/margin_md"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_kategori"
+                android:textColor="@color/black_gunmetal"
+                android:textSize="@dimen/font_xs"
+                android:fontFamily="@font/work_sans_medium"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_border_black_gunmetal"
+                android:layout_marginTop="@dimen/margin_sm" >
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_kategori"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown"
+                    android:contentDescription="@string/todo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_md"
+                    android:src="@drawable/ic_arrow_round_expand_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_spinner_tipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/margin_md"
+            android:layout_marginEnd="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_md"
+            app:layout_constraintTop_toBottomOf="@id/layout_spinner_kategori"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_tipe"
+                android:textColor="@color/black_gunmetal"
+                android:textSize="@dimen/font_xs"
+                android:fontFamily="@font/work_sans_medium"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_border_black_gunmetal"
+                android:layout_marginTop="@dimen/margin_sm" >
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_tipe"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown"
+                    android:contentDescription="@string/todo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_md"
+                    android:src="@drawable/ic_arrow_round_expand_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_spinner_artikel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/margin_md"
+            android:layout_marginEnd="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_md"
+            app:layout_constraintTop_toBottomOf="@id/layout_spinner_tipe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_artikel"
+                android:textColor="@color/black_gunmetal"
+                android:textSize="@dimen/font_xs"
+                android:fontFamily="@font/work_sans_medium"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_border_black_gunmetal"
+                android:layout_marginTop="@dimen/margin_sm" >
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_artikel"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown"
+                    android:contentDescription="@string/todo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_md"
+                    android:src="@drawable/ic_arrow_round_expand_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_lg"
+        android:background="@color/white"
+        android:padding="@dimen/padding_md"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_bersihkan_filter"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="@dimen/margin_sm"
+            android:fontFamily="@font/work_sans_semi_bold"
+            android:text="@string/btn_bersihkan"
+            android:textAllCaps="false"
+            android:textColor="@color/neon_blue_primary"
+            android:textSize="@dimen/font_md"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_terapkan_filter_produk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/neon_blue_primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_terapkan_filter_produk"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:text="@string/btn_terapkan"
+            android:textSize="@dimen/font_md"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_bersihkan_filter"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
