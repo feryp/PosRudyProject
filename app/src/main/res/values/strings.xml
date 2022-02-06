@@ -313,5 +313,7 @@
     <string name="hint_spinner_pilih_kategori">Pilih Kategori</string>
     <string name="hint_spinner_pilih_tipe">Pilih Tipe</string>
     <string name="hint_spinner_pilih_artikel">Pilih Artikel</string>
+    <string name="btn_kembali">Kembali</string>
+    <string name="btn_selesai">Selesai</string>
 
 </resources>

@@ -1,0 +1,26 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/layout_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_md"
+    android:background="@color/white"
+    app:layout_constraintBottom_toBottomOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_lanjut_step_1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:text="@string/btn_lanjut"
+        android:textSize="@dimen/font_md"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/work_sans_semi_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

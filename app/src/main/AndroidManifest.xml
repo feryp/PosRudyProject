@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.produk.activity.CustomBarangActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.laporan.activity.DetailLaporanPenjualActivity"
             android:exported="true"
             android:screenOrientation="locked" />
