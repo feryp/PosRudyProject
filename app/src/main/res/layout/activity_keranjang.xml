@@ -48,7 +48,7 @@
                 android:background="@drawable/bg_searchview">
 
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_barang"
+                    android:id="@+id/search_barang_keranjang"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:iconifiedByDefault="false"
@@ -57,11 +57,11 @@
                     app:searchIcon="@drawable/ic_search"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btn_barcode"
+                    app:layout_constraintEnd_toStartOf="@id/btn_barcode_keranjang"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_barcode"
+                    android:id="@+id/btn_barcode_keranjang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -74,7 +74,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/search_barang"
+                    app:layout_constraintStart_toEndOf="@id/search_barang_keranjang"
                     tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -171,6 +171,7 @@
     <string name="title_catatan">Catatan</string>
     <string name="title_detail_barang">Detail Barang</string>
     <string name="tidak_ada_barang">Tidak Ada Barang</string>
+    <string name="title_kuantitas">Kuantitas</string>
 
     //Akun Screen
     <string name="menu_notifikasi">Notifikasi</string>
@@ -228,5 +229,89 @@
     <string name="title_total_penerimaan_di_sistem">Total Penerimaan di Sistem</string>
     <string name="title_total_penerimaan_di_kasir">Total Penerimaan di Kasir</string>
 
+    //Laporan Screen
+    <string name="menu_rangkuman_laporan">Rangkuman</string>
+    <string name="menu_penjualan_per_produk_laporan">Penjualan Per Produk</string>
+    <string name="menu_penjualan_per_kategori_laporan">Penjualan Per Kategori</string>
+    <string name="menu_penjualan_per_tipe_laporan">Penjualan Per Tipe</string>
+    <string name="menu_penjualan_per_artikel_laporan">Penjualan Per Artikel</string>
+    <string name="menu_pelanggan_laporan">Pelanggan</string>
+    <string name="menu_penjual_laporan">Penjual</string>
+
+    //Rangkuman Laporan Screen
+    <string name="title_pilih_periode">Pilih Periode</string>
+    <string name="btn_lihat_detail">Lihat Detail</string>
+    <string name="tv_tidak_ada_data">Tidak Ada Data</string>
+    <string name="title_produk_terlaris">Produk Terlaris</string>
+    <string name="title_kategori_terlaris">Kategori Terlaris</string>
+    <string name="title_tipe_terlaris">Tipe Terlaris</string>
+    <string name="hint_0">0</string>
+    <string name="title_total_transaksi">Total Transaksi</string>
+    <string name="title_transaksi_terakhir">Transaksi Terakhir</string>
+    <string name="subtitle_transaksi_yang_terakhir_tercatat_oleh_sistem">Transaksi yang terakhir tercatat oleh sistem</string>
+
+    //Penjualan Per Produk Laporan Screen
+    <string name="title_total_terjual">Total Terjual</string>
+    <string name="title_total_pajak">Total Pajak</string>
+    <string name="title_total_penjualan_kotor">Total Penjualan Kotor</string>
+    <string name="title_total_penjualan">Total Penjualan</string>
+    <string name="title_produk">Produk</string>
+    <string name="title_penjualan_kotor">Penjualan Kotor</string>
+    <string name="title_artikel">Artikel</string>
+    <string name="title_kategori">Kategori</string>
+    <string name="title_pajak">Pajak</string>
+    <string name="title_penjualan">Penjualan</string>
+    <string name="btn_ekspor">Ekspor</string>
+    <string name="title_filter_urutkan">Urutkan</string>
+    <string name="nama_produk_a_z">Nama Produk (A-Z)</string>
+    <string name="nama_produk_z_a">Nama Produk (Z-A)</string>
+    <string name="kategori_a_z">Kategori (A-Z)</string>
+    <string name="kategori_z_a">Kategori (Z-A)</string>
+    <string name="penjualan_terbesar">Penjualan (Terbesar)</string>
+    <string name="penjualan_terkecil">Penjualan (Terkecil)</string>
+    <string name="penjualan_kotgor_terbesar">Penjualan Kotgor (Terbesar)</string>
+    <string name="penjualan_kotor_terkecil">Penjualan Kotor (Terkecil)</string>
+    <string name="btn_terapkan">Terapkan</string>
+
+    //Penjualan Per Kategori Laporan Screen
+    <string name="subtitle_pilih_kategori">Pilih Kategori</string>
+    <string name="title_terjual">Terjual</string>
+
+    //Penjualan Per Tipe Laporan Screen
+    <string name="title_tipe">Tipe</string>
+
+    //Penjualan Per Artikel Laporan Screen
+    <string name="subtiitle_pilih_artikel">Pilih Artikel</string>
+
+    //Pelanggan Laporan Screen
+    <string name="subtitle_nama">Nama</string>
+    <string name="title_informasi">Informasi</string>
+    <string name="btn_detail_laporan_pelanggan">Detail</string>
+    <string name="title_no_hp">No. Hp</string>
+    <string name="title_transaksi">Transaksi</string>
+    <string name="title_no_handphone">No. Handphone</string>
+    <string name="kedatangan_terbesar">Kedatangan (Terbesar)</string>
+    <string name="kedatangan_terkecil">Kedatangan (Terkecil)</string>
+    <string name="total_transaksi_terbesar">Total Transaksi (Terbesar)</string>
+    <string name="total_transaksi_terkecil">Total Transaksi (Terkecil)</string>
+
+    //Penjual Laporan Screen
+    <string name="title_detail_laporan">Detail Laporan</string>
+    <string name="title_total_omset">Total Omset</string>
+    <string name="title_jumlah_transaksi">Jumlah Transaksi</string>
+    <string name="jumlah_uang_masuk_terbesar">Jumlah Uang Masuk (Terbesar)</string>
+    <string name="jumlah_uang_masuk_terkecil">Jumlah Uang Masuk (Terkecil)</string>
+    <string name="title_riwayat_transaksi">Riwayat Transaksi</string>
+    <string name="title_produk_terjual">Produk Terjual</string>
+    <string name="pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi_di_kasir">Pilih rentang waktu yang lain atau lakukan transaksi di kasir</string>
+
+    //Produk Screen
+    <string name="btn_custom_barang">Custom Barang</string>
+    <string name="title_stok_barang">Stok Barang</string>
+    <string name="subtitle_berdasarkan">Berdasarkan</string>
+    <string name="btn_bersihkan">Bersihkan</string>
+    <string name="hint_spinner_pilih_kategori">Pilih Kategori</string>
+    <string name="hint_spinner_pilih_tipe">Pilih Tipe</string>
+    <string name="hint_spinner_pilih_artikel">Pilih Artikel</string>
 
 </resources>

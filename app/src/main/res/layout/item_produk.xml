@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/padding_md"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_border_bottom_silver">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/im_produk"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_border_cultured"
+            tools:src="@drawable/im_example"
+            android:scaleType="fitCenter"
+            android:cropToPadding="true"
+            android:adjustViewBounds="true"
+            app:riv_corner_radius="4dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_tipe_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/work_sans_medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_sm"
+            tools:text="CUTLINE" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_artikel_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="SP633846-0011"
+            android:textSize="@dimen/font_mds"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_semi_bold"
+            android:layout_marginTop="@dimen/margin_xsm" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nama_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Mandarin Fade/Coral Matte - RP Optics Multilaser Red"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black_coral"
+            android:fontFamily="@font/work_sans_regular"
+            android:layout_marginTop="@dimen/margin_xsm" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/work_sans_medium"
+            android:text="@string/title_stok_barang"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_xs" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_stok_produk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            tools:text="30 Pcs"
+            android:textSize="@dimen/font_mds"
+            android:textColor="@color/black_coral"
+            android:fontFamily="@font/work_sans_semi_bold" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

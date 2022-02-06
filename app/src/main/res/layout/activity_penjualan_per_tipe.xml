@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.laporan.activity.PenjualanPerTipeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_penjualan_tipe_laporan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:title="Penjualan Per Tipe"
+            app:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/ic_arrow_left_black"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Tab"
+            app:menu="@menu/menu_filter"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_pilih_periode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_pilih_periode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_pilih_periode"
+                android:textSize="@dimen/font_xlg"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_pilih_periode"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/margin_sm"
+                android:background="@drawable/bg_rounded_soft_grey"
+                app:layout_constraintTop_toBottomOf="@id/title_pilih_periode">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_selected_period"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_md"
+                    android:layout_marginEnd="@dimen/margin_md"
+                    android:hint="@string/title_pilih_periode"
+                    android:textSize="@dimen/font_md"
+                    android:textColor="@color/gray_hint"
+                    android:fontFamily="@font/work_sans_regular"
+                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/ic_calendar_grey"
+                    android:drawablePadding="@dimen/padding_md"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/line"
+            app:layout_constraintTop_toBottomOf="@id/layout_pilih_periode"/>
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            app:layout_constraintBottom_toTopOf="@id/layout_button">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_laporan_penjualan_per_tipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:padding="@dimen/padding_md">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_border_rounded_silver"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/padding_md">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/layout_total_terjual"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_xsm"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toTopOf="@id/layout_total_pajak"
+                        app:layout_constraintEnd_toStartOf="@+id/layout_total_penjualan_kotor"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_regular"
+                            android:text="@string/title_total_terjual"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/font_mds" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_terjual_per_tipe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_semi_bold"
+                            android:text="@string/btn_0"
+                            android:textColor="@color/black_coral"
+                            android:textSize="@dimen/font_mds" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/layout_total_pajak"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:layout_marginEnd="@dimen/margin_xsm"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layout_total_terjual"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/layout_total_penjualan">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_total_pajak"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/work_sans_regular" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_pajak_per_tipe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rp_0"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_semi_bold" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/layout_total_penjualan_kotor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_xsm"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/layout_total_terjual"
+                        app:layout_constraintBottom_toTopOf="@id/layout_total_penjualan">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_total_penjualan_kotor"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/work_sans_regular" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_penjualan_kotor_per_tipe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rp_0"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_semi_bold" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/layout_total_penjualan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:layout_marginStart="@dimen/margin_xsm"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/layout_total_pajak"
+                        app:layout_constraintTop_toBottomOf="@id/layout_total_penjualan_kotor">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_total_penjualan"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/work_sans_regular" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_penjualan_per_tipe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rp_0"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_semi_bold" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_md"
+                    android:background="@drawable/bg_border_rounded_silver"
+                    android:padding="@dimen/padding_md">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_tipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_tipe"
+                        android:textSize="@dimen/font_mds"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/work_sans_medium"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/title_tipe"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_md"
+                            android:background="@color/neon_blue_primary">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_tipe"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_sm"
+                                android:fontFamily="@font/work_sans_medium"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_penjualan_kotor"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_sm"
+                                android:fontFamily="@font/work_sans_medium"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_penjualan_tipe_laporan"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_ilustrasi_empty_laporan_tipe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_md"
+            android:layout_marginEnd="@dimen/margin_md"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layout_button">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/il_empty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/il_searching_empty"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/title_ilustrasi"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_ilustrasi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                android:gravity="center"
+                android:text="@string/title_belum_ada_transaksi"
+                android:textSize="@dimen/font_xlg"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/il_empty"
+                app:layout_constraintBottom_toTopOf="@id/subtitle_ilustrasi"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subtitle_ilustrasi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                android:gravity="center"
+                android:text="@string/pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi_di_kasir"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/gray_hint"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_ilustrasi"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/padding_md"
+            app:layout_constraintTop_toBottomOf="@id/scroll_view"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_ekspor_laporan_tipe"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                style="@style/Widget.MaterialComponents.Button"
+                android:text="@string/btn_ekspor"
+                android:textSize="@dimen/font_md"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:icon="@drawable/ic_file_export"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

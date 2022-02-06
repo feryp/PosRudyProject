@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.laporan.activity.LaporanRangkumanActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:background="@color/white">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_rangkuman_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                app:contentInsetStart="0dp"
+                app:contentInsetEnd="0dp"
+                app:title="Rangkuman"
+                app:titleTextColor="@color/black"
+                app:navigationIcon="@drawable/ic_arrow_left_black"
+                app:titleCentered="true"
+                app:titleTextAppearance="@style/TextAppearance.Tab" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_md">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_pilih_periode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_pilih_periode"
+                    android:textSize="@dimen/font_xlg"
+                    android:textColor="@color/black_gunmetal"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_pilih_periode"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    android:background="@drawable/bg_rounded_soft_grey"
+                    app:layout_constraintTop_toBottomOf="@id/title_pilih_periode">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_selected_period"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/margin_md"
+                        android:layout_marginEnd="@dimen/margin_md"
+                        android:hint="@string/title_pilih_periode"
+                        android:textSize="@dimen/font_md"
+                        android:textColor="@color/gray_hint"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_calendar_grey"
+                        android:drawablePadding="@dimen/padding_md"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/line" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_md">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_produk_terlaris"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_border_rounded_silver"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:padding="@dimen/padding_md">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_produk_terlaris"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_produk_terlaris"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_no_data_produk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_md"
+                            android:layout_marginBottom="@dimen/margin_md"
+                            android:gravity="center"
+                            android:text="@string/tv_tidak_ada_data"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintTop_toTopOf="@id/rv_produk_terlaris_rangkuman"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/rv_produk_terlaris_rangkuman"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_produk_terlaris_rangkuman"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_sm"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintTop_toBottomOf="@id/title_produk_terlaris"
+                            app:layout_constraintBottom_toTopOf="@id/btn_lihat_detail_produk"/>
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_lihat_detail_produk"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:text="@string/btn_lihat_detail"
+                            android:textAllCaps="false"
+                            android:textColor="@color/han_purple"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rv_produk_terlaris_rangkuman"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_kategori_terlaris"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:background="@drawable/bg_border_rounded_silver"
+                        app:layout_constraintTop_toBottomOf="@id/layout_produk_terlaris"
+                        android:padding="@dimen/padding_md">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_kategori_terlaris"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_kategori_terlaris"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_no_data_kategori"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_md"
+                            android:layout_marginBottom="@dimen/margin_md"
+                            android:gravity="center"
+                            android:text="@string/tv_tidak_ada_data"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintTop_toTopOf="@id/rv_kategori_terlaris_rangkuman"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/rv_kategori_terlaris_rangkuman"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_kategori_terlaris_rangkuman"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_sm"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintTop_toBottomOf="@id/title_kategori_terlaris"
+                            app:layout_constraintBottom_toTopOf="@id/btn_lihat_detail_kategori"/>
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_lihat_detail_kategori"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:text="@string/btn_lihat_detail"
+                            android:textAllCaps="false"
+                            android:textColor="@color/han_purple"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rv_kategori_terlaris_rangkuman"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_tipe_terlaris"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:background="@drawable/bg_border_rounded_silver"
+                        app:layout_constraintTop_toBottomOf="@id/layout_kategori_terlaris"
+                        android:padding="@dimen/padding_md">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_tipe_terlaris"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_tipe_terlaris"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_no_data_tipe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_md"
+                            android:layout_marginBottom="@dimen/margin_md"
+                            android:gravity="center"
+                            android:text="@string/tv_tidak_ada_data"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintTop_toTopOf="@id/rv_tipe_terlaris_rangkuman"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/rv_tipe_terlaris_rangkuman"/>
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_tipe_terlaris_rangkuman"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_sm"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintTop_toBottomOf="@id/title_tipe_terlaris"
+                            app:layout_constraintBottom_toTopOf="@id/btn_lihat_detail_tipe"/>
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_lihat_detail_tipe"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:text="@string/btn_lihat_detail"
+                            android:textAllCaps="false"
+                            android:textColor="@color/han_purple"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rv_tipe_terlaris_rangkuman"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_total_transaksi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:background="@drawable/bg_border_rounded_silver"
+                        app:layout_constraintTop_toBottomOf="@id/layout_tipe_terlaris"
+                        android:padding="@dimen/padding_md">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_total_transaksi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_total_transaksi"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_transaksi_laporan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_sm"
+                            android:text="@string/hint_0"
+                            android:textSize="@dimen/font_lg"
+                            android:textColor="@color/davys_grey"
+                            android:fontFamily="@font/work_sans_semi_bold"
+                            app:layout_constraintTop_toBottomOf="@id/title_total_transaksi" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_lihat_detail_total_transaksi"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:text="@string/btn_lihat_detail"
+                            android:textAllCaps="false"
+                            android:textColor="@color/han_purple"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_total_transaksi_laporan"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_transaksi_terakhir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_md"
+                        android:background="@drawable/bg_border_rounded_silver"
+                        app:layout_constraintTop_toBottomOf="@id/layout_total_transaksi"
+                        android:padding="@dimen/padding_md">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/title_transaksi_terakhir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_transaksi_terakhir"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_gunmetal"
+                            android:fontFamily="@font/work_sans_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/subtitle_transaksi_terakhir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/subtitle_transaksi_yang_terakhir_tercatat_oleh_sistem"
+                            android:textSize="@dimen/font_sm"
+                            android:textColor="@color/gray_hint"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/title_transaksi_terakhir"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_no_data_transaksi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_md"
+                            android:layout_marginBottom="@dimen/margin_md"
+                            android:gravity="center"
+                            android:text="@string/tv_tidak_ada_data"
+                            android:textSize="@dimen/font_mds"
+                            android:textColor="@color/black_coral"
+                            android:fontFamily="@font/work_sans_regular"
+                            app:layout_constraintTop_toTopOf="@id/rv_transaksi_terakhir_rangkuman"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/rv_transaksi_terakhir_rangkuman"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_transaksi_terakhir_rangkuman"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_sm"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintTop_toBottomOf="@id/subtitle_transaksi_terakhir"
+                            app:layout_constraintBottom_toTopOf="@id/btn_lihat_detail_transaksi_terakhir"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_lihat_detail_transaksi_terakhir"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/work_sans_medium"
+                            android:text="@string/btn_lihat_detail"
+                            android:textAllCaps="false"
+                            android:textColor="@color/han_purple"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rv_transaksi_terakhir_rangkuman"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

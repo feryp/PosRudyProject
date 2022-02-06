@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +26,8 @@ import java.util.List;
 public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implements OnItemClickListener {
 
     RecyclerView rvTipeBarang;
-    ImageButton btnClose;
+    AppCompatImageButton btnClose;
+    SearchView searchView;
     FilterTipeAdapter adapter;
     List<TipeItem> tipeItems;
 
@@ -37,6 +40,7 @@ public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implem
         //INIT VIEW
         rvTipeBarang = v.findViewById(R.id.rv_tipe_botsheet);
         btnClose = v.findViewById(R.id.btn_close_botsheet);
+        searchView = v.findViewById(R.id.search_filter_tipe);
 
         //Tipe List
         tipeItems = new ArrayList<>();

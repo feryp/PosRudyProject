@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fixed_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_md"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/bg_container_cultured_border_silver">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nama_pelanggan_laporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="John Doe"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_expand_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/btn_expand_arrow"
+            app:layout_constraintEnd_toStartOf="@id/btn_expand_arrow"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_expand_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_round_expand_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_nama_pelanggan_laporan"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_detail_laporan_pelanggan"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/work_sans_semi_bold"
+            android:text="@string/btn_detail_laporan_pelanggan"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/neon_blue_primary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/sub_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/fixed_view">
+
+        <!--Child ConstrainLayout 1-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_no_hp_pelanggan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_no_hp"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_no_hp_pelanggan_laporan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_no_hp_pelanggan_laporan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="0812364589"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toEndOf="@id/title_no_hp_pelanggan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Child ConstrainLayout 2-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_total_kunjungan_pelanggan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_total_kunjungan"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_total_kunjungan_pelanggan_laporan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_kunjungan_pelanggan_laporan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="2"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toEndOf="@id/title_total_kunjungan_pelanggan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Child ConstrainLayout 2-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/bg_border_silver">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_transaksi_pelanggan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_transaksi"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_transaksi_pelanggan_laporan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_transaksi_pelanggan_laporan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                tools:text="Rp 5.000.000"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_regular"
+                app:layout_constraintStart_toEndOf="@id/title_transaksi_pelanggan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_md"
+        android:paddingBottom="@dimen/padding_md">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_waktu_riwayat_penjual_laporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="06 Aug 2021, 16:48"
+            android:textSize="@dimen/font_xs"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nominal_riwayat_penjual_laporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_sm"
+            tools:text="Rp 4.000.000"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_nama_toko_riwayat_penjual_laporan"
+            app:layout_constraintTop_toBottomOf="@id/tv_waktu_riwayat_penjual_laporan"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_nama_toko_riwayat_penjual_laporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Toko A"
+            android:textSize="@dimen/font_xs"
+            android:textColor="@color/cadet_blue_crayola"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nominal_riwayat_penjual_laporan"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_produk_terjual_riwayat_penjual_laporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_produk_terjual"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black_coral"
+            android:fontFamily="@font/work_sans_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_produk_terjual_riwayat_penjual_laporan"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_produk_terjual_riwayat_penjual_laporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_sm"
+            tools:text="5"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/title_produk_terjual_riwayat_penjual_laporan"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/line" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

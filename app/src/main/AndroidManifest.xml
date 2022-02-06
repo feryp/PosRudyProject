@@ -16,8 +16,45 @@
         tools:replace="android:icon"
         >
         <activity
+            android:name=".ui.laporan.activity.DetailLaporanPenjualActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.LaporanPenjualActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.DetailLaporanPelangganActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.LaporanPelangganActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.PenjualanPerArtikelActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.PenjualanPerTipeActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.PenjualanPerKategoriActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.PenjualanPerProdukActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".ui.laporan.activity.LaporanRangkumanActivity"
+            android:exported="true"
+            android:screenOrientation="locked" />
+        <activity
             android:name=".ui.rekapKas.activity.DetailKasActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.akun.activity.DetailTransaksiSelesaiActivity"
             android:exported="true"
@@ -93,11 +130,11 @@
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
-            android:name=".ui.laporan.LaporanActivity"
+            android:name=".ui.laporan.activity.LaporanActivity"
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
-            android:name=".ui.produk.ProdukActivity"
+            android:name=".ui.produk.activity.ProdukActivity"
             android:exported="true"
             android:screenOrientation="locked" />
         <activity
