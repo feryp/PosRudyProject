@@ -308,7 +308,10 @@
     //Produk Screen
     <string name="btn_custom_barang">Custom Barang</string>
     <string name="title_stok_barang">Stok Barang</string>
-
-
+    <string name="subtitle_berdasarkan">Berdasarkan</string>
+    <string name="btn_bersihkan">Bersihkan</string>
+    <string name="hint_spinner_pilih_kategori">Pilih Kategori</string>
+    <string name="hint_spinner_pilih_tipe">Pilih Tipe</string>
+    <string name="hint_spinner_pilih_artikel">Pilih Artikel</string>
 
 </resources>
