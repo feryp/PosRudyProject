@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -104,6 +105,57 @@ public class BarangMasukFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    Call<Map> call = penyimpananEndpoint.searchBarangMasuk(authToken, id_store, "");
+                    call.enqueue(new Callback<Map>() {
+                        @Override
+                        public void onResponse(Call<Map> call, Response<Map> response) {
+
+                            //Setup adapter
+                            adapter = new BarangMasukAdapter((List<BarangMasukItem>) response.body().get("result"), getActivity());
+                            rvBarangMasuk.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            rvBarangMasuk.setAdapter(adapter);
+                            rvBarangMasuk.setHasFixedSize(true);
+                            //Jikaada list item ilustrasi hilang
+                            if (adapter.getItemCount() > 0){
+                                layoutEmpty.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Map> call, Throwable t) {
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                } else {
+                    Call<Map> call = penyimpananEndpoint.searchBarangMasuk(authToken, id_store, newText);
+                    call.enqueue(new Callback<Map>() {
+                        @Override
+                        public void onResponse(Call<Map> call, Response<Map> response) {
+
+                            //Setup adapter
+                            adapter = new BarangMasukAdapter((List<BarangMasukItem>) response.body().get("result"), getActivity());
+                            rvBarangMasuk.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            rvBarangMasuk.setAdapter(adapter);
+                            rvBarangMasuk.setHasFixedSize(true);
+                            //Jikaada list item ilustrasi hilang
+                            if (adapter.getItemCount() > 0){
+                                layoutEmpty.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Map> call, Throwable t) {
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                }
                 return false;
             }
         });

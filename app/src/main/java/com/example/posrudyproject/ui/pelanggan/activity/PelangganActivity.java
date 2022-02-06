@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.session.MediaSession;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PelangganEndpoint;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
+import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
 import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -112,11 +114,18 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                         .show();
             }
         });
-
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PelangganActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
+
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_riwayat_pelanggan){
                 Intent riwayatPelanggan = new Intent(this, RiwayatPelangganActivity.class);
@@ -212,6 +221,71 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    Call<List<Pelanggan>> call = pelangganEndpoint.search(authToken,"");
+                    call.enqueue(new Callback<List<Pelanggan>>() {
+                        @Override
+                        public void onResponse(Call<List<Pelanggan>> call, Response<List<Pelanggan>> response) {
+                            pelangganItems = new ArrayList<>();
+                            for (int i=0; i<response.body().size(); i++){
+                                pelangganItems.add(new Pelanggan(
+                                                response.body().get(i).getId(),
+                                                response.body().get(i).getNama_pelanggan(),
+                                                response.body().get(i).getNo_hp(),
+                                                response.body().get(i).getEmail(),
+                                                response.body().get(i).getAlamat(),
+                                                response.body().get(i).getTotal_kunjungan(),
+                                                response.body().get(i).getKuantitas(),
+                                                response.body().get(i).getPoin(),
+                                                response.body().get(i).getTotal_pembelian()
+                                        )
+                                );
+                            }
+                            PelangganAdapter adapter = new PelangganAdapter(pelangganItems,PelangganActivity.this);
+                            rvPelanggan.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Pelanggan>> call, Throwable t) {
+                            new SweetAlertDialog(PelangganActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                } else {
+                    Call<List<Pelanggan>> call = pelangganEndpoint.search(authToken,newText);
+                    call.enqueue(new Callback<List<Pelanggan>>() {
+                        @Override
+                        public void onResponse(Call<List<Pelanggan>> call, Response<List<Pelanggan>> response) {
+                            pelangganItems = new ArrayList<>();
+                            for (int i=0; i<response.body().size(); i++){
+                                pelangganItems.add(new Pelanggan(
+                                                response.body().get(i).getId(),
+                                                response.body().get(i).getNama_pelanggan(),
+                                                response.body().get(i).getNo_hp(),
+                                                response.body().get(i).getEmail(),
+                                                response.body().get(i).getAlamat(),
+                                                response.body().get(i).getTotal_kunjungan(),
+                                                response.body().get(i).getKuantitas(),
+                                                response.body().get(i).getPoin(),
+                                                response.body().get(i).getTotal_pembelian()
+                                        )
+                                );
+                            }
+                            PelangganAdapter adapter = new PelangganAdapter(pelangganItems,PelangganActivity.this);
+                            rvPelanggan.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Pelanggan>> call, Throwable t) {
+                            new SweetAlertDialog(PelangganActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                }
                 return false;
             }
         });
