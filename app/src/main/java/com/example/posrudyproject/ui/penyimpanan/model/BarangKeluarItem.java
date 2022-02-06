@@ -1,13 +1,26 @@
 package com.example.posrudyproject.ui.penyimpanan.model;
 
-public class BarangKeluarItem {
-    private String tipeBarangKeluar;
-    private String artikelBarangKeluar;
-    private String namaBarangKeluar;
-    private String waktuBarangKeluark;
-    private String stokBarangKeluar;
+import com.google.gson.annotations.SerializedName;
 
-    public BarangKeluarItem(String tipeBarangKeluar, String artikelBarangKeluar, String namaBarangKeluar, String waktuBarangKeluark, String stokBarangKeluar) {
+import java.io.Serializable;
+
+public class BarangKeluarItem implements Serializable {
+    @SerializedName("type_name")
+    private String tipeBarangKeluar;
+
+    @SerializedName("artikel")
+    private String artikelBarangKeluar;
+
+    @SerializedName("nama_barang")
+    private String namaBarangKeluar;
+
+    @SerializedName("tanggal_keluar")
+    private String waktuBarangKeluark;
+
+    @SerializedName("kuantitas")
+    private double stokBarangKeluar;
+
+    public BarangKeluarItem(String tipeBarangKeluar, String artikelBarangKeluar, String namaBarangKeluar, String waktuBarangKeluark, double stokBarangKeluar) {
         this.tipeBarangKeluar = tipeBarangKeluar;
         this.artikelBarangKeluar = artikelBarangKeluar;
         this.namaBarangKeluar = namaBarangKeluar;
@@ -47,11 +60,11 @@ public class BarangKeluarItem {
         this.waktuBarangKeluark = waktuBarangKeluark;
     }
 
-    public String getStokBarangKeluar() {
+    public double getStokBarangKeluar() {
         return stokBarangKeluar;
     }
 
-    public void setStokBarangKeluar(String stokBarangKeluar) {
+    public void setStokBarangKeluar(double stokBarangKeluar) {
         this.stokBarangKeluar = stokBarangKeluar;
     }
 }

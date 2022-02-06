@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.penyimpanan.model.BarangKeluarItem;
 import com.example.posrudyproject.ui.penyimpanan.viewholder.BarangKeluarViewHolder;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.List;
 
@@ -33,12 +34,13 @@ public class BarangKeluarAdapter extends RecyclerView.Adapter<BarangKeluarViewHo
 
     @Override
     public void onBindViewHolder(@NonNull BarangKeluarViewHolder holder, int position) {
-        BarangKeluarItem item = barangKeluarItems.get(position);
-        holder.tipeBarang.setText(item.getTipeBarangKeluar());
-        holder.artikelBarang.setText(item.getArtikelBarangKeluar());
-        holder.namaBarang.setText(item.getNamaBarangKeluar());
-        holder.waktu.setText(item.getWaktuBarangKeluark());
-        holder.stokBarang.setText(item.getStokBarangKeluar());
+        Object item = barangKeluarItems.get(position);
+        LinkedTreeMap<Object,Object> t = (LinkedTreeMap) item;
+        holder.tipeBarang.setText(t.get("type_name").toString());
+        holder.artikelBarang.setText(t.get("artikel").toString());
+        holder.namaBarang.setText(t.get("nama_barang").toString());
+        holder.waktu.setText(t.get("tanggal_keluar").toString());
+        holder.stokBarang.setText(String.valueOf(t.get("kuantitas")));
     }
 
     @Override

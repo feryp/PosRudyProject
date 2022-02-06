@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
 import com.example.posrudyproject.ui.pelanggan.adapter.RiwayatPelangganAdapter;
-import com.example.posrudyproject.ui.pelanggan.model.PelangganItem;
+import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class RiwayatPelangganActivity extends AppCompatActivity {
     MaterialToolbar mToolbar;
     RecyclerView rvRiwayat;
     RiwayatPelangganAdapter adapter;
-    List<PelangganItem> pelangganItems;
+    List<Pelanggan> pelangganItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class RiwayatPelangganActivity extends AppCompatActivity {
         //Riwayat Pelanggan List
         pelangganItems = new ArrayList<>();
         for (int i=0; i<100; i++){
-            pelangganItems.add(new PelangganItem(
+            /*pelangganItems.add(new PelangganItem(
                     "Ahmad Muzaki",
                     "(0812364589)",
                     "ahmad.muzaki@gmail.com",
@@ -43,7 +43,7 @@ public class RiwayatPelangganActivity extends AppCompatActivity {
                     5,
                     "11 Nov 2021",
                     "Rp. 50.000"
-            ));
+            ));*/
         }
 
         //Setup adapter

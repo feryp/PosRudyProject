@@ -1,6 +1,8 @@
 package com.example.posrudyproject.ui.penjual.adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.penjual.model.PenjualItem;
 import com.example.posrudyproject.ui.penjual.viewholder.PenjualViewHolder;
 
+import android.util.Base64;
 import java.util.List;
 
 public class PenjualAdapter extends RecyclerView.Adapter<PenjualViewHolder> {
@@ -37,12 +40,15 @@ public class PenjualAdapter extends RecyclerView.Adapter<PenjualViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PenjualViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PenjualItem item = penjualItems.get(position);
-        holder.fotoPenjual.setImageResource(item.getImPenjual());
-        holder.namaPenjual.setText(item.getNamaPenjual());
-        holder.jabatanPenjual.setText(item.getJabatanPenjual());
+
+        byte[] bytes = Base64.decode(item.getImage().getBytes(), Base64.DEFAULT);
+        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.fotoPenjual.setImageBitmap(btm);
+        holder.namaPenjual.setText(item.getNama_karyawan());
+        holder.jabatanPenjual.setText(item.getJabatan());
 
         if (selectedItemPositon != null){
-            if (selectedItemPositon.getNamaPenjual().equals(penjualItems.get(position).getNamaPenjual())){
+            if (selectedItemPositon.getNama_karyawan().equals(penjualItems.get(position).getNama_karyawan())){
                 holder.itemView.setBackgroundResource(R.drawable.bg_rounded_neon_blue_shadow_outlined);
             } else {
                 holder.itemView.setBackgroundResource(R.drawable.bg_container_shadow);

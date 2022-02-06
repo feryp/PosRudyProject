@@ -1,28 +1,37 @@
 package com.example.posrudyproject.ui.pelanggan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.retrofit.ApiClient;
+import com.example.posrudyproject.retrofit.PelangganEndpoint;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
-import com.example.posrudyproject.ui.pelanggan.model.PelangganItem;
-import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
+import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PelangganActivity extends AppCompatActivity implements OnItemClickListener, View.OnClickListener {
 
@@ -30,41 +39,80 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
     SearchView searchView;
     RecyclerView rvPelanggan;
     MaterialButton btnTambahPelanggan;
-    PelangganAdapter adapter;
-    List<PelangganItem> pelangganItems;
+
+    List<Pelanggan> pelangganItems;
+    PelangganEndpoint pelangganEndpoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelanggan);
+        SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        String token = preferences.getString("token","");
+        String auth_token = ("Bearer ").concat(token);
+        rvPelanggan = findViewById(R.id.rv_pelanggan);
+        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
+        rvPelanggan.setLayoutManager(manager);
+        pelangganEndpoint = ApiClient.getClient().create(PelangganEndpoint.class);
+
 
         //INIT VIEW
         initComponent();
 
         initToolbar();
-
-        //SET LISTENER
         btnTambahPelanggan.setOnClickListener(this);
+        //SET LISTENER
 
         //Pelanggan List
-        pelangganItems = new ArrayList<>();
-        for (int i=0; i<100; i++){
-            pelangganItems.add(new PelangganItem(
-                    "Ahmad Muzaki",
-                    "0812364589",
-                    "",
-                    "",
-                    0,
-                    "",
-                    ""
-            ));
-        }
+        SetupSearchView(auth_token);
 
-        //Setup adapter
-        adapter = new PelangganAdapter(pelangganItems, this);
-        rvPelanggan.setLayoutManager(new LinearLayoutManager(this));
-        rvPelanggan.setAdapter(adapter);
-        rvPelanggan.setHasFixedSize(true);
+        Call<List<Pelanggan>> call = pelangganEndpoint.getAll(auth_token);
+        SweetAlertDialog pDialog = new SweetAlertDialog(PelangganActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading ...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        call.enqueue(new Callback<List<Pelanggan>>() {
+            @Override
+            public void onResponse(Call<List<Pelanggan>> call, Response<List<Pelanggan>> response) {
+                if (!response.isSuccessful()){
+                    pDialog.dismiss();
+                    new SweetAlertDialog(PelangganActivity.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText(String.valueOf(response.code()))
+                            .setContentText(response.message())
+                            .show();
+                }else{
+                    pDialog.dismiss();
+                    pelangganItems = new ArrayList<>();
+                    for (int i=0; i<response.body().size(); i++){
+                        pelangganItems.add(new Pelanggan(
+                                response.body().get(i).getId(),
+                                response.body().get(i).getNama_pelanggan(),
+                                response.body().get(i).getNo_hp(),
+                                response.body().get(i).getEmail(),
+                                response.body().get(i).getAlamat(),
+                                response.body().get(i).getTotal_kunjungan(),
+                                response.body().get(i).getKuantitas(),
+                                response.body().get(i).getPoin(),
+                                response.body().get(i).getTotal_pembelian()
+                                )
+                        );
+                    }
+                    PelangganAdapter adapter = new PelangganAdapter(pelangganItems,PelangganActivity.this);
+                    rvPelanggan.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Pelanggan>> call, Throwable t) {
+                pDialog.dismiss();
+                new SweetAlertDialog(PelangganActivity.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Oops...")
+                        .setContentText(t.getMessage())
+                        .show();
+            }
+        });
+
     }
 
     private void initToolbar() {
@@ -82,7 +130,7 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
     private void initComponent() {
         //init
         mToolbar = findViewById(R.id.toolbar_pelanggan);
-        searchView = findViewById(R.id.search_pelanggan);
+        //searchView = findViewById(R.id.search_pelanggan);
         rvPelanggan = findViewById(R.id.rv_pelanggan);
         btnTambahPelanggan = findViewById(R.id.btn_tambah_pelanggan);
     }
@@ -92,13 +140,23 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
     public void onItemClickListener(View view, int position) {
         switch (view.getId()){
             case R.id.item_pelanggan:
-                Toast.makeText(this, "Pilih " + pelangganItems.get(position).getNamaPelanggan(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Pilih " + pelangganItems.get(position).getNama_pelanggan(), Toast.LENGTH_SHORT).show();
                 Intent tambahPelanggan = new Intent(this, KeranjangActivity.class);
                 startActivity(tambahPelanggan);
                 break;
             case R.id.btn_edit_pelanggan:
-                Toast.makeText(this, "Ubah " + pelangganItems.get(position).getNamaPelanggan(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ubah " + pelangganItems.get(position).getId(), Toast.LENGTH_SHORT).show();
                 Intent editPelanggan = new Intent(this, TambahPelangganActivity.class);
+
+                editPelanggan.putExtra("id",pelangganItems.get(position).getId());
+                editPelanggan.putExtra("namaPelanggan",pelangganItems.get(position).getNama_pelanggan());
+                editPelanggan.putExtra("noHp",pelangganItems.get(position).getNo_hp());
+                editPelanggan.putExtra("email",pelangganItems.get(position).getEmail());
+                editPelanggan.putExtra("alamat",pelangganItems.get(position).getAlamat());
+                editPelanggan.putExtra("totalKunjungan",pelangganItems.get(position).getTotal_kunjungan());
+                editPelanggan.putExtra("kuantitas",pelangganItems.get(position).getKuantitas());
+                editPelanggan.putExtra("poin",pelangganItems.get(position).getPoin());
+                editPelanggan.putExtra("totalPembelian",pelangganItems.get(position).getTotal_pembelian());
                 startActivity(editPelanggan);
                 break;
         }
@@ -110,5 +168,52 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
         Toast.makeText(this, "Tambah Pelanggan", Toast.LENGTH_SHORT).show();
         Intent tambahPelanggan = new Intent(this, TambahPelangganActivity.class);
         startActivity(tambahPelanggan);
+    }
+
+    private void SetupSearchView(String authToken){
+        final SearchView searchView = findViewById(R.id.search_pelanggan);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Call<List<Pelanggan>> call = pelangganEndpoint.search(authToken,query);
+                call.enqueue(new Callback<List<Pelanggan>>() {
+                    @Override
+                    public void onResponse(Call<List<Pelanggan>> call, Response<List<Pelanggan>> response) {
+                        pelangganItems = new ArrayList<>();
+                        for (int i=0; i<response.body().size(); i++){
+                            pelangganItems.add(new Pelanggan(
+                                            response.body().get(i).getId(),
+                                            response.body().get(i).getNama_pelanggan(),
+                                            response.body().get(i).getNo_hp(),
+                                            response.body().get(i).getEmail(),
+                                            response.body().get(i).getAlamat(),
+                                            response.body().get(i).getTotal_kunjungan(),
+                                            response.body().get(i).getKuantitas(),
+                                            response.body().get(i).getPoin(),
+                                            response.body().get(i).getTotal_pembelian()
+                                    )
+                            );
+                        }
+                        PelangganAdapter adapter = new PelangganAdapter(pelangganItems,PelangganActivity.this);
+                        rvPelanggan.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Pelanggan>> call, Throwable t) {
+                        new SweetAlertDialog(PelangganActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Oops...")
+                                .setContentText(t.getMessage())
+                                .show();
+                    }
+                });
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 }

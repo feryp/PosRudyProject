@@ -1,6 +1,9 @@
 package com.example.posrudyproject.ui.penyimpanan.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +37,10 @@ public class ProdukTersediaAdapter extends RecyclerView.Adapter<ProdukTersediaVi
     @Override
     public void onBindViewHolder(@NonNull ProdukTersediaViewHolder holder, int position) {
         ProdukTersediaItem item = produkTersediaItems.get(position);
-        holder.imBarang.setImageResource(item.getImBarang());
+
+        byte[] bytes = Base64.decode(item.getFoto_barang().getBytes(), Base64.DEFAULT);
+        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(item.getTipeBarang());
         holder.artikelBarang.setText(item.getArtikelBarang());
         holder.namaBarang.setText(item.getNamaBarang());

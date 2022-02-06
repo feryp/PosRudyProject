@@ -11,6 +11,7 @@ import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.penyimpanan.model.DokumenBarangPindahItem;
 import com.example.posrudyproject.ui.penyimpanan.viewholder.DokumenBarangPindahViewHolder;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.List;
 
@@ -33,10 +34,11 @@ public class DokumenBarangPindahAdapter extends RecyclerView.Adapter<DokumenBara
 
     @Override
     public void onBindViewHolder(@NonNull DokumenBarangPindahViewHolder holder, int position) {
-        DokumenBarangPindahItem item = dokumenBarangPindahItems.get(position);
-        holder.noDokumen.setText(item.getNoDocBarang());
-        holder.waktu.setText(item.getWaktuBarangPindah());
-        holder.jumlahBarang.setText(item.getJumlahBarangPindah());
+        Object item = dokumenBarangPindahItems.get(position);
+        LinkedTreeMap<Object,Object> t = (LinkedTreeMap) item;
+        holder.noDokumen.setText(t.get("pengiriman_code").toString());
+        holder.waktu.setText(t.get("tanggal_pengiriman").toString());
+        holder.jumlahBarang.setText(t.get("total_pindah").toString());
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view,position));
     }
 

@@ -1,15 +1,30 @@
 package com.example.posrudyproject.ui.penyimpanan.model;
 
-public class ProdukTersediaItem {
-    private int imBarang;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class ProdukTersediaItem implements Serializable {
+    @SerializedName("foto_barang")
+    private String foto_barang;
+
+    @SerializedName("type_name")
     private String tipeBarang;
+
+    @SerializedName("artikel")
     private String artikelBarang;
+
+    @SerializedName("nama_barang")
     private String namaBarang;
+
+    @SerializedName("harga_jual")
     private String hargaBarang;
+
+    @SerializedName("kuantitas")
     private String jumlahStok;
 
-    public ProdukTersediaItem(int imBarang, String tipeBarang, String artikelBarang, String namaBarang, String hargaBarang, String jumlahStok) {
-        this.imBarang = imBarang;
+    public ProdukTersediaItem(String foto_barang, String tipeBarang, String artikelBarang, String namaBarang, String hargaBarang, String jumlahStok) {
+        this.foto_barang = foto_barang;
         this.tipeBarang = tipeBarang;
         this.artikelBarang = artikelBarang;
         this.namaBarang = namaBarang;
@@ -17,12 +32,12 @@ public class ProdukTersediaItem {
         this.jumlahStok = jumlahStok;
     }
 
-    public int getImBarang() {
-        return imBarang;
+    public String getFoto_barang() {
+        return foto_barang;
     }
 
-    public void setImBarang(int imBarang) {
-        this.imBarang = imBarang;
+    public void setFoto_barang(String foto_barang) {
+        this.foto_barang = foto_barang;
     }
 
     public String getTipeBarang() {

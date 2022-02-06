@@ -38,7 +38,7 @@
                         android:id="@+id/tv_nama_toko"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rudy Project Tangerang"
+                        android:text="Rudy Project Indonesia"
                         android:textSize="@dimen/font_lg"
                         android:textColor="@color/black_gunmetal"
                         android:fontFamily="@font/work_sans_medium"/>

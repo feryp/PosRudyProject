@@ -1,10 +1,23 @@
 package com.example.posrudyproject.ui.penyimpanan.model;
 
-public class BarangMasukItem {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class BarangMasukItem implements Serializable {
+    @SerializedName("type_name")
     private String tipeBarangMasuk;
+
+    @SerializedName("artikel")
     private String artikelBarangMasuk;
+
+    @SerializedName("nama_barang")
     private String namaBarangMasuk;
+
+    @SerializedName("tanggal_masuk")
     private String waktuBarangMasuk;
+
+    @SerializedName("kuantitas")
     private String stokBarangMasuk;
 
     public BarangMasukItem(String tipeBarangMasuk, String artikelBarangMasuk, String namaBarangMasuk, String waktuBarangMasuk, String stokBarangMasuk) {

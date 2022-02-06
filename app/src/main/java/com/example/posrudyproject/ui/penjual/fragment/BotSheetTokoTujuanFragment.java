@@ -2,6 +2,7 @@ package com.example.posrudyproject.ui.penjual.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -20,13 +21,13 @@ import android.widget.Toast;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.penjual.adapter.TokoTujuanAdapter;
 import com.example.posrudyproject.ui.penjual.model.PenjualItem;
 import com.example.posrudyproject.ui.penjual.model.TokoItem;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implements OnItemClickListener {
@@ -35,7 +36,8 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
     ImageButton btnClose;
     TokoTujuanAdapter adapter;
     List<TokoItem> tokoItems;
-    List<PenjualItem> penjualItems;
+    int id_toko;
+    String nama_toko;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,10 +50,8 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
         btnClose = v.findViewById(R.id.btn_close_botsheet);
 
         //Toko List
-        tokoItems = new ArrayList<>();
-        for (int i=0; i<50; i++){
-            tokoItems.add(new TokoItem("Toko Pusat"));
-        }
+        Bundle bundle = getArguments();
+        tokoItems = (List<TokoItem>) bundle.getSerializable("tokoItems");
 
         //Setup Adapter
         adapter = new TokoTujuanAdapter(tokoItems, this);
@@ -82,9 +82,10 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
     @Override
     public void onItemClickListener(View view, int position) {
         Toast.makeText(getContext(), "Pilih " + tokoItems.get(position).getNamaToko(), Toast.LENGTH_SHORT).show();
-        //SELECT ITEM FILTER
+        id_toko = tokoItems.get(position).getId();
+        nama_toko = tokoItems.get(position).getNamaToko();
         openDialog();
-        dismiss();
+        //dismiss();
     }
 
     @SuppressLint({"SetTextI18n","UseCompatLoadingForDrawables"})
@@ -107,11 +108,14 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         titleDialog.setText("Pindah Penjual");
-        pesanDialog.setText("Pindahkan Alex Parkinson ke Toko Pusat");
+        pesanDialog.setText(nama_toko);
 
         btnOke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                PenjualActivity callingActivity = (PenjualActivity) getActivity();
+                callingActivity.onUserSelectValue(id_toko,nama_toko);
                 alertDialog.dismiss();
             }
         });

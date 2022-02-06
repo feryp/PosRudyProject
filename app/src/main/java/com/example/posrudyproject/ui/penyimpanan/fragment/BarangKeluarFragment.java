@@ -13,11 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.retrofit.ApiClient;
+import com.example.posrudyproject.retrofit.PenyimpananEndpoint;
 import com.example.posrudyproject.ui.penyimpanan.adapter.BarangKeluarAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.BarangKeluarItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BarangKeluarFragment extends Fragment {
 
@@ -26,7 +34,7 @@ public class BarangKeluarFragment extends Fragment {
     RecyclerView rvBarangKeluar;
     BarangKeluarAdapter adapter;
     List<BarangKeluarItem> barangKeluarItems;
-
+    PenyimpananEndpoint penyimpananEndpoint;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,17 +48,9 @@ public class BarangKeluarFragment extends Fragment {
         rvBarangKeluar = v.findViewById(R.id.rv_barang_keluar);
 
         //Barang Keluar List
-        barangKeluarItems = new ArrayList<>();
-        for (int i=0; i<50; i++){
-            barangKeluarItems.add(new BarangKeluarItem(
-                    "CUTLINE",
-                    "SP633846-0011",
-                    "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
-                    "10-08-2021, 15:55",
-                    "200 Pcs"
-            ));
-        }
-
+        Bundle bundle = getArguments();
+        barangKeluarItems = (List<BarangKeluarItem>) bundle.getSerializable("barangKeluarItems");
+        SetupSearchView((SearchView) v.findViewById(R.id.search_barang_keluar),bundle.getString("authToken"),bundle.getInt("idStore"));
         //Setup adapter
         adapter = new BarangKeluarAdapter(barangKeluarItems, getActivity());
         rvBarangKeluar.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -63,5 +63,44 @@ public class BarangKeluarFragment extends Fragment {
         }
 
         return v;
+    }
+
+    private void SetupSearchView(SearchView searchView,String authToken, int id_store){
+        penyimpananEndpoint = ApiClient.getClient().create(PenyimpananEndpoint.class);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Call<Map> call = penyimpananEndpoint.searchBarangKeluar(authToken, id_store, query);
+                call.enqueue(new Callback<Map>() {
+                    @Override
+                    public void onResponse(Call<Map> call, Response<Map> response) {
+
+                        //Setup adapter
+                        adapter = new BarangKeluarAdapter((List<BarangKeluarItem>) response.body().get("result"), getActivity());
+                        rvBarangKeluar.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        rvBarangKeluar.setAdapter(adapter);
+                        rvBarangKeluar.setHasFixedSize(true);
+                        //Jikaada list item ilustrasi hilang
+                        if (adapter.getItemCount() > 0){
+                            layoutEmpty.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Map> call, Throwable t) {
+                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Oops...")
+                                .setContentText(t.getMessage())
+                                .show();
+                    }
+                });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 }

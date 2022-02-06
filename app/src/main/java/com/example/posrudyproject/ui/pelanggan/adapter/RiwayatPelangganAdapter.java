@@ -9,17 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.pelanggan.model.PelangganItem;
+import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
 import com.example.posrudyproject.ui.pelanggan.viewholder.RiwayatPelangganViewHolder;
 
 import java.util.List;
 
 public class RiwayatPelangganAdapter extends RecyclerView.Adapter<RiwayatPelangganViewHolder> {
 
-    private final List<PelangganItem> pelangganItems;
+    private final List<Pelanggan> pelangganItems;
     private final Context mContext;
 
-    public RiwayatPelangganAdapter(List<PelangganItem> pelangganItems, Context mContext) {
+    public RiwayatPelangganAdapter(List<Pelanggan> pelangganItems, Context mContext) {
         this.pelangganItems = pelangganItems;
         this.mContext = mContext;
     }
@@ -33,14 +33,13 @@ public class RiwayatPelangganAdapter extends RecyclerView.Adapter<RiwayatPelangg
 
     @Override
     public void onBindViewHolder(@NonNull RiwayatPelangganViewHolder holder, int position) {
-        PelangganItem item = pelangganItems.get(position);
-        holder.riwayatNamaPelanggan.setText(item.getNamaPelanggan());
-        holder.riwayatNoHpPelanggan.setText(item.getNohpPelanggan());
-        holder.riwayatEmailPelanggan.setText(item.getEmailPelanggan());
-        holder.riwayatAlamatPelanggan.setText(item.getAlamatPelanggan());
-        holder.riwayatTotalKunjungan.setText(String.valueOf(item.getTotalKunjungan()));
-        holder.riwayatKunjunganTerakhir.setText(item.getKunjunganTerakhir());
-        holder.riwayatTotalPoin.setText(item.getTotalPoin());
+        Pelanggan item = pelangganItems.get(position);
+        holder.riwayatNamaPelanggan.setText(item.getNama_pelanggan());
+        holder.riwayatNoHpPelanggan.setText(item.getNo_hp());
+        holder.riwayatEmailPelanggan.setText(item.getEmail());
+        holder.riwayatAlamatPelanggan.setText(item.getAlamat());
+        holder.riwayatTotalKunjungan.setText(String.valueOf(item.getTotal_kunjungan()));
+        holder.riwayatTotalPoin.setText(String.valueOf(item.getPoin()));
     }
 
     @Override
