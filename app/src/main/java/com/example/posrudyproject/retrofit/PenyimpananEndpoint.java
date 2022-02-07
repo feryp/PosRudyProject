@@ -36,4 +36,10 @@ public interface PenyimpananEndpoint {
 
     @GET("/penyimpananMobile/searchBarangPindah")
     Call<Map> searchBarangPindah(@Header("AUTHORIZATION") String token, @Query("id_store") int id_store, @Query("keyword") String keyword);
+
+    @GET("/penyimpananMobile/searchStockStoreByCategory")
+    Call<List<ProdukTersediaItem>> searchByCategory(@Header("AUTHORIZATION") String token,@Query("id_store") int id_store, @Query("kategori") String kategori, @Query("keyword") String keyword);
+
+    @GET("/penyimpananMobile/availStockStoreByCategory")
+    Call<List<ProdukTersediaItem>> stockAvailPerStoreByCategory(@Header("AUTHORIZATION") String token,@Query("id_store") int id_store, @Query("kategori") String kategori);
 }
