@@ -115,8 +115,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat

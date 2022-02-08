@@ -80,7 +80,8 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_logo_purple.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_logo_white.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_minus_white.xml" value="0.2518518518518518" />
-        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_plus_white.xml" value="0.2518518518518518" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_plus_circle_grey.xml" value="0.1735" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_plus_white.xml" value="0.152" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_sales.xml" value="0.22522522522522523" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_search.xml" value="0.1953125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/drawable/ic_search_grey.xml" value="0.1953125" />
@@ -102,6 +103,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_barang_keluar.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_barang_masuk.xml" value="0.16" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_barang_pindah.xml" value="0.183203125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_custom_barang.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_detail_kas.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_detail_laporan_pelanggan.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/activity_detail_laporan_penjual.xml" value="0.183203125" />
@@ -146,6 +148,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/content_main.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_alert_message.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_konfirmasi.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_list_produk.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_ongkir.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_pindah_karyawan.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/dialog_simpan_pesanan.xml" value="0.23282442748091603" />
@@ -167,14 +170,18 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_bot_sheet_filter_penjualan_produk.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_bot_sheet_filter_produk.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_bot_sheet_filter_tipe.xml" value="0.16" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_bot_sheet_produk.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_bot_sheet_toko_tujuan.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_bot_sheet_uang_masuk.xml" value="0.183203125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_customize.xml" value="0.192578125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_detail_barang.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_graph_day.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_graph_month.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_graph_week.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_keranjang.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_non_tunai.xml" value="0.21126126126126127" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_percent.xml" value="0.21126126126126127" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_pilih_barang.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_rekap_kas.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_riwayat_proses.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/fragment_riwayat_selesai.xml" value="0.183203125" />
@@ -216,6 +223,7 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_penjualan_per_produk.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_pesanan_tunggu.xml" value="0.176" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_produk.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_produk_custom.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_produk_tersedia_penyimpanan.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_rangkuman_laporan.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_riwayat_barang_pindah.xml" value="0.183203125" />
@@ -227,6 +235,9 @@
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_subitem_transaksi_pelanggan_laporan.xml" value="0.183203125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_tipe_botsheet.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/item_transaksi_terakhir.xml" value="0.183203125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/layout_button_step_1.xml" value="0.192578125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/layout_button_step_2.xml" value="0.192578125" />
+        <entry key="..\:/AndroidProjects/app/src/main/res/layout/layout_button_step_3.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/menu_kategori.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/spinner_dropdown.xml" value="0.192578125" />
         <entry key="..\:/AndroidProjects/app/src/main/res/layout/spinner_text.xml" value="0.192578125" />

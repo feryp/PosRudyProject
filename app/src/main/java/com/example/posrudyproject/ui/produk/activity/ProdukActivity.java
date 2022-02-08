@@ -6,7 +6,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterProdukFragment;
@@ -21,7 +24,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdukActivity extends AppCompatActivity {
+public class ProdukActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialToolbar mToolbar;
     SearchView searchView;
@@ -59,6 +62,10 @@ public class ProdukActivity extends AppCompatActivity {
         rvProduk.setLayoutManager(new LinearLayoutManager(this));
         rvProduk.setAdapter(adapter);
         rvProduk.setHasFixedSize(true);
+
+        //SET LISTENER BUTTON
+        btnCustomBarang.setOnClickListener(this);
+        btnBarcode.setOnClickListener(this);
     }
 
     private void initComponent() {
@@ -80,5 +87,16 @@ public class ProdukActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        if (view == btnCustomBarang){
+           Intent customBarang = new Intent(this, CustomBarangActivity.class);
+           startActivity(customBarang);
+        } else if (view == btnBarcode){
+            //FUNCTION
+        }
     }
 }
