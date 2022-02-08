@@ -58,7 +58,8 @@
             app:sv_selectedStepNumberColor="@color/white"
             app:sv_selectedTextColor="@color/neon_blue_primary"
             app:sv_stepLineWidth="1dp"
-            app:sv_stepNumberTextSize="12sp"
+            app:sv_stepNumberTextSize="@dimen/font_sm"
+            app:sv_textSize="@dimen/font_xs"
             app:sv_stepPadding="4dp"
             app:sv_stepViewStyle="@style/StepView"
             app:sv_stepsNumber="3" />

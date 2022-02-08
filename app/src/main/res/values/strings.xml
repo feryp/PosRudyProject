@@ -313,7 +313,18 @@
     <string name="hint_spinner_pilih_kategori">Pilih Kategori</string>
     <string name="hint_spinner_pilih_tipe">Pilih Tipe</string>
     <string name="hint_spinner_pilih_artikel">Pilih Artikel</string>
+
+    //CustomBarang
     <string name="btn_kembali">Kembali</string>
     <string name="btn_selesai">Selesai</string>
+    <string name="title_produk_1">Produk 1</string>
+    <string name="title_produk_2">Produk 2</string>
+    <string name="pilih_barang_yang_ingin_di_customize">Pilih barang yang ingin di customize.</string>
+    <string name="title_accessories">Accessories</string>
+    <string name="title_lensa">Lensa</string>
+    <string name="title_frame">Frame</string>
+    <string name="hint_pilih_barang">Pilih Barang</string>
+    <string name="title_pilih">Pilih</string>
+    <string name="title_barang">Barang</string>
 
 </resources>
