@@ -314,7 +314,7 @@
     <string name="hint_spinner_pilih_tipe">Pilih Tipe</string>
     <string name="hint_spinner_pilih_artikel">Pilih Artikel</string>
 
-    //CustomBarang
+    //Custom Barang Screen
     <string name="btn_kembali">Kembali</string>
     <string name="btn_selesai">Selesai</string>
     <string name="title_produk_1">Produk 1</string>
@@ -326,5 +326,19 @@
     <string name="hint_pilih_barang">Pilih Barang</string>
     <string name="title_pilih">Pilih</string>
     <string name="title_barang">Barang</string>
+    <string name="pilih_lensa_yang_ingin_di_customize">Pilih Lensa yang ingin di customize</string>
+    <string name="title_lens_custom">Lensa :</string>
+    <string name="pilih_frame_yang_ingin_di_customize">Pilih Frame yang ingin di customize</string>
+    <string name="title_frame_custom">Frame :</string>
+    <string name="title_barang_baru">Barang Baru</string>
+    <string name="masukkan_data_barang_baru">Masukkan data barang baru</string>
+    <string name="hint_artikel_baru">Artikel Baru</string>
+    <string name="hint_custom_kode">Custom Kode</string>
+    <string name="hint_nama_barang">Nama Barang</string>
+    <string name="hint_tipe">Tipe</string>
+    <string name="hint_kuantitas">Kuantitas</string>
+    <string name="hint_harga_jual">Harga Jual</string>
+    <string name="title_preview_customize">Preview Customize</string>
+    <string name="detail_data_yang_dipilih">Detail data yang dipilih</string>
 
 </resources>
