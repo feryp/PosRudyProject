@@ -15,16 +15,24 @@
         android:layout_weight="1"
         android:gravity="center_vertical">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/im_produk"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_border_cultured"
-            tools:src="@drawable/im_example"
-            android:scaleType="fitCenter"
-            android:cropToPadding="true"
-            android:adjustViewBounds="true"
-            app:riv_corner_radius="4dp" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/im_produk"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                tools:src="@drawable/im_example"
+                android:background="@drawable/bg_border_cultured"
+                android:scaleType="fitCenter"
+                android:cropToPadding="true"
+                android:adjustViewBounds="true"
+                app:riv_corner_radius="4dp" />
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -80,12 +80,13 @@
                 android:id="@+id/subtitle_produk_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pilih_barang_yang_ingin_di_customize"
-                android:textSize="@dimen/font_sm"
-                android:textColor="@color/gray_hint"
                 android:fontFamily="@font/work_sans_regular"
+                android:text="@string/pilih_barang_yang_ingin_di_customize"
+                android:textColor="@color/gray_hint"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_produk_1"
-                app:layout_constraintStart_toStartOf="parent"/>
+                tools:ignore="TextContrastCheck" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -244,25 +245,26 @@
                     android:id="@+id/btn_pilih_produk_custom_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/padding_xlg"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    tools:ignore="UnusedAttribute">
+                    android:padding="@dimen/padding_xlg"
+                    tools:ignore="UnusedAttribute,DuplicateSpeakableTextCheck">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/hint_pilih_barang"
-                        android:textSize="@dimen/font_mds"
-                        android:textColor="@color/gray_hint"
-                        android:fontFamily="@font/work_sans_regular"
                         android:drawableTop="@drawable/ic_plus_circle_grey"
                         android:drawablePadding="@dimen/padding_sm"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:text="@string/hint_pilih_barang"
+                        android:textColor="@color/gray_hint"
+                        android:textSize="@dimen/font_mds"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        tools:ignore="TextContrastCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -292,12 +294,13 @@
                 android:id="@+id/subtitle_produk_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pilih_barang_yang_ingin_di_customize"
-                android:textSize="@dimen/font_sm"
-                android:textColor="@color/gray_hint"
                 android:fontFamily="@font/work_sans_regular"
+                android:text="@string/pilih_barang_yang_ingin_di_customize"
+                android:textColor="@color/gray_hint"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_produk_2"
-                app:layout_constraintStart_toStartOf="parent"/>
+                tools:ignore="TextContrastCheck" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -465,16 +468,17 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/hint_pilih_barang"
-                        android:textSize="@dimen/font_mds"
-                        android:textColor="@color/gray_hint"
-                        android:fontFamily="@font/work_sans_regular"
                         android:drawableTop="@drawable/ic_plus_circle_grey"
                         android:drawablePadding="@dimen/padding_sm"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:text="@string/hint_pilih_barang"
+                        android:textColor="@color/gray_hint"
+                        android:textSize="@dimen/font_mds"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        tools:ignore="TextContrastCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

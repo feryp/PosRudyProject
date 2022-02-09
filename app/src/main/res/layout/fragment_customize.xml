@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,13 +7,536 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.produk.fragment.CustomizeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Customize Fragment"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:orientation="vertical"
+        android:padding="@dimen/padding_md">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_lens_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_lens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_lensa"
+                android:textSize="@dimen/font_xlg"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subtitle_lens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_regular"
+                android:text="@string/pilih_lensa_yang_ingin_di_customize"
+                android:textColor="@color/gray_hint"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_lens"
+                tools:ignore="TextContrastCheck" />
+            
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                android:padding="@dimen/padding_md"
+                android:background="@drawable/bg_rounded_soft_grey"
+                app:layout_constraintTop_toBottomOf="@id/subtitle_lens">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_rd_lens_produk_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toTopOf="@id/layout_rd_lens_produk_2"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rd_lens_produk_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="false"
+                        android:drawableStart="@drawable/radio_button_selector"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_lens_produk_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:text="@string/title_produk_1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_mds"
+                        app:layout_constraintStart_toEndOf="@id/rd_lens_produk_1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/title_rd_lens_produk_1"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_rd_lens_produk_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:text="@string/title_lens_custom"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/rd_lens_produk_1"
+                        app:layout_constraintTop_toBottomOf="@id/title_lens_produk_1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_rd_lens_produk_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_sm"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/title_rd_lens_produk_1"
+                        app:layout_constraintTop_toBottomOf="@id/title_lens_produk_1"
+                        tools:text="LE 63 38 03" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_rd_lens_produk_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_rd_lens_produk_1">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rd_lens_produk_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="false"
+                        android:drawableStart="@drawable/radio_button_selector"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_lens_produk_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:text="@string/title_produk_2"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_mds"
+                        app:layout_constraintStart_toEndOf="@id/rd_lens_produk_2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/title_rd_lens_produk_2"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_rd_lens_produk_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:text="@string/title_lens_custom"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/rd_lens_produk_2"
+                        app:layout_constraintTop_toBottomOf="@id/title_lens_produk_2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_rd_lens_produk_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_sm"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/title_rd_lens_produk_2"
+                        app:layout_constraintTop_toBottomOf="@id/title_lens_produk_2"
+                        tools:text="LE 63 38 03" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_frame_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_md">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_frame"
+                android:textSize="@dimen/font_xlg"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subtitle_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_regular"
+                android:text="@string/pilih_frame_yang_ingin_di_customize"
+                android:textColor="@color/gray_hint"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_frame"
+                tools:ignore="TextContrastCheck" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                android:padding="@dimen/padding_md"
+                android:background="@drawable/bg_rounded_soft_grey"
+                app:layout_constraintTop_toBottomOf="@id/subtitle_frame">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_rd_frame_produk_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toTopOf="@id/layout_rd_frame_produk_2"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rd_frame_produk_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="false"
+                        android:drawableStart="@drawable/radio_button_selector"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_frame_produk_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:text="@string/title_produk_1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_mds"
+                        app:layout_constraintStart_toEndOf="@id/rd_frame_produk_1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/title_rd_frame_produk_1"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_rd_frame_produk_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:text="@string/title_frame_custom"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/rd_frame_produk_1"
+                        app:layout_constraintTop_toBottomOf="@id/title_frame_produk_1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_rd_frame_produk_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_sm"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/title_rd_frame_produk_1"
+                        app:layout_constraintTop_toBottomOf="@id/title_frame_produk_1"
+                        tools:text="Coral Matte" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_rd_frame_produk_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_rd_frame_produk_1">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rd_frame_produk_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="false"
+                        android:drawableStart="@drawable/radio_button_selector"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_frame_produk_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_semi_bold"
+                        android:text="@string/title_produk_2"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_mds"
+                        app:layout_constraintStart_toEndOf="@id/rd_frame_produk_2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/title_rd_frame_produk_2"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_rd_frame_produk_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_regular"
+                        android:text="@string/title_frame_custom"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/rd_frame_produk_2"
+                        app:layout_constraintTop_toBottomOf="@id/title_frame_produk_2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_rd_frame_produk_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_sm"
+                        android:fontFamily="@font/work_sans_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_sm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/title_rd_frame_produk_2"
+                        app:layout_constraintTop_toBottomOf="@id/title_frame_produk_2"
+                        tools:text="Fire Red Matte" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_md">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_barang_baru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_barang_baru"
+                android:textSize="@dimen/font_xlg"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subtitle_barang_baru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_regular"
+                android:text="@string/masukkan_data_barang_baru"
+                android:textColor="@color/gray_hint"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_barang_baru"
+                tools:ignore="TextContrastCheck" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_et_artikel_baru"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_sm"
+                android:layout_marginTop="@dimen/margin_md"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/layout_et_custom_kode"
+                app:layout_constraintTop_toBottomOf="@id/subtitle_barang_baru">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_artikel_baru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_artikel_baru"
+                    android:inputType="text"
+                    tools:ignore="TextContrastCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_et_custom_kode"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_sm"
+                android:layout_marginTop="@dimen/margin_md"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/layout_et_artikel_baru"
+                app:layout_constraintTop_toBottomOf="@id/subtitle_barang_baru">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_custom_kode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_custom_kode"
+                    android:inputType="number"
+                    tools:ignore="TextContrastCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_et_nama_barang_baru"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_et_artikel_baru">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_nama_barang_baru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_nama_barang"
+                    android:inputType="text"
+                    tools:ignore="TextContrastCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_et_tipe_baru"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_et_nama_barang_baru">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_tipe_baru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_tipe"
+                    android:inputType="text"
+                    tools:ignore="TextContrastCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_et_kuantitas_baru"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_et_tipe_baru">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_kuantitas_baru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_kuantitas"
+                    android:inputType="number"
+                    tools:ignore="TextContrastCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_et_harga_jual_baru"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_et_kuantitas_baru">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_harga_jual_baru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_harga_jual"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_et_catatan_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_md"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_et_harga_jual_baru">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_catatan_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_catatan"
+                    android:imeOptions="actionDone"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:lines="6"
+                    android:minLines="4"
+                    android:maxLines="10"
+                    android:scrollbars="vertical" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_upload_image_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="0dp"
+                android:layout_marginTop="@dimen/margin_md"
+                app:layout_constraintTop_toBottomOf="@id/layout_et_catatan_custom">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_border_black">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/im_barang_baru_custom"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        app:riv_corner_radius="4dp"
+                        android:cropToPadding="true"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/im_example"
+                        android:background="@drawable/bg_placeholder_gambar"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:contentDescription="@string/todo"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>
