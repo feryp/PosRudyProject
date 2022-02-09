@@ -338,5 +338,7 @@
     <string name="hint_tipe">Tipe</string>
     <string name="hint_kuantitas">Kuantitas</string>
     <string name="hint_harga_jual">Harga Jual</string>
+    <string name="title_preview_customize">Preview Customize</string>
+    <string name="detail_data_yang_dipilih">Detail data yang dipilih</string>
 
 </resources>

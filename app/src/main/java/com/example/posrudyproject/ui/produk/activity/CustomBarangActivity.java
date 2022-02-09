@@ -2,12 +2,14 @@ package com.example.posrudyproject.ui.produk.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 
@@ -29,7 +31,9 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
     StepView stepView;
     View layoutBtnStep1, layoutBtnStep2, layoutBtnStep3;
     MaterialButton btnLanjutStep1, btnLanjutStep2, btnKembaliStep2, btnKembaliStep3, btnSelesai;
-    OnStepItemListener pilihBarangAction = new PilihBarangAction();
+
+    //Masih bingung buat function
+//    OnStepItemListener pilihBarangAction = new PilihBarangAction();
 
     FragmentManager fragmentManager = null;
     int stepIndex = 0;
@@ -101,7 +105,7 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
                 changeStepFragment(CustomizeFragment.class);
                 layoutBtnStep1.setVisibility(View.GONE);
                 layoutBtnStep2.setVisibility(View.VISIBLE);
-//                pilihBarangAction.next(); MASIH BINGUNG
+//                pilihBarangAction.next(); Masih Bingung
 
                 break;
             case R.id.btn_lanjut_step_2:
@@ -129,9 +133,48 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
                 layoutBtnStep3.setVisibility(View.GONE);
                 break;
             case R.id.btn_selesai:
-                //FUNCTION
+                openDialog();
                 break;
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void openDialog() {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        View mView = View.inflate(this, R.layout.dialog_alert_message,null);
+
+        //init view
+        AppCompatTextView titleDialog = mView.findViewById(R.id.txt_title_dialog);
+        AppCompatTextView pesanDialog = mView.findViewById(R.id.txt_pesan_dialog);
+        MaterialButton btnOke = mView.findViewById(R.id.btn_oke_dialog);
+        MaterialButton btnCancel = mView.findViewById(R.id.btn_cancel_dialog);
+
+        alert.setView(mView);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_rounded_white);
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        titleDialog.setText("Custom Berhasil");
+        pesanDialog.setText("Barang telah berhasil di custom. Silahkan melakukan penjualan kembali.");
+
+        btnOke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //FUNCTION CUSTOM FINISH
+                alertDialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 
     protected void changeStepFragment(@NonNull Class<? extends Fragment> fragmentClass){

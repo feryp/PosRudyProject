@@ -90,14 +90,13 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
     @SuppressLint({"SetTextI18n","UseCompatLoadingForDrawables"})
     private void openDialog() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-//        View mView = getLayoutInflater().inflate(R.layout.dialog_alert_message, null);
         View mView = View.inflate(getActivity(), R.layout.dialog_alert_message,null);
 
         //init view
-        AppCompatTextView titleDialog = (AppCompatTextView) mView.findViewById(R.id.txt_title_dialog);
-        AppCompatTextView pesanDialog = (AppCompatTextView) mView.findViewById(R.id.txt_pesan_dialog);
-        MaterialButton btnOke = (MaterialButton) mView.findViewById(R.id.btn_oke_dialog);
-        MaterialButton btnCancel = (MaterialButton) mView.findViewById(R.id.btn_cancel_dialog);
+        AppCompatTextView titleDialog = mView.findViewById(R.id.txt_title_dialog);
+        AppCompatTextView pesanDialog = mView.findViewById(R.id.txt_pesan_dialog);
+        MaterialButton btnOke = mView.findViewById(R.id.btn_oke_dialog);
+        MaterialButton btnCancel = mView.findViewById(R.id.btn_cancel_dialog);
 
         alert.setView(mView);
 
