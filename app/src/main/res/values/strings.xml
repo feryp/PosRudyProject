@@ -304,6 +304,8 @@
     <string name="title_riwayat_transaksi">Riwayat Transaksi</string>
     <string name="title_produk_terjual">Produk Terjual</string>
     <string name="pilih_rentang_waktu_yang_lain_atau_lakukan_transaksi_di_kasir">Pilih rentang waktu yang lain atau lakukan transaksi di kasir</string>
+    <string name="title_dialog_penjual">Pindah Penjual</string>
+    <string name="pesan_dialog_penjual">Pindahkan</string>
 
     //Produk Screen
     <string name="btn_custom_barang">Custom Barang</string>
@@ -340,5 +342,19 @@
     <string name="hint_harga_jual">Harga Jual</string>
     <string name="title_preview_customize">Preview Customize</string>
     <string name="detail_data_yang_dipilih">Detail data yang dipilih</string>
+    <string name="title_dialog_custom">Custom Berhasil</string>
+    <string name="pesan_dialog_custom">Barang telah berhasil di custom. Silahkan melakukan penjualan kembali.</string>
+
+    //Pemindahan Barang Screen
+    <string name="pilih_barang_yang_ingin_di_pindahkan">Pilih barang yang ingin dipindahkan</string>
+    <string name="btn_pilih_barang">Pilih Barang</string>
+    <string name="title_tidak_ada_barang_yang_ingin_dipindahkan">Tidak Ada Barang yang ingin Dipindahkan</string>
+    <string name="tambahkan_barang_yang_ingin_anda_pindahkan_ke_toko_tujuan_anda">Tambahkan barang yang ingin anda pindahkan ke toko tujuan anda.</string>
+    <string name="hint_spinner_pilih_toko">Pilih Toko</string>
+    <string name="hint_spinner_pilih_penjual">Pilih Penjual</string>
+    <string name="title_dokumen_pemindahan">Dokumen Pemindahan</string>
+    <string name="title_barang_yang_dipindahkan">Barang yang dipindahkan</string>
+    <string name="title_dialog_pemindahan">Pemindahan Berhasil</string>
+    <string name="pesan_dialog_pemindahan">Dokumen telah berhasil dibuat. Silahkan melakukan pembuatan dokumen kembali. </string>
 
 </resources>

@@ -84,7 +84,7 @@
             android:background="@drawable/bg_rounded_soft_grey">
 
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_pilih_custom_barang"
+                android:id="@+id/search_pilih_barang"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:iconifiedByDefault="false"
@@ -101,7 +101,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list_barang_custom"
+        android:id="@+id/rv_list_pilih_barang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

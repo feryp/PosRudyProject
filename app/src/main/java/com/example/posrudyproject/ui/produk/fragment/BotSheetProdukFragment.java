@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.produk.adapter.ProdukCustomAdapter;
+import com.example.posrudyproject.ui.produk.adapter.PilihProdukAdapter;
 import com.example.posrudyproject.ui.produk.model.ProdukItem;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -27,9 +27,9 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
     AppCompatImageButton btnClose;
     RecyclerView rvListBarang;
-
+    SearchView searchView;
     List<ProdukItem> produkItems;
-    ProdukCustomAdapter adapter;
+    PilihProdukAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +39,8 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
         //INIT VIEW
         btnClose = v.findViewById(R.id.btn_close_botsheet);
-        rvListBarang = v.findViewById(R.id.rv_list_barang_custom);
+        searchView = v.findViewById(R.id.search_pilih_barang);
+        rvListBarang = v.findViewById(R.id.rv_list_pilih_barang);
 
         //Produk Tersedia
         produkItems = new ArrayList<>();
@@ -54,7 +55,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
         }
 
         //Setup Adapter Produk Tersedia
-        adapter = new ProdukCustomAdapter(produkItems, this);
+        adapter = new PilihProdukAdapter(produkItems, this);
         rvListBarang.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvListBarang.setAdapter(adapter);
         rvListBarang.setHasFixedSize(true);

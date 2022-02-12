@@ -105,7 +105,7 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
         alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_rounded_white);
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
-        titleDialog.setText("Pindah Penjual");
+        titleDialog.setText(getString(R.string.title_dialog_penjual));
         pesanDialog.setText("Pindahkan Alex Parkinson ke Toko Pusat");
 
         btnOke.setOnClickListener(new View.OnClickListener() {

@@ -39,6 +39,7 @@
                 android:textSize="@dimen/font_sm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_preview_custom"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="TextContrastCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
