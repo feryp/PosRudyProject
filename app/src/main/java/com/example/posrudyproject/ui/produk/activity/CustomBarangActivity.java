@@ -3,7 +3,6 @@ package com.example.posrudyproject.ui.produk.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,12 +12,10 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.posrudyproject.Interface.OnStepItemListener;
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.action.PilihBarangAction;
 import com.example.posrudyproject.ui.produk.fragment.CustomizeFragment;
 import com.example.posrudyproject.ui.produk.fragment.DetailCustomFragment;
-import com.example.posrudyproject.ui.produk.fragment.PilihBarangFragment;
+import com.example.posrudyproject.ui.produk.fragment.PilihCustomBarangFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.shuhart.stepview.StepView;
@@ -47,7 +44,7 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
         if (savedInstanceState == null) {
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_custom_barang, PilihBarangFragment.class, null)
+                    .add(R.id.fragment_container_custom_barang, PilihCustomBarangFragment.class, null)
                     .commit();
         }
 
@@ -68,6 +65,13 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
                 .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
                 .typeface(ResourcesCompat.getFont(this, R.font.work_sans_medium))
                 .commit();
+
+        //SET LISTENER
+        btnLanjutStep1.setOnClickListener(this);
+        btnLanjutStep2.setOnClickListener(this);
+        btnKembaliStep2.setOnClickListener(this);
+        btnKembaliStep3.setOnClickListener(this);
+        btnSelesai.setOnClickListener(this);
     }
 
     private void initToolbar() {
@@ -86,13 +90,6 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
         layoutBtnStep2 = findViewById(R.id.layout_button2);
         layoutBtnStep3 = findViewById(R.id.layout_button3);
 
-
-        //SET LISTENER
-        btnLanjutStep1.setOnClickListener(this);
-        btnLanjutStep2.setOnClickListener(this);
-        btnKembaliStep2.setOnClickListener(this);
-        btnKembaliStep3.setOnClickListener(this);
-        btnSelesai.setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -119,7 +116,7 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
             case R.id.btn_kembali_step_2:
                 stepIndex--;
                 stepView.go(stepIndex, true);
-                changeStepFragment(PilihBarangFragment.class);
+                changeStepFragment(PilihCustomBarangFragment.class);
                 layoutBtnStep1.setVisibility(View.VISIBLE);
                 layoutBtnStep2.setVisibility(View.GONE);
                 layoutBtnStep3.setVisibility(View.GONE);
@@ -156,8 +153,8 @@ public class CustomBarangActivity extends AppCompatActivity implements View.OnCl
         alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_rounded_white);
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
-        titleDialog.setText("Custom Berhasil");
-        pesanDialog.setText("Barang telah berhasil di custom. Silahkan melakukan penjualan kembali.");
+        titleDialog.setText(getString(R.string.title_dialog_custom));
+        pesanDialog.setText(getString(R.string.pesan_dialog_custom));
 
         btnOke.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.posrudyproject.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 
-public class ProdukCustomViewHolder extends RecyclerView.ViewHolder{
+public class PilihProdukViewHolder extends RecyclerView.ViewHolder{
 
     public RoundedImageView imProduk;
     public AppCompatTextView tipeProduk;
@@ -17,7 +17,7 @@ public class ProdukCustomViewHolder extends RecyclerView.ViewHolder{
     public AppCompatTextView namaProduk;
     public AppCompatTextView stokProduk;
 
-    public ProdukCustomViewHolder(@NonNull View itemView) {
+    public PilihProdukViewHolder(@NonNull View itemView) {
         super(itemView);
 
         imProduk = itemView.findViewById(R.id.im_custom_produk);

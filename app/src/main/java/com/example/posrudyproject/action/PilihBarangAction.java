@@ -1,12 +1,12 @@
 package com.example.posrudyproject.action;
 
 import com.example.posrudyproject.Interface.OnStepItemListener;
-import com.example.posrudyproject.ui.produk.fragment.PilihBarangFragment;
+import com.example.posrudyproject.ui.produk.fragment.PilihCustomBarangFragment;
 
 public class PilihBarangAction implements OnStepItemListener {
 
     int stepIndex = 0;
-    Class<PilihBarangFragment> fragmentClass = PilihBarangFragment.class;
+    Class<PilihCustomBarangFragment> fragmentClass = PilihCustomBarangFragment.class;
 
     @Override
     public void prev() {
@@ -31,11 +31,11 @@ public class PilihBarangAction implements OnStepItemListener {
         this.stepIndex = stepIndex;
     }
 
-    public Class<PilihBarangFragment> getFragmentClass() {
+    public Class<PilihCustomBarangFragment> getFragmentClass() {
         return fragmentClass;
     }
 
-    public void setFragmentClass(Class<PilihBarangFragment> fragmentClass) {
+    public void setFragmentClass(Class<PilihCustomBarangFragment> fragmentClass) {
         this.fragmentClass = fragmentClass;
     }
 }

@@ -1,15 +1,11 @@
 package com.example.posrudyproject.ui.produk.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,23 +14,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.filter.adapter.NothingSelectedSpinnerAdapter;
-import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterPelangganFragment;
 import com.example.posrudyproject.ui.penjualan.model.TipeItem;
-import com.example.posrudyproject.ui.produk.activity.ProdukActivity;
-import com.example.posrudyproject.ui.produk.adapter.ProdukAdapter;
-import com.example.posrudyproject.ui.produk.adapter.ProdukCustomAdapter;
+import com.example.posrudyproject.ui.produk.adapter.PilihProdukAdapter;
 import com.example.posrudyproject.ui.produk.model.ProdukItem;
-import com.google.android.material.button.MaterialButton;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class PilihBarangFragment extends Fragment  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class PilihCustomBarangFragment extends Fragment  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     AppCompatSpinner spinTipe;
     ConstraintLayout layoutItemProduk1, layoutItemProduk2;
@@ -44,13 +35,13 @@ public class PilihBarangFragment extends Fragment  implements AdapterView.OnItem
     AppCompatTextView tipeProduk2, artikelProduk2, namaProduk2, lensaProduk2, frameProduk2;
 
     List<ProdukItem> produkItems;
-    ProdukCustomAdapter adapter;
+    PilihProdukAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_pilih_barang, container, false);
+        View v = inflater.inflate(R.layout.fragment_pilih_custom_barang, container, false);
 
         //INIT VIEW
         spinTipe = v.findViewById(R.id.spinner_tipe_custom_barang);
@@ -95,8 +86,8 @@ public class PilihBarangFragment extends Fragment  implements AdapterView.OnItem
 
 
         //SET LISTENER
-        btnPilihProduk1.setOnClickListener(PilihBarangFragment.this);
-        btnPilihProduk2.setOnClickListener(PilihBarangFragment.this);
+        btnPilihProduk1.setOnClickListener(PilihCustomBarangFragment.this);
+        btnPilihProduk2.setOnClickListener(PilihCustomBarangFragment.this);
 
         return v;
     }

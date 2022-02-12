@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.penyimpanan.activity.PemindahanBarangActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp"
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/white">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_pemindahan_barang"
@@ -32,86 +32,77 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
 
         <com.shuhart.stepview.StepView
-            android:id="@+id/step_view"
+            android:id="@+id/step_view_pemindahan_barang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            app:sv_selectedCircleColor="@color/neon_blue_primary"
-            app:sv_selectedTextColor="@color/neon_blue_primary"
-            app:sv_stepLineWidth="1dp"
-            app:sv_stepPadding="4dp"
-            app:sv_stepsNumber="3"
-            app:sv_nextTextColor="@color/davys_grey"
-            app:sv_nextStepLineColor="@color/silver"
+            app:sv_animationType="Line"
+            app:sv_doneCircleColor="@color/neon_blue_primary"
+            app:sv_doneCircleRadius="12dp"
+            app:sv_doneStepLineColor="@color/neon_blue_primary"
+            app:sv_doneStepMarkColor="@color/white"
+            app:sv_doneTextColor="@color/neon_blue_primary"
             app:sv_nextStepCircleColor="@color/silver"
             app:sv_nextStepCircleEnabled="true"
-            app:sv_doneCircleColor="@color/neon_blue_primary"
-            app:sv_doneStepLineColor="@color/neon_blue_primary"
-            app:sv_doneCircleRadius="12dp"
+            app:sv_nextStepLineColor="@color/silver"
+            app:sv_nextTextColor="@color/davys_grey"
+            app:sv_selectedCircleColor="@color/neon_blue_primary"
             app:sv_selectedCircleRadius="12dp"
             app:sv_selectedStepNumberColor="@color/white"
+            app:sv_selectedTextColor="@color/neon_blue_primary"
+            app:sv_stepLineWidth="1dp"
+            app:sv_stepNumberTextSize="@dimen/font_sm"
+            app:sv_textSize="@dimen/font_xs"
+            app:sv_stepPadding="4dp"
             app:sv_stepViewStyle="@style/StepView"
-            app:sv_doneStepMarkColor="@color/neon_blue_primary"
-            app:sv_stepNumberTextSize="12sp"
-            app:sv_animationType="Line"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/fragment_container"/>
+            app:sv_stepsNumber="3"
+            app:layout_constraintBottom_toTopOf="@id/fragment_container_pemindahan_barang"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <FrameLayout
-            android:id="@+id/fragment_container"
+            android:id="@+id/fragment_container_pemindahan_barang"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/step_view"
+            app:layout_constraintTop_toBottomOf="@id/step_view_pemindahan_barang"
             app:layout_constraintBottom_toTopOf="@id/layout_button"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_md"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_container_pemindahan_barang">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_sebelumnya"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:fontFamily="@font/work_sans_semi_bold"
-                android:text="Sebelumnya"
-                android:textAllCaps="false"
-                android:textColor="@color/neon_blue_primary"
-                android:textSize="@dimen/font_md"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btn_selanjutnya"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/neon_blue_primary" />
+            <include
+                android:id="@+id/layout_button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_button_step_1"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_selanjutnya"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:text="Selanjutnya"
-                android:textSize="@dimen/font_md"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:fontFamily="@font/work_sans_semi_bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_sebelumnya"/>
+            <include
+                android:id="@+id/layout_button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_button_step_2"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <include
+                android:id="@+id/layout_button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_button_step_3"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
