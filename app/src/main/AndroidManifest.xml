@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.posrudyproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -18,8 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
         <activity
+            android:name=".ui.akun.activity.PenukaranBarangActivity"
+            android:exported="true"
+            android:screenOrientation="locked"/>
+        <activity
             android:name=".ui.produk.activity.CustomBarangActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.laporan.activity.DetailLaporanPenjualActivity"
             android:exported="true"
