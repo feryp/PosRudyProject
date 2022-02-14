@@ -41,11 +41,11 @@
 
     <!-- Main layout here -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_item_keranjang"
+        android:id="@+id/layout_item_pemindahan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_md"
-        android:background="@drawable/bg_border_top_bottom_platinum">
+        android:background="@drawable/bg_border_bottom_silver">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/im_barang_pemindahan"

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.akun.activity.PenukaranBarangActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_penukaran_barang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:title="Penukaran Barang"
+            app:titleTextColor="@color/black"
+            app:navigationIcon="@drawable/ic_arrow_left_black"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/TextAppearance.Tab" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_barang_penukaran"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/layout_button"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_md">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_penukaran_barang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_barang"
+                    android:textSize="@dimen/font_xlg"
+                    android:textColor="@color/black_gunmetal"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/subtitle_penukaran_barang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/work_sans_regular"
+                    android:text="@string/pilih_barang_yang_ingin_ditukarkan"
+                    android:textColor="@color/gray_hint"
+                    android:textSize="@dimen/font_sm"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/rv_list_penukaran_barang"
+                    app:layout_constraintTop_toBottomOf="@id/title_penukaran_barang"
+                    tools:ignore="TextContrastCheck" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list_penukaran_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_sm"
+                    app:layout_constraintBottom_toTopOf="@id/layout_et_alasan_penukaran"
+                    app:layout_constraintTop_toBottomOf="@id/subtitle_penukaran_barang"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_et_alasan_penukaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_list_penukaran_barang">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_alasan_penukaran"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/et_hint_alasan_penukaran"
+                        android:imeOptions="actionDone"
+                        android:gravity="top|start"
+                        android:inputType="textMultiLine"
+                        android:lines="6"
+                        android:minLines="4"
+                        android:maxLines="10"
+                        android:scrollbars="vertical" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_md"
+                    android:text="@string/info_penukaran_barang"
+                    android:textSize="@dimen/font_sm"
+                    android:textColor="@color/davys_grey"
+                    android:fontFamily="@font/work_sans_regular"
+                    android:drawableStart="@drawable/ic_info_grey"
+                    android:drawablePadding="@dimen/padding_sm"
+                    app:layout_constraintTop_toBottomOf="@id/layout_et_alasan_penukaran"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/padding_md"
+        app:layout_constraintTop_toBottomOf="@id/layout_barang_penukaran"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_total_harga_penukaran_barang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_sm"
+            android:text="@string/title_total_harga"
+            android:textSize="@dimen/font_md"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_tukar_barang"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_harga_penukaran_barang"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_total_harga_penukaran_barang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_sm"
+            android:text="@string/rp_0"
+            android:textSize="@dimen/font_md"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_medium"
+            android:gravity="end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_tukar_barang"
+            app:layout_constraintStart_toEndOf="@id/title_total_harga_penukaran_barang"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_tukar_barang"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginTop="@dimen/margin_sm"
+            android:text="@string/btn_tukar"
+            android:textSize="@dimen/font_md"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:layout_constraintTop_toBottomOf="@id/title_total_harga_penukaran_barang"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -357,4 +357,10 @@
     <string name="title_dialog_pemindahan">Pemindahan Berhasil</string>
     <string name="pesan_dialog_pemindahan">Dokumen telah berhasil dibuat. Silahkan melakukan pembuatan dokumen kembali. </string>
 
+    //Penukaran Barang Screen
+    <string name="pilih_barang_yang_ingin_ditukarkan">Pilih barang yang ingin ditukarkan</string>
+    <string name="et_hint_alasan_penukaran">Alasan Penukaran</string>
+    <string name="info_penukaran_barang">Batas penukaran 2 hari setelah transaksi jual beli, lalu barang yang ingin ditukar hanya dapat ditukar dengan harga yang lebih mahal dari barang sebelumnya dan tidak dapat ditukar dengan uang kembali.</string>
+    <string name="btn_tukar">Tukar</string>
+
 </resources>
