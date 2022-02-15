@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -51,12 +53,27 @@ public class MainActivity extends AppCompatActivity {
         @SuppressLint("NonConstantResourceId")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+            String token = preferences.getString("token","");
+            String auth_token = ("Bearer ").concat(token);
+            Integer id_toko = preferences.getInt("id_store",0);
+            String nama_toko = preferences.getString("lokasi_store","");
+            Integer id_pengguna = preferences.getInt("id_pengguna",0);
+            String nama_pengguna = preferences.getString("nama_pengguna","");
             switch (item.getItemId()){
                 case R.id.nav_beranda:
                     selectedFragment = new BerandaFragment();
                     break;
                 case R.id.nav_rekap_kas:
-                    selectedFragment = new RekapKasFragment();
+                    RekapKasFragment rekapKasFragment = new RekapKasFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("auth_token",auth_token);
+                    bundle.putInt("id_toko", id_toko);
+                    bundle.putString("nama_toko", nama_toko);
+                    bundle.putInt("id_pengguna", id_pengguna);
+                    bundle.putString("nama_pengguna", nama_pengguna);
+                    rekapKasFragment.setArguments(bundle);
+                    selectedFragment = rekapKasFragment;
                     break;
                 case R.id.nav_keranjang:
                     selectedFragment = new KeranjangFragment();

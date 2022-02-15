@@ -46,7 +46,7 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
         keranjangItems = new ArrayList<>();
         for (int i=0; i<5; i++){
             keranjangItems.add(new KeranjangItem(
-                    0,
+                    "",
                     "CUTLINE",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",

@@ -2,6 +2,9 @@ package com.example.posrudyproject.ui.ubahHarga.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +41,9 @@ public class UbahHargaAdapter extends RecyclerView.Adapter<UbahHargaViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull UbahHargaViewHolder holder, int position) {
-        holder.imBarang.setImageResource(keranjangItems.get(position).getImBarang());
+        byte[] bytes = Base64.decode(keranjangItems.get(position).getImBarang().getBytes(), Base64.DEFAULT);
+        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(keranjangItems.get(position).getTipeBarang());
         holder.artikelBarang.setText(keranjangItems.get(position).getArtikelBarang());
         holder.namaBarang.setText(keranjangItems.get(position).getNamaBarang());

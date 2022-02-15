@@ -3,6 +3,9 @@ package com.example.posrudyproject.ui.keranjang.adapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +44,9 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull KeranjangViewHolder holder, int position) {
         KeranjangItem item = keranjangItems.get(position);
-        holder.imBarang.setImageResource(item.getImBarang());
+        byte[] bytes = Base64.decode(item.getImBarang().getBytes(), Base64.DEFAULT);
+        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(item.getTipeBarang());
         holder.artikelBarang.setText(item.getArtikelBarang());
         holder.namaBarang.setText(item.getNamaBarang());

@@ -2,7 +2,9 @@ package com.example.posrudyproject.ui.penjualan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +15,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
@@ -20,19 +26,14 @@ import com.example.posrudyproject.retrofit.PenjualanEndpoint;
 import com.example.posrudyproject.retrofit.PenyimpananEndpoint;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterTipeFragment;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
-import com.example.posrudyproject.ui.main.MainActivity;
-import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
-import com.example.posrudyproject.ui.penjual.adapter.PenjualAdapter;
-import com.example.posrudyproject.ui.penjual.model.PenjualItem;
+import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.penjualan.adapter.PenjualanAdapter;
 import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
-import com.example.posrudyproject.ui.penyimpanan.activity.PenyimpananActivity;
-import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +45,12 @@ import retrofit2.Response;
 public class PenjualanActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialToolbar mToolbar;
-    SearchView searchView;
     AppCompatImageButton btnBarcode;
+    AppCompatTextView totalQty;
     MaterialButton btnMasukKeranjang;
-    RecyclerView rvPenjualan;
-    PenjualanAdapter adapter;
+    RecyclerView rvPenjualan, rvKeranjang;
     List<PenjualanItem> penjualanItems;
+    List<KeranjangItem> keranjangItems;
     PenjualanEndpoint penjualanEndpoint;
     PenyimpananEndpoint penyimpananEndpoint;
 
@@ -66,6 +67,8 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         penyimpananEndpoint = ApiClient.getClient().create(PenyimpananEndpoint.class);
 
         rvPenjualan = findViewById(R.id.rv_penjualan);
+        rvKeranjang = findViewById(R.id.rv_keranjang);
+        totalQty = findViewById(R.id.tv_total_qty);
         GridLayoutManager manager = new GridLayoutManager(this,2);
         rvPenjualan.setLayoutManager(manager);
         rvPenjualan.setHasFixedSize(true);
@@ -74,9 +77,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         initComponent();
 
         initToolbar();
-
-        //SET LISTENER
-        btnMasukKeranjang.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
         SetupSearchView(auth_token, id_store, String.valueOf(extras.getInt("id_kategori")));
@@ -99,6 +99,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                     }else{
                         pDialog.dismiss();
                         penjualanItems = new ArrayList<>();
+
                         for (int i=0; i<response.body().size(); i++){
                             penjualanItems.add(new PenjualanItem(
                                     response.body().get(i).getFoto_barang(),
@@ -111,6 +112,58 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                         }
                         PenjualanAdapter adapter = new PenjualanAdapter(penjualanItems, PenjualanActivity.this);
                         rvPenjualan.setAdapter(adapter);
+                        rvPenjualan.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                            @Override
+                            public void onGlobalLayout() {
+                                final Integer itemCount = adapter.getItemCount();
+                                keranjangItems = new ArrayList<>();
+                                if (itemCount != null) {
+                                    for (int i = 0; i<itemCount; i++) {
+                                        TextView total = rvPenjualan.getChildAt(i).findViewById(R.id.tv_qty_item_penjualan);
+                                        ImageView foto = rvPenjualan.getChildAt(i).findViewById(R.id.im_barang_penjualan);
+                                        TextView tipeBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_tipe_barang_penjualan);
+                                        TextView artikelBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_artikel_barang_penjualan);
+                                        TextView namaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_nama_barang_penjualan);
+                                        TextView hargaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_harga_barang_penjualan);
+                                        Button btnMinus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_minus);
+                                        Button btnPlus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_plus);
+                                        btnPlus.setOnClickListener(new View.OnClickListener() {
+                                            public void onClick(View v) {
+                                                total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
+                                                totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText() == ""? 0:totalQty.getText())) + 1));
+                                            }
+                                        });
+                                        btnMinus.setOnClickListener(new View.OnClickListener() {
+                                            public void onClick(View v) {
+                                                if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
+                                                    total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
+                                                    totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText())) - 1));
+                                                }
+                                            }
+                                        });
+                                        keranjangItems.add(new KeranjangItem(
+                                                penjualanItems.get(i).getFoto_barang(),
+                                                tipeBarang.getText().toString(),
+                                                artikelBarang.getText().toString(),
+                                                namaBarang.getText().toString(),
+                                                hargaBarang.getText().toString(),
+                                                total.getText().toString(),
+                                                String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
+                                                total.getText().toString()
+                                        ));
+                                    }
+                                }
+
+                            }
+                        });
+                        btnMasukKeranjang.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent masukKeranjang = new Intent(PenjualanActivity.this, KeranjangActivity.class);
+                                masukKeranjang.putExtra("itemForBuy", (Serializable) keranjangItems);
+                                startActivity(masukKeranjang);
+                            }
+                        });
                     }
                 }
 
@@ -149,7 +202,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_penjualan);
-
         btnBarcode = findViewById(R.id.btn_barcode);
         btnMasukKeranjang = findViewById(R.id.btn_masuk_keranjang);
 
@@ -157,8 +209,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        Intent masukKeranjang = new Intent(this, KeranjangActivity.class);
-        startActivity(masukKeranjang);
+
     }
 
     private void SetupSearchView(String authToken, int id_store, String kategori){

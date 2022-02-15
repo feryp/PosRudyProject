@@ -8,6 +8,9 @@ public class ResponseItem implements Serializable {
     @SerializedName("token")
     private String token;
 
+    @SerializedName("id_pengguna")
+    private int id_pengguna;
+
     @SerializedName("namaPengguna")
     private String namaPengguna;
 
@@ -32,6 +35,14 @@ public class ResponseItem implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public int getId_pengguna() {
+        return id_pengguna;
+    }
+
+    public void setId_pengguna(int id_pengguna) {
+        this.id_pengguna = id_pengguna;
     }
 
     public String getNamaPengguna() {

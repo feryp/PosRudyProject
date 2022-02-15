@@ -33,21 +33,5 @@ public class PenjualanViewHolder extends RecyclerView.ViewHolder {
         btnPlus = itemView.findViewById(R.id.btn_plus);
         btnMinus = itemView.findViewById(R.id.btn_minus);
 
-        btnPlus.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Do something in response to button click
-                kuantitasBarang.setText(String.valueOf(Integer.parseInt(String.valueOf(kuantitasBarang.getText())) + 1));
-            }
-        });
-
-        btnMinus.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Do something in response to button click
-                if (Integer.parseInt(String.valueOf(kuantitasBarang.getText())) != 0) {
-                    kuantitasBarang.setText(String.valueOf(Integer.parseInt(String.valueOf(kuantitasBarang.getText())) - 1));
-                }
-
-            }
-        });
     }
 }

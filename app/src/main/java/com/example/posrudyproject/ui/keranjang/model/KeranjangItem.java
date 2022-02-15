@@ -1,17 +1,36 @@
 package com.example.posrudyproject.ui.keranjang.model;
 
-public class KeranjangItem {
-    private int imBarang;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class KeranjangItem implements Serializable {
+    @SerializedName("foto_barang")
+    private String foto_barang;
+
+    @SerializedName("type_name")
     private String tipeBarang;
+
+    @SerializedName("artikel")
     private String artikelBarang;
+
+    @SerializedName("nama_barang")
     private String namaBarang;
+
+    @SerializedName("harga_jual")
     private String hargaBarang;
+
+    @SerializedName("kuantitas")
     private String jumlahBarang;
+
+    @SerializedName("total_harga_barang")
     private String totalHargaBarang;
+
+    @SerializedName("kuantitas")
     private String kuantitasBarang;
 
-    public KeranjangItem(int imBarang, String tipeBarang, String artikelBarang, String namaBarang, String hargaBarang, String jumlahBarang, String totalHargaBarang, String kuantitasBarang) {
-        this.imBarang = imBarang;
+    public KeranjangItem(String foto_barang, String tipeBarang, String artikelBarang, String namaBarang, String hargaBarang, String jumlahBarang, String totalHargaBarang, String kuantitasBarang) {
+        this.foto_barang = foto_barang;
         this.tipeBarang = tipeBarang;
         this.artikelBarang = artikelBarang;
         this.namaBarang = namaBarang;
@@ -21,12 +40,12 @@ public class KeranjangItem {
         this.kuantitasBarang = kuantitasBarang;
     }
 
-    public int getImBarang() {
-        return imBarang;
+    public String getImBarang() {
+        return foto_barang;
     }
 
-    public void setImBarang(int imBarang) {
-        this.imBarang = imBarang;
+    public void setImBarang(String imBarang) {
+        this.foto_barang = foto_barang;
     }
 
     public String getTipeBarang() {

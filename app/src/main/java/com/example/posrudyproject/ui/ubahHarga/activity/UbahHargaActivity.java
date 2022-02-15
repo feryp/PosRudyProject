@@ -37,7 +37,7 @@ public class UbahHargaActivity extends AppCompatActivity {
         keranjangItems = new ArrayList<>();
         for (int i=0; i<20; i++){
             keranjangItems.add(new KeranjangItem(
-                    R.drawable.im_example,
+                    "",
                     "CUTLINE",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
