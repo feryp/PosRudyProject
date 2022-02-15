@@ -88,7 +88,7 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
         keranjangItems = new ArrayList<>();
         for (int i=0; i<5; i++){
             keranjangItems.add(new KeranjangItem(
-                    R.drawable.im_example,
+                    "",
                     "CUTLINE",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",

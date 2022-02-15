@@ -1,6 +1,7 @@
 package com.example.posrudyproject.ui.penjualan.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
 import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
 import com.example.posrudyproject.ui.penjualan.viewholder.PenjualanViewHolder;
 
@@ -46,8 +49,12 @@ public class PenjualanAdapter extends RecyclerView.Adapter<PenjualanViewHolder> 
         holder.hargaBarang.setText(item.getHargaBarang());
         holder.kuantitasBarang.setText(item.getKuantitasBarang());
 
-        holder.itemView.setOnClickListener(view -> {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             //FUNCTION PENJUALAN AND INTENT TO NEXT STEP SALE
+            @Override
+            public void onClick(View v){
+
+            }
         });
     }
 

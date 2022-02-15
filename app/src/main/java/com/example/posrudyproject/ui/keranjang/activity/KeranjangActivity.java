@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,6 +23,10 @@ import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
+import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
+import com.example.posrudyproject.ui.penjualan.adapter.PenjualanAdapter;
+import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
+import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -30,6 +35,11 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class KeranjangActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,26 +77,31 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         btnPotonganHarga.setPaintFlags(btnPotonganHarga.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         btnSimpanPesanan.setPaintFlags(btnSimpanPesanan.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        SetupSearchView();
 
         //Keranjang List
+        Bundle extras = getIntent().getExtras();
+        System.out.println((List<KeranjangItem>) extras.getSerializable("itemForBuy"));
         keranjangItems = new ArrayList<>();
-        for (int i=0; i<5; i++){
-            keranjangItems.add(new KeranjangItem(
-                    R.drawable.im_example,
-                    "CUTLINE",
-                    "SP633846-0011",
-                    "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
-                    "Rp 1.000.000",
-                    "2",
-                    "Rp 2.000.000",
-                    "2"
-            ));
+        for (int i = 0; i<((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++){
+            if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
+                keranjangItems.add(new KeranjangItem(
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
+                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
+                ));
+            }
         }
 
         //Setup Adapter
-        adapter = new KeranjangAdapter(keranjangItems, this);
-        rvKeranjang.setLayoutManager(new LinearLayoutManager(this));
+        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
         rvKeranjang.setAdapter(adapter);
+        rvKeranjang.setLayoutManager(new LinearLayoutManager(this));
         rvKeranjang.setHasFixedSize(true);
 
         //Jika ada list item ilustrasi hilang
@@ -112,7 +127,6 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_keranjang);
-        searchView = findViewById(R.id.search_barang);
         btnBarcode = findViewById(R.id.btn_barcode);
         btnPotonganHarga = findViewById(R.id.btn_potongan_harga);
         btnSimpanPesanan = findViewById(R.id.btn_simpan_pesanan);
@@ -234,5 +248,88 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         });
 
         alertDialog.show();
+    }
+
+    private void SetupSearchView(){
+
+        final SearchView searchView = findViewById(R.id.search_barang);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Bundle extras = getIntent().getExtras();
+                if (extras != null){
+                    keranjangItems = new ArrayList<>();
+                    for (int i = 0; i<2; i++){
+                        if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
+                            if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(query)){
+                                keranjangItems.add(new KeranjangItem(
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
+                                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
+                                ));
+                            }
+                        }
+                    }
+                    KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
+                    rvKeranjang.setAdapter(adapter);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    Bundle extras = getIntent().getExtras();
+                    if (extras != null){
+                        keranjangItems = new ArrayList<>();
+                        for (int i = 0; i<2; i++){
+                            if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
+                                keranjangItems.add(new KeranjangItem(
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
+                                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
+                                ));
+                            }
+                        }
+                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
+                        rvKeranjang.setAdapter(adapter);
+                    }
+                } else {
+                    Bundle extras = getIntent().getExtras();
+                    if (extras != null){
+                        keranjangItems = new ArrayList<>();
+                        for (int i = 0; i<2; i++){
+                            if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
+                                if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(newText)){
+                                    keranjangItems.add(new KeranjangItem(
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
+                                            String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
+                                    ));
+                                }
+                            }
+                        }
+                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
+                        rvKeranjang.setAdapter(adapter);
+                    }
+                }
+                return false;
+            }
+        });
     }
 }
