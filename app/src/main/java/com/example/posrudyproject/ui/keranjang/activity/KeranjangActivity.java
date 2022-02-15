@@ -28,6 +28,7 @@ import com.example.posrudyproject.ui.penjualan.adapter.PenjualanAdapter;
 import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
 import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
+import com.example.posrudyproject.ui.produk.activity.CustomBarangActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -169,7 +170,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 dialogOngkir();
                 break;
             case R.id.btn_custom_item_keranjang:
-                //Function Button
+                Intent custom = new Intent(this, CustomBarangActivity.class);
+                startActivity(custom);
                 break;
             case R.id.btn_konfirmasi_keranjang:
                 Intent konfirmasi = new Intent(this, PembayaranActivity.class);

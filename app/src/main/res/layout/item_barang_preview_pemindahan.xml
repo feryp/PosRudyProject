@@ -5,9 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="@dimen/padding_md"
+    android:layout_marginStart="@dimen/margin_md"
+    android:layout_marginEnd="@dimen/margin_md"
+    android:layout_marginTop="@dimen/margin_sm"
+    android:layout_marginBottom="@dimen/margin_sm"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_border_bottom_silver">
+    android:background="@drawable/bg_rounded_soft_grey">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
@@ -22,7 +26,7 @@
             app:cardElevation="0dp">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/im_produk"
+                android:id="@+id/im_barang_preview_pemindahan"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 tools:src="@drawable/im_example"
@@ -43,7 +47,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_tipe_produk"
+            android:id="@+id/tv_tipe_preview_pemindahan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/work_sans_medium"
@@ -52,7 +56,7 @@
             tools:text="CUTLINE" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_artikel_produk"
+            android:id="@+id/tv_artikel_preview_pemindahan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="SP633846-0011"
@@ -62,7 +66,7 @@
             android:layout_marginTop="@dimen/margin_xsm" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_nama_produk"
+            android:id="@+id/tv_nama_barang_preview_pemindahan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Mandarin Fade/Coral Matte - RP Optics Multilaser Red"
@@ -84,17 +88,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/work_sans_medium"
-            android:text="@string/title_stok_barang"
+            android:text="@string/title_jumlah"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/font_xs" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_stok_produk"
+            android:id="@+id/tv_jumlah_barang_preview_pemindahan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            tools:text="30 Pcs"
+            tools:text="10"
             android:textSize="@dimen/font_mds"
             android:textColor="@color/black_coral"
             android:fontFamily="@font/work_sans_semi_bold" />

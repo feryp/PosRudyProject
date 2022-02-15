@@ -1,0 +1,44 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/layout_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_md"
+    android:background="@color/white"
+    app:layout_constraintBottom_toBottomOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_kembali_step_3"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:fontFamily="@font/work_sans_semi_bold"
+        android:text="@string/btn_kembali"
+        android:textAllCaps="false"
+        android:textColor="@color/neon_blue_primary"
+        android:textSize="@dimen/font_md"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_selesai"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/neon_blue_primary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_selesai"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:text="@string/btn_selesai"
+        android:textSize="@dimen/font_md"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/work_sans_semi_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_kembali_step_3"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

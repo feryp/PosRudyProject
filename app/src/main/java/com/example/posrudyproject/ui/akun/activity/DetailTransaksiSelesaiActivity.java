@@ -11,7 +11,6 @@ import android.view.View;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
-import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.example.posrudyproject.ui.penjualan.activity.StrukPenjualanActivity;
 import com.example.posrudyproject.ui.penjualan.adapter.TransaksiSuksesAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -87,7 +86,8 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
                 break;
 
             case R.id.btn_penukaran_barang:
-                //FUNCTION BUTTON
+                Intent penukaranBarang = new Intent(this, PenukaranBarangActivity.class);
+                startActivity(penukaranBarang);
                 break;
         }
     }

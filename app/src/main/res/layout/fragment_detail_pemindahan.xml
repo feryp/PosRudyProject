@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.penyimpanan.fragment.DetailPemindahanFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_preview_pemindahan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_dokumen_pemindahan"
+                android:textSize="@dimen/font_xlg"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_semi_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subtitle_preview_pemindahan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_regular"
+                android:text="@string/detail_data_yang_dipilih"
+                android:textColor="@color/gray_hint"
+                android:textSize="@dimen/font_sm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_preview_pemindahan"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:ignore="TextContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_top_bottom_platinum"
+            android:padding="@dimen/padding_md">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_toko_detaiL_pemindahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_toko_tujuan"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_medium"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_toko_preview_pemindahan"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_toko_preview_pemindahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_regular"
+                android:text="Toko Rudy Project Tangerang"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_sm"
+                android:gravity="end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/title_toko_detaiL_pemindahan"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_top_bottom_platinum"
+            android:padding="@dimen/padding_md">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_penjual_detaiL_pemindahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_nama_penjual"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_medium"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_penjual_preview_pemindahan"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_penjual_preview_pemindahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_regular"
+                android:text="Alex Parkinson"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_sm"
+                android:gravity="end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/title_penjual_detaiL_pemindahan"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_top_bottom_platinum"
+            android:padding="@dimen/padding_md">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_catatan_detaiL_pemindahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_catatan"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/work_sans_medium"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_catatan_preview_pemindahan"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_catatan_preview_pemindahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_regular"
+                android:text="Penambahan barang untuk toko di Tangerang"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_sm"
+                android:gravity="end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/title_catatan_detaiL_pemindahan"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_list_pemindahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_md"
+            android:text="@string/title_barang_yang_dipindahkan"
+            android:textSize="@dimen/font_xlg"
+            android:textColor="@color/black_gunmetal"
+            android:fontFamily="@font/work_sans_semi_bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_preview_pemindahan_barang"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

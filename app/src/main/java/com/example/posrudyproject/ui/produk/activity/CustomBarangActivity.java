@@ -1,4 +1,4 @@
-package com.example.posrudyproject.ui.penyimpanan.activity;
+package com.example.posrudyproject.ui.produk.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,21 +13,24 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.penyimpanan.fragment.DataTokoFragment;
-import com.example.posrudyproject.ui.penyimpanan.fragment.DetailPemindahanFragment;
-import com.example.posrudyproject.ui.penyimpanan.fragment.PilihPemindahanBarangFragment;
+import com.example.posrudyproject.ui.produk.fragment.CustomizeFragment;
+import com.example.posrudyproject.ui.produk.fragment.DetailCustomFragment;
+import com.example.posrudyproject.ui.produk.fragment.PilihCustomBarangFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
 
-public class PemindahanBarangActivity extends AppCompatActivity implements View.OnClickListener{
+public class CustomBarangActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialToolbar mToolbar;
+    StepView stepView;
     View layoutBtnStep1, layoutBtnStep2, layoutBtnStep3;
     MaterialButton btnLanjutStep1, btnLanjutStep2, btnKembaliStep2, btnKembaliStep3, btnSelesai;
-    StepView stepView;
+
+    //Masih bingung buat function
+//    OnStepItemListener pilihBarangAction = new PilihBarangAction();
 
     FragmentManager fragmentManager = null;
     int stepIndex = 0;
@@ -35,13 +38,13 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pemindahan_barang);
+        setContentView(R.layout.activity_custom_barang);
         fragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState == null) {
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_pemindahan_barang, PilihPemindahanBarangFragment.class, null)
+                    .add(R.id.fragment_container_custom_barang, PilihCustomBarangFragment.class, null)
                     .commit();
         }
 
@@ -56,8 +59,8 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
                 .stepsNumber(3)
                 .steps(new ArrayList<String>(){{
                     add("Pilih Barang");
-                    add("Data Toko");
-                    add("Detail Dokumen");
+                    add("Customize");
+                    add("Detail Custom");
                 }})
                 .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
                 .typeface(ResourcesCompat.getFont(this, R.font.work_sans_medium))
@@ -69,12 +72,15 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
         btnKembaliStep2.setOnClickListener(this);
         btnKembaliStep3.setOnClickListener(this);
         btnSelesai.setOnClickListener(this);
+    }
 
+    private void initToolbar() {
+        mToolbar.setNavigationOnClickListener(view -> finish());
     }
 
     private void initComponent() {
-        mToolbar = findViewById(R.id.toolbar_pemindahan_barang);
-        stepView = findViewById(R.id.step_view_pemindahan_barang);
+        mToolbar = findViewById(R.id.toolbar_custom_barang);
+        stepView = findViewById(R.id.step_view_custom_barang);
         btnLanjutStep1 = findViewById(R.id.btn_lanjut_step_1);
         btnLanjutStep2 = findViewById(R.id.btn_lanjut_step_2);
         btnKembaliStep2 = findViewById(R.id.btn_kembali_step_2);
@@ -86,10 +92,6 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
 
     }
 
-    private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
-    }
-
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
@@ -97,15 +99,16 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
             case R.id.btn_lanjut_step_1:
                 stepIndex++;
                 stepView.go(stepIndex, true);
-                changeStepFragment(DataTokoFragment.class);
+                changeStepFragment(CustomizeFragment.class);
                 layoutBtnStep1.setVisibility(View.GONE);
                 layoutBtnStep2.setVisibility(View.VISIBLE);
+//                pilihBarangAction.next(); Masih Bingung
 
                 break;
             case R.id.btn_lanjut_step_2:
                 stepIndex++;
                 stepView.go(stepIndex, true);
-                changeStepFragment(DetailPemindahanFragment.class);
+                changeStepFragment(DetailCustomFragment.class);
                 layoutBtnStep1.setVisibility(View.GONE);
                 layoutBtnStep2.setVisibility(View.GONE);
                 layoutBtnStep3.setVisibility(View.VISIBLE);
@@ -113,7 +116,7 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
             case R.id.btn_kembali_step_2:
                 stepIndex--;
                 stepView.go(stepIndex, true);
-                changeStepFragment(PilihPemindahanBarangFragment.class);
+                changeStepFragment(PilihCustomBarangFragment.class);
                 layoutBtnStep1.setVisibility(View.VISIBLE);
                 layoutBtnStep2.setVisibility(View.GONE);
                 layoutBtnStep3.setVisibility(View.GONE);
@@ -121,7 +124,7 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
             case R.id.btn_kembali_step_3:
                 stepIndex--;
                 stepView.go(stepIndex, true);
-                changeStepFragment(DataTokoFragment.class);
+                changeStepFragment(CustomizeFragment.class);
                 layoutBtnStep1.setVisibility(View.GONE);
                 layoutBtnStep2.setVisibility(View.VISIBLE);
                 layoutBtnStep3.setVisibility(View.GONE);
@@ -132,6 +135,7 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void openDialog() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(this);
         View mView = View.inflate(this, R.layout.dialog_alert_message,null);
@@ -149,8 +153,8 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
         alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_rounded_white);
         alertDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
-        titleDialog.setText(getString(R.string.title_dialog_pemindahan));
-        pesanDialog.setText(getString(R.string.pesan_dialog_pemindahan));
+        titleDialog.setText(getString(R.string.title_dialog_custom));
+        pesanDialog.setText(getString(R.string.pesan_dialog_custom));
 
         btnOke.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +177,7 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
     protected void changeStepFragment(@NonNull Class<? extends Fragment> fragmentClass){
         fragmentManager.beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.fragment_container_pemindahan_barang, fragmentClass, null)
+                .replace(R.id.fragment_container_custom_barang, fragmentClass, null)
                 .addToBackStack("name")
                 .commit();
     }

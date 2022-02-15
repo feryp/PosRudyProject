@@ -27,6 +27,7 @@ import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
+import com.example.posrudyproject.ui.produk.activity.CustomBarangActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -154,7 +155,8 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
                 dialogOngkir();
                 break;
             case R.id.btn_custom_item_keranjang:
-                //Function Button
+                Intent custom = new Intent(getActivity(), CustomBarangActivity.class);
+                startActivity(custom);
                 break;
             case R.id.btn_konfirmasi_keranjang:
                 Intent konfirmasi = new Intent(getActivity(), PembayaranActivity.class);
