@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("token", response.body().getToken());
+                            editor.putInt("id_pengguna", response.body().getId_pengguna());
+                            editor.putString("nama_pengguna", response.body().getNamaPengguna());
                             editor.putInt("id_office", response.body().getId_office());
                             editor.putInt("id_store", response.body().getId_store());
                             editor.putString("lokasi_office", response.body().getLokasi_office());
