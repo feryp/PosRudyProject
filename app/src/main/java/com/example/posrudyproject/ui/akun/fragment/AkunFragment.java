@@ -18,6 +18,7 @@ import com.example.posrudyproject.ui.akun.activity.PrivacyPolicyActivity;
 import com.example.posrudyproject.ui.akun.activity.RiwayatTransaksiActivity;
 import com.example.posrudyproject.ui.akun.activity.TermsConditionActivity;
 import com.example.posrudyproject.ui.akun.activity.UbahAkunActivity;
+import com.example.posrudyproject.ui.notifikasi.activity.NotifikasiActivity;
 import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -67,7 +68,8 @@ public class AkunFragment extends Fragment implements View.OnClickListener{
     private void initToolbar() {
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_notifikasi){
-
+                Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
+                startActivity(notifikasi);
                 return true;
             }
 

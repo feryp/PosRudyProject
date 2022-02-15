@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/padding_md"
+    android:background="@drawable/bg_border_bottom_silver">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_notifikasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_message_notif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="@string/todo"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_judul_notifikasi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_md"
+        android:fontFamily="@font/work_sans_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_mds"
+        app:layout_constraintBottom_toTopOf="@id/tv_pesan_notifikasi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ic_notifikasi"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Persediaan Stok" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_pesan_notifikasi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_md"
+        tools:text="Barang A sudah mencapai batas minimum, segera restock kembali!"
+        android:textSize="@dimen/font_sm"
+        android:textColor="@color/black_coral"
+        android:fontFamily="@font/work_sans_medium"
+        app:layout_constraintStart_toEndOf="@id/ic_notifikasi"
+        app:layout_constraintTop_toBottomOf="@id/tv_judul_notifikasi"
+        app:layout_constraintBottom_toTopOf="@id/tv_waktu_notifikasi"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_waktu_notifikasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_md"
+        tools:text="12-Aug-2021 09:12"
+        android:textSize="@dimen/font_xs"
+        android:textColor="@color/black_coral"
+        android:fontFamily="@font/work_sans_regular"
+        app:layout_constraintTop_toBottomOf="@id/tv_pesan_notifikasi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,8 @@
 
     <item
         android:id="@+id/menu_notifikasi"
-        android:icon="@drawable/ic_bell"
+        android:icon="@drawable/ic_bell_notif"
         android:title="@string/menu_notifikasi"
-        app:actionLayout="@layout/action_notification"
         app:showAsAction="always"/>
 
 </menu>
