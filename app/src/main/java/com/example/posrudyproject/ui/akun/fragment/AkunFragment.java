@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.akun.activity.BantuanActivity;
@@ -18,6 +19,7 @@ import com.example.posrudyproject.ui.akun.activity.PrivacyPolicyActivity;
 import com.example.posrudyproject.ui.akun.activity.RiwayatTransaksiActivity;
 import com.example.posrudyproject.ui.akun.activity.TermsConditionActivity;
 import com.example.posrudyproject.ui.akun.activity.UbahAkunActivity;
+import com.example.posrudyproject.ui.login.LoginActivity;
 import com.example.posrudyproject.ui.notifikasi.activity.NotifikasiActivity;
 import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -66,6 +68,8 @@ public class AkunFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initToolbar() {
+//        mToolbar.getMenu().getItem(0).setIcon(R.drawable.ic_bell);  // Untuk kasih kondisi menampilkan icon bell jika ada notif masuk
+
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_notifikasi){
                 Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
@@ -82,7 +86,9 @@ public class AkunFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_sign_out:
-                //FUNCTION SIGN OUT
+                Toast.makeText(getActivity(), "Keluar", Toast.LENGTH_SHORT).show();
+                Intent signOut = new Intent(getActivity(), LoginActivity.class);
+                startActivity(signOut);
                 break;
             case R.id.menu_ubah_akun:
                 Intent ubahAkun = new Intent(getActivity(), UbahAkunActivity.class);

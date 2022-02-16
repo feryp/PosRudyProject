@@ -38,7 +38,7 @@ public class NotifikasiActivity extends AppCompatActivity implements OnItemClick
 
         //NOTIFIKASI LIST
         notifikasiItems = new ArrayList<>();
-        for (int i=0; i<10; i++){
+        for (int i=0; i<100; i++){
             notifikasiItems.add(new NotifikasiItem(
                     "Persediaan Stok",
                     "Barang A sudah mencapai batas minimum, segera restock kembali!",

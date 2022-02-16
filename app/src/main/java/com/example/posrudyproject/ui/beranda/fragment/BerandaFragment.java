@@ -111,7 +111,8 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initToolbar() {
-        mToolbar.getMenu().getItem(0).setIcon(R.drawable.ic_bell);
+//        mToolbar.getMenu().getItem(0).setIcon(R.drawable.ic_bell);  // Untuk kasih kondisi menampilkan icon bell jika ada notif masuk
+
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_notifikasi){
                 Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
