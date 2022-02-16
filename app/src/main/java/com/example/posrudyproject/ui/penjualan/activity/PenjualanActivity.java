@@ -1,18 +1,28 @@
 package com.example.posrudyproject.ui.penjualan.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.barcode.ScannerActivity;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterTipeFragment;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
+import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.penjualan.adapter.PenjualanAdapter;
 import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -43,6 +53,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         initToolbar();
 
         //SET LISTENER
+        btnBarcode.setOnClickListener(this);
         btnMasukKeranjang.setOnClickListener(this);
 
         //Penjualan List
@@ -87,9 +98,50 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         rvPenjualan = findViewById(R.id.rv_penjualan);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        Intent masukKeranjang = new Intent(this, KeranjangActivity.class);
-        startActivity(masukKeranjang);
+        if (view == btnBarcode){
+            if (ContextCompat.checkSelfPermission(PenjualanActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(PenjualanActivity.this, Manifest.permission.CAMERA)){
+                    startScan();
+                } else {
+                    ActivityCompat.requestPermissions(PenjualanActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
+                }
+            } else {
+                startScan();
+            }
+        } else if (view == btnMasukKeranjang){
+            Intent masukKeranjang = new Intent(this, KeranjangActivity.class);
+            startActivity(masukKeranjang);
+        }
+    }
+
+    private void startScan() {
+        Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
+        startActivityForResult(intent, 20);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 20){
+            if (resultCode == RESULT_OK && data != null){
+                String code = data.getStringExtra("result");
+                //SET CODE
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                startScan();
+            } else {
+                Toast.makeText(this, "Gagal membuka kamera!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

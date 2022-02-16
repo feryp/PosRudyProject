@@ -1,14 +1,22 @@
 package com.example.posrudyproject.ui.keranjang.fragment;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.barcode.ScannerActivity;
 import com.example.posrudyproject.ui.diskon.fragment.BotSheetDiskonFragment;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
@@ -72,6 +81,7 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
         initToolbar();
 
         //SET LISTENER
+        btnBarcode.setOnClickListener(KeranjangFragment.this);
         btnPotonganHarga.setOnClickListener(KeranjangFragment.this);
         btnSimpanPesanan.setOnClickListener(KeranjangFragment.this);
         btnAddPelanggan.setOnClickListener(KeranjangFragment.this);
@@ -162,8 +172,24 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
                 Intent konfirmasi = new Intent(getActivity(), PembayaranActivity.class);
                 startActivity(konfirmasi);
                 break;
+            case R.id.btn_barcode_keranjang:
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA)){
+                        startScan();
+                    } else {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 0);
+                    }
+                } else {
+                    startScan();
+                }
+                break;
     }
 }
+
+    private void startScan() {
+        Intent intent = new Intent(getActivity(), ScannerActivity.class);
+        startActivityForResult(intent, 20);
+    }
 
     private void dialogOngkir() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
@@ -232,6 +258,29 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
         });
 
         alertDialog.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 20){
+            if (resultCode == RESULT_OK && data != null){
+                String code = data.getStringExtra("result");
+                //SET CODE
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                startScan();
+            } else {
+                Toast.makeText(getActivity(), "Gagal membuka kamera!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }

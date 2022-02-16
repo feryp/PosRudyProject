@@ -1,27 +1,35 @@
 package com.example.posrudyproject.ui.keranjang.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.barcode.ScannerActivity;
 import com.example.posrudyproject.ui.diskon.fragment.BotSheetDiskonFragment;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
+import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
 import com.example.posrudyproject.ui.produk.activity.CustomBarangActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
@@ -55,6 +63,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         initToolbar();
 
         //SET LISTENER
+        btnBarcode.setOnClickListener(this);
         btnPotonganHarga.setOnClickListener(this);
         btnSimpanPesanan.setOnClickListener(this);
         btnAddPelanggan.setOnClickListener(this);
@@ -163,7 +172,23 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 Intent konfirmasi = new Intent(this, PembayaranActivity.class);
                 startActivity(konfirmasi);
                 break;
+            case R.id.btn_barcode_keranjang:
+                if (ContextCompat.checkSelfPermission(KeranjangActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(KeranjangActivity.this, Manifest.permission.CAMERA)){
+                        startScan();
+                    } else {
+                        ActivityCompat.requestPermissions(KeranjangActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
+                    }
+                } else {
+                    startScan();
+                }
+                break;
         }
+    }
+
+    private void startScan() {
+        Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
+        startActivityForResult(intent, 20);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -236,5 +261,28 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         });
 
         alertDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 20){
+            if (resultCode == RESULT_OK && data != null){
+                String code = data.getStringExtra("result");
+                //SET CODE
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                startScan();
+            } else {
+                Toast.makeText(this, "Gagal membuka kamera!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

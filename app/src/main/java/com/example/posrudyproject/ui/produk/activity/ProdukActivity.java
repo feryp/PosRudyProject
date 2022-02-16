@@ -1,19 +1,28 @@
 package com.example.posrudyproject.ui.produk.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.barcode.ScannerActivity;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterProdukFragment;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterTipeFragment;
+import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
 import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
 import com.example.posrudyproject.ui.produk.adapter.ProdukAdapter;
@@ -96,7 +105,43 @@ public class ProdukActivity extends AppCompatActivity implements View.OnClickLis
            Intent customBarang = new Intent(this, CustomBarangActivity.class);
            startActivity(customBarang);
         } else if (view == btnBarcode){
-            //FUNCTION
+            if (ContextCompat.checkSelfPermission(ProdukActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(ProdukActivity.this, Manifest.permission.CAMERA)){
+                    startScan();
+                } else {
+                    ActivityCompat.requestPermissions(ProdukActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
+                }
+            } else {
+                startScan();
+            }
+        }
+    }
+
+    private void startScan() {
+        Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
+        startActivityForResult(intent, 20);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 20){
+            if (resultCode == RESULT_OK && data != null){
+                String code = data.getStringExtra("result");
+                //SET CODE
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                startScan();
+            } else {
+                Toast.makeText(this, "Gagal membuka kamera!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
