@@ -16,7 +16,7 @@
         android:background="@color/lavender_blue_secondary">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_tgl_riwayat_pelanggan_laporan"
+            android:id="@+id/tv_tgl_riwayat_transaki_laporan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="SP633846-0011"
@@ -26,10 +26,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/btn_expand_arrow"
             app:layout_constraintBottom_toBottomOf="@id/btn_expand_arrow"
-            app:layout_constraintEnd_toStartOf="@id/layout_total_transaksi_pelanggan"/>
+            app:layout_constraintEnd_toStartOf="@id/layout_total_riwayat_transaksi"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/layout_total_transaksi_pelanggan"
+            android:id="@+id/layout_total_riwayat_transaksi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -37,10 +37,10 @@
             app:layout_constraintEnd_toStartOf="@id/btn_expand_arrow"
             app:layout_constraintTop_toTopOf="@id/btn_expand_arrow"
             app:layout_constraintBottom_toBottomOf="@id/btn_expand_arrow"
-            app:layout_constraintStart_toEndOf="@id/tv_tgl_riwayat_pelanggan_laporan">
+            app:layout_constraintStart_toEndOf="@id/tv_tgl_riwayat_transaki_laporan">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_total_transaksi_pelanggan_laporan"
+                android:id="@+id/title_total_riwayat_transaksi_laporan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -50,7 +50,7 @@
                 android:fontFamily="@font/work_sans_regular" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_transaksi_pelanggan_laporan"
+                android:id="@+id/tv_total_riwayat_transaksi_laporan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_xsm"
@@ -71,14 +71,14 @@
             android:src="@drawable/ic_arrow_sort_down_filled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/layout_total_transaksi_pelanggan"
+            app:layout_constraintStart_toEndOf="@id/layout_total_riwayat_transaksi"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_sub_item_transaksi_laporan_pelanggan"
+        android:id="@+id/rv_sub_item_riwayat_transaksi_laporan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/fixed_view">
