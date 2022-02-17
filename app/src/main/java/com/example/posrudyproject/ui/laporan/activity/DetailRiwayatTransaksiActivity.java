@@ -12,10 +12,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.laporan.adapter.RiwayatTransaksiAdapter;
 import com.example.posrudyproject.ui.laporan.adapter.RiwayatTransaksiPelangganAdapter;
-import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiPelangganItem;
-import com.example.posrudyproject.ui.laporan.model.SubRiwayatTransaksiPelangganItem;
-import com.example.posrudyproject.ui.pesananTunggu.adapter.PesananTungguAdapter;
+import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiItem;
+import com.example.posrudyproject.ui.laporan.model.SubRiwayatTransaksiItem;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -23,20 +23,19 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailLaporanPelangganActivity extends AppCompatActivity {
+public class DetailRiwayatTransaksiActivity extends AppCompatActivity {
 
     MaterialToolbar mToolbar;
     RecyclerView rvRiwayatTransaksi;
     private ConstraintLayout btnPilihPeriode;
     private AppCompatTextView mSelectedPeriod;
 
-    RiwayatTransaksiPelangganAdapter adapter;
-    
+    RiwayatTransaksiAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_laporan_pelanggan);
+        setContentView(R.layout.activity_detail_riwayat_transaksi);
 
         //INIT VIEW
         initComponent();
@@ -66,44 +65,45 @@ public class DetailLaporanPelangganActivity extends AppCompatActivity {
         ((SimpleItemAnimator) rvRiwayatTransaksi.getItemAnimator()).setSupportsChangeAnimations(false);
 
         //Setup Adapter
-        adapter = new RiwayatTransaksiPelangganAdapter(buildItemList(), this);
+        adapter = new RiwayatTransaksiAdapter(buildItemList(), this);
         rvRiwayatTransaksi.setLayoutManager(new LinearLayoutManager(this));
         rvRiwayatTransaksi.setAdapter(adapter);
         rvRiwayatTransaksi.setHasFixedSize(true);
     }
+
 
     private void initToolbar() {
         mToolbar.setNavigationOnClickListener(view -> finish());
     }
 
     private void initComponent() {
-        mToolbar = findViewById(R.id.toolbar_detail_pelanggan_laporan);
+        mToolbar = findViewById(R.id.toolbar_detail_riwayat_transaksi_laporan);
         btnPilihPeriode = findViewById(R.id.btn_pilih_periode);
         mSelectedPeriod = findViewById(R.id.tv_selected_period);
-        rvRiwayatTransaksi = findViewById(R.id.rv_riwayat_transaksi_pelanggan_laporan);
+        rvRiwayatTransaksi = findViewById(R.id.rv_riwayat_transaksi_laporan);
     }
 
-    private List<RiwayatTransaksiPelangganItem> buildItemList(){
-        List<RiwayatTransaksiPelangganItem> riwayatTransaksiPelangganItems = new ArrayList<>();
+    private List<RiwayatTransaksiItem> buildItemList() {
+        List<RiwayatTransaksiItem> riwayatTransaksiItems = new ArrayList<>();
         for (int i=0; i<15; i++){
-            RiwayatTransaksiPelangganItem item = new RiwayatTransaksiPelangganItem(
+            RiwayatTransaksiItem item = new RiwayatTransaksiItem(
                     "Sabtu, 07 Aug 2021",
                     "Rp 9.000.000", buildSubItemList());
-            riwayatTransaksiPelangganItems.add(item);
+            riwayatTransaksiItems.add(item);
         }
-        return riwayatTransaksiPelangganItems;
+        return riwayatTransaksiItems;
     }
 
-    private List<SubRiwayatTransaksiPelangganItem> buildSubItemList() {
-        List<SubRiwayatTransaksiPelangganItem> subRiwayatTransaksiPelangganItems = new ArrayList<>();
+    private List<SubRiwayatTransaksiItem> buildSubItemList() {
+        List<SubRiwayatTransaksiItem> subRiwayatTransaksiItems = new ArrayList<>();
         for (int i=0; i<3; i++){
-            SubRiwayatTransaksiPelangganItem subItem = new SubRiwayatTransaksiPelangganItem(
+            SubRiwayatTransaksiItem subItem = new SubRiwayatTransaksiItem(
                     "Rp 3.000.000",
                     "#INV001",
                     "Tunai",
                     "10:09");
-            subRiwayatTransaksiPelangganItems.add(subItem);
+            subRiwayatTransaksiItems.add(subItem);
         }
-        return subRiwayatTransaksiPelangganItems;
+        return subRiwayatTransaksiItems;
     }
 }

@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PosRudyProject">
-        <activity android:name=".ui.barcode.ScannerActivity"/>
+        <activity
+            android:name=".ui.laporan.activity.DetailRiwayatTransaksiActivity"
+            android:exported="false" />
+        <activity android:name=".ui.barcode.ScannerActivity" />
         <activity
             android:name=".ui.notifikasi.activity.NotifikasiActivity"
             android:exported="false" />

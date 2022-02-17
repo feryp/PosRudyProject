@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posrudyproject.R;
 
-public class SubRiwayatTransaksiPelangganViewHolder extends RecyclerView.ViewHolder {
+public class SubRiwayatTransaksiViewHolder extends RecyclerView.ViewHolder {
 
     public AppCompatTextView nominalTransaksi, invoiceTransaksi, metodePembayaranTransaksi, jamTransaksi;
 
-    public SubRiwayatTransaksiPelangganViewHolder(@NonNull View itemView) {
+    public SubRiwayatTransaksiViewHolder(@NonNull View itemView) {
         super(itemView);
 
         nominalTransaksi = itemView.findViewById(R.id.tv_nominal_riwayat_transaksi_laporan);

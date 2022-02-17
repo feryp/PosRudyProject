@@ -20,21 +20,21 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_nominal_transaksi_pelanggan_laporan"
+        android:id="@+id/tv_nominal_riwayat_transaksi_laporan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_md"
         android:fontFamily="@font/work_sans_medium"
         android:textColor="@color/black_gunmetal"
         android:textSize="@dimen/font_mds"
-        app:layout_constraintBottom_toTopOf="@id/tv_no_invoice_transaksi_pelanggan_laporan"
-        app:layout_constraintEnd_toStartOf="@+id/tv_jam_transaksi_pelanggan_laporan"
+        app:layout_constraintBottom_toTopOf="@id/tv_no_invoice_riwayat_transaksi_laporan"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jam_riwayat_transaksi_laporan"
         app:layout_constraintStart_toEndOf="@id/ic_invoice"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Rp 10.000.000" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_no_invoice_transaksi_pelanggan_laporan"
+        android:id="@+id/tv_no_invoice_riwayat_transaksi_laporan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_md"
@@ -43,26 +43,26 @@
         android:textColor="@color/gray_hint"
         android:fontFamily="@font/work_sans_semi_bold"
         app:layout_constraintStart_toEndOf="@id/ic_invoice"
-        app:layout_constraintTop_toBottomOf="@id/tv_nominal_transaksi_pelanggan_laporan"
-        app:layout_constraintEnd_toStartOf="@id/tv_metode_pembayaran_transaksi_pelanggan_laporan"
+        app:layout_constraintTop_toBottomOf="@id/tv_nominal_riwayat_transaksi_laporan"
+        app:layout_constraintEnd_toStartOf="@id/tv_metode_pembayaran_riwayat_transaksi_laporan"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_metode_pembayaran_transaksi_pelanggan_laporan"
+        android:id="@+id/tv_metode_pembayaran_riwayat_transaksi_laporan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:fontFamily="@font/work_sans_regular"
         android:textColor="@color/black_gunmetal"
         android:textSize="@dimen/font_sm"
-        app:layout_constraintBottom_toTopOf="@id/tv_jam_transaksi_pelanggan_laporan"
+        app:layout_constraintBottom_toTopOf="@id/tv_jam_riwayat_transaksi_laporan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_nominal_transaksi_pelanggan_laporan"
+        app:layout_constraintStart_toEndOf="@+id/tv_nominal_riwayat_transaksi_laporan"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Tunai" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_jam_transaksi_pelanggan_laporan"
+        android:id="@+id/tv_jam_riwayat_transaksi_laporan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
@@ -71,8 +71,8 @@
         android:textColor="@color/black_gunmetal"
         android:fontFamily="@font/work_sans_regular"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_nominal_transaksi_pelanggan_laporan"
-        app:layout_constraintTop_toBottomOf="@id/tv_metode_pembayaran_transaksi_pelanggan_laporan"
+        app:layout_constraintStart_toEndOf="@id/tv_nominal_riwayat_transaksi_laporan"
+        app:layout_constraintTop_toBottomOf="@id/tv_metode_pembayaran_riwayat_transaksi_laporan"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
