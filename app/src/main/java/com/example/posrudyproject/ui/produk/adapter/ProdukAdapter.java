@@ -1,6 +1,9 @@
 package com.example.posrudyproject.ui.produk.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +37,9 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ProdukViewHolder holder, int position) {
         ProdukItem item = produkItems.get(position);
-        holder.imProduk.setImageResource(item.getImProduk());
+        byte[] bytes = Base64.decode(item.getFoto_barang().getBytes(), Base64.DEFAULT);
+        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.imProduk.setImageBitmap(btm);
         holder.tipeProduk.setText(item.getTipeProduk());
         holder.artikelProduk.setText(item.getArtikelProduk());
         holder.namaProduk.setText(item.getNamaProduk());

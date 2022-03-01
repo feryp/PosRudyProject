@@ -130,7 +130,7 @@ public class KategoriActivity extends AppCompatActivity implements OnItemClickLi
     private void initComponent() {
         // init
         mToolbar = findViewById(R.id.toolbar_kategori);
-        btnBarcode = findViewById(R.id.btn_barcode);
+        btnBarcode = findViewById(R.id.btn_barcode_kategori);
         rvKategori = findViewById(R.id.rv_kategori);
     }
 

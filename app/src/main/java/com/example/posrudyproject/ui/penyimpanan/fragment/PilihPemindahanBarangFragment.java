@@ -16,6 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.retrofit.ApiClient;
+import com.example.posrudyproject.retrofit.PenyimpananEndpoint;
 import com.example.posrudyproject.ui.filter.adapter.NothingSelectedSpinnerAdapter;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.penjualan.model.TipeItem;
@@ -27,13 +29,17 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PilihPemindahanBarangFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener{
 
     AppCompatSpinner spinTipe;
     MaterialButton btnPilihBarang;
     RecyclerView rvListBarang;
     ConstraintLayout layoutEmpty;
-
+    PenyimpananEndpoint penyimpananEndpoint;
     List<PemindahanBarangItem> pemindahanBarangItems;
     PemindahanBarangAdapter adapter;
 
@@ -42,6 +48,10 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_pilih_pemindahan_barang, container, false);
+        penyimpananEndpoint = ApiClient.getClient().create(PenyimpananEndpoint.class);
+        Bundle bundle = getArguments();
+        String token = bundle.getString("token");
+        int id_store = bundle.getInt("id_store");
 
         //INIT VIEW
         spinTipe = v.findViewById(R.id.spinner_tipe_pemindahan_barang);
@@ -51,26 +61,39 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
 
         //SPINNER TIPE
         // Spinner Drop down elements
-        List<TipeItem> tipeItems = new ArrayList<>();
-        tipeItems.add(new TipeItem("CUTLINE"));
-        tipeItems.add(new TipeItem("BOOST PRO"));
-        tipeItems.add(new TipeItem("DEFENDER"));
-        tipeItems.add(new TipeItem("KEYBLADE"));
-        tipeItems.add(new TipeItem("RYDON"));
-        tipeItems.add(new TipeItem("SINTRYX"));
-        tipeItems.add(new TipeItem("TRALYX"));
+        Call<List<TipeItem>> call = penyimpananEndpoint.getAllTipe(token);
+        call.enqueue(new Callback<List<TipeItem>>() {
+            @Override
+            public void onResponse(Call<List<TipeItem>> call, Response<List<TipeItem>> response) {
+                List<TipeItem> tipeItems = new ArrayList<>();
+                if (!response.isSuccessful()){
+                    tipeItems.add(new TipeItem(0,"Master Tipe Kosong"));
+                }else{
+                    for (int i=0; i < response.body().size(); i++){
+                        tipeItems.add(new TipeItem(
+                                response.body().get(i).getId(),
+                                response.body().get(i).getNamaTipe()
+                        ));
+                    }
+                    //Update object to string
+                    List<String> tipeItem = new ArrayList<String>();
+                    for (TipeItem item : tipeItems){
+                        tipeItem.add(item.getNamaTipe());
+                    }
 
-        //Update object to string
-        List<String> tipeItem = new ArrayList<String>();
-        for (TipeItem item : tipeItems){
-            tipeItem.add(item.getNamaTipe());
-        }
+                    // Creating adapter for spinner
+                    ArrayAdapter<String> tipeAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_text, tipeItem);
+                    tipeAdapter.setDropDownViewResource(R.layout.spinner_text_dropdown);
+                    spinTipe.setAdapter(new NothingSelectedSpinnerAdapter(tipeAdapter, getActivity(), R.layout.spinner_text_nothing_selected, getString(R.string.hint_spinner_pilih_tipe)));
+                }
+            }
 
-        // Creating adapter for spinner
-        ArrayAdapter<String> tipeAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_text, tipeItem);
-        tipeAdapter.setDropDownViewResource(R.layout.spinner_text_dropdown);
-        spinTipe.setAdapter(new NothingSelectedSpinnerAdapter(tipeAdapter, getActivity(), R.layout.spinner_text_nothing_selected, getString(R.string.hint_spinner_pilih_tipe)));
-
+            @Override
+            public void onFailure(Call<List<TipeItem>> call, Throwable t) {
+                List<TipeItem> tipeItems = new ArrayList<>();
+                tipeItems.add(new TipeItem(0,"Master Tipe Kosong"));
+            }
+        });
 
         //Barang List;
         pemindahanBarangItems = new ArrayList<>();
@@ -97,7 +120,20 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
         }
 
         //SET LISTENER
-        btnPilihBarang.setOnClickListener(PilihPemindahanBarangFragment.this);
+        btnPilihBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String tipe = String.valueOf(spinTipe.getSelectedItemId() + 1);
+                Bundle bundle = new Bundle();
+                bundle.putString("tipe", tipe);
+                bundle.putString("token", token);
+                bundle.putInt("id_store", id_store);
+                BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
+                botSheetProduk.setCancelable(false);
+                botSheetProduk.setArguments(bundle);
+                botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+            }
+        });
 
         return v;
     }
@@ -121,8 +157,6 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
 
     @Override
     public void onClick(View view) {
-        BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
-        botSheetProduk.setCancelable(false);
-        botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+
     }
 }

@@ -1,26 +1,39 @@
 package com.example.posrudyproject.ui.produk.model;
 
-public class ProdukItem {
-    private int imProduk;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class ProdukItem implements Serializable {
+    @SerializedName("foto_barang")
+    private String foto_barang;
+
+    @SerializedName("type_name")
     private String tipeProduk;
+
+    @SerializedName("artikel")
     private String artikelProduk;
+
+    @SerializedName("nama_barang")
     private String namaProduk;
+
+    @SerializedName("kuantitas")
     private String stokProduk;
 
-    public ProdukItem(int imProduk, String tipeProduk, String artikelProduk, String namaProduk, String stokProduk) {
-        this.imProduk = imProduk;
+    public ProdukItem(String foto_barang, String tipeProduk, String artikelProduk, String namaProduk, String stokProduk) {
+        this.foto_barang = foto_barang;
         this.tipeProduk = tipeProduk;
         this.artikelProduk = artikelProduk;
         this.namaProduk = namaProduk;
         this.stokProduk = stokProduk;
     }
 
-    public int getImProduk() {
-        return imProduk;
+    public String getFoto_barang() {
+        return foto_barang;
     }
 
-    public void setImProduk(int imProduk) {
-        this.imProduk = imProduk;
+    public void setFoto_barang(String foto_barang) {
+        this.foto_barang = foto_barang;
     }
 
     public String getTipeProduk() {

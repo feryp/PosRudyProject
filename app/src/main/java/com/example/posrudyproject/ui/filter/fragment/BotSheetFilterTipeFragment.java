@@ -45,7 +45,7 @@ public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implem
         //Tipe List
         tipeItems = new ArrayList<>();
         for (int i=0; i<50; i++){
-            tipeItems.add(new TipeItem("CUTLINE"));
+            tipeItems.add(new TipeItem(1,"CUTLINE"));
         }
 
         //Setup Adapter

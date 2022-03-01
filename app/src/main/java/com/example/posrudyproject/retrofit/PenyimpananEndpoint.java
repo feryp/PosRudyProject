@@ -1,5 +1,6 @@
 package com.example.posrudyproject.retrofit;
 
+import com.example.posrudyproject.ui.penjualan.model.TipeItem;
 import com.example.posrudyproject.ui.penyimpanan.model.*;
 
 import retrofit2.Call;
@@ -42,4 +43,14 @@ public interface PenyimpananEndpoint {
 
     @GET("/penyimpananMobile/availStockStoreByCategory")
     Call<List<ProdukTersediaItem>> stockAvailPerStoreByCategory(@Header("AUTHORIZATION") String token,@Query("id_store") int id_store, @Query("kategori") String kategori);
+
+
+    @GET("/penyimpananMobile/searchStockStoreByType")
+    Call<List<ProdukTersediaItem>> searchByType(@Header("AUTHORIZATION") String token,@Query("id_store") int id_store, @Query("type") int type, @Query("keyword") String keyword);
+
+    @GET("/penyimpananMobile/availStockStoreByType")
+    Call<List<ProdukTersediaItem>> stockAvailPerStoreByType(@Header("AUTHORIZATION") String token,@Query("id_store") int id_store, @Query("type") int type);
+
+    @GET("/master/tipe/all")
+    Call<List<TipeItem>> getAllTipe(@Header("AUTHORIZATION") String token);
 }

@@ -18,6 +18,7 @@ import com.example.posrudyproject.ui.penjualan.model.TipeItem;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DataTokoFragment extends Fragment {
@@ -40,7 +41,7 @@ public class DataTokoFragment extends Fragment {
         // Spinner Drop down elements
         List<TokoItem> tokoItems = new ArrayList<>();
         for (int i=0; i<50; i++){
-            tokoItems.add(new TokoItem("Toko Pusat"));
+            tokoItems.add(new TokoItem(1,"Toko Pusat"));
         }
 
         //Update object to string
@@ -57,18 +58,18 @@ public class DataTokoFragment extends Fragment {
         //SPINNER PENJUAL
         // Spinner Drop down elements
         List<PenjualItem> penjualItems = new ArrayList<>();
-        penjualItems.add(new PenjualItem(0,"Alex Parkinson",""));
-        penjualItems.add(new PenjualItem(0,"John Doe","0"));
-        penjualItems.add(new PenjualItem(0,"Udin",""));
-        penjualItems.add(new PenjualItem(0,"Syamsul Bahri",""));
-        penjualItems.add(new PenjualItem(0,"Hari Awaludin",""));
-        penjualItems.add(new PenjualItem(0,"Sulaeman",""));
-        penjualItems.add(new PenjualItem(0,"Felix Parker",""));
+        penjualItems.add(new PenjualItem(1,new Date(),"baginda isfa",1,"Kantor Pusat",1,"Store BSD","Penjual","","","",0,1,""));
+        penjualItems.add(new PenjualItem(1,new Date(),"baginda isfa",1,"Kantor Pusat",1,"Store BSD","Penjual","","","",0,1,""));
+        penjualItems.add(new PenjualItem(1,new Date(),"baginda isfa",1,"Kantor Pusat",1,"Store BSD","Penjual","","","",0,1,""));
+        penjualItems.add(new PenjualItem(1,new Date(),"baginda isfa",1,"Kantor Pusat",1,"Store BSD","Penjual","","","",0,1,""));
+        penjualItems.add(new PenjualItem(1,new Date(),"baginda isfa",1,"Kantor Pusat",1,"Store BSD","Penjual","","","",0,1,""));
+        penjualItems.add(new PenjualItem(1,new Date(),"baginda isfa",1,"Kantor Pusat",1,"Store BSD","Penjual","","","",0,1,""));
+        penjualItems.add(new PenjualItem(1,new Date(),"baginda isfa",1,"Kantor Pusat",1,"Store BSD","Penjual","","","",0,1,""));
 
         //Update object to string
         List<String> penjualItem = new ArrayList<String>();
         for (PenjualItem item : penjualItems){
-            penjualItem.add(item.getNamaPenjual());
+            penjualItem.add(item.getNama_karyawan());
         }
 
         // Creating adapter for spinner

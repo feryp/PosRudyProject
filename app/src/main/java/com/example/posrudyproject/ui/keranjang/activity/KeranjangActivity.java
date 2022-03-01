@@ -128,7 +128,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_keranjang);
-        btnBarcode = findViewById(R.id.btn_barcode);
+        btnBarcode = findViewById(R.id.btn_barcode_keranjang);
         btnPotonganHarga = findViewById(R.id.btn_potongan_harga);
         btnSimpanPesanan = findViewById(R.id.btn_simpan_pesanan);
         btnAddPelanggan = findViewById(R.id.btn_add_pelanggan);
@@ -254,7 +254,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
     private void SetupSearchView(){
 
-        final SearchView searchView = findViewById(R.id.search_barang);
+        final SearchView searchView = findViewById(R.id.search_barang_keranjang);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

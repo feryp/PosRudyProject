@@ -49,7 +49,7 @@ public class ProdukActivity extends AppCompatActivity implements View.OnClickLis
         produkItems = new ArrayList<>();
         for (int i=0; i<10; i++){
             produkItems.add(new ProdukItem(
-                    R.drawable.im_example,
+                    "",
                     "CUTLINE",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",

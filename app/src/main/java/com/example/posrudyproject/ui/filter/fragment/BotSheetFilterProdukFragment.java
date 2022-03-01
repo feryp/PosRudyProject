@@ -77,13 +77,13 @@ public class BotSheetFilterProdukFragment extends BottomSheetDialogFragment impl
         //SPINNER TIPE
         // Spinner Drop down elements
         List<TipeItem> tipeItems = new ArrayList<>();
-        tipeItems.add(new TipeItem("CUTLINE"));
-        tipeItems.add(new TipeItem("BOOST PRO"));
-        tipeItems.add(new TipeItem("DEFENDER"));
-        tipeItems.add(new TipeItem("KEYBLADE"));
-        tipeItems.add(new TipeItem("RYDON"));
-        tipeItems.add(new TipeItem("SINTRYX"));
-        tipeItems.add(new TipeItem("TRALYX"));
+        tipeItems.add(new TipeItem(1,"CUTLINE"));
+        tipeItems.add(new TipeItem(2,"BOOST PRO"));
+        tipeItems.add(new TipeItem(3,"DEFENDER"));
+        tipeItems.add(new TipeItem(4,"KEYBLADE"));
+        tipeItems.add(new TipeItem(5,"RYDON"));
+        tipeItems.add(new TipeItem(6,"SINTRYX"));
+        tipeItems.add(new TipeItem(7,"TRALYX"));
 
         //Update object to string
         List<String> tipeItem = new ArrayList<String>();

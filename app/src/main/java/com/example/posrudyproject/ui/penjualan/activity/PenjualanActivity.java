@@ -202,7 +202,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_penjualan);
-        btnBarcode = findViewById(R.id.btn_barcode);
+        btnBarcode = findViewById(R.id.btn_barcode_penjualan);
         btnMasukKeranjang = findViewById(R.id.btn_masuk_keranjang);
 
     }
@@ -214,7 +214,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
     private void SetupSearchView(String authToken, int id_store, String kategori){
 
-        final SearchView searchView = findViewById(R.id.search_barang);
+        final SearchView searchView = findViewById(R.id.search_barang_penjualan);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

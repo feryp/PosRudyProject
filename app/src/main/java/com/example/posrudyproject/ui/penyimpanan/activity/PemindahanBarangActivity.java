@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -38,10 +40,20 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_pemindahan_barang);
         fragmentManager = getSupportFragmentManager();
 
+        SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        String token = preferences.getString("token","");
+        String auth_token = ("Bearer ").concat(token);
+        int id_store = preferences.getInt("id_store", 0);
+        Bundle bundle = new Bundle();
+        bundle.putString("token", auth_token);
+        bundle.putInt("id_store",id_store);
+
         if (savedInstanceState == null) {
+            PilihPemindahanBarangFragment fragment = new PilihPemindahanBarangFragment();
+            fragment.setArguments(bundle);
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragment_container_pemindahan_barang, PilihPemindahanBarangFragment.class, null)
+                    .add(R.id.fragment_container_pemindahan_barang, fragment, null)
                     .commit();
         }
 
