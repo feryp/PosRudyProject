@@ -43,8 +43,9 @@ public class DetailPemindahanFragment extends Fragment {
         pemindahanBarangItems = new ArrayList<>();
         for (int i=0; i<10; i++){
             pemindahanBarangItems.add(new PemindahanBarangItem(
-                    R.drawable.im_example,
+                    "",
                     "CUTLINE",
+                    "634343234",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
                     "50"

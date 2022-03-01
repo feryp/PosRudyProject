@@ -124,6 +124,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                             penjualanItems.add(new PenjualanItem(
                                     response.body().get(i).getFoto_barang(),
                                     response.body().get(i).getTipeBarang(),
+                                    response.body().get(i).getSkuCode(),
                                     response.body().get(i).getArtikelBarang(),
                                     response.body().get(i).getNamaBarang(),
                                     response.body().get(i).getHargaBarang(),
@@ -142,9 +143,11 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                         TextView total = rvPenjualan.getChildAt(i).findViewById(R.id.tv_qty_item_penjualan);
                                         ImageView foto = rvPenjualan.getChildAt(i).findViewById(R.id.im_barang_penjualan);
                                         TextView tipeBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_tipe_barang_penjualan);
+                                        TextView skuCode = rvPenjualan.getChildAt(i).findViewById(R.id.tv_skuCode_barang_penjualan);
                                         TextView artikelBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_artikel_barang_penjualan);
                                         TextView namaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_nama_barang_penjualan);
                                         TextView hargaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_harga_barang_penjualan);
+
                                         Button btnMinus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_minus);
                                         Button btnPlus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_plus);
                                         btnPlus.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +167,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                         keranjangItems.add(new KeranjangItem(
                                                 penjualanItems.get(i).getFoto_barang(),
                                                 tipeBarang.getText().toString(),
+                                                skuCode.getText().toString(),
                                                 artikelBarang.getText().toString(),
                                                 namaBarang.getText().toString(),
                                                 hargaBarang.getText().toString(),
@@ -242,6 +246,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                             penjualanItems.add(new PenjualanItem(
                                     response.body().get(i).getFoto_barang(),
                                     response.body().get(i).getTipeBarang(),
+                                    response.body().get(i).getSkuCode(),
                                     response.body().get(i).getArtikelBarang(),
                                     response.body().get(i).getNamaBarang(),
                                     response.body().get(i).getHargaBarang(),
@@ -275,6 +280,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                 penjualanItems.add(new PenjualanItem(
                                         response.body().get(i).getFoto_barang(),
                                         response.body().get(i).getTipeBarang(),
+                                        response.body().get(i).getSkuCode(),
                                         response.body().get(i).getArtikelBarang(),
                                         response.body().get(i).getNamaBarang(),
                                         response.body().get(i).getHargaBarang(),
@@ -303,6 +309,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                 penjualanItems.add(new PenjualanItem(
                                         response.body().get(i).getFoto_barang(),
                                         response.body().get(i).getTipeBarang(),
+                                        response.body().get(i).getSkuCode(),
                                         response.body().get(i).getArtikelBarang(),
                                         response.body().get(i).getNamaBarang(),
                                         response.body().get(i).getHargaBarang(),
@@ -325,6 +332,11 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 return false;
             }
         });
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
         if (view == btnBarcode){
             if (ContextCompat.checkSelfPermission(PenjualanActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
                 if (ActivityCompat.shouldShowRequestPermissionRationale(PenjualanActivity.this, Manifest.permission.CAMERA)){
@@ -336,9 +348,9 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 startScan();
             }
         } else if (view == btnMasukKeranjang){
-            Intent masukKeranjang = new Intent(this, KeranjangActivity.class);
-            startActivity(masukKeranjang);
-        }
+                Intent masukKeranjang = new Intent(this, KeranjangActivity.class);
+                startActivity(masukKeranjang);
+            }
     }
 
     private void startScan() {

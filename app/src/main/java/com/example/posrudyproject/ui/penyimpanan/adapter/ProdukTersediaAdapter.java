@@ -37,8 +37,8 @@ public class ProdukTersediaAdapter extends RecyclerView.Adapter<ProdukTersediaVi
     @Override
     public void onBindViewHolder(@NonNull ProdukTersediaViewHolder holder, int position) {
         ProdukTersediaItem item = produkTersediaItems.get(position);
-
-        byte[] bytes = Base64.decode(item.getFoto_barang().getBytes(), Base64.DEFAULT);
+        String fotoBarang = item.getFoto_barang() == null? "" : item.getFoto_barang();
+        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(item.getTipeBarang());

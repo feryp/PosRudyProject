@@ -89,6 +89,7 @@ public class DetailRiwayatActivity extends AppCompatActivity {
                             barangPindahItems.add(new BarangPindahItem(
                                     R.drawable.im_example,
                                     response.body().get(i).getTipeBarangPindah(),
+                                    response.body().get(i).getSkuCode(),
                                     response.body().get(i).getArtikelBarangPindah(),
                                     response.body().get(i).getNamaBarangPindah(),
                                     response.body().get(i).getKuantitasBarangPindah()

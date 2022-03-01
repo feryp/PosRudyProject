@@ -39,6 +39,7 @@ public class UbahHargaActivity extends AppCompatActivity {
             keranjangItems.add(new KeranjangItem(
                     "",
                     "CUTLINE",
+                    "634343234",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
                     "Rp 1.000.000",

@@ -124,6 +124,7 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
                         produkTersediaItems.add(new ProdukTersediaItem(
                                 response.body().get(i).getFoto_barang(),
                                 response.body().get(i).getTipeBarang(),
+                                response.body().get(i).getSkuCode(),
                                 response.body().get(i).getArtikelBarang(),
                                 response.body().get(i).getNamaBarang(),
                                 response.body().get(i).getHargaBarang(),

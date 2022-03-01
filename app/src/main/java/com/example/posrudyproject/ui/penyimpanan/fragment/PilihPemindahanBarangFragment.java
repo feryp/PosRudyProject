@@ -29,6 +29,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,7 +59,7 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
         btnPilihBarang = v.findViewById(R.id.btn_pilih_barang_pemindahan);
         rvListBarang = v.findViewById(R.id.rv_list_pemindahan_barang);
         layoutEmpty = v.findViewById(R.id.layout_ilustrasi_empty_pemindahan_barang);
-
+        int tipePrev = (int) (spinTipe.getSelectedItemId() + 1);
         //SPINNER TIPE
         // Spinner Drop down elements
         Call<List<TipeItem>> call = penyimpananEndpoint.getAllTipe(token);
@@ -86,6 +87,9 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
                     tipeAdapter.setDropDownViewResource(R.layout.spinner_text_dropdown);
                     spinTipe.setAdapter(new NothingSelectedSpinnerAdapter(tipeAdapter, getActivity(), R.layout.spinner_text_nothing_selected, getString(R.string.hint_spinner_pilih_tipe)));
                 }
+                if (((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")) != null) {
+                    spinTipe.setSelection(bundle.getInt("tipe"));
+                }
             }
 
             @Override
@@ -97,24 +101,35 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
 
         //Barang List;
         pemindahanBarangItems = new ArrayList<>();
-        for (int i=0; i<10; i++){
-            pemindahanBarangItems.add(new PemindahanBarangItem(
-                    R.drawable.im_example,
-                    "CUTLINE",
-                    "SP633846-0011",
-                    "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
-                    "50"
+        if (((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")) != null) {
 
-            ));
+            for (int i=0; i< ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).size(); i++){
+                pemindahanBarangItems.add(new PemindahanBarangItem(
+                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getFoto_barang(),
+                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getTipeProduk(),
+                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getSkuCode(),
+                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getArtikelProduk(),
+                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getNamaProduk(),
+                        "0"
+
+                ));
+            }
+            //Setup Adapter
+            adapter = new PemindahanBarangAdapter(pemindahanBarangItems, getActivity());
+            rvListBarang.setLayoutManager(new LinearLayoutManager(getActivity()));
+            rvListBarang.setAdapter(adapter);
+            rvListBarang.setHasFixedSize(true);
+            if (adapter.getItemCount() > 0){
+                layoutEmpty.setVisibility(View.GONE);
+            }
+
         }
-
         //Setup Adapter
         adapter = new PemindahanBarangAdapter(pemindahanBarangItems, getActivity());
         rvListBarang.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvListBarang.setAdapter(adapter);
         rvListBarang.setHasFixedSize(true);
 
-        //Jika ada list item ilustrasi hilang
         if (adapter.getItemCount() > 0){
             layoutEmpty.setVisibility(View.GONE);
         }
@@ -123,15 +138,50 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
         btnPilihBarang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tipe = String.valueOf(spinTipe.getSelectedItemId() + 1);
-                Bundle bundle = new Bundle();
-                bundle.putString("tipe", tipe);
-                bundle.putString("token", token);
-                bundle.putInt("id_store", id_store);
-                BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
-                botSheetProduk.setCancelable(false);
-                botSheetProduk.setArguments(bundle);
-                botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+                int tipe = (int) (spinTipe.getSelectedItemId() + 1);
+                if (tipe != tipePrev && tipe > 0) {
+                    SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
+                    sweetAlertDialog.setTitleText("Apakah Yakin mengganti tipe?");
+                    sweetAlertDialog.setContentText("Barang terpilih akan di reset");
+                    sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            pemindahanBarangItems = new ArrayList<>();
+                            adapter = new PemindahanBarangAdapter(pemindahanBarangItems, getActivity());
+                            rvListBarang.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            rvListBarang.setAdapter(adapter);
+                            rvListBarang.setHasFixedSize(true);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("tipe", tipe);
+                            bundle.putString("token", token);
+                            bundle.putInt("id_store", id_store);
+                            bundle.putString("for", "PemindahanBarang");
+                            BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
+                            botSheetProduk.setCancelable(false);
+                            botSheetProduk.setArguments(bundle);
+                            botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+                            sweetAlertDialog.dismiss();
+                        }
+                    });
+                    sweetAlertDialog.setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.dismiss();
+                        }
+                    });
+                    sweetAlertDialog.show();
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("tipe", tipe);
+                    bundle.putString("token", token);
+                    bundle.putInt("id_store", id_store);
+                    bundle.putString("for", "PemindahanBarang");
+                    BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
+                    botSheetProduk.setCancelable(false);
+                    botSheetProduk.setArguments(bundle);
+                    botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+                }
+
             }
         });
 
@@ -147,6 +197,7 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
         if (position > 0) {
             // Notify the selected item text
             Toast.makeText(getActivity(), "Pilih : " + item, Toast.LENGTH_SHORT).show();
+
         }
     }
 

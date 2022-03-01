@@ -97,6 +97,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 keranjangItems.add(new KeranjangItem(
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
@@ -276,21 +277,22 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         alertDialog.show();
     }
 
-    private void SetupSearchView(){
+    private void SetupSearchView() {
 
         final SearchView searchView = findViewById(R.id.search_barang_keranjang);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Bundle extras = getIntent().getExtras();
-                if (extras != null){
+                if (extras != null) {
                     keranjangItems = new ArrayList<>();
-                    for (int i = 0; i<2; i++){
+                    for (int i = 0; i < 2; i++) {
                         if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
-                            if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(query)){
+                            if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(query)) {
                                 keranjangItems.add(new KeranjangItem(
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
@@ -301,7 +303,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                             }
                         }
                     }
-                    KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
+                    KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
                     rvKeranjang.setAdapter(adapter);
                 }
                 return false;
@@ -311,13 +313,14 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             public boolean onQueryTextChange(String newText) {
                 if (TextUtils.isEmpty(newText)) {
                     Bundle extras = getIntent().getExtras();
-                    if (extras != null){
+                    if (extras != null) {
                         keranjangItems = new ArrayList<>();
-                        for (int i = 0; i<2; i++){
+                        for (int i = 0; i < 2; i++) {
                             if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
                                 keranjangItems.add(new KeranjangItem(
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
@@ -327,19 +330,20 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                 ));
                             }
                         }
-                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
+                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
                         rvKeranjang.setAdapter(adapter);
                     }
                 } else {
                     Bundle extras = getIntent().getExtras();
-                    if (extras != null){
+                    if (extras != null) {
                         keranjangItems = new ArrayList<>();
-                        for (int i = 0; i<2; i++){
+                        for (int i = 0; i < 2; i++) {
                             if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
-                                if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(newText)){
+                                if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(newText)) {
                                     keranjangItems.add(new KeranjangItem(
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
@@ -350,14 +354,14 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                 }
                             }
                         }
-                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
+                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
                         rvKeranjang.setAdapter(adapter);
                     }
                 }
                 return false;
             }
         });
-
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

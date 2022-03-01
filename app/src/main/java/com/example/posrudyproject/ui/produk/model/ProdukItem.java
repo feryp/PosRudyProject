@@ -11,6 +11,9 @@ public class ProdukItem implements Serializable {
     @SerializedName("type_name")
     private String tipeProduk;
 
+    @SerializedName("sku_code")
+    private String skuCode;
+
     @SerializedName("artikel")
     private String artikelProduk;
 
@@ -20,9 +23,10 @@ public class ProdukItem implements Serializable {
     @SerializedName("kuantitas")
     private String stokProduk;
 
-    public ProdukItem(String foto_barang, String tipeProduk, String artikelProduk, String namaProduk, String stokProduk) {
+    public ProdukItem(String foto_barang, String tipeProduk, String skuCode, String artikelProduk, String namaProduk, String stokProduk) {
         this.foto_barang = foto_barang;
         this.tipeProduk = tipeProduk;
+        this.skuCode = skuCode;
         this.artikelProduk = artikelProduk;
         this.namaProduk = namaProduk;
         this.stokProduk = stokProduk;
@@ -42,6 +46,14 @@ public class ProdukItem implements Serializable {
 
     public void setTipeProduk(String tipeProduk) {
         this.tipeProduk = tipeProduk;
+    }
+
+    public String getSkuCode() {
+        return skuCode;
+    }
+
+    public void setSkuCode(String skuCode) {
+        this.skuCode = skuCode;
     }
 
     public String getArtikelProduk() {

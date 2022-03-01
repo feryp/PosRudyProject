@@ -53,4 +53,7 @@ public interface PenyimpananEndpoint {
 
     @GET("/master/tipe/all")
     Call<List<TipeItem>> getAllTipe(@Header("AUTHORIZATION") String token);
+
+    @GET("/penyimpananMobile/searchStockStore")
+    Call<List<ProdukTersediaItem>> searchStockStore(@Header("AUTHORIZATION") String token, @Query("id_store") int id_store, @Query("keyword") String keyword);
 }

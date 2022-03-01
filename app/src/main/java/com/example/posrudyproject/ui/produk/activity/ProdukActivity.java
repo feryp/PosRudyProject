@@ -60,6 +60,7 @@ public class ProdukActivity extends AppCompatActivity implements View.OnClickLis
             produkItems.add(new ProdukItem(
                     "",
                     "CUTLINE",
+                    "634343234",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
                     "100 Pcs"

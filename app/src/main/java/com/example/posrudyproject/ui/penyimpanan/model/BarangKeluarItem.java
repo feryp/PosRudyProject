@@ -8,6 +8,9 @@ public class BarangKeluarItem implements Serializable {
     @SerializedName("type_name")
     private String tipeBarangKeluar;
 
+    @SerializedName("sku_code")
+    private String skuCode;
+
     @SerializedName("artikel")
     private String artikelBarangKeluar;
 
@@ -20,8 +23,9 @@ public class BarangKeluarItem implements Serializable {
     @SerializedName("kuantitas")
     private double stokBarangKeluar;
 
-    public BarangKeluarItem(String tipeBarangKeluar, String artikelBarangKeluar, String namaBarangKeluar, String waktuBarangKeluark, double stokBarangKeluar) {
+    public BarangKeluarItem(String tipeBarangKeluar, String skuCode, String artikelBarangKeluar, String namaBarangKeluar, String waktuBarangKeluark, double stokBarangKeluar) {
         this.tipeBarangKeluar = tipeBarangKeluar;
+        this.skuCode = skuCode;
         this.artikelBarangKeluar = artikelBarangKeluar;
         this.namaBarangKeluar = namaBarangKeluar;
         this.waktuBarangKeluark = waktuBarangKeluark;
@@ -34,6 +38,14 @@ public class BarangKeluarItem implements Serializable {
 
     public void setTipeBarangKeluar(String tipeBarangKeluar) {
         this.tipeBarangKeluar = tipeBarangKeluar;
+    }
+
+    public String getSkuCode() {
+        return skuCode;
+    }
+
+    public void setSkuCode(String skuCode) {
+        this.skuCode = skuCode;
     }
 
     public String getArtikelBarangKeluar() {

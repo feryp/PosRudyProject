@@ -15,6 +15,7 @@ public class PenjualanViewHolder extends RecyclerView.ViewHolder {
 
     public RoundedImageView imBarang;
     public AppCompatTextView tipeBarang;
+    public AppCompatTextView skuCode;
     public AppCompatTextView artikelBarang;
     public AppCompatTextView namaBarang;
     public AppCompatTextView hargaBarang;
@@ -26,6 +27,7 @@ public class PenjualanViewHolder extends RecyclerView.ViewHolder {
 
         imBarang = itemView.findViewById(R.id.im_barang_penjualan);
         tipeBarang = itemView.findViewById(R.id.tv_tipe_barang_penjualan);
+        skuCode = itemView.findViewById(R.id.tv_skuCode_barang_penjualan);
         artikelBarang = itemView.findViewById(R.id.tv_artikel_barang_penjualan);
         namaBarang = itemView.findViewById(R.id.tv_nama_barang_penjualan);
         hargaBarang = itemView.findViewById(R.id.tv_harga_barang_penjualan);

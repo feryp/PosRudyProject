@@ -44,6 +44,7 @@ public class PenjualanAdapter extends RecyclerView.Adapter<PenjualanViewHolder> 
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(item.getTipeBarang());
+        holder.skuCode.setText(item.getSkuCode());
         holder.artikelBarang.setText(item.getArtikelBarang());
         holder.namaBarang.setText(item.getNamaBarang());
         holder.hargaBarang.setText(item.getHargaBarang());

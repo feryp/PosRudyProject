@@ -37,6 +37,7 @@ public class StrukPenjualanActivity extends AppCompatActivity {
             keranjangItems.add(new KeranjangItem(
                     "",
                     "CUTLINE",
+                    "6456474564",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
                     "Rp 1.000.000",

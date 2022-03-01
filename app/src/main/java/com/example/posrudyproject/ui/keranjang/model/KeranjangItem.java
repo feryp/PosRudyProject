@@ -11,6 +11,9 @@ public class KeranjangItem implements Serializable {
     @SerializedName("type_name")
     private String tipeBarang;
 
+    @SerializedName("sku_code")
+    private String skuCode;
+
     @SerializedName("artikel")
     private String artikelBarang;
 
@@ -29,9 +32,10 @@ public class KeranjangItem implements Serializable {
     @SerializedName("kuantitas")
     private String kuantitasBarang;
 
-    public KeranjangItem(String foto_barang, String tipeBarang, String artikelBarang, String namaBarang, String hargaBarang, String jumlahBarang, String totalHargaBarang, String kuantitasBarang) {
+    public KeranjangItem(String foto_barang, String tipeBarang,String skuCode, String artikelBarang, String namaBarang, String hargaBarang, String jumlahBarang, String totalHargaBarang, String kuantitasBarang) {
         this.foto_barang = foto_barang;
         this.tipeBarang = tipeBarang;
+        this.skuCode = skuCode;
         this.artikelBarang = artikelBarang;
         this.namaBarang = namaBarang;
         this.hargaBarang = hargaBarang;
@@ -54,6 +58,22 @@ public class KeranjangItem implements Serializable {
 
     public void setTipeBarang(String tipeBarang) {
         this.tipeBarang = tipeBarang;
+    }
+
+    public String getFoto_barang() {
+        return foto_barang;
+    }
+
+    public void setFoto_barang(String foto_barang) {
+        this.foto_barang = foto_barang;
+    }
+
+    public String getSkuCode() {
+        return skuCode;
+    }
+
+    public void setSkuCode(String skuCode) {
+        this.skuCode = skuCode;
     }
 
     public String getArtikelBarang() {

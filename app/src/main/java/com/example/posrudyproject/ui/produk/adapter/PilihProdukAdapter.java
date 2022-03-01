@@ -37,7 +37,8 @@ public class PilihProdukAdapter extends RecyclerView.Adapter<PilihProdukViewHold
     @Override
     public void onBindViewHolder(@NonNull PilihProdukViewHolder holder, int position) {
         ProdukItem item = produkItems.get(position);
-        byte[] bytes = Base64.decode(item.getFoto_barang().getBytes(), Base64.DEFAULT);
+        String fotoBarang = item.getFoto_barang() == null? "" : item.getFoto_barang();
+        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.imProduk.setImageBitmap(btm);
         holder.tipeProduk.setText(item.getTipeProduk());

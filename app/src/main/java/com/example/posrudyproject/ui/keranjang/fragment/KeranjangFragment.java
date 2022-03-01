@@ -101,6 +101,7 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
             keranjangItems.add(new KeranjangItem(
                     "",
                     "CUTLINE",
+                    "653434564745",
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
                     "Rp 1.000.000",

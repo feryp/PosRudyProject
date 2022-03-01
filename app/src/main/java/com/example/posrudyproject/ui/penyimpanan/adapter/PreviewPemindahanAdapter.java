@@ -1,6 +1,9 @@
 package com.example.posrudyproject.ui.penyimpanan.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +37,10 @@ public class PreviewPemindahanAdapter extends RecyclerView.Adapter<PreviewPemind
     @Override
     public void onBindViewHolder(@NonNull PreviewPemindahanViewHolder holder, int position) {
         PemindahanBarangItem item = pemindahanBarangItems.get(position);
-        holder.imBarang.setImageResource(item.getImProduk());
+        String fotoBarang = item.getFoto_barang() == null? "" : item.getFoto_barang();
+        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
+        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(item.getTipeProduk());
         holder.artikelBarang.setText(item.getArtikelProduk());
         holder.namaBarang.setText(item.getNamaProduk());
