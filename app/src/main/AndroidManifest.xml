@@ -22,9 +22,16 @@
         tools:replace="android:icon"
         >
         <activity
+            android:name=".ui.laporan.activity.DetailRiwayatTransaksiActivity"
+            android:exported="false" />
+        <activity android:name=".ui.barcode.ScannerActivity" />
+        <activity
+            android:name=".ui.notifikasi.activity.NotifikasiActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.akun.activity.PenukaranBarangActivity"
             android:exported="true"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="locked" />
         <activity
             android:name=".ui.produk.activity.CustomBarangActivity"
             android:exported="true"

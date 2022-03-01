@@ -5,19 +5,18 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiPelangganItem;
+import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiItem;
 
-public class RiwayatTransaksiPelangganViewHolder extends RecyclerView.ViewHolder {
+public class RiwayatTransaksiViewHolder extends RecyclerView.ViewHolder {
 
     public AppCompatTextView tglTransaksi, totalTransaksi;
     public AppCompatImageView imArrow;
     public RecyclerView rvSubItemRiwayatTransaksi;
 
-    public RiwayatTransaksiPelangganViewHolder(@NonNull View itemView) {
+    public RiwayatTransaksiViewHolder(@NonNull View itemView) {
         super(itemView);
 
         tglTransaksi = itemView.findViewById(R.id.tv_tgl_riwayat_transaki_laporan);
@@ -26,7 +25,7 @@ public class RiwayatTransaksiPelangganViewHolder extends RecyclerView.ViewHolder
         rvSubItemRiwayatTransaksi = itemView.findViewById(R.id.rv_sub_item_riwayat_transaksi_laporan);
     }
 
-    public void bind(RiwayatTransaksiPelangganItem item) {
+    public void bind(RiwayatTransaksiItem item) {
         // Get the state
         boolean expanded = item.isExpanded();
 

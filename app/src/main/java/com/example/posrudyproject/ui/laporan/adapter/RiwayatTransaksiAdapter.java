@@ -11,34 +11,34 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
-import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiPelangganItem;
-import com.example.posrudyproject.ui.laporan.viewholder.RiwayatTransaksiPelangganViewHolder;
+import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiItem;
+import com.example.posrudyproject.ui.laporan.viewholder.RiwayatTransaksiViewHolder;
 
 import java.util.List;
 
-public class RiwayatTransaksiPelangganAdapter extends RecyclerView.Adapter<RiwayatTransaksiPelangganViewHolder> implements OnItemClickListener {
+public class RiwayatTransaksiAdapter extends RecyclerView.Adapter<RiwayatTransaksiViewHolder> implements OnItemClickListener {
 
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
-    private final List<RiwayatTransaksiPelangganItem> riwayatTransaksiPelangganItems;
+    private final List<RiwayatTransaksiItem> riwayatTransaksiItems;
     private final Context mContext;
 
-    public RiwayatTransaksiPelangganAdapter(List<RiwayatTransaksiPelangganItem> riwayatTransaksiPelangganItems, Context mContext) {
-        this.riwayatTransaksiPelangganItems = riwayatTransaksiPelangganItems;
+    public RiwayatTransaksiAdapter(List<RiwayatTransaksiItem> riwayatTransaksiItems, Context mContext) {
+        this.riwayatTransaksiItems = riwayatTransaksiItems;
         this.mContext = mContext;
     }
 
     @NonNull
     @Override
-    public RiwayatTransaksiPelangganViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RiwayatTransaksiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_riwayat_transaksi_laporan, parent, false);
-        return new RiwayatTransaksiPelangganViewHolder(v);
+        return new RiwayatTransaksiViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RiwayatTransaksiPelangganViewHolder holder, int position) {
-        RiwayatTransaksiPelangganItem item = riwayatTransaksiPelangganItems.get(position);
-
+    public void onBindViewHolder(@NonNull RiwayatTransaksiViewHolder holder, int position) {
+        RiwayatTransaksiItem item = riwayatTransaksiItems.get(position);
         holder.bind(item);
+
         holder.itemView.setOnClickListener(v -> {
             // Get the current state of the item
             boolean expanded = item.isExpanded();
@@ -52,10 +52,10 @@ public class RiwayatTransaksiPelangganAdapter extends RecyclerView.Adapter<Riway
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 holder.rvSubItemRiwayatTransaksi.getContext(), LinearLayoutManager.VERTICAL, false);
 
-        layoutManager.setInitialPrefetchItemCount(item.getSubRiwayatTransaksiPelangganItems().size());
+        layoutManager.setInitialPrefetchItemCount(item.getSubRiwayatTransaksiItems().size());
 
         //Create sub item view adapter
-        SubRiwayatTransaksiPelangganAdapter adapter = new SubRiwayatTransaksiPelangganAdapter(item.getSubRiwayatTransaksiPelangganItems(), this);
+        SubRiwayatTransaksiAdapter adapter = new SubRiwayatTransaksiAdapter(item.getSubRiwayatTransaksiItems(), this);
         holder.rvSubItemRiwayatTransaksi.setLayoutManager(layoutManager);
         holder.rvSubItemRiwayatTransaksi.setAdapter(adapter);
         holder.rvSubItemRiwayatTransaksi.setRecycledViewPool(viewPool);
@@ -63,7 +63,7 @@ public class RiwayatTransaksiPelangganAdapter extends RecyclerView.Adapter<Riway
 
     @Override
     public int getItemCount() {
-        return riwayatTransaksiPelangganItems.size();
+        return riwayatTransaksiItems.size();
     }
 
     @Override

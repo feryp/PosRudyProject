@@ -7,6 +7,8 @@ import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -27,7 +29,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaporanRangkumanActivity extends AppCompatActivity {
+public class LaporanRangkumanActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialToolbar mToolbar;
     AppCompatTextView produkTerlarisEmpty, kategoriTerlarisEmpty, tipeTerlarisEmpty, transaksiEmpty;
@@ -62,6 +64,13 @@ public class LaporanRangkumanActivity extends AppCompatActivity {
         initComponent();
 
         initToolbar();
+
+        //SET LISTENER
+        btnDetailProduk.setOnClickListener(this);
+        btnDetailKategori.setOnClickListener(this);
+        btnDetailTipe.setOnClickListener(this);
+        btnDetailTotalTransaksi.setOnClickListener(this);
+        btnDetailTransaksiTerakhir.setOnClickListener(this);
 
         //Material Date Picker
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
@@ -181,4 +190,27 @@ public class LaporanRangkumanActivity extends AppCompatActivity {
         mToolbar.setNavigationOnClickListener(view -> finish());
     }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_lihat_detail_produk:
+                Intent detailProduk = new Intent(this, PenjualanPerProdukActivity.class);
+                startActivity(detailProduk);
+                break;
+            case R.id.btn_lihat_detail_kategori:
+                Intent detailKategori = new Intent(this, PenjualanPerKategoriActivity.class);
+                startActivity(detailKategori);
+                break;
+            case R.id.btn_lihat_detail_tipe:
+                Intent detailTipe = new Intent(this, PenjualanPerTipeActivity.class);
+                startActivity(detailTipe);
+                break;
+            case R.id.btn_lihat_detail_total_transaksi:
+            case R.id.btn_lihat_detail_transaksi_terakhir:
+                Intent detailRiwayatTransaksi = new Intent(this, DetailRiwayatTransaksiActivity.class);
+                startActivity(detailRiwayatTransaksi);
+                break;
+        }
+    }
 }

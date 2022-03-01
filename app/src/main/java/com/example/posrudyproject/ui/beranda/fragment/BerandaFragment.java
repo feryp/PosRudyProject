@@ -2,6 +2,7 @@ package com.example.posrudyproject.ui.beranda.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,12 +15,18 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Handler;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.beranda.adapter.ImageSliderAdapter;
 import com.example.posrudyproject.ui.beranda.model.ImageSliderItem;
+import com.example.posrudyproject.ui.notifikasi.activity.NotifikasiActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.laporan.activity.LaporanActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
@@ -28,6 +35,7 @@ import com.example.posrudyproject.ui.penyimpanan.activity.PenyimpananActivity;
 import com.example.posrudyproject.ui.produk.activity.ProdukActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,19 +106,24 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
         cardProduk.setOnClickListener(BerandaFragment.this);
         cardLaporan.setOnClickListener(BerandaFragment.this);
 
+
         return v;
     }
 
     private void initToolbar() {
+//        mToolbar.getMenu().getItem(0).setIcon(R.drawable.ic_bell);  // Untuk kasih kondisi menampilkan icon bell jika ada notif masuk
+
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_notifikasi){
-
+                Intent notifikasi = new Intent(getActivity(), NotifikasiActivity.class);
+                startActivity(notifikasi);
                 return true;
             }
 
             return false;
         });
     }
+
 
     private final Runnable sliderRunnable = new Runnable() {
         @Override

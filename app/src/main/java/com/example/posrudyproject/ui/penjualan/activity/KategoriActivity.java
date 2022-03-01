@@ -38,7 +38,6 @@ public class KategoriActivity extends AppCompatActivity implements OnItemClickLi
 
     MaterialToolbar mToolbar;
     SearchView searchView;
-    AppCompatImageButton btnBarcode;
     RecyclerView rvKategori;
     KategoriAdapter adapter;
     List<KategoriItem> kategoriItems;
@@ -131,6 +130,7 @@ public class KategoriActivity extends AppCompatActivity implements OnItemClickLi
         // init
         mToolbar = findViewById(R.id.toolbar_kategori);
         btnBarcode = findViewById(R.id.btn_barcode_kategori);
+        searchView = findViewById(R.id.search_kategori);
         rvKategori = findViewById(R.id.rv_kategori);
     }
 
