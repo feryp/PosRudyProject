@@ -26,6 +26,9 @@ public class ResponseItem implements Serializable {
     @SerializedName("lokasi_store")
     private String lokasi_store;
 
+    @SerializedName("alamat_store")
+    private String alamat_store;
+
     @SerializedName("akses_modul")
     private String[] akses_modul;
 
@@ -83,6 +86,14 @@ public class ResponseItem implements Serializable {
 
     public void setLokasi_store(String lokasi_store) {
         this.lokasi_store = lokasi_store;
+    }
+
+    public String getAlamat_store() {
+        return alamat_store;
+    }
+
+    public void setAlamat_store(String alamat_store) {
+        this.alamat_store = alamat_store;
     }
 
     public String[] getAkses_modul() {

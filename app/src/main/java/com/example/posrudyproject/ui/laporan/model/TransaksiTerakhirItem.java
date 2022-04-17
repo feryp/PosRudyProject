@@ -1,8 +1,22 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class TransaksiTerakhirItem {
+import com.google.gson.annotations.SerializedName;
 
-    private String nominalTransaksi, invoiceTransaksi, statusTransaksi, waktuTransaksi;
+import java.io.Serializable;
+
+public class TransaksiTerakhirItem implements Serializable {
+
+    @SerializedName("total")
+    private String nominalTransaksi;
+
+    @SerializedName("id_transaksi")
+    private String invoiceTransaksi;
+
+    @SerializedName("metode_bayar")
+    private String statusTransaksi;
+
+    @SerializedName("tanggal_transaksi")
+    private String waktuTransaksi;
 
     public TransaksiTerakhirItem(String nominalTransaksi, String invoiceTransaksi, String statusTransaksi, String waktuTransaksi) {
         this.nominalTransaksi = nominalTransaksi;

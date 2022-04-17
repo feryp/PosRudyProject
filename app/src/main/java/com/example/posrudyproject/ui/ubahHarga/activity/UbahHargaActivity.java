@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.ubahHarga.adapter.UbahHargaAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,21 +36,24 @@ public class UbahHargaActivity extends AppCompatActivity {
         initComponent();
 
         initToolbar();
+        Bundle extras = getIntent().getExtras();
 
         //Barang List
         keranjangItems = new ArrayList<>();
-        for (int i=0; i<20; i++){
-            keranjangItems.add(new KeranjangItem(
-                    "",
-                    "CUTLINE",
-                    "634343234",
-                    "SP633846-0011",
-                    "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
-                    "Rp 1.000.000",
-                    "",
-                    "",
-                    ""
-            ));
+        for (int i = 0; i<((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++){
+            if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
+                keranjangItems.add(new KeranjangItem(
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
+                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
+                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
+                ));
+            }
         }
 
         //Setup Adapter
@@ -58,6 +65,14 @@ public class UbahHargaActivity extends AppCompatActivity {
 
     private void initToolbar() {
         mToolbar.setNavigationOnClickListener(view -> finish());
+        btnSimpanHarga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent potonganHarga = new Intent(UbahHargaActivity.this, KeranjangActivity.class);
+                potonganHarga.putExtra("itemForBuyAfterPotong", (Serializable) keranjangItems);
+                startActivity(potonganHarga);
+            }
+        });
     }
 
     private void initComponent() {

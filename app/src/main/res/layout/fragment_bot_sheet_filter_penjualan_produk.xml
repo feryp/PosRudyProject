@@ -176,7 +176,7 @@
             style="@style/CustomChipChoice"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="@string/penjualan_kotgor_terbesar"
+            android:text="@string/penjualan_kotor_terbesar"
             android:textSize="@dimen/font_sm"
             android:checkable="true"
             android:clickable="true"

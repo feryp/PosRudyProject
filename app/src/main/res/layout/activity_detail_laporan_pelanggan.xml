@@ -91,6 +91,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_detail_laporan_pelanggan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

@@ -1,13 +1,23 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class SubRiwayatTransaksiPelangganItem {
+import com.google.gson.annotations.SerializedName;
 
-    private String nominalTransaksi, noInvTransaksi, metodePembayaranTransaksi, jamTransaksi;
+import java.io.Serializable;
 
-    public SubRiwayatTransaksiPelangganItem(String nominalTransaksi, String noInvTransaksi, String metodePembayaranTransaksi, String jamTransaksi) {
+public class SubRiwayatTransaksiPelangganItem implements Serializable {
+
+    @SerializedName("total")
+    private String nominalTransaksi;
+
+    @SerializedName("id_transaksi")
+    private String noInvTransaksi;
+
+    @SerializedName("tanggal_transaksi")
+    private String jamTransaksi;
+
+    public SubRiwayatTransaksiPelangganItem(String nominalTransaksi, String noInvTransaksi, String jamTransaksi) {
         this.nominalTransaksi = nominalTransaksi;
         this.noInvTransaksi = noInvTransaksi;
-        this.metodePembayaranTransaksi = metodePembayaranTransaksi;
         this.jamTransaksi = jamTransaksi;
     }
 
@@ -25,14 +35,6 @@ public class SubRiwayatTransaksiPelangganItem {
 
     public void setNoInvTransaksi(String noInvTransaksi) {
         this.noInvTransaksi = noInvTransaksi;
-    }
-
-    public String getMetodePembayaranTransaksi() {
-        return metodePembayaranTransaksi;
-    }
-
-    public void setMetodePembayaranTransaksi(String metodePembayaranTransaksi) {
-        this.metodePembayaranTransaksi = metodePembayaranTransaksi;
     }
 
     public String getJamTransaksi() {

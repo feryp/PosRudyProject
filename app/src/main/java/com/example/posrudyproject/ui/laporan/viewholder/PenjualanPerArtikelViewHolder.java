@@ -13,7 +13,7 @@ import com.example.posrudyproject.ui.laporan.model.PenjualanPerArtikelItem;
 
 public class PenjualanPerArtikelViewHolder extends RecyclerView.ViewHolder {
 
-    public AppCompatTextView namaArtikel, penjualanKotorArtikel, jmlTerjualArtikel, totalPenjualanArtikel, pajakArtikel;
+    public AppCompatTextView namaArtikel, penjualanKotorArtikel, jmlTerjualArtikel, totalPenjualanArtikel;
     public AppCompatImageView imArrow;
     public LinearLayoutCompat subItem;
 
@@ -24,7 +24,7 @@ public class PenjualanPerArtikelViewHolder extends RecyclerView.ViewHolder {
         penjualanKotorArtikel = itemView.findViewById(R.id.tv_penjualan_kotor_artikel_laporan);
         jmlTerjualArtikel = itemView.findViewById(R.id.tv_terjual_penjualan_artikel_laporan);
         totalPenjualanArtikel = itemView.findViewById(R.id.tv_total_terjual_artikel_laporan);
-        pajakArtikel = itemView.findViewById(R.id.tv_pajak_penjualan_artikel_laporan);
+
         imArrow = itemView.findViewById(R.id.btn_expand_arrow);
         subItem = itemView.findViewById(R.id.sub_item);
 
@@ -43,6 +43,6 @@ public class PenjualanPerArtikelViewHolder extends RecyclerView.ViewHolder {
         penjualanKotorArtikel.setText(item.getPenjualanKotorArtikel());
         jmlTerjualArtikel.setText(item.getJmlTerjualArtikel());
         totalPenjualanArtikel.setText(item.getTotPenjualanArtikel());
-        pajakArtikel.setText(item.getPajakArtikel());
+
     }
 }

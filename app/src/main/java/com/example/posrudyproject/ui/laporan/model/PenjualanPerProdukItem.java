@@ -1,23 +1,36 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class PenjualanPerProdukItem {
-    private String namaProduk,
-            penjualanKotorProduk,
-            qtyProduk,
-            artikelProduk,
-            kategoriProduk,
-            pajakProduk,
-            totalPenjualanProduk;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class PenjualanPerProdukItem implements Serializable {
+    @SerializedName("nama_barang")
+    private String namaProduk;
+
+    @SerializedName("harga_jual")
+    private String penjualanKotorProduk;
+
+    @SerializedName("total_terjual")
+    private String qtyProduk;
+
+    @SerializedName("artikel")
+    private String artikelProduk;
+
+    @SerializedName("nama_kategori")
+    private String kategoriProduk;
+
+    @SerializedName("penjualan_kotor")
+    private String totalPenjualanProduk;
 
     private boolean expanded;
 
-    public PenjualanPerProdukItem(String namaProduk, String penjualanKotorProduk, String qtyProduk, String artikelProduk, String kategoriProduk, String pajakProduk, String totalPenjualanProduk) {
+    public PenjualanPerProdukItem(String namaProduk, String penjualanKotorProduk, String qtyProduk, String artikelProduk, String kategoriProduk, String totalPenjualanProduk) {
         this.namaProduk = namaProduk;
         this.penjualanKotorProduk = penjualanKotorProduk;
         this.qtyProduk = qtyProduk;
         this.artikelProduk = artikelProduk;
         this.kategoriProduk = kategoriProduk;
-        this.pajakProduk = pajakProduk;
         this.totalPenjualanProduk = totalPenjualanProduk;
     }
 
@@ -61,13 +74,6 @@ public class PenjualanPerProdukItem {
         this.kategoriProduk = kategoriProduk;
     }
 
-    public String getPajakProduk() {
-        return pajakProduk;
-    }
-
-    public void setPajakProduk(String pajakProduk) {
-        this.pajakProduk = pajakProduk;
-    }
 
     public String getTotalPenjualanProduk() {
         return totalPenjualanProduk;

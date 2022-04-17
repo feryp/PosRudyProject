@@ -21,6 +21,8 @@ import com.example.posrudyproject.ui.keranjang.viewholder.KeranjangViewHolder;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> {
@@ -44,7 +46,10 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull KeranjangViewHolder holder, int position) {
         KeranjangItem item = keranjangItems.get(position);
-        byte[] bytes = Base64.decode(item.getImBarang().getBytes(), Base64.DEFAULT);
+        NumberFormat formatter = new DecimalFormat("###.#####");
+        String fotoBarang = item.getImBarang() == null? "" : item.getFoto_barang();
+        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
+
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(item.getTipeBarang());
@@ -54,6 +59,33 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
         holder.jumlahBarang.setText(item.getJumlahBarang());
         holder.totalHargaBarang.setText(item.getTotalHargaBarang());
         holder.kuantitasBarang.setText(item.getKuantitasBarang());
+        holder.btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.kuantitasBarang.setText(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) + 1));
+                keranjangItems.get(holder.getAdapterPosition()).setKuantitasBarang(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) + 1));
+
+                holder.jumlahBarang.setText(holder.kuantitasBarang.getText());
+                keranjangItems.get(holder.getAdapterPosition()).setJumlahBarang(holder.kuantitasBarang.getText().toString());
+
+                holder.totalHargaBarang.setText(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
+                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
+            }
+        });
+
+        holder.btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.kuantitasBarang.setText(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) - 1));
+                keranjangItems.get(holder.getAdapterPosition()).setKuantitasBarang(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) - 1));
+
+                holder.jumlahBarang.setText(holder.kuantitasBarang.getText());
+                keranjangItems.get(holder.getAdapterPosition()).setJumlahBarang(holder.kuantitasBarang.getText().toString());
+
+                holder.totalHargaBarang.setText(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
+                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
+            }
+        });
 
         //bind data by tipe
         viewBinderHelper.bind(holder.swipeRevealLayout, keranjangItems.get(position).getTipeBarang());

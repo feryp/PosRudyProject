@@ -41,7 +41,9 @@ public class UbahHargaAdapter extends RecyclerView.Adapter<UbahHargaViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull UbahHargaViewHolder holder, int position) {
-        byte[] bytes = Base64.decode(keranjangItems.get(position).getImBarang().getBytes(), Base64.DEFAULT);
+        KeranjangItem item = keranjangItems.get(position);
+        String fotoBarang = item.getImBarang() == null? "" : item.getFoto_barang();
+        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.imBarang.setImageBitmap(btm);
         holder.tipeBarang.setText(keranjangItems.get(position).getTipeBarang());
@@ -71,6 +73,8 @@ public class UbahHargaAdapter extends RecyclerView.Adapter<UbahHargaViewHolder> 
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(mContext, "Simpan", Toast.LENGTH_SHORT).show();
+                        holder.hargaBarang.setText(etNominal.getText());
+                        keranjangItems.get(holder.getAdapterPosition()).setHargaBarang(etNominal.getText().toString());
                         alertDialog.dismiss();
                     }
                 });

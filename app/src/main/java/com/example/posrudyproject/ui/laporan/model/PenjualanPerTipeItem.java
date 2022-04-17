@@ -1,21 +1,30 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class PenjualanPerTipeItem {
+import com.google.gson.annotations.SerializedName;
 
-    private String namaTipe,
-            penjualanKotorTipe,
-            jmlTerjualTipe,
-            totPenjualanTipe,
-            pajakTipe;
+import java.io.Serializable;
+
+public class PenjualanPerTipeItem implements Serializable {
+
+    @SerializedName("type_name")
+    private String namaTipe;
+
+    @SerializedName("harga_jual")
+    private String penjualanKotorTipe;
+
+    @SerializedName("total_terjual")
+    private String jmlTerjualTipe;
+
+    @SerializedName("penjualan_kotor")
+    private String totPenjualanTipe;
 
     private boolean expanded;
 
-    public PenjualanPerTipeItem(String namaTipe, String penjualanKotorTipe, String jmlTerjualTipe, String totPenjualanTipe, String pajakTipe) {
+    public PenjualanPerTipeItem(String namaTipe, String penjualanKotorTipe, String jmlTerjualTipe, String totPenjualanTipe) {
         this.namaTipe = namaTipe;
         this.penjualanKotorTipe = penjualanKotorTipe;
         this.jmlTerjualTipe = jmlTerjualTipe;
         this.totPenjualanTipe = totPenjualanTipe;
-        this.pajakTipe = pajakTipe;
     }
 
     public String getNamaTipe() {
@@ -48,14 +57,6 @@ public class PenjualanPerTipeItem {
 
     public void setTotPenjualanTipe(String totPenjualanTipe) {
         this.totPenjualanTipe = totPenjualanTipe;
-    }
-
-    public String getPajakTipe() {
-        return pajakTipe;
-    }
-
-    public void setPajakTipe(String pajakTipe) {
-        this.pajakTipe = pajakTipe;
     }
 
     public boolean isExpanded() {

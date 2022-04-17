@@ -1,21 +1,30 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class PenjualanPerKategoriItem {
+import com.google.gson.annotations.SerializedName;
 
-    private String namaKategori,
-            penjualanKotorKategori,
-            jmlTerjualKategori,
-            totPenjualanKategori,
-            pajakKategori;
+import java.io.Serializable;
+
+public class PenjualanPerKategoriItem implements Serializable {
+
+    @SerializedName("nama_kategori")
+    private String namaKategori;
+
+    @SerializedName("harga_jual")
+    private String penjualanKotorKategori;
+
+    @SerializedName("total_terjual")
+    private String jmlTerjualKategori;
+
+    @SerializedName("penjualan_kotor")
+    private String totPenjualanKategori;
 
     private boolean expanded;
 
-    public PenjualanPerKategoriItem(String namaKategori, String penjualanKotorKategori, String jmlTerjualKategori, String totPenjualanKategori, String pajakKategori) {
+    public PenjualanPerKategoriItem(String namaKategori, String penjualanKotorKategori, String jmlTerjualKategori, String totPenjualanKategori) {
         this.namaKategori = namaKategori;
         this.penjualanKotorKategori = penjualanKotorKategori;
         this.jmlTerjualKategori = jmlTerjualKategori;
         this.totPenjualanKategori = totPenjualanKategori;
-        this.pajakKategori = pajakKategori;
     }
 
     public String getNamaKategori() {
@@ -48,14 +57,6 @@ public class PenjualanPerKategoriItem {
 
     public void setTotPenjualanKategori(String totPenjualanKategori) {
         this.totPenjualanKategori = totPenjualanKategori;
-    }
-
-    public String getPajakKategori() {
-        return pajakKategori;
-    }
-
-    public void setPajakKategori(String pajakKategori) {
-        this.pajakKategori = pajakKategori;
     }
 
     public boolean isExpanded() {

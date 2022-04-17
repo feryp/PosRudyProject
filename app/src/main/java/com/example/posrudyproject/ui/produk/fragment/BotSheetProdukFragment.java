@@ -30,6 +30,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -93,17 +94,50 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
                         adapter = new PilihProdukAdapter(produkItems, new OnItemClickListener() {
                             @Override
                             public void onItemClickListener(View view, int position) {
-                                Toast.makeText(getActivity(), "Pilih " + produkItems.get(position).getNamaProduk(), Toast.LENGTH_SHORT).show();
                                 if (bundle.getString("for") == "PemindahanBarang") {
                                     List<PemindahanBarangItem> items = new ArrayList<>();
-                                    items.add(new PemindahanBarangItem(
-                                            produkItems.get(position).getFoto_barang(),
-                                            produkItems.get(position).getTipeProduk(),
-                                            produkItems.get(position).getSkuCode(),
-                                            produkItems.get(position).getArtikelProduk(),
-                                            produkItems.get(position).getNamaProduk(),
-                                            "0"
-                                    ));
+                                    boolean found = false;
+                                    if (bundle.getSerializable("prevBarangPindah") != null) {
+                                        for (int i=0; i < ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).size(); i++) {
+                                            items.add(new PemindahanBarangItem(
+                                                    ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(i).getFoto_barang(),
+                                                    ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(i).getTipeProduk(),
+                                                    ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(i).getSkuCode(),
+                                                    ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(i).getArtikelProduk(),
+                                                    ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(i).getNamaProduk(),
+                                                    ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(i).getJumlahProduk()
+                                            ));
+                                        }
+                                        for (int j=0; j < ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).size(); j++) {
+                                            if (((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(j).getSkuCode().equals(produkItems.get(position).getSkuCode())){
+                                                found = true;
+                                            }
+                                        }
+                                        if (found) {
+                                            Toast.makeText(getActivity(), "Barang tersebut sudah dipilih", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            items.add(new PemindahanBarangItem(
+                                                    produkItems.get(position).getFoto_barang(),
+                                                    produkItems.get(position).getTipeProduk(),
+                                                    produkItems.get(position).getSkuCode(),
+                                                    produkItems.get(position).getArtikelProduk(),
+                                                    produkItems.get(position).getNamaProduk(),
+                                                    "0"
+                                            ));
+                                            Toast.makeText(getActivity(), "Pilih " + produkItems.get(position).getNamaProduk(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        items.add(new PemindahanBarangItem(
+                                                produkItems.get(position).getFoto_barang(),
+                                                produkItems.get(position).getTipeProduk(),
+                                                produkItems.get(position).getSkuCode(),
+                                                produkItems.get(position).getArtikelProduk(),
+                                                produkItems.get(position).getNamaProduk(),
+                                                "0"
+                                        ));
+                                        Toast.makeText(getActivity(), "Pilih " + produkItems.get(position).getNamaProduk(), Toast.LENGTH_SHORT).show();
+                                    }
+
                                     Bundle barangPindahBundle = new Bundle();
                                     barangPindahBundle.putSerializable("barangPindahItems", (Serializable) items);
 
@@ -112,9 +146,57 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
                                     barangPindahBundle.putInt("tipe", tipe);
                                     PilihPemindahanBarangFragment pilihPemindahanBarangFragment = new PilihPemindahanBarangFragment();
                                     pilihPemindahanBarangFragment.setArguments(barangPindahBundle);
-                                    fragmentManager.beginTransaction()
-                                            .setReorderingAllowed(true)
-                                            .replace(R.id.fragment_container_pemindahan_barang, pilihPemindahanBarangFragment, getTag())
+                                    fragmentManager.beginTransaction().
+                                            setReorderingAllowed(true).
+                                            replace(R.id.fragment_container_pemindahan_barang, pilihPemindahanBarangFragment, getTag())
+                                            .commit();
+                                    dismiss();
+                                } else if (bundle.getString("for") == "CustomBarang1") {
+                                    List<ProdukItem> items = new ArrayList<>();
+                                    items.add(new ProdukItem(
+                                            produkItems.get(position).getFoto_barang(),
+                                            produkItems.get(position).getTipeProduk(),
+                                            produkItems.get(position).getSkuCode(),
+                                            produkItems.get(position).getArtikelProduk(),
+                                            produkItems.get(position).getNamaProduk(),
+                                            "0"
+                                    ));
+                                    Toast.makeText(getActivity(), "Pilih " + produkItems.get(position).getNamaProduk(), Toast.LENGTH_SHORT).show();
+
+                                    Bundle barangCustomBundle = new Bundle();
+                                    barangCustomBundle.putSerializable("barangCustom1Items", (Serializable) items);
+                                    if (bundle.getSerializable("items2") != null) {
+                                        barangCustomBundle.putSerializable("barangCustom2Items", bundle.getSerializable("items2"));
+                                    }
+                                    PilihCustomBarangFragment pilihCustomBarangFragment = new PilihCustomBarangFragment();
+                                    pilihCustomBarangFragment.setArguments(barangCustomBundle);
+                                    fragmentManager.beginTransaction().
+                                            setReorderingAllowed(true).
+                                            replace(R.id.fragment_container_custom_barang, pilihCustomBarangFragment, getTag())
+                                            .commit();
+                                    dismiss();
+                                } else if (bundle.getString("for") == "CustomBarang2") {
+                                    List<ProdukItem> items = new ArrayList<>();
+                                    items.add(new ProdukItem(
+                                            produkItems.get(position).getFoto_barang(),
+                                            produkItems.get(position).getTipeProduk(),
+                                            produkItems.get(position).getSkuCode(),
+                                            produkItems.get(position).getArtikelProduk(),
+                                            produkItems.get(position).getNamaProduk(),
+                                            "0"
+                                    ));
+                                    Toast.makeText(getActivity(), "Pilih " + produkItems.get(position).getNamaProduk(), Toast.LENGTH_SHORT).show();
+
+                                    Bundle barangCustomBundle = new Bundle();
+                                    barangCustomBundle.putSerializable("barangCustom2Items", (Serializable) items);
+                                    if (bundle.getSerializable("items1") != null) {
+                                        barangCustomBundle.putSerializable("barangCustom1Items", bundle.getSerializable("items1"));
+                                    }
+                                    PilihCustomBarangFragment pilihCustomBarangFragment = new PilihCustomBarangFragment();
+                                    pilihCustomBarangFragment.setArguments(barangCustomBundle);
+                                    fragmentManager.beginTransaction().
+                                            setReorderingAllowed(true).
+                                            replace(R.id.fragment_container_custom_barang, pilihCustomBarangFragment, getTag())
                                             .commit();
                                     dismiss();
                                 }
@@ -165,6 +247,54 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
                                     bundlePemindahan.putSerializable("barangPindahItems", (Serializable) produkItems.get(position));
                                     pilihPemindahanBarangFragment.setArguments(bundlePemindahan);
 
+                                } else if (bundle.getString("for") == "CustomBarang1") {
+                                    List<ProdukItem> items = new ArrayList<>();
+                                    items.add(new ProdukItem(
+                                            produkItems.get(position).getFoto_barang(),
+                                            produkItems.get(position).getTipeProduk(),
+                                            produkItems.get(position).getSkuCode(),
+                                            produkItems.get(position).getArtikelProduk(),
+                                            produkItems.get(position).getNamaProduk(),
+                                            "0"
+                                    ));
+                                    Toast.makeText(getActivity(), "Pilih " + produkItems.get(position).getNamaProduk(), Toast.LENGTH_SHORT).show();
+
+                                    Bundle barangCustomBundle = new Bundle();
+                                    barangCustomBundle.putSerializable("barangCustom1Items", (Serializable) items);
+                                    if (bundle.getSerializable("items2") != null) {
+                                        barangCustomBundle.putSerializable("barangCustom2Items", bundle.getSerializable("items2"));
+                                    }
+                                    PilihCustomBarangFragment pilihCustomBarangFragment = new PilihCustomBarangFragment();
+                                    pilihCustomBarangFragment.setArguments(barangCustomBundle);
+                                    fragmentManager.beginTransaction().
+                                            setReorderingAllowed(true).
+                                            replace(R.id.fragment_container_custom_barang, pilihCustomBarangFragment, getTag())
+                                            .commit();
+                                    dismiss();
+                                } else if (bundle.getString("for") == "CustomBarang2") {
+                                    List<ProdukItem> items = new ArrayList<>();
+                                    items.add(new ProdukItem(
+                                            produkItems.get(position).getFoto_barang(),
+                                            produkItems.get(position).getTipeProduk(),
+                                            produkItems.get(position).getSkuCode(),
+                                            produkItems.get(position).getArtikelProduk(),
+                                            produkItems.get(position).getNamaProduk(),
+                                            "0"
+                                    ));
+                                    Toast.makeText(getActivity(), "Pilih " + produkItems.get(position).getNamaProduk(), Toast.LENGTH_SHORT).show();
+
+                                    Bundle barangCustomBundle = new Bundle();
+                                    barangCustomBundle.putSerializable("barangCustom2Items", (Serializable) items);
+                                    if (bundle.getSerializable("items1") != null) {
+                                        barangCustomBundle.putSerializable("barangCustom1Items", bundle.getSerializable("items1"));
+                                    }
+                                    PilihCustomBarangFragment pilihCustomBarangFragment = new PilihCustomBarangFragment();
+                                    pilihCustomBarangFragment.setArguments(barangCustomBundle);
+                                    fragmentManager.beginTransaction().
+                                            setReorderingAllowed(true).
+                                            replace(R.id.fragment_container_custom_barang, pilihCustomBarangFragment, getTag())
+                                            .commit();
+                                    dismiss();
                                 }
                             }
                         });

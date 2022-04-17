@@ -1,13 +1,36 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class LaporanPenjualItem {
+import com.google.gson.annotations.SerializedName;
 
-    private String namaPenjual, nominalTransaksiPenjual, totalTransaksiPenjual;
+import java.io.Serializable;
 
-    public LaporanPenjualItem(String namaPenjual, String nominalTransaksiPenjual, String totalTransaksiPenjual) {
+public class LaporanPenjualItem implements Serializable {
+
+    @SerializedName("id_karyawan")
+    private int id_karyawan;
+
+    @SerializedName("nama_karyawan")
+    private String namaPenjual;
+
+    @SerializedName("total")
+    private String nominalTransaksiPenjual;
+
+    @SerializedName("jml_transaksi")
+    private String totalTransaksiPenjual;
+
+    public LaporanPenjualItem(int id_karyawan, String namaPenjual, String nominalTransaksiPenjual, String totalTransaksiPenjual) {
+        this.id_karyawan = id_karyawan;
         this.namaPenjual = namaPenjual;
         this.nominalTransaksiPenjual = nominalTransaksiPenjual;
         this.totalTransaksiPenjual = totalTransaksiPenjual;
+    }
+
+    public int getId_karyawan() {
+        return id_karyawan;
+    }
+
+    public void setId_karyawan(int id_karyawan) {
+        this.id_karyawan = id_karyawan;
     }
 
     public String getNamaPenjual() {

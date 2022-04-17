@@ -1,8 +1,22 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class RiwayatTransaksiPenjualItem {
+import com.google.gson.annotations.SerializedName;
 
-    private String waktuTransaksi, nominalTransaksi, namaToko, produkTerjual;
+import java.io.Serializable;
+
+public class RiwayatTransaksiPenjualItem implements Serializable {
+
+    @SerializedName("tanggal_transaksi")
+    private String waktuTransaksi;
+
+    @SerializedName("total")
+    private String nominalTransaksi;
+
+    @SerializedName("lokasi_store")
+    private String namaToko;
+
+    @SerializedName("kuantitas")
+    private String produkTerjual;
 
     public RiwayatTransaksiPenjualItem(String waktuTransaksi, String nominalTransaksi, String namaToko, String produkTerjual) {
         this.waktuTransaksi = waktuTransaksi;

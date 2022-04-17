@@ -170,6 +170,7 @@
                     app:layout_constraintTop_toBottomOf="@id/title_ringkasan">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_pelanggan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_medium"
@@ -180,18 +181,22 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/tv_pelanggan_filled_keranjang"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_md"
                         android:fontFamily="@font/work_sans_regular"
+                        android:text="nama_pelanggan"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_sm"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="John Doe" />
+                        tools:ignore="DuplicateSpeakableTextCheck" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_pelanggan"
@@ -208,7 +213,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        tools:ignore="SpeakableTextPresentCheck"
+                        tools:text="10%" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,6 +227,7 @@
                     app:layout_constraintTop_toBottomOf="@id/layout_pilih_pelanggan">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_penjual"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/work_sans_medium"
@@ -231,18 +238,23 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/tv_penjual_filled_keranjang"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_md"
                         android:fontFamily="@font/work_sans_regular"
+                        android:text="nama penjual"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_sm"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="John Doe" />
+                        tools:ignore="DuplicateSpeakableTextCheck"
+                        tools:text="10%" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_penjual"
@@ -282,17 +294,22 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/tv_diskon_filled_keranjang"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_md"
                         android:fontFamily="@font/work_sans_regular"
+                        android:text="diskon"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_sm"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="DuplicateSpeakableTextCheck"
                         tools:text="10%" />
 
                     <com.google.android.material.button.MaterialButton

@@ -26,7 +26,6 @@ public class PenjualanPerProdukViewHolder extends RecyclerView.ViewHolder{
         qtyProduk = itemView.findViewById(R.id.tv_qty_penjualan_laporan);
         artikelProduk = itemView.findViewById(R.id.tv_artikel_penjualan_produk_laporan);
         kategoriProduk = itemView.findViewById(R.id.tv_kategori_penjualan_produk_laporan);
-        pajakProduk = itemView.findViewById(R.id.tv_pajak_penjualan_produk_laporan);
         totalPenjualanProduk = itemView.findViewById(R.id.tv_total_harga_penjualan_produk_laporan);
         imArrow = itemView.findViewById(R.id.btn_expand_arrow);
         subItem = itemView.findViewById(R.id.sub_item);
@@ -45,7 +44,6 @@ public class PenjualanPerProdukViewHolder extends RecyclerView.ViewHolder{
         qtyProduk.setText(item.getQtyProduk());
         artikelProduk.setText(item.getArtikelProduk());
         kategoriProduk.setText(item.getKategoriProduk());
-        pajakProduk.setText(item.getPajakProduk());
         totalPenjualanProduk.setText(item.getTotalPenjualanProduk());
     }
 }

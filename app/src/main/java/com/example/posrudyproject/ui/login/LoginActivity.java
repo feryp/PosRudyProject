@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putInt("id_store", response.body().getId_store());
                             editor.putString("lokasi_office", response.body().getLokasi_office());
                             editor.putString("lokasi_store", response.body().getLokasi_store());
+                            editor.putString("alamat_store", response.body().getAlamat_store());
                             editor.apply();
                             Intent login = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(login);

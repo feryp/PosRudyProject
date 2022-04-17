@@ -21,12 +21,14 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PelangganEndpoint;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
+import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
 import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +45,10 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
     MaterialButton btnTambahPelanggan;
 
     List<Pelanggan> pelangganItems;
+    List<KeranjangItem> keranjangItems;
     PelangganEndpoint pelangganEndpoint;
+    String noHpPelanggan,namaPelanggan,namaPenjual;
+    Integer idPenjual,isPenjualan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,22 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
         rvPelanggan.setLayoutManager(manager);
         pelangganEndpoint = ApiClient.getClient().create(PelangganEndpoint.class);
 
-
+        Bundle bundle = getIntent().getExtras();
+        keranjangItems = new ArrayList<>();
+        if (bundle != null){
+            keranjangItems = (List<KeranjangItem>) bundle.getSerializable("itemForBuy");
+            isPenjualan = bundle.getInt("isPenjualan",0);
+            if (bundle.getString("namaPenjual") != null) {
+                namaPenjual = bundle.getString("namaPenjual");
+                idPenjual = bundle.getInt("idPenjual");
+            }
+            if (bundle.getString("namaPelanggan") != null) {
+                namaPelanggan = bundle.getString("namaPelanggan");
+                noHpPelanggan = bundle.getString("noHpPelanggan");
+            }
+        } else {
+            keranjangItems = new ArrayList<>();
+        }
         //INIT VIEW
         initComponent();
 
@@ -117,9 +137,24 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PelangganActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                if (isPenjualan == 1) {
+                    Intent tambahPelanggan = new Intent(PelangganActivity.this, KeranjangActivity.class);
+                    tambahPelanggan.putExtra("namaPelanggan",namaPelanggan);
+                    tambahPelanggan.putExtra("noHp",noHpPelanggan);
+                    tambahPelanggan.putExtra("itemForBuyAddPelanggan", (Serializable) keranjangItems);
+
+                    if (namaPenjual != "") {
+                        tambahPelanggan.putExtra("namaPenjualFromPelanggan", namaPenjual);
+                        tambahPelanggan.putExtra("idPenjualFromPelanggan", idPenjual);
+                    }
+                    startActivity(tambahPelanggan);
+                    finish();
+                } else {
+                    System.out.println(isPenjualan);
+                    /*Intent intent = new Intent(PelangganActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();*/
+                }
             }
         });
     }
@@ -151,6 +186,14 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
             case R.id.item_pelanggan:
                 Toast.makeText(this, "Pilih " + pelangganItems.get(position).getNama_pelanggan(), Toast.LENGTH_SHORT).show();
                 Intent tambahPelanggan = new Intent(this, KeranjangActivity.class);
+                tambahPelanggan.putExtra("namaPelanggan",pelangganItems.get(position).getNama_pelanggan());
+                tambahPelanggan.putExtra("noHp",pelangganItems.get(position).getNo_hp());
+                tambahPelanggan.putExtra("itemForBuyAddPelanggan", (Serializable) keranjangItems);
+
+                if (namaPenjual != "") {
+                    tambahPelanggan.putExtra("namaPenjualFromPelanggan", namaPenjual);
+                    tambahPelanggan.putExtra("idPenjualFromPelanggan", idPenjual);
+                }
                 startActivity(tambahPelanggan);
                 break;
             case R.id.btn_edit_pelanggan:

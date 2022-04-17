@@ -1,11 +1,22 @@
 package com.example.posrudyproject.ui.laporan.model;
 
-public class LaporanPelangganItem {
+import com.google.gson.annotations.SerializedName;
 
-    private String namaPelanggan,
-            noHpPelanggan,
-            totKunjunganPelanggan,
-            transaksiPelanggan;
+import java.io.Serializable;
+
+public class LaporanPelangganItem implements Serializable {
+
+    @SerializedName("nama_pelanggan")
+    private String namaPelanggan;
+
+    @SerializedName("no_hp_pelanggan")
+    private String noHpPelanggan;
+
+    @SerializedName("total_kunjungan")
+    private String totKunjunganPelanggan;
+
+    @SerializedName("total")
+    private String transaksiPelanggan;
 
     private boolean expanded;
 

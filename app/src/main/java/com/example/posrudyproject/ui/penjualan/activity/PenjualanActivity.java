@@ -52,6 +52,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,6 +102,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
         Bundle extras = getIntent().getExtras();
         SetupSearchView(auth_token, id_store, String.valueOf(extras.getInt("id_kategori")));
+        DecimalFormat formatter = new DecimalFormat("#,###.##");
         if (extras != null) {
             Call<List<ProdukTersediaItem>> call_stock = penyimpananEndpoint.stockAvailPerStoreByCategory(auth_token,id_store,String.valueOf(extras.getInt("id_kategori")));
             SweetAlertDialog pDialog = new SweetAlertDialog(PenjualanActivity.this, SweetAlertDialog.PROGRESS_TYPE);

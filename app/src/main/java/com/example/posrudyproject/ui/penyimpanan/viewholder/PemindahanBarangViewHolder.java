@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.example.posrudyproject.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -22,6 +23,7 @@ public class PemindahanBarangViewHolder extends RecyclerView.ViewHolder {
     public AppCompatEditText jumlahBarang;
     public SwipeRevealLayout swipeRevealLayout;
     public LinearLayoutCompat layoutDelete;
+    public MaterialButton btnPlus,btnMinus;
 
     public PemindahanBarangViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -33,6 +35,8 @@ public class PemindahanBarangViewHolder extends RecyclerView.ViewHolder {
         jumlahBarang = itemView.findViewById(R.id.et_jumlah_barang_pemindahan);
         swipeRevealLayout = itemView.findViewById(R.id.swipe_reveal_layout_pemindahan);
         layoutDelete = itemView.findViewById(R.id.layout_delete_pemindahan);
+        btnPlus = itemView.findViewById(R.id.btn_plus_pemindahan);
+        btnMinus = itemView.findViewById(R.id.btn_minus_pemindahan);
     }
 
     public void hapusItem() {

@@ -1,5 +1,8 @@
 package com.example.posrudyproject.ui.penyimpanan.fragment;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -8,11 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.posrudyproject.R;
@@ -21,11 +28,16 @@ import com.example.posrudyproject.retrofit.PenyimpananEndpoint;
 import com.example.posrudyproject.ui.filter.adapter.NothingSelectedSpinnerAdapter;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.penjualan.model.TipeItem;
+import com.example.posrudyproject.ui.penyimpanan.activity.PemindahanBarangActivity;
 import com.example.posrudyproject.ui.penyimpanan.adapter.PemindahanBarangAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.PemindahanBarangItem;
 import com.example.posrudyproject.ui.produk.fragment.BotSheetProdukFragment;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,10 +62,14 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_pilih_pemindahan_barang, container, false);
         penyimpananEndpoint = ApiClient.getClient().create(PenyimpananEndpoint.class);
-        Bundle bundle = getArguments();
-        String token = bundle.getString("token");
-        int id_store = bundle.getInt("id_store");
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        String token = preferences.getString("token","");
+        String auth_token = ("Bearer ").concat(token);
+        int id_store = preferences.getInt("id_store", 0);
 
+        Bundle bundle = getArguments();
+        SharedPreferences pemindahanPreferences = PreferenceManager.getDefaultSharedPreferences(v.getContext());
+        String json = pemindahanPreferences.getString("pemindahanBarangItems","");
         //INIT VIEW
         spinTipe = v.findViewById(R.id.spinner_tipe_pemindahan_barang);
         btnPilihBarang = v.findViewById(R.id.btn_pilih_barang_pemindahan);
@@ -62,7 +78,7 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
         int tipePrev = (int) (spinTipe.getSelectedItemId() + 1);
         //SPINNER TIPE
         // Spinner Drop down elements
-        Call<List<TipeItem>> call = penyimpananEndpoint.getAllTipe(token);
+        Call<List<TipeItem>> call = penyimpananEndpoint.getAllTipe(auth_token);
         call.enqueue(new Callback<List<TipeItem>>() {
             @Override
             public void onResponse(Call<List<TipeItem>> call, Response<List<TipeItem>> response) {
@@ -87,8 +103,12 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
                     tipeAdapter.setDropDownViewResource(R.layout.spinner_text_dropdown);
                     spinTipe.setAdapter(new NothingSelectedSpinnerAdapter(tipeAdapter, getActivity(), R.layout.spinner_text_nothing_selected, getString(R.string.hint_spinner_pilih_tipe)));
                 }
-                if (((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")) != null) {
-                    spinTipe.setSelection(bundle.getInt("tipe"));
+                if (bundle != null) {
+                    if (((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")) != null) {
+                        spinTipe.setSelection(bundle.getInt("tipe"));
+                    }
+                } else if (json != null) {
+                    spinTipe.setSelection(pemindahanPreferences.getInt("tipe",0));
                 }
             }
 
@@ -101,19 +121,77 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
 
         //Barang List;
         pemindahanBarangItems = new ArrayList<>();
-        if (((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")) != null) {
+        if (bundle != null) {
+            if (((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")) != null) {
 
-            for (int i=0; i< ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).size(); i++){
-                pemindahanBarangItems.add(new PemindahanBarangItem(
-                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getFoto_barang(),
-                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getTipeProduk(),
-                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getSkuCode(),
-                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getArtikelProduk(),
-                        ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getNamaProduk(),
-                        "0"
+                for (int i=0; i< ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).size(); i++){
+                    pemindahanBarangItems.add(new PemindahanBarangItem(
+                            ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getFoto_barang(),
+                            ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getTipeProduk(),
+                            ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getSkuCode(),
+                            ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getArtikelProduk(),
+                            ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getNamaProduk(),
+                            ((List<PemindahanBarangItem>)bundle.getSerializable("barangPindahItems")).get(i).getJumlahProduk()
 
-                ));
+                    ));
+                }
+                //Setup Adapter
+                adapter = new PemindahanBarangAdapter(pemindahanBarangItems, getActivity());
+                rvListBarang.setLayoutManager(new LinearLayoutManager(getActivity()));
+                rvListBarang.setAdapter(adapter);
+                rvListBarang.setHasFixedSize(true);
+                if (adapter.getItemCount() > 0){
+                    layoutEmpty.setVisibility(View.GONE);
+                }
+
+                rvListBarang.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        final Integer itemCount = adapter.getItemCount();
+                        if (itemCount != null) {
+
+                            SharedPreferences produkPreferences = PreferenceManager.getDefaultSharedPreferences(v.getContext());
+                            SharedPreferences.Editor editorProduk = produkPreferences.edit();
+
+                            Gson gson = new Gson();
+                            String json = gson.toJson(pemindahanBarangItems);
+                            if (bundle != null) {
+                                editorProduk.putInt("tipe",bundle.getInt("tipe"));
+                            }
+                            editorProduk.putString("pemindahanBarangItems", json);
+                            editorProduk.apply();
+
+                            for (int i=0; i<itemCount; i++) {
+                                TextView total = rvListBarang.getChildAt(i).findViewById(R.id.et_jumlah_barang_pemindahan);
+                                Button btnMinus = rvListBarang.getChildAt(i).findViewById(R.id.btn_minus_pemindahan);
+                                Button btnPlus = rvListBarang.getChildAt(i).findViewById(R.id.btn_plus_pemindahan);
+                                pemindahanBarangItems.get(i).setJumlahProduk(total.getText().toString());
+
+                                int finalI = i;
+                                btnPlus.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
+                                        pemindahanBarangItems.get(finalI).setJumlahProduk(total.getText().toString());
+                                    }
+                                });
+                                btnMinus.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
+                                            total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
+                                            pemindahanBarangItems.get(finalI).setJumlahProduk(total.getText().toString());
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
             }
+        } else if (json != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<PemindahanBarangItem>>(){}.getType();
+            pemindahanBarangItems = gson.fromJson(json, type);
+
             //Setup Adapter
             adapter = new PemindahanBarangAdapter(pemindahanBarangItems, getActivity());
             rvListBarang.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -123,7 +201,50 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
                 layoutEmpty.setVisibility(View.GONE);
             }
 
+            rvListBarang.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    final Integer itemCount = adapter.getItemCount();
+                    if (itemCount != null) {
+
+                        SharedPreferences produkPreferences = PreferenceManager.getDefaultSharedPreferences(v.getContext());
+                        SharedPreferences.Editor editorProduk = produkPreferences.edit();
+
+                        Gson gson = new Gson();
+                        String json = gson.toJson(pemindahanBarangItems);
+                        if (bundle != null) {
+                            editorProduk.putInt("tipe",bundle.getInt("tipe"));
+                        }
+                        editorProduk.putString("pemindahanBarangItems", json);
+                        editorProduk.apply();
+
+                        for (int i=0; i<itemCount; i++) {
+                            TextView total = rvListBarang.getChildAt(i).findViewById(R.id.et_jumlah_barang_pemindahan);
+                            Button btnMinus = rvListBarang.getChildAt(i).findViewById(R.id.btn_minus_pemindahan);
+                            Button btnPlus = rvListBarang.getChildAt(i).findViewById(R.id.btn_plus_pemindahan);
+                            pemindahanBarangItems.get(i).setJumlahProduk(total.getText().toString());
+
+                            int finalI = i;
+                            btnPlus.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
+                                    pemindahanBarangItems.get(finalI).setJumlahProduk(total.getText().toString());
+                                }
+                            });
+                            btnMinus.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
+                                        total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
+                                        pemindahanBarangItems.get(finalI).setJumlahProduk(total.getText().toString());
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
         }
+
         //Setup Adapter
         adapter = new PemindahanBarangAdapter(pemindahanBarangItems, getActivity());
         rvListBarang.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -153,7 +274,7 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
                             rvListBarang.setHasFixedSize(true);
                             Bundle bundle = new Bundle();
                             bundle.putInt("tipe", tipe);
-                            bundle.putString("token", token);
+                            bundle.putString("token", auth_token);
                             bundle.putInt("id_store", id_store);
                             bundle.putString("for", "PemindahanBarang");
                             BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
@@ -166,20 +287,35 @@ public class PilihPemindahanBarangFragment extends Fragment implements AdapterVi
                     sweetAlertDialog.setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            spinTipe.setSelection(tipePrev);
                             sweetAlertDialog.dismiss();
                         }
                     });
                     sweetAlertDialog.show();
                 } else {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("tipe", tipe);
-                    bundle.putString("token", token);
-                    bundle.putInt("id_store", id_store);
-                    bundle.putString("for", "PemindahanBarang");
-                    BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
-                    botSheetProduk.setCancelable(false);
-                    botSheetProduk.setArguments(bundle);
-                    botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+                    if (pemindahanBarangItems.size() > 0) {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("tipe", tipe);
+                        bundle.putString("token", auth_token);
+                        bundle.putInt("id_store", id_store);
+                        bundle.putString("for", "PemindahanBarang");
+                        bundle.putSerializable("prevBarangPindah" ,(Serializable)pemindahanBarangItems);
+                        BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
+                        botSheetProduk.setCancelable(false);
+                        botSheetProduk.setArguments(bundle);
+                        botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+                    } else {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("tipe", tipe);
+                        bundle.putString("token", auth_token);
+                        bundle.putInt("id_store", id_store);
+                        bundle.putString("for", "PemindahanBarang");
+                        BotSheetProdukFragment botSheetProduk = new BotSheetProdukFragment();
+                        botSheetProduk.setCancelable(false);
+                        botSheetProduk.setArguments(bundle);
+                        botSheetProduk.show(getChildFragmentManager(), botSheetProduk.getTag());
+                    }
+
                 }
 
             }

@@ -36,7 +36,6 @@ public class SubRiwayatTransaksiPelangganAdapter extends RecyclerView.Adapter<Su
         SubRiwayatTransaksiPelangganItem item = subRiwayatTransaksiPelangganItems.get(position);
         holder.nominalTransaksi.setText(item.getNominalTransaksi());
         holder.invoiceTransaksi.setText(item.getNoInvTransaksi());
-        holder.metodePembayaranTransaksi.setText(item.getMetodePembayaranTransaksi());
         holder.jamTransaksi.setText(item.getJamTransaksi());
 
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));

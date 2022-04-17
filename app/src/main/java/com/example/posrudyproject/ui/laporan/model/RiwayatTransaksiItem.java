@@ -1,9 +1,18 @@
 package com.example.posrudyproject.ui.laporan.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class RiwayatTransaksiItem {
-    private String tglTransaksi, totalTransaksi;
+public class RiwayatTransaksiItem implements Serializable {
+    @SerializedName("tanggal_transaksi")
+    private String tglTransaksi;
+
+    @SerializedName("total")
+    private String totalTransaksi;
+
+    @SerializedName("detailPesananList")
     private List<SubRiwayatTransaksiItem> subRiwayatTransaksiItems;
 
     private boolean expanded;

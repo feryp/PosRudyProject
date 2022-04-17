@@ -24,7 +24,7 @@ public class PenjualanPerKategoriViewHolder extends RecyclerView.ViewHolder{
         penjualanKotorKategori = itemView.findViewById(R.id.tv_penjualan_kotor_kategori_laporan);
         jmlTerjualKategori = itemView.findViewById(R.id.tv_terjual_penjualan_kategori_laporan);
         totalPenjualanKategori = itemView.findViewById(R.id.tv_total_terjual_kategori_laporan);
-        pajakKategori = itemView.findViewById(R.id.tv_pajak_penjualan_kategori_laporan);
+
         imArrow = itemView.findViewById(R.id.btn_expand_arrow);
         subItem = itemView.findViewById(R.id.sub_item);
     }
@@ -41,6 +41,6 @@ public class PenjualanPerKategoriViewHolder extends RecyclerView.ViewHolder{
         penjualanKotorKategori.setText(item.getPenjualanKotorKategori());
         jmlTerjualKategori.setText(item.getJmlTerjualKategori());
         totalPenjualanKategori.setText(item.getTotPenjualanKategori());
-        pajakKategori.setText(item.getPajakKategori());
+
     }
 }

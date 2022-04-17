@@ -111,7 +111,7 @@
                 android:id="@+id/title_total_terjual_tipe"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/title_total_terjual"
+                android:text="Pemasukan"
                 android:textSize="@dimen/font_sm"
                 android:textColor="@color/black"
                 android:fontFamily="@font/work_sans_regular"
@@ -137,40 +137,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--Child ConstrainLayout 2-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_md"
-            android:background="@drawable/bg_border_silver">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_pajak_penjualan_tipe"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/title_pajak"
-                android:textSize="@dimen/font_sm"
-                android:textColor="@color/black"
-                android:fontFamily="@font/work_sans_regular"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_pajak_penjualan_tipe_laporan"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_pajak_penjualan_tipe_laporan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                tools:text="Rp 0"
-                android:textSize="@dimen/font_sm"
-                android:textColor="@color/black"
-                android:fontFamily="@font/work_sans_regular"
-                app:layout_constraintStart_toEndOf="@id/title_pajak_penjualan_tipe"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

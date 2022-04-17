@@ -2,21 +2,29 @@ package com.example.posrudyproject.ui.keranjang.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -41,6 +49,9 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,13 +64,17 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
     SearchView searchView;
     AppCompatImageButton btnBarcode;
+    AppCompatTextView tvOngkir;
     MaterialToolbar mToolbar;
-    MaterialButton btnPotonganHarga, btnSimpanPesanan, btnAddPelanggan, btnAddPenjual, btnAddDiskon, btnAddOngkir, btnCustom, btnKonfirmasi;
+    MaterialButton btnPotonganHarga, btnSimpanPesanan, btnAddPelanggan, btnAddPenjual, btnAddDiskon, btnAddOngkir, btnCustom, btnKonfirmasi,tvPelanggan,tvPenjual,tvDiskon;
     RecyclerView rvKeranjang;
     KeranjangAdapter adapter;
     List<KeranjangItem> keranjangItems;
-    ConstraintLayout layoutKeranjang, layoutEmpty;
+    ConstraintLayout layoutKeranjang, layoutEmpty, layoutPenjual;
 
+    String noHpPelanggan,namaPelanggan,namaPenjual;
+    Integer idPenjual;
+    public static final String INTENT_DISKON = "INTENT_DISKON";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,21 +105,70 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
         //Keranjang List
         Bundle extras = getIntent().getExtras();
-        System.out.println((List<KeranjangItem>) extras.getSerializable("itemForBuy"));
         keranjangItems = new ArrayList<>();
-        for (int i = 0; i<((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++){
-            if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
-                keranjangItems.add(new KeranjangItem(
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
-                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
-                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
-                ));
+        DecimalFormat formatter = new DecimalFormat("#,###.##");
+
+        if (extras != null) {
+            if ((List<KeranjangItem>) extras.getSerializable("itemForBuy") != null) {
+                for (int i = 0; i < ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++) {
+                    if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
+                        keranjangItems.add(new KeranjangItem(
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
+                                ("Rp").concat(formatter.format(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()))),
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
+                                ("Rp").concat(formatter.format(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()))),
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
+                        ));
+                    }
+                }
+            } else if ((List<KeranjangItem>) extras.getSerializable("itemForBuyAfterPotong") != null) {
+                keranjangItems = ((List<KeranjangItem>) extras.getSerializable("itemForBuyAfterPotong"));
+            } else if ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPelanggan") != null) {
+                keranjangItems = ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPelanggan"));
+                namaPelanggan = extras.getString("namaPelanggan");
+                noHpPelanggan = extras.getString("noHp");
+
+                tvPelanggan.setVisibility(View.VISIBLE);
+                btnAddPelanggan.setVisibility(View.GONE);
+                tvPelanggan.setText(extras.getString("namaPelanggan"));
+
+                //part penjual
+                if (extras.getString("namaPenjualFromPelanggan") != null) {
+                    namaPenjual = extras.getString("namaPenjualFromPelanggan");
+                    idPenjual = extras.getInt("idPenjualFromPelanggan");
+
+                    tvPenjual.setVisibility(View.VISIBLE);
+                    btnAddPenjual.setVisibility(View.GONE);
+                    tvPenjual.setText(extras.getString("namaPenjualFromPelanggan"));
+                }
+                // end part penjual
+
+            } else if ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPenjual") != null) {
+                keranjangItems = ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPenjual"));
+                //part penjual
+                namaPenjual = extras.getString("namaPenjual");
+                idPenjual = extras.getInt("idPenjual");
+
+                tvPenjual.setVisibility(View.VISIBLE);
+                btnAddPenjual.setVisibility(View.GONE);
+                tvPenjual.setText(extras.getString("namaPenjual"));
+                // end part penjual
+
+                //part pelanggan
+                if (extras.getString("namaPelangganFromPenjual") != null) {
+                    namaPelanggan = extras.getString("namaPelangganFromPenjual");
+                    noHpPelanggan = extras.getString("noHpPelangganFromPenjual");
+
+                    tvPelanggan.setVisibility(View.VISIBLE);
+                    btnAddPelanggan.setVisibility(View.GONE);
+                    tvPelanggan.setText(extras.getString("namaPelangganFromPenjual"));
+
+                }
+                //end part pelanggan
             }
         }
 
@@ -119,7 +183,44 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             layoutEmpty.setVisibility(View.GONE);
             layoutKeranjang.setVisibility(View.VISIBLE);
         }
-
+        if (tvPelanggan.getVisibility() == View.VISIBLE) {
+            tvPelanggan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent updatePelanggan = new Intent(getApplicationContext(), PelangganActivity.class);
+                    updatePelanggan.putExtra("itemForBuy", (Serializable) keranjangItems);
+                    updatePelanggan.putExtra("isPenjualan", 1);
+                    if (namaPenjual != null) {
+                        updatePelanggan.putExtra("namaPenjual", namaPenjual);
+                        updatePelanggan.putExtra("idPenjual", idPenjual);
+                    }
+                    if (namaPelanggan != null) {
+                        updatePelanggan.putExtra("namaPelanggan", namaPelanggan);
+                        updatePelanggan.putExtra("noHpPelanggan", noHpPelanggan);
+                    }
+                    startActivity(updatePelanggan);
+                }
+            });
+        }
+        if (tvPenjual.getVisibility() == View.VISIBLE) {
+            tvPenjual.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent updatePenjual = new Intent(getApplicationContext(), PenjualActivity.class);
+                    updatePenjual.putExtra("itemForBuy", (Serializable) keranjangItems);
+                    updatePenjual.putExtra("isPenjualan", 1);
+                    if (namaPelanggan != null) {
+                        updatePenjual.putExtra("namaPelanggan", namaPelanggan);
+                        updatePenjual.putExtra("noHpPelanggan", noHpPelanggan);
+                    }
+                    if (namaPenjual != null) {
+                        updatePenjual.putExtra("namaPenjual", namaPenjual);
+                        updatePenjual.putExtra("idPenjual", idPenjual);
+                    }
+                    startActivity(updatePenjual);
+                }
+            });
+        }
     }
 
     private void initToolbar() {
@@ -149,6 +250,12 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         rvKeranjang = findViewById(R.id.rv_keranjang);
         layoutKeranjang = findViewById(R.id.layout_keranjang);
         layoutEmpty = findViewById(R.id.layout_ilustrasi_empty_keranjang);
+
+        layoutPenjual = findViewById(R.id.layout_pilih_penjual);
+        tvPelanggan = findViewById(R.id.tv_pelanggan_filled_keranjang);
+        tvPenjual = findViewById(R.id.tv_penjual_filled_keranjang);
+        tvDiskon = findViewById(R.id.tv_diskon_filled_keranjang);
+        tvOngkir = findViewById(R.id.tv_ongkir_filled_keranjang);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -160,14 +267,35 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_potongan_harga:
                 Intent potonganHarga = new Intent(this, UbahHargaActivity.class);
+                potonganHarga.putExtra("itemForBuy", (Serializable) keranjangItems);
                 startActivity(potonganHarga);
                 break;
             case R.id.btn_add_pelanggan:
                 Intent tambahPelanggan = new Intent(this, PelangganActivity.class);
+                tambahPelanggan.putExtra("itemForBuy", (Serializable) keranjangItems);
+                tambahPelanggan.putExtra("isPenjualan", 1);
+                if (namaPenjual != null) {
+                    tambahPelanggan.putExtra("namaPenjual", namaPenjual);
+                    tambahPelanggan.putExtra("idPenjual", idPenjual);
+                }
+                if (namaPelanggan != null) {
+                    tambahPelanggan.putExtra("namaPelanggan", namaPelanggan);
+                    tambahPelanggan.putExtra("noHpPelanggan", noHpPelanggan);
+                }
                 startActivity(tambahPelanggan);
                 break;
+
             case R.id.btn_add_penjual:
                 Intent tambahPenjual = new Intent(this, PenjualActivity.class);
+                tambahPenjual.putExtra("itemForBuy", (Serializable) keranjangItems);
+                if (namaPelanggan != null) {
+                    tambahPenjual.putExtra("namaPelanggan", namaPelanggan);
+                    tambahPenjual.putExtra("noHpPelanggan", noHpPelanggan);
+                }
+                if (namaPenjual != null) {
+                    tambahPenjual.putExtra("namaPenjual", namaPenjual);
+                    tambahPenjual.putExtra("idPenjual", idPenjual);
+                }
                 startActivity(tambahPenjual);
                 break;
             case R.id.btn_add_diskon:
@@ -199,6 +327,49 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
+    private BroadcastReceiver someBroadcastReceiver = new BroadcastReceiver() {
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //TODO extract extras from intent
+            DecimalFormat decim = new DecimalFormat("#,###.##");
+            if (intent.getStringExtra("diskon_rupiah") != null) {
+                tvDiskon.setVisibility(View.VISIBLE);
+                btnAddDiskon.setVisibility(View.GONE);
+                tvDiskon.setText(("Rp").concat(decim.format(Float.valueOf(intent.getStringExtra("diskon_rupiah")))));
+
+            } else if (intent.getStringExtra("diskon_persen") != null) {
+                tvDiskon.setVisibility(View.VISIBLE);
+                btnAddDiskon.setVisibility(View.GONE);
+                tvDiskon.setText(intent.getStringExtra("diskon_persen") + "%");
+
+            }
+
+            if (tvDiskon.getVisibility() == View.VISIBLE) {
+                tvDiskon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        BotSheetDiskonFragment botSheetDiskon = new BotSheetDiskonFragment();
+                        botSheetDiskon.setCancelable(false);
+                        botSheetDiskon.show(getSupportFragmentManager(), botSheetDiskon.getTag());
+                    }
+                });
+            }
+        }
+    };
+    @Override
+    public void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(someBroadcastReceiver,
+                new IntentFilter(INTENT_DISKON));
+    }
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(someBroadcastReceiver);
+        super.onPause();
+    }
+
 
     private void startScan() {
         Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);

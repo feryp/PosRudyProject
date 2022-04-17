@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.example.posrudyproject.R;
+import com.google.android.material.button.MaterialButton;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 public class KeranjangViewHolder extends RecyclerView.ViewHolder {
@@ -25,6 +26,7 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder {
     public AppCompatEditText kuantitasBarang;
     public SwipeRevealLayout swipeRevealLayout;
     public LinearLayoutCompat layoutDelete;
+    public MaterialButton btnPlus, btnMinus;
 
     private ProgressDialog progressDialog;
 
@@ -41,6 +43,8 @@ public class KeranjangViewHolder extends RecyclerView.ViewHolder {
         kuantitasBarang = itemView.findViewById(R.id.et_qty_item_keranjang);
         swipeRevealLayout = itemView.findViewById(R.id.swipe_reveal_layout);
         layoutDelete = itemView.findViewById(R.id.layout_delete);
+        btnPlus = itemView.findViewById(R.id.btn_plus_keranjang);
+        btnMinus= itemView.findViewById(R.id.btn_minus_keranjang);
     }
 
     public void hapusItem() {

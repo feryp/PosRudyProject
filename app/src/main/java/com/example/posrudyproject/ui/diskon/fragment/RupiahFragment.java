@@ -1,9 +1,11 @@
 package com.example.posrudyproject.ui.diskon.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ public class RupiahFragment extends Fragment implements View.OnClickListener{
 
     TextInputEditText etJumlahDiskon, etDeskripsi;
     MaterialButton btnBatal, btnTambah;
+    public static final String INTENT_DISKON = "INTENT_DISKON";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,9 +47,16 @@ public class RupiahFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.btn_batal_rupiah_diskon:
                 //FUNCTION
+                BotSheetDiskonFragment.getInstance().DismissParent();
                 break;
             case R.id.btn_tambah_rupiah_diskon:
                 //FUNCTION
+                Intent someIntent = new Intent(INTENT_DISKON);
+                someIntent.putExtra("diskon_rupiah",etJumlahDiskon.getText().toString());
+                LocalBroadcastManager.getInstance(getContext()).sendBroadcast(someIntent);
+
+                BotSheetDiskonFragment.getInstance().DismissParent();
+
                 break;
         }
     }
