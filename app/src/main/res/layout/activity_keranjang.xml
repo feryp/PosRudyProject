@@ -349,19 +349,23 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/tv_ongkir_filled_keranjang"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_md"
                         android:fontFamily="@font/work_sans_regular"
+                        android:text="ongkir"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_sm"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="JNE - Rp 10.000" />
+                        tools:ignore="DuplicateSpeakableTextCheck"
+                        tools:text="10%" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_ongkir"

@@ -6,20 +6,24 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.penjualan.activity.TransaksiSuksesActivity;
 import com.google.android.material.button.MaterialButton;
+
+import java.text.DecimalFormat;
 
 public class TunaiFragment extends Fragment implements View.OnClickListener {
 
     AppCompatEditText etUangDiterima;
     MaterialButton btnUangPas, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, btn00, btnDel, btnClear, btnLanjut;
-
+    public static final String INTENT_TUNAI_PAS = "INTENT_TUNAI_PAS";
     String curr;
 
 
@@ -68,13 +72,17 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
         btnLanjut.setOnClickListener(TunaiFragment.this);
 
 
-
         return v;
     }
 
     @SuppressLint("SetTextI18n")
     public void display(){
-        etUangDiterima.setText("Rp " + curr);
+        DecimalFormat decim = new DecimalFormat("#,###.##");
+        if (curr.isEmpty()) {
+            etUangDiterima.setText("Rp " + decim.format(0.00));
+        } else {
+            etUangDiterima.setText("Rp " + decim.format(Double.valueOf(curr)));
+        }
     }
     public void clear(){
         curr = "";
@@ -87,59 +95,77 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
             else {
                 curr = curr.substring(0, curr.length()-1);
             }
+        } else {
+            curr = "0.00";
         }
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
+        Intent someIntent = new Intent(INTENT_TUNAI_PAS);
         switch (view.getId()){
             case R.id.btn_uang_pas:
                 //Function uang pas
+                PembayaranActivity pembayaranActivity = (PembayaranActivity) getActivity();
+                curr = (pembayaranActivity.getTotal().replace("Rp","")).replace(",","");
+                display();
+                someIntent.putExtra("uang_diterima",pembayaranActivity.getTotal());
                 break;
             case R.id.btn_0:
                 curr = curr + "0";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_1:
                 curr = curr + "1";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_2:
                 curr = curr + "2";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_3:
                 curr = curr + "3";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_4:
                 curr = curr + "4";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_5:
                 curr = curr + "5";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_6:
                 curr = curr + "6";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_7:
                 curr = curr + "7";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_8:
                 curr = curr + "8";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_9:
                 curr = curr + "9";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_00:
                 curr = curr + "00";
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_clear:
                 clear();
@@ -148,6 +174,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_delete:
                 delete();
                 display();
+                someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_lanjut:
                 Intent lanjut = new Intent(getActivity(), TransaksiSuksesActivity.class);
@@ -155,5 +182,6 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                 break;
 
         }
+        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(someIntent);
     }
 }

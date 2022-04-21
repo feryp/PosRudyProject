@@ -46,7 +46,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull KeranjangViewHolder holder, int position) {
         KeranjangItem item = keranjangItems.get(position);
-        NumberFormat formatter = new DecimalFormat("###.#####");
+        NumberFormat formatter = new DecimalFormat("#,###.##");
         String fotoBarang = item.getImBarang() == null? "" : item.getFoto_barang();
         byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
 
@@ -55,9 +55,9 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
         holder.tipeBarang.setText(item.getTipeBarang());
         holder.artikelBarang.setText(item.getArtikelBarang());
         holder.namaBarang.setText(item.getNamaBarang());
-        holder.hargaBarang.setText(item.getHargaBarang());
+        holder.hargaBarang.setText(formatter.format((Double.valueOf(item.getHargaBarang().replace(",","")))));
         holder.jumlahBarang.setText(item.getJumlahBarang());
-        holder.totalHargaBarang.setText(item.getTotalHargaBarang());
+        holder.totalHargaBarang.setText(formatter.format((Double.valueOf(item.getHargaBarang().replace(",","")) * Double.valueOf(item.getJumlahBarang()))));
         holder.kuantitasBarang.setText(item.getKuantitasBarang());
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +68,8 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
                 holder.jumlahBarang.setText(holder.kuantitasBarang.getText());
                 keranjangItems.get(holder.getAdapterPosition()).setJumlahBarang(holder.kuantitasBarang.getText().toString());
 
-                holder.totalHargaBarang.setText(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
-                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
+                holder.totalHargaBarang.setText(formatter.format(Double.valueOf(item.getHargaBarang().replace(",","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
+                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf(item.getHargaBarang().replace(",","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
             }
         });
 
@@ -82,8 +82,8 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
                 holder.jumlahBarang.setText(holder.kuantitasBarang.getText());
                 keranjangItems.get(holder.getAdapterPosition()).setJumlahBarang(holder.kuantitasBarang.getText().toString());
 
-                holder.totalHargaBarang.setText(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
-                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf(item.getHargaBarang()) * Double.parseDouble(holder.kuantitasBarang.getText().toString())));
+                holder.totalHargaBarang.setText(formatter.format(Double.valueOf(item.getHargaBarang().replace(",","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
+                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf(item.getHargaBarang().replace(",","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
             }
         });
 
