@@ -1,18 +1,31 @@
 package com.example.posrudyproject.ui.penjualan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.penjualan.adapter.StrukPenjualanAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class StrukPenjualanActivity extends AppCompatActivity {
 
@@ -20,6 +33,11 @@ public class StrukPenjualanActivity extends AppCompatActivity {
     RecyclerView rvPesananStruk;
     StrukPenjualanAdapter adapter;
     List<KeranjangItem> keranjangItems;
+    public static final int PERMISSION_BLUETOOTH = 1;
+
+    private final Locale locale = new Locale("id", "ID");
+    private final DateFormat df = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a", locale);
+    private final NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +77,7 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_print){
                 //FUNCTION INTENT
+
                 return true;
             }
 
@@ -70,4 +89,5 @@ public class StrukPenjualanActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar_struk);
         rvPesananStruk = findViewById(R.id.rv_item_pesanan_struk);
     }
+
 }

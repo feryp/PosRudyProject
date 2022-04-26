@@ -75,7 +75,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
                 @Override
                 public void onResponse(Call<List<ProdukTersediaItem>> call, Response<List<ProdukTersediaItem>> response) {
                     if (!response.isSuccessful()){
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText(String.valueOf(response.code()))
                                 .setContentText(response.message())
                                 .show();
@@ -208,7 +208,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                 @Override
                 public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Oops...")
                             .setContentText(t.getMessage())
                             .show();
@@ -221,7 +221,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
                 @Override
                 public void onResponse(Call<List<ProdukTersediaItem>> call, Response<List<ProdukTersediaItem>> response) {
                     if (!response.isSuccessful()){
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText(String.valueOf(response.code()))
                                 .setContentText(response.message())
                                 .show();
@@ -304,7 +304,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                 @Override
                 public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Oops...")
                             .setContentText(t.getMessage())
                             .show();
@@ -369,7 +369,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                         @Override
                         public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText(t.getMessage())
                                     .show();
@@ -402,7 +402,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                         @Override
                         public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText(t.getMessage())
                                     .show();
@@ -442,7 +442,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                             @Override
                             public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(t.getMessage())
                                         .show();
@@ -475,7 +475,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                             @Override
                             public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(t.getMessage())
                                         .show();
@@ -510,7 +510,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                             @Override
                             public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(t.getMessage())
                                         .show();
@@ -543,7 +543,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
 
                             @Override
                             public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(t.getMessage())
                                         .show();

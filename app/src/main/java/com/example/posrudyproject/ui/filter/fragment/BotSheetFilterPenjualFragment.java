@@ -66,7 +66,7 @@ public class BotSheetFilterPenjualFragment extends BottomSheetDialogFragment {
                 }
 
                 someIntent.putExtra("OrderBY",id);
-                LocalBroadcastManager.getInstance(getContext()).sendBroadcast(someIntent);
+                LocalBroadcastManager.getInstance(getActivity().getApplicationContext()).sendBroadcast(someIntent);
 
                 dismiss();
             }

@@ -11,20 +11,29 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
+import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pembayaran.adapter.ViewPagerPembayaranAdapter;
 import com.example.posrudyproject.ui.pembayaran.fragment.NonTunaiFragment;
 import com.example.posrudyproject.ui.pembayaran.fragment.TunaiFragment;
+import com.example.posrudyproject.ui.pembayaran.model.DetailPesanan;
+import com.example.posrudyproject.ui.pembayaran.model.Penjualan;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PembayaranActivity extends AppCompatActivity {
 
@@ -34,12 +43,26 @@ public class PembayaranActivity extends AppCompatActivity {
     ViewPager2 viewPager;
     AppCompatTextView tvTotalHargaPembayaran,tvKembalianPembayaran;
     public static final String INTENT_TUNAI_PAS = "INTENT_TUNAI_PAS";
+    List<KeranjangItem> keranjangItems;
+    String ongkir,diskonPersen,diskonRupiah,ekspedisi,namaPelanggan,noHpPelanggan,namaPenjual;
+    String auth_token,lokasi_store,nama_karyawan;
+    Integer id_store,id_karyawan,idPenjual;
+    Penjualan penjualan;
+    List<DetailPesanan> detailPesananList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pembayaran);
-
+        keranjangItems = new ArrayList<>();
+        SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        String token = preferences.getString("token","");
+        auth_token = ("Bearer ").concat(token);
+        id_store = preferences.getInt("id_store", 0);
+        lokasi_store = preferences.getString("lokasi_store","");
+        id_karyawan = preferences.getInt("id_pengguna", 0);
+        nama_karyawan = preferences.getString("nama_pengguna","");
+        detailPesananList = new ArrayList<>();
         //INIT VIEW
         initComponent();
 
@@ -48,6 +71,30 @@ public class PembayaranActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             tvTotalHargaPembayaran.setText(("Rp").concat(decim.format(Double.valueOf(bundle.getString("total_harga","0.00").replace(",","")))));
+            diskonPersen = bundle.getString("diskonPersen");
+            diskonRupiah = bundle.getString("diskonRupiah");
+            ekspedisi = bundle.getString("ekspedisi");
+            ongkir = bundle.getString("ongkir");
+            namaPelanggan = bundle.getString("namaPelanggan");
+            noHpPelanggan = bundle.getString("noHpPelanggan");
+            namaPenjual = bundle.getString("namaPenjual");
+            idPenjual = bundle.getInt("idPenjual");
+            keranjangItems = (List<KeranjangItem>) bundle.getSerializable("items");
+
+            for (int i = 0; i < ((List<KeranjangItem>) bundle.getSerializable("items")).size(); i++) {
+                detailPesananList.add(new DetailPesanan(
+                        id_store,
+                        lokasi_store,
+                        ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getSkuCode(),
+                        "",
+                        "",
+                        ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getArtikelBarang(),
+                        ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getNamaBarang(),
+                        Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")),
+                        Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getKuantitasBarang()),
+                        Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getKuantitasBarang())
+                ));
+            }
         }
 
         //set tablayout
@@ -60,9 +107,52 @@ public class PembayaranActivity extends AppCompatActivity {
         }).attach();
     }
 
+    public Penjualan konfirmasiPenjualan(String metode_bayar) {
+        Double diskon = 0.0;
+        if (diskonPersen != null) {
+            diskon = Double.valueOf(diskonPersen);
+        } else if (diskonRupiah != null) {
+            diskon = Double.valueOf(diskonRupiah);
+        } else {
+            diskon = 0.00;
+        }
+        penjualan = new Penjualan(
+                "",
+                id_store,
+                lokasi_store,
+                noHpPelanggan,
+                namaPelanggan,
+                id_karyawan,
+                nama_karyawan,
+                diskon,
+                metode_bayar,
+                ekspedisi,
+                Double.valueOf((ongkir.replace(",","")).replace("Rp","")),
+                Double.valueOf((tvTotalHargaPembayaran.getText().toString().replace(",","")).replace("Rp","")),
+                Double.valueOf((tvKembalianPembayaran.getText().toString().replace(",","")).replace("Rp","")),
+                detailPesananList
+        );
+        return penjualan;
+    }
+    public  List<KeranjangItem> GetItems() {
+        return keranjangItems;
+    }
+
+    public Map Details(){
+        Map<String,String> details = new HashMap<>();
+        details.put("ongkir", ongkir);
+        details.put("ekspedisi", ekspedisi);
+        details.put("diskonRupiah", diskonRupiah);
+        details.put("diskonPersen", diskonPersen);
+        details.put("namaPelanggan", namaPelanggan);
+        details.put("noHpPelanggan", noHpPelanggan);
+        details.put("namaPenjual", namaPenjual);
+        details.put("idPenjual", String.valueOf(idPenjual));
+        return details;
+    }
     private void setupViewPager(ViewPager2 viewPager) {
         adapter = new ViewPagerPembayaranAdapter(this.getSupportFragmentManager(),
-                this.getLifecycle());
+                PembayaranActivity.this.getLifecycle());
         adapter.addFragment(new TunaiFragment(), "Tunai");
         adapter.addFragment(new NonTunaiFragment(), "Non Tunai");
 

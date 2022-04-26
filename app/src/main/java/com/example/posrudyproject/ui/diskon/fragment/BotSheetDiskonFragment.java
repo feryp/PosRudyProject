@@ -62,7 +62,7 @@ public class BotSheetDiskonFragment extends BottomSheetDialogFragment {
 
     private void setupViewPager(ViewPager2 viewPager) {
         adapter = new PagerDiskonAdapter(getActivity().getSupportFragmentManager(),
-                getActivity().getLifecycle());
+                BotSheetDiskonFragment.getInstance().getLifecycle());
         adapter.addFragment(new PercentFragment(), "%");
         adapter.addFragment(new RupiahFragment(), "Rp");
 

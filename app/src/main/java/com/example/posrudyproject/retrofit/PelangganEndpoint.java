@@ -26,6 +26,8 @@ public interface PelangganEndpoint {
     @POST(value = "/pelanggan/updateMobile")
     Call<Map> update(@Header("AUTHORIZATION") String token, @Body Pelanggan pelanggan);
 
+    @GET("/pelanggan/totalPoin")
+    Call<Double> totalPoin(@Header("AUTHORIZATION") String token, @Query("nama_pelanggan") String nama_pelanggan, @Query("no_hp_pelanggan") String no_hp_pelanggan);
 
     @GET("/pelanggan/delete")
     Call<String> deletePelanggan(@Path("id") Long id);

@@ -372,6 +372,15 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 } else {
                     konfirmasi.putExtra("total_harga", tvTotalHargaKeranjang.getText().toString());
                 }
+                konfirmasi.putExtra("items",(Serializable) keranjangItems);
+                konfirmasi.putExtra("ekspedisi", ekspedisi);
+                konfirmasi.putExtra("ongkir", ongkir);
+                konfirmasi.putExtra("diskonRupiah", diskonRupiah);
+                konfirmasi.putExtra("diskonPersen", diskonPersen);
+                konfirmasi.putExtra("namaPelanggan", namaPelanggan);
+                konfirmasi.putExtra("noHpPelanggan", noHpPelanggan);
+                konfirmasi.putExtra("namaPenjual", namaPenjual);
+                konfirmasi.putExtra("idPenjual", idPenjual);
                 startActivity(konfirmasi);
                 break;
             case R.id.btn_barcode_keranjang:
@@ -557,8 +566,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 Bundle extras = getIntent().getExtras();
                 if (extras != null) {
                     keranjangItems = new ArrayList<>();
-                    for (int i = 0; i < 2; i++) {
-                        if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
+                    for (int i = 0; i < ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++) {
+                        if ((List<KeranjangItem>) extras.getSerializable("itemForBuy") != null) {
                             if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(query)) {
                                 keranjangItems.add(new KeranjangItem(
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
@@ -586,7 +595,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     Bundle extras = getIntent().getExtras();
                     if (extras != null) {
                         keranjangItems = new ArrayList<>();
-                        for (int i = 0; i < 2; i++) {
+                        for (int i = 0; i < ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++) {
                             if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
                                 keranjangItems.add(new KeranjangItem(
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
@@ -608,7 +617,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     Bundle extras = getIntent().getExtras();
                     if (extras != null) {
                         keranjangItems = new ArrayList<>();
-                        for (int i = 0; i < 2; i++) {
+                        for (int i = 0; i < ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++) {
                             if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
                                 if (((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang().equals(newText)) {
                                     keranjangItems.add(new KeranjangItem(

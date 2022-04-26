@@ -55,7 +55,7 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
 
         //Setup Adapter
         adapter = new TokoTujuanAdapter(tokoItems, this);
-        rvTokoTujuan.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvTokoTujuan.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         rvTokoTujuan.setAdapter(adapter);
         rvTokoTujuan.setHasFixedSize(true);
 
@@ -81,7 +81,7 @@ public class BotSheetTokoTujuanFragment extends BottomSheetDialogFragment implem
 
     @Override
     public void onItemClickListener(View view, int position) {
-        Toast.makeText(getContext(), "Pilih " + tokoItems.get(position).getNamaToko(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), "Pilih " + tokoItems.get(position).getNamaToko(), Toast.LENGTH_SHORT).show();
         id_toko = tokoItems.get(position).getId();
         nama_toko = tokoItems.get(position).getNamaToko();
         openDialog();

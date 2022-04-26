@@ -79,7 +79,7 @@ public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implem
                     }
                     //Setup Adapter
                     adapter = new FilterTipeAdapter(tipeItems, BotSheetFilterTipeFragment.this);
-                    rvTipeBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                    rvTipeBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                     rvTipeBarang.setAdapter(adapter);
                     rvTipeBarang.setHasFixedSize(true);
                 }
@@ -115,10 +115,10 @@ public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implem
 
     @Override
     public void onItemClickListener(View view, int position) {
-        Toast.makeText(getContext(), "Pilih " + tipeItems.get(position).getNamaTipe(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), "Pilih " + tipeItems.get(position).getNamaTipe(), Toast.LENGTH_SHORT).show();
         Intent someIntent = new Intent(INTENT_FILTER_TIPE);
         someIntent.putExtra("nama_tipe",tipeItems.get(position).getNamaTipe());
-        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(someIntent);
+        LocalBroadcastManager.getInstance(getActivity().getApplicationContext()).sendBroadcast(someIntent);
         dismiss();
         //SELECT ITEM FILTER
     }
@@ -140,14 +140,14 @@ public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implem
                         }
                         //Setup Adapter
                         adapter = new FilterTipeAdapter(tipeItems, BotSheetFilterTipeFragment.this);
-                        rvTipeBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                        rvTipeBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                         rvTipeBarang.setAdapter(adapter);
                         rvTipeBarang.setHasFixedSize(true);
                     }
 
                     @Override
                     public void onFailure(Call<List<TipeItem>> call, Throwable t) {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText("Oops...")
                                 .setContentText(t.getMessage())
                                 .show();
@@ -173,14 +173,14 @@ public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implem
                             }
                             //Setup Adapter
                             adapter = new FilterTipeAdapter(tipeItems, BotSheetFilterTipeFragment.this);
-                            rvTipeBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                            rvTipeBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                             rvTipeBarang.setAdapter(adapter);
                             rvTipeBarang.setHasFixedSize(true);
                         }
 
                         @Override
                         public void onFailure(Call<List<TipeItem>> call, Throwable t) {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText(t.getMessage())
                                     .show();
@@ -200,14 +200,14 @@ public class BotSheetFilterTipeFragment extends BottomSheetDialogFragment implem
                             }
                             //Setup Adapter
                             adapter = new FilterTipeAdapter(tipeItems, BotSheetFilterTipeFragment.this);
-                            rvTipeBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                            rvTipeBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                             rvTipeBarang.setAdapter(adapter);
                             rvTipeBarang.setHasFixedSize(true);
                         }
 
                         @Override
                         public void onFailure(Call<List<TipeItem>> call, Throwable t) {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText(t.getMessage())
                                     .show();

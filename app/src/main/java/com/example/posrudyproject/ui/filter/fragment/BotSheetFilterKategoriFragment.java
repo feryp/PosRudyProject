@@ -70,7 +70,7 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
         SetupSearchView(auth_token);
 
         Call<List<KategoriItem>> call = kategoriEndpoint.getAll(auth_token);
-        SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading ...");
         pDialog.setCancelable(false);
@@ -80,7 +80,7 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
             public void onResponse(Call<List<KategoriItem>> call, Response<List<KategoriItem>> response) {
                 if (!response.isSuccessful()){
                     pDialog.dismiss();
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText(String.valueOf(response.code()))
                             .setContentText(response.message())
                             .show();
@@ -94,7 +94,7 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
                     }
                     //Setup Adapter
                     adapter = new FilterKategoriAdapter(kategoriItems, BotSheetFilterKategoriFragment.this);
-                    rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                    rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                     rvKategoriBarang.setAdapter(adapter);
                     rvKategoriBarang.setHasFixedSize(true);
 
@@ -104,7 +104,7 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
             @Override
             public void onFailure(Call<List<KategoriItem>> call, Throwable t) {
                 pDialog.dismiss();
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Oops...")
                         .setContentText(t.getMessage())
                         .show();
@@ -132,11 +132,11 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
 
     @Override
     public void onItemClickListener(View view, int position) {
-        Toast.makeText(getContext(), "Pilih " + kategoriItems.get(position).getNamaKetegori(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), "Pilih " + kategoriItems.get(position).getNamaKetegori(), Toast.LENGTH_SHORT).show();
         //SELECT ITEM FILTER
         Intent someIntent = new Intent(INTENT_FILTER_KATEGORI);
         someIntent.putExtra("nama_kategori",kategoriItems.get(position).getNamaKetegori());
-        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(someIntent);
+        LocalBroadcastManager.getInstance(getActivity().getApplicationContext()).sendBroadcast(someIntent);
         dismiss();
     }
 
@@ -158,14 +158,14 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
                         }
                         //Setup Adapter
                         adapter = new FilterKategoriAdapter(kategoriItems, BotSheetFilterKategoriFragment.this);
-                        rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                        rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                         rvKategoriBarang.setAdapter(adapter);
                         rvKategoriBarang.setHasFixedSize(true);
                     }
 
                     @Override
                     public void onFailure(Call<List<KategoriItem>> call, Throwable t) {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText("Oops...")
                                 .setContentText(t.getMessage())
                                 .show();
@@ -192,14 +192,14 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
                             }
                             //Setup Adapter
                             adapter = new FilterKategoriAdapter(kategoriItems, BotSheetFilterKategoriFragment.this);
-                            rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                            rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                             rvKategoriBarang.setAdapter(adapter);
                             rvKategoriBarang.setHasFixedSize(true);
                         }
 
                         @Override
                         public void onFailure(Call<List<KategoriItem>> call, Throwable t) {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialog(getActivity().getApplicationContext().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText(t.getMessage())
                                     .show();
@@ -220,14 +220,14 @@ public class BotSheetFilterKategoriFragment extends BottomSheetDialogFragment im
                             }
                             //Setup Adapter
                             adapter = new FilterKategoriAdapter(kategoriItems, BotSheetFilterKategoriFragment.this);
-                            rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getContext()));
+                            rvKategoriBarang.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                             rvKategoriBarang.setAdapter(adapter);
                             rvKategoriBarang.setHasFixedSize(true);
                         }
 
                         @Override
                         public void onFailure(Call<List<KategoriItem>> call, Throwable t) {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialog(getActivity().getApplicationContext(), SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText(t.getMessage())
                                     .show();

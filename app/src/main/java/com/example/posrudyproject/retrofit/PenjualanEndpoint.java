@@ -11,6 +11,7 @@ import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiPelangganItem
 import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiPenjualItem;
 import com.example.posrudyproject.ui.laporan.model.SubRiwayatTransaksiPelangganItem;
 import com.example.posrudyproject.ui.laporan.model.TransaksiTerakhirItem;
+import com.example.posrudyproject.ui.pembayaran.model.Penjualan;
 import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public interface PenjualanEndpoint {
     Call<List<PenjualanItem>> search(@Header("AUTHORIZATION") String token, @Query("keyword") String keyword);
 
     @POST("/store/add")
-    Call<PenjualanItem> savePenjualan(@Header("AUTHORIZATION") String token, @Body PenjualanItem penjualanItem);
+    Call<List<Penjualan>> savePenjualan(@Header("AUTHORIZATION") String token, @Body Penjualan penjualan);
 
     @POST("/store/update")
     Call<PenjualanItem> update(@Header("AUTHORIZATION") String token, @Body PenjualanItem penjualanItem);
