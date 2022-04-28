@@ -109,12 +109,19 @@ public class PembayaranActivity extends AppCompatActivity {
 
     public Penjualan konfirmasiPenjualan(String metode_bayar) {
         Double diskon = 0.0;
+        Double ongkir_val = 0.00;
         if (diskonPersen != null) {
             diskon = Double.valueOf(diskonPersen);
         } else if (diskonRupiah != null) {
             diskon = Double.valueOf(diskonRupiah);
         } else {
             diskon = 0.00;
+        }
+
+        if (ongkir != null) {
+            ongkir_val = Double.valueOf((ongkir.replace(",","")).replace("Rp",""));
+        } else {
+            ongkir_val = 0.00;
         }
         penjualan = new Penjualan(
                 "",
@@ -127,7 +134,7 @@ public class PembayaranActivity extends AppCompatActivity {
                 diskon,
                 metode_bayar,
                 ekspedisi,
-                Double.valueOf((ongkir.replace(",","")).replace("Rp","")),
+                ongkir_val,
                 Double.valueOf((tvTotalHargaPembayaran.getText().toString().replace(",","")).replace("Rp","")),
                 Double.valueOf((tvKembalianPembayaran.getText().toString().replace(",","")).replace("Rp","")),
                 detailPesananList
@@ -205,7 +212,7 @@ public class PembayaranActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             //TODO extract extras from intent
             DecimalFormat decim = new DecimalFormat("#,###.##");
-            if (intent.getStringExtra("uang_diterima").isEmpty()) {
+            if (intent.getStringExtra("uang_diterima") == null ) {
                 tvKembalianPembayaran.setText(decim.format(0.00));
             } else {
                 tvKembalianPembayaran.setText(decim.format(Double.valueOf((intent.getStringExtra("uang_diterima").replace(",","")).replace("Rp","")) - Double.valueOf((tvTotalHargaPembayaran.getText().toString().replace("Rp","")).replace(",",""))));

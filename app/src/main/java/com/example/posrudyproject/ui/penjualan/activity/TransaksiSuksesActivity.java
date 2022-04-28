@@ -7,30 +7,24 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.app.Activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothClass;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.dantsu.escposprinter.connection.DeviceConnection;
+import com.dantsu.escposprinter.connection.bluetooth.BluetoothConnection;
+import com.dantsu.escposprinter.connection.bluetooth.BluetoothPrintersConnections;
+import com.dantsu.escposprinter.textparser.PrinterTextParserImg;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PelangganEndpoint;
@@ -38,23 +32,21 @@ import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 
 import com.example.posrudyproject.ui.pembayaran.model.DetailPesanan;
 import com.example.posrudyproject.ui.penjualan.adapter.TransaksiSuksesAdapter;
+import com.example.posrudyproject.ui.penjualan.async.AsyncBluetoothEscPosPrint;
+import com.example.posrudyproject.ui.penjualan.async.AsyncEscPosPrint;
+import com.example.posrudyproject.ui.penjualan.async.AsyncEscPosPrinter;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 public class TransaksiSuksesActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,6 +59,13 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
     List<KeranjangItem> keranjangItems;
     PelangganEndpoint pelangganEndpoint;
     String auth_token;
+    String alamat_store,items,uang_diterima;
+
+    public static final int PERMISSION_BLUETOOTH = 1;
+    public static final int PERMISSION_BLUETOOTH_ADMIN = 2;
+    public static final int PERMISSION_BLUETOOTH_CONNECT = 3;
+    public static final int PERMISSION_BLUETOOTH_SCAN = 4;
+    private BluetoothConnection selectedDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +77,19 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
         auth_token = ("Bearer ").concat(token);
+        alamat_store = "Ruko Golden Boulevard Blok W2 No.12 BSD City, Lengkong Karya, Kec. Serpong Utara, Kota Tangerang Selatan, Banten 15320";
         //INIT VIEW
         initComponent();
 
         initToolbar();
 
+        Button button = (Button) this.findViewById(R.id.button_bluetooth_browse);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                browseBluetoothDevice();
+            }
+        });
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -91,7 +98,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
             tvMetodePembayaranTransaksiSukses.setText(bundle.getString("metode_bayar"));
             tvNoInvoiceDetailPesanan.setText(bundle.getString("id_transaksi"));
             tvPelangganTransaksiSukses.setText(bundle.getString("namaPelanggan"));
-
+            uang_diterima = "Rp" + formatter.format(bundle.getDouble("total") + bundle.getDouble("kembalian"));
             if (bundle.getDouble("diskon") < 100.0 ) {
                 tvDiskonTransaksiSukses.setText(formatter.format(bundle.getDouble("diskon")) + "%");
             } else if (bundle.getDouble("diskon") >= 100.0 ) {
@@ -174,9 +181,13 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_cetak_struk:
-
-                Intent cetakStruk = new Intent(this, StrukPenjualanActivity.class);
-                startActivity(cetakStruk);
+                try {
+                    printBluetooth();
+                    /*Intent struk = new Intent(this, StrukPenjualanActivity.class);
+                    startActivity(struk);*/
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 break;
 
             case R.id.btn_buat_pesanan_baru:
@@ -186,4 +197,138 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            switch (requestCode) {
+                case TransaksiSuksesActivity.PERMISSION_BLUETOOTH:
+                case TransaksiSuksesActivity.PERMISSION_BLUETOOTH_ADMIN:
+                case TransaksiSuksesActivity.PERMISSION_BLUETOOTH_CONNECT:
+                case TransaksiSuksesActivity.PERMISSION_BLUETOOTH_SCAN:
+                    this.printBluetooth();
+                    break;
+            }
+        }
+    }
+
+
+    public void browseBluetoothDevice() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        final BluetoothConnection[] bluetoothDevicesList = (new BluetoothPrintersConnections()).getList();
+        System.out.println(bluetoothDevicesList);
+        if (bluetoothDevicesList != null) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            final String[] items = new String[bluetoothDevicesList.length + 1];
+            items[0] = "Default printer";
+            int i = 0;
+            for (BluetoothConnection device : bluetoothDevicesList) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                items[++i] = device.getDevice().getName();
+            }
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(TransaksiSuksesActivity.this);
+            alertDialog.setTitle("Bluetooth printer selection");
+            alertDialog.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    int index = i - 1;
+                    if (index == -1) {
+                        selectedDevice = null;
+                    } else {
+                        selectedDevice = bluetoothDevicesList[index];
+                    }
+                    Button button = (Button) findViewById(R.id.button_bluetooth_browse);
+                    button.setText(items[i]);
+                }
+            });
+
+            AlertDialog alert = alertDialog.create();
+            alert.setCanceledOnTouchOutside(false);
+            alert.show();
+
+        }
+    }
+
+    public void printBluetooth() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH}, TransaksiSuksesActivity.PERMISSION_BLUETOOTH);
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_ADMIN}, TransaksiSuksesActivity.PERMISSION_BLUETOOTH_ADMIN);
+        } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S && ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, TransaksiSuksesActivity.PERMISSION_BLUETOOTH_CONNECT);
+        } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S && ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, TransaksiSuksesActivity.PERMISSION_BLUETOOTH_SCAN);
+        } else {
+            new AsyncBluetoothEscPosPrint(
+                    this,
+                    new AsyncEscPosPrint.OnPrintFinished() {
+                        @Override
+                        public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
+                            Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
+                        }
+
+                        @Override
+                        public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
+                            Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+                        }
+                    }
+            )
+                    .execute(this.getAsyncEscPosPrinter(selectedDevice));
+        }
+    }
+
+    /**
+     * Asynchronous printing
+     */
+    @SuppressLint("SimpleDateFormat")
+    public AsyncEscPosPrinter getAsyncEscPosPrinter(DeviceConnection printerConnection) {
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy, HH:mm");
+        AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
+        items = "";
+        for (int i=0; i<keranjangItems.size(); i++) {
+            items += keranjangItems.get(i).getNamaBarang()+"\n"+keranjangItems.get(i).getHargaBarang()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
+        }
+        return printer.addTextToPrint(
+                "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
+                        "[L]\n" +
+                        "[C]<u><font size='normal'>"+ alamat_store +"</font></u>\n" +
+                        "[L]\n" +
+                        "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[C]<font size='normal'><b>Terimakasih sudh belanja!</b></font>\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[L]Penjual   : "+ tvPenjualTransaksiSukses.getText().toString() + "\n" +
+                        "[L]No. Struk : "+ tvNoInvoiceDetailPesanan.getText().toString() + "\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]"+ items +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[C]================================\n" +
+                        "[L]\n" +
+                        "[L]Pelanggan     : "+ tvPelangganTransaksiSukses.getText().toString() +"\n" +
+                        "[L]Point         : "+ tvPointTransaksiSukses.getText().toString() +"\n" +
+                        "[L]Diskon        : "+ tvDiskonTransaksiSukses.getText().toString() +"\n" +
+                        "[L]Ongkir        : " + tvOngkirTransaksiSukses.getText().toString() + "\n" +
+                        "[L]Total         : " + tvJumlahNominalTransaksi.getText().toString() + "\n" +
+                        "[L]Metode Bayar  : "+ tvMetodePembayaranTransaksiSukses.getText().toString()+ "\n" +
+                        "[L]Uang Diterima : " + uang_diterima + "\n" +
+                        "[L]Kembalian     : "+ tvKembalianTransaksiSukses.getText().toString() +"\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "[C]Powered By GB System\n"
+        );
+    }
 }

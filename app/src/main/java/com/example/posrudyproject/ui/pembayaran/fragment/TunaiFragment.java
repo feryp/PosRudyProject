@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatEditText;
@@ -15,13 +16,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PenjualanEndpoint;
 import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.pembayaran.model.Penjualan;
-import com.example.posrudyproject.ui.printer.PrinterActivity;
+import com.example.posrudyproject.ui.penjualan.activity.TransaksiSuksesActivity;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TunaiFragment extends Fragment implements View.OnClickListener {
 
@@ -190,9 +199,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                 someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_lanjut:
-                Intent cetakStruk = new Intent(getActivity().getApplicationContext(), PrinterActivity.class);
-                startActivity(cetakStruk);
-                /*penjualanEndpoint = ApiClient.getClient().create(PenjualanEndpoint.class);
+                penjualanEndpoint = ApiClient.getClient().create(PenjualanEndpoint.class);
                 Call<List<Penjualan>> call = penjualanEndpoint.savePenjualan(auth_token, pembayaranActivity.konfirmasiPenjualan("Tunai"));
                 SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -246,7 +253,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                     }
                 });
                 display();
-                someIntent.putExtra("uang_diterima",curr);*/
+                someIntent.putExtra("uang_diterima",curr);
                 break;
 
         }

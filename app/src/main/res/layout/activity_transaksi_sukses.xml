@@ -395,6 +395,21 @@
                     android:fontFamily="@font/work_sans_semi_bold"
                     app:strokeColor="@color/neon_blue_primary"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/button_bluetooth_browse" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_bluetooth_browse"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="Browse Printer"
+                    android:textSize="@dimen/font_md"
+                    android:textColor="@color/neon_blue_primary"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    android:fontFamily="@font/work_sans_semi_bold"
+                    app:strokeColor="@color/neon_blue_primary"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/btn_buat_pesanan_baru" />
 
                 <com.google.android.material.button.MaterialButton
@@ -407,7 +422,7 @@
                     android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:fontFamily="@font/work_sans_semi_bold"
-                    app:layout_constraintTop_toBottomOf="@id/btn_cetak_struk"
+                    app:layout_constraintTop_toBottomOf="@id/button_bluetooth_browse"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
 
