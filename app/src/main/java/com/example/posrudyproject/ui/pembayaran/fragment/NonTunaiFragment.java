@@ -43,12 +43,16 @@ public class NonTunaiFragment extends Fragment implements OnItemClickListener {
 
         //CARD BANK LIST
         bankItems = new ArrayList<>();
-        for (int i=0; i<6; i++){
-            bankItems.add(new BankItem(
-                    R.drawable.im_bank_mandiri,
-                    "Bank Mandiri",
-                    "0700 000 899 992"));
-        }
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank Mandiri","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank BCA","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank BRI","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank BNI","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank BTN","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank Danamon","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank CIMB","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank Mega","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank BJB","0700 000 899 992"));
+        bankItems.add(new BankItem(R.drawable.im_bank_mandiri,"Bank DKI","0700 000 899 992"));
 
         //Setup adapter Debit
         cardAdapter = new PembayaranKartuAdapter(bankItems, this);
