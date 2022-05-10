@@ -200,7 +200,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_lanjut:
                 penjualanEndpoint = ApiClient.getClient().create(PenjualanEndpoint.class);
-                Call<List<Penjualan>> call = penjualanEndpoint.savePenjualan(auth_token, pembayaranActivity.konfirmasiPenjualan("Tunai"));
+                Call<List<Penjualan>> call = penjualanEndpoint.savePenjualan(auth_token, pembayaranActivity.konfirmasiPenjualan("Tunai","-","-"));
                 SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
                 pDialog.setTitleText("Loading ...");
@@ -233,6 +233,8 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                                 lanjut.putExtra("idPenjual", response.body().get(i).getId_karyawan());
                             }
                             lanjut.putExtra("metode_bayar", "Tunai");
+                            lanjut.putExtra("bank_name", "-");
+                            lanjut.putExtra("no_rek", "-");
 
                             if (pembayaranActivity.Details().get("diskonRupiah") != null) {
                                 lanjut.putExtra("tipe_diskon", "Rp");

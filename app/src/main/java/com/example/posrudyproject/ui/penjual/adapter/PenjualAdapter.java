@@ -40,8 +40,8 @@ public class PenjualAdapter extends RecyclerView.Adapter<PenjualViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PenjualViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PenjualItem item = penjualItems.get(position);
-
-        byte[] bytes = Base64.decode(item.getImage().getBytes(), Base64.DEFAULT);
+        String fotoBarang = item.getImage() == null? "" : item.getImage();
+        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.fotoPenjual.setImageBitmap(btm);
         holder.namaPenjual.setText(item.getNama_karyawan());

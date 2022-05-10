@@ -107,7 +107,7 @@ public class PembayaranActivity extends AppCompatActivity {
         }).attach();
     }
 
-    public Penjualan konfirmasiPenjualan(String metode_bayar) {
+    public Penjualan konfirmasiPenjualan(String metode_bayar,String bankName,String noRek) {
         Double diskon = 0.0;
         Double ongkir_val = 0.00;
         if (diskonPersen != null) {
@@ -133,6 +133,8 @@ public class PembayaranActivity extends AppCompatActivity {
                 nama_karyawan,
                 diskon,
                 metode_bayar,
+                bankName,
+                noRek,
                 ekspedisi,
                 ongkir_val,
                 Double.valueOf((tvTotalHargaPembayaran.getText().toString().replace(",","")).replace("Rp","")),

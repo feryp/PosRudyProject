@@ -33,6 +33,12 @@ public class Penjualan implements Serializable {
     @SerializedName("metode_bayar")
     private String metode_bayar;
 
+    @SerializedName("metode_bayar")
+    private String bankName;
+
+    @SerializedName("metode_bayar")
+    private String noRek;
+
     @SerializedName("ekspedisi")
     private String ekspedisi;
 
@@ -48,7 +54,9 @@ public class Penjualan implements Serializable {
     @SerializedName("detailPesananList")
     private List<DetailPesanan> detailPesananList;
 
-    public Penjualan(String id_transaksi,int id_store, String lokasi_store, String no_hp_pelanggan, String nama_pelanggan, int id_karyawan, String nama_karyawan, double diskon, String metode_bayar, String ekspedisi, Double ongkir, Double total, Double kembalian, List<DetailPesanan> detailPesananList) {
+    public Penjualan(String id_transaksi,int id_store, String lokasi_store, String no_hp_pelanggan, String nama_pelanggan, int id_karyawan, String nama_karyawan, double diskon,
+                     String metode_bayar, String bankName, String noRek,
+                     String ekspedisi, Double ongkir, Double total, Double kembalian, List<DetailPesanan> detailPesananList) {
         this.id_transaksi = id_transaksi;
         this.id_store = id_store;
         this.lokasi_store = lokasi_store;
@@ -58,6 +66,8 @@ public class Penjualan implements Serializable {
         this.nama_karyawan = nama_karyawan;
         this.diskon = diskon;
         this.metode_bayar = metode_bayar;
+        this.bankName = bankName;
+        this.noRek = noRek;
         this.ekspedisi = ekspedisi;
         this.ongkir = ongkir;
         this.total = total;

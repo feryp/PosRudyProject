@@ -1,21 +1,30 @@
 package com.example.posrudyproject.ui.pembayaran.model;
 
-public class BankItem {
-    private int logoBank;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class BankItem implements Serializable {
+    @SerializedName("image")
+    private String logoBank;
+
+    @SerializedName("bank_name")
     private String namaBank;
+
+    @SerializedName("acc_number")
     private String noRekening;
 
-    public BankItem(int logoBank, String namaBank, String noRekening) {
+    public BankItem(String logoBank, String namaBank, String noRekening) {
         this.logoBank = logoBank;
         this.namaBank = namaBank;
         this.noRekening = noRekening;
     }
 
-    public int getLogoBank() {
+    public String getLogoBank() {
         return logoBank;
     }
 
-    public void setLogoBank(int logoBank) {
+    public void setLogoBank(String logoBank) {
         this.logoBank = logoBank;
     }
 

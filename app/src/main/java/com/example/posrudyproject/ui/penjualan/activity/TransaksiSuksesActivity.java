@@ -59,7 +59,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
     List<KeranjangItem> keranjangItems;
     PelangganEndpoint pelangganEndpoint;
     String auth_token;
-    String alamat_store,items,uang_diterima;
+    String alamat_store,items,uang_diterima,bank_name,norek;
 
     public static final int PERMISSION_BLUETOOTH = 1;
     public static final int PERMISSION_BLUETOOTH_ADMIN = 2;
@@ -77,7 +77,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
         auth_token = ("Bearer ").concat(token);
-        alamat_store = "Ruko Golden Boulevard Blok W2 No.12 BSD City, Lengkong Karya, Kec. Serpong Utara, Kota Tangerang Selatan, Banten 15320";
+        alamat_store = preferences.getString("alamat_store","");
         //INIT VIEW
         initComponent();
 
@@ -96,6 +96,8 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
             tvJumlahNominalTransaksi.setText("Rp" + formatter.format(bundle.getDouble("total")));
             tvKembalianTransaksiSukses.setText("Rp" + formatter.format(bundle.getDouble("kembalian")));
             tvMetodePembayaranTransaksiSukses.setText(bundle.getString("metode_bayar"));
+            bank_name = bundle.getString("bank_name");
+            norek = bundle.getString("norek");
             tvNoInvoiceDetailPesanan.setText(bundle.getString("id_transaksi"));
             tvPelangganTransaksiSukses.setText(bundle.getString("namaPelanggan"));
             uang_diterima = "Rp" + formatter.format(bundle.getDouble("total") + bundle.getDouble("kembalian"));
@@ -323,6 +325,8 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                         "[L]Ongkir        : " + tvOngkirTransaksiSukses.getText().toString() + "\n" +
                         "[L]Total         : " + tvJumlahNominalTransaksi.getText().toString() + "\n" +
                         "[L]Metode Bayar  : "+ tvMetodePembayaranTransaksiSukses.getText().toString()+ "\n" +
+                        "[L]Nama Bank     : "+ bank_name+ "\n" +
+                        "[L]No Rekening   : "+ norek+ "\n" +
                         "[L]Uang Diterima : " + uang_diterima + "\n" +
                         "[L]Kembalian     : "+ tvKembalianTransaksiSukses.getText().toString() +"\n" +
                         "\n" +

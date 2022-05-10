@@ -1,6 +1,9 @@
 package com.example.posrudyproject.ui.pembayaran.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +38,10 @@ public class PembayaranKartuAdapter extends RecyclerView.Adapter<PembayaranKartu
     @Override
     public void onBindViewHolder(@NonNull PembayaranKartuViewHolder holder, int position) {
         BankItem item = bankItems.get(position);
-        holder.logoBank.setImageResource(item.getLogoBank());
+        String fotoBarang = item.getLogoBank() == null? "" : item.getLogoBank();
+        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
+        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.logoBank.setImageBitmap(btm);
 
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }

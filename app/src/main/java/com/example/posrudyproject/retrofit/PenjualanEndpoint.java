@@ -11,6 +11,7 @@ import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiPelangganItem
 import com.example.posrudyproject.ui.laporan.model.RiwayatTransaksiPenjualItem;
 import com.example.posrudyproject.ui.laporan.model.SubRiwayatTransaksiPelangganItem;
 import com.example.posrudyproject.ui.laporan.model.TransaksiTerakhirItem;
+import com.example.posrudyproject.ui.pembayaran.model.BankItem;
 import com.example.posrudyproject.ui.pembayaran.model.Penjualan;
 import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
 
@@ -96,4 +97,7 @@ public interface PenjualanEndpoint {
 
     @GET("/store/riwayatPertanggal")
     Call <List<RiwayatTransaksiItem>> riwayatPertanggal(@Header("AUTHORIZATION") String token, @Query("id_store") int id_store, @Query("start_date") String start_date, @Query("end_date") String end_date);
+
+    @GET("/master/bank/all")
+    Call <List<BankItem>> getAllBank(@Header("AUTHORIZATION") String token);
 }
