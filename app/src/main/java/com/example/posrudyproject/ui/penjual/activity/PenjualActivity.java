@@ -71,6 +71,7 @@ public class PenjualActivity extends AppCompatActivity implements OnItemClickLis
 
         Bundle bundle = getIntent().getExtras();
         keranjangItems = new ArrayList<>();
+        isPenjualan = 0;
         if (bundle != null){
             keranjangItems = (List<KeranjangItem>) bundle.getSerializable("itemForBuy");
             isPenjualan = bundle.getInt("isPenjualan",0);
