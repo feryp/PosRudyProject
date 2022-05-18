@@ -17,8 +17,41 @@
         android:id="@+id/im_logo_bank_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="40dp"
+        android:maxHeight="40dp"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/im_bank_mandiri" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_nama_bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_sm"
+        tools:text="Bank Mandiri"
+        android:textSize="@dimen/font_md"
+        android:textColor="@color/black_gunmetal"
+        android:fontFamily="@font/work_sans_medium"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/im_logo_bank_card"
+        app:layout_constraintTop_toTopOf="@id/im_logo_bank_card"
+        app:layout_constraintBottom_toTopOf="@id/tv_no_rek_bank"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_no_rek_bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_sm"
+        tools:text="0700 000 899 992"
+        android:textSize="@dimen/font_sm"
+        android:textColor="@color/black_coral"
+        android:fontFamily="@font/work_sans_regular"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/im_logo_bank_card"
+        app:layout_constraintTop_toBottomOf="@id/tv_nama_bank"
+        app:layout_constraintBottom_toBottomOf="@id/im_logo_bank_card"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

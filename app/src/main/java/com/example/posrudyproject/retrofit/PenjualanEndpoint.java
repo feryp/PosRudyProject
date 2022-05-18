@@ -99,5 +99,5 @@ public interface PenjualanEndpoint {
     Call <List<RiwayatTransaksiItem>> riwayatPertanggal(@Header("AUTHORIZATION") String token, @Query("id_store") int id_store, @Query("start_date") String start_date, @Query("end_date") String end_date);
 
     @GET("/master/bank/all")
-    Call <List<BankItem>> getAllBank(@Header("AUTHORIZATION") String token);
+    Call<List<BankItem>> getAllBank(@Header("AUTHORIZATION") String token);
 }

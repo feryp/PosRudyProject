@@ -11,6 +11,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class PesananTungguViewHolder extends RecyclerView.ViewHolder {
 
+    public  AppCompatTextView id;
     public AppCompatTextView noPesanan;
     public AppCompatTextView tglPesanan;
     public AppCompatTextView jamPesanan;
@@ -22,7 +23,7 @@ public class PesananTungguViewHolder extends RecyclerView.ViewHolder {
 
     public PesananTungguViewHolder(@NonNull View itemView) {
         super(itemView);
-
+        id = itemView.findViewById(R.id.id_item);
         noPesanan = itemView.findViewById(R.id.tv_nomor_pesanan_tunggu);
         tglPesanan = itemView.findViewById(R.id.tv_tgl_pesanan_tunggu);
         jamPesanan = itemView.findViewById(R.id.tv_jam_pesanan_tunggu);

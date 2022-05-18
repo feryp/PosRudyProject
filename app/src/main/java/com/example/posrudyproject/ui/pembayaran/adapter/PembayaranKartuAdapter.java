@@ -42,7 +42,8 @@ public class PembayaranKartuAdapter extends RecyclerView.Adapter<PembayaranKartu
         byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.logoBank.setImageBitmap(btm);
-
+        holder.namaBank.setText(item.getNamaBank());
+        holder.noRek.setText(item.getNoRekening());
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }
 

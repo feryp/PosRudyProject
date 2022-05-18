@@ -64,6 +64,7 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
 
         Bundle bundle = getIntent().getExtras();
         keranjangItems = new ArrayList<>();
+        isPenjualan = 0;
         if (bundle != null){
             keranjangItems = (List<KeranjangItem>) bundle.getSerializable("itemForBuy");
             isPenjualan = bundle.getInt("isPenjualan",0);
@@ -150,10 +151,9 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                     startActivity(tambahPelanggan);
                     finish();
                 } else {
-                    System.out.println(isPenjualan);
-                    /*Intent intent = new Intent(PelangganActivity.this, MainActivity.class);
+                    Intent intent = new Intent(PelangganActivity.this, MainActivity.class);
                     startActivity(intent);
-                    finish();*/
+                    finish();
                 }
             }
         });

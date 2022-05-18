@@ -44,7 +44,6 @@ public class PembayaranTransferAdapter extends RecyclerView.Adapter<PembayaranTr
         holder.logoBank.setImageBitmap(btm);
         holder.namaBank.setText(item.getNamaBank());
         holder.noRek.setText(item.getNoRekening());
-
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
     }
 

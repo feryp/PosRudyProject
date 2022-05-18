@@ -21,7 +21,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +34,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.retrofit.ApiClient;
+import com.example.posrudyproject.retrofit.PesananTungguEndpoint;
 import com.example.posrudyproject.ui.barcode.ScannerActivity;
 import com.example.posrudyproject.ui.diskon.fragment.BotSheetDiskonFragment;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
@@ -39,7 +43,11 @@ import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
+import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
+import com.example.posrudyproject.ui.pesananTunggu.adapter.PesananTungguAdapter;
+import com.example.posrudyproject.ui.pesananTunggu.model.BarangPesananTungguItem;
+import com.example.posrudyproject.ui.pesananTunggu.model.PesananTungguItem;
 import com.example.posrudyproject.ui.produk.activity.CustomBarangActivity;
 import com.example.posrudyproject.ui.ubahHarga.activity.UbahHargaActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -50,6 +58,11 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class KeranjangActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -62,17 +75,30 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     KeranjangAdapter adapter;
     List<KeranjangItem> keranjangItems;
     ConstraintLayout layoutKeranjang, layoutEmpty, layoutPenjual;
-
+    PesananTungguEndpoint pesananTungguEndpoint;
+    List<PesananTungguItem> pesananTungguItems;
+    PesananTungguItem pesananTungguItem;
     String noHpPelanggan,namaPelanggan,namaPenjual,ongkir,ekspedisi,diskonRupiah,diskonPersen;
-    Integer idPenjual;
+    Integer idPenjual,id_store,id_karyawan;
     Double subtotal = 0.00;
+    String auth_token,lokasi_store,nama_karyawan,id_kategori;
+    List<BarangPesananTungguItem> barangPesananTungguItems;
     public static final String INTENT_DISKON = "INTENT_DISKON";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keranjang);
-
+        SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        String token = preferences.getString("token","");
+        auth_token = ("Bearer ").concat(token);
+        id_store = preferences.getInt("id_store", 0);
+        lokasi_store = preferences.getString("lokasi_store","");
+        id_karyawan = preferences.getInt("id_pengguna", 0);
+        nama_karyawan = preferences.getString("nama_pengguna","");
+        pesananTungguEndpoint = ApiClient.getClient().create(PesananTungguEndpoint.class);
+        barangPesananTungguItems = new ArrayList<>();
+        pesananTungguItems = new ArrayList<>();
         //INIT VIEW
         initComponent();
 
@@ -102,6 +128,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
         if (extras != null) {
             if ((List<KeranjangItem>) extras.getSerializable("itemForBuy") != null) {
+                id_kategori = extras.getString("id_kategori");
                 for (int i = 0; i < ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++) {
                     if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
                         keranjangItems.add(new KeranjangItem(
@@ -161,6 +188,29 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
                 }
                 //end part pelanggan
+            } else if ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue") != null) {
+                for (int j=0; j < ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).size(); j++) {
+                    keranjangItems.add(new KeranjangItem(
+                            ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getImage(),
+                            ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getType_name(),
+                            ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getSku_code(),
+                            ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getArtikel(),
+                            ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getNamaBarang(),
+                            formatter.format(Double.valueOf(((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getHarga())),
+                            ((((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getKuantitasBarang()).toString()).replace(".0",""),
+                            formatter.format(Double.valueOf(((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getHarga()) * Double.valueOf(((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getKuantitasBarang())),
+                            ((((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getKuantitasBarang()).toString()).replace(".0","")
+                    ));
+                }
+                namaPelanggan = extras.getString("namaPelanggan");
+                noHpPelanggan = extras.getString("noHp");
+
+                tvPelanggan.setVisibility(View.VISIBLE);
+                btnAddPelanggan.setVisibility(View.GONE);
+                tvPelanggan.setText(extras.getString("namaPelanggan"));
+
+                tvPenjual.setVisibility(View.GONE);
+                btnAddPenjual.setVisibility(View.VISIBLE);
             }
         }
         //Setup Adapter
@@ -256,7 +306,15 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent penjualan = new Intent(KeranjangActivity.this, PenjualanActivity.class);
+                penjualan.putExtra("id_kategori",id_kategori);
+                startActivity(penjualan);
+            }
+
+        });
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_notes_order){
                 Intent pesananTunggu = new Intent(this, PesananTungguActivity.class);
@@ -528,7 +586,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         View mView = getLayoutInflater().inflate(R.layout.dialog_simpan_pesanan,null);
 
         //init view
-        final TextInputEditText etKetPesanan = mView.findViewById(R.id.et_ket_simpan_pesanan);
+
         MaterialButton btnSimpan = mView.findViewById(R.id.btn_simpan_keterangan_pesanan);
         MaterialButton btnCancel = mView.findViewById(R.id.btn_cancel_dialog);
 
@@ -542,7 +600,54 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(KeranjangActivity.this, "Simpan", Toast.LENGTH_SHORT).show();
+                TextInputEditText etKetPesanan = mView.findViewById(R.id.et_ket_simpan_pesanan);
+                pesananTungguItem = new PesananTungguItem(
+                        null,
+                        "",
+                        "",
+                        id_store,
+                        lokasi_store,
+                        noHpPelanggan,
+                        namaPelanggan,
+                        tvTotalHargaKeranjang.getText().toString(),
+                        etKetPesanan.getText().toString(),
+                        subItems()
+                );
+                if (pesananTungguItem != null) {
+                    Call<List<PesananTungguItem>> call = pesananTungguEndpoint.savePesananTunggu(auth_token,pesananTungguItem);
+                    SweetAlertDialog pDialog = new SweetAlertDialog(KeranjangActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    pDialog.setTitleText("Loading ...");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
+
+                    call.enqueue(new Callback<List<PesananTungguItem>>() {
+                        @Override
+                        public void onResponse(Call<List<PesananTungguItem>> call, Response<List<PesananTungguItem>> response) {
+                            if (!response.isSuccessful()){
+                                pDialog.dismiss();
+                                new SweetAlertDialog(KeranjangActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText(String.valueOf(response.code()))
+                                        .setContentText(response.message())
+                                        .show();
+                            } else {
+                                pDialog.dismiss();
+                                Toast.makeText(KeranjangActivity.this, "Simpan", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<PesananTungguItem>> call, Throwable t) {
+                            pDialog.dismiss();
+                            new SweetAlertDialog(KeranjangActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                }
+
                 alertDialog.dismiss();
             }
         });
@@ -555,6 +660,25 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         });
 
         alertDialog.show();
+    }
+
+    public List<BarangPesananTungguItem> subItems(){
+        for (int i=0; i<keranjangItems.size(); i++) {
+            barangPesananTungguItems.add(new BarangPesananTungguItem(
+                    keranjangItems.get(i).getFoto_barang(),
+                    id_store,
+                    lokasi_store,
+                    keranjangItems.get(i).getSkuCode(),
+                    keranjangItems.get(i).getTipeBarang(),
+                    "",
+                    keranjangItems.get(i).getArtikelBarang(),
+                    keranjangItems.get(i).getNamaBarang(),
+                    Double.valueOf(keranjangItems.get(i).getHargaBarang().replace(",","")),
+                    Double.valueOf(keranjangItems.get(i).getKuantitasBarang().replace(",","")),
+                    Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(",",""))
+            ));
+        }
+        return barangPesananTungguItems;
     }
 
     private void SetupSearchView() {

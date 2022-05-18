@@ -38,6 +38,7 @@
         android:text="@string/menu_notifikasi"
         android:textSize="@dimen/font_xlg"
         android:textColor="@color/black"
+        android:visibility="gone"
         android:fontFamily="@font/work_sans_semi_bold"
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout"/>
 
@@ -46,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_md"
+        android:visibility="gone"
         android:background="@drawable/bg_border_bottom_silver"
         app:layout_constraintTop_toBottomOf="@+id/title_notifikasi">
 
@@ -81,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_md"
+        android:visibility="gone"
         android:background="@drawable/bg_border_bottom_silver"
         app:layout_constraintTop_toBottomOf="@+id/push_notif_setting">
 

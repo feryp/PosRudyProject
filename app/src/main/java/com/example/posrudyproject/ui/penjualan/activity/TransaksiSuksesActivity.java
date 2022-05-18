@@ -97,7 +97,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
             tvKembalianTransaksiSukses.setText("Rp" + formatter.format(bundle.getDouble("kembalian")));
             tvMetodePembayaranTransaksiSukses.setText(bundle.getString("metode_bayar"));
             bank_name = bundle.getString("bank_name");
-            norek = bundle.getString("norek");
+            norek = bundle.getString("no_rek");
             tvNoInvoiceDetailPesanan.setText(bundle.getString("id_transaksi"));
             tvPelangganTransaksiSukses.setText(bundle.getString("namaPelanggan"));
             uang_diterima = "Rp" + formatter.format(bundle.getDouble("total") + bundle.getDouble("kembalian"));

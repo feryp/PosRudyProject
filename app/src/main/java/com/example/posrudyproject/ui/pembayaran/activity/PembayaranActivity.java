@@ -12,17 +12,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.posrudyproject.R;
+import com.example.posrudyproject.retrofit.ApiClient;
+import com.example.posrudyproject.retrofit.PenjualanEndpoint;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pembayaran.adapter.ViewPagerPembayaranAdapter;
 import com.example.posrudyproject.ui.pembayaran.fragment.NonTunaiFragment;
 import com.example.posrudyproject.ui.pembayaran.fragment.TunaiFragment;
+import com.example.posrudyproject.ui.pembayaran.model.BankItem;
 import com.example.posrudyproject.ui.pembayaran.model.DetailPesanan;
 import com.example.posrudyproject.ui.pembayaran.model.Penjualan;
+import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
@@ -34,6 +39,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PembayaranActivity extends AppCompatActivity {
 
@@ -49,12 +59,13 @@ public class PembayaranActivity extends AppCompatActivity {
     Integer id_store,id_karyawan,idPenjual;
     Penjualan penjualan;
     List<DetailPesanan> detailPesananList;
+    List<BankItem> bankItems;
+    PenjualanEndpoint penjualanEndpoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pembayaran);
-        keranjangItems = new ArrayList<>();
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         String token = preferences.getString("token","");
         auth_token = ("Bearer ").concat(token);
@@ -62,7 +73,47 @@ public class PembayaranActivity extends AppCompatActivity {
         lokasi_store = preferences.getString("lokasi_store","");
         id_karyawan = preferences.getInt("id_pengguna", 0);
         nama_karyawan = preferences.getString("nama_pengguna","");
+        keranjangItems = new ArrayList<>();
         detailPesananList = new ArrayList<>();
+        bankItems = new ArrayList<>();
+        penjualanEndpoint = ApiClient.getClient().create(PenjualanEndpoint.class);
+
+        Call<List<BankItem>> call = penjualanEndpoint.getAllBank(auth_token);
+        SweetAlertDialog pDialog = new SweetAlertDialog(PembayaranActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading ...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        call.enqueue(new Callback<List<BankItem>>() {
+            @Override
+            public void onResponse(Call<List<BankItem>> call, Response<List<BankItem>> response) {
+                if (!response.isSuccessful()){
+                    pDialog.dismiss();
+                    new SweetAlertDialog(PembayaranActivity.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText(String.valueOf(response.code()))
+                            .setContentText(response.message())
+                            .show();
+                } else {
+                    pDialog.dismiss();
+                    for (int i=0; i<response.body().size(); i++) {
+                        bankItems.add(new BankItem(
+                                response.body().get(i).getLogoBank(),
+                                response.body().get(i).getNamaBank(),
+                                response.body().get(i).getNoRekening()
+                        ));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BankItem>> call, Throwable t) {
+                pDialog.dismiss();
+                new SweetAlertDialog(PembayaranActivity.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Oops...")
+                        .setContentText(t.getMessage())
+                        .show();
+            }
+        });
         //INIT VIEW
         initComponent();
 
@@ -105,6 +156,7 @@ public class PembayaranActivity extends AppCompatActivity {
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {tab.setText(adapter.mFragmetnTitle.get(position));
         }).attach();
+
     }
 
     public Penjualan konfirmasiPenjualan(String metode_bayar,String bankName,String noRek) {
@@ -143,6 +195,7 @@ public class PembayaranActivity extends AppCompatActivity {
         );
         return penjualan;
     }
+
     public  List<KeranjangItem> GetItems() {
         return keranjangItems;
     }
@@ -159,6 +212,7 @@ public class PembayaranActivity extends AppCompatActivity {
         details.put("idPenjual", String.valueOf(idPenjual));
         return details;
     }
+
     private void setupViewPager(ViewPager2 viewPager) {
         adapter = new ViewPagerPembayaranAdapter(this.getSupportFragmentManager(),
                 PembayaranActivity.this.getLifecycle());
@@ -167,6 +221,7 @@ public class PembayaranActivity extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(1);
+
     }
 
     private void initToolbar() {

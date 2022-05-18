@@ -33,10 +33,10 @@ public class Penjualan implements Serializable {
     @SerializedName("metode_bayar")
     private String metode_bayar;
 
-    @SerializedName("metode_bayar")
+    @SerializedName("bank_name")
     private String bankName;
 
-    @SerializedName("metode_bayar")
+    @SerializedName("no_rek")
     private String noRek;
 
     @SerializedName("ekspedisi")

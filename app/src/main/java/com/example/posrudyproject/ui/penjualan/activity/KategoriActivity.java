@@ -136,6 +136,9 @@ public class KategoriActivity extends AppCompatActivity implements OnItemClickLi
     @Override
     public void onItemClickListener(View view, int position) {
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("id_kategori", String.valueOf(kategoriItems.get(position).getId()));
+        editor.apply();
         Toast.makeText(this, "Pilih " + kategoriItems.get(position).getNamaKetegori(), Toast.LENGTH_SHORT).show();
         Intent kategori = new Intent(this, PenjualanActivity.class);
         kategori.putExtra("id_kategori", kategoriItems.get(position).getId());

@@ -58,6 +58,21 @@
                app:layout_constraintTop_toTopOf="@id/tv_tgl_pesanan_tunggu"
                 app:layout_constraintBottom_toBottomOf="@id/tv_tgl_pesanan_tunggu"/>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/id_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xsm"
+                tools:text="0"
+                android:textSize="@dimen/font_sm"
+                android:textColor="@color/black_gunmetal"
+                android:fontFamily="@font/work_sans_medium"
+                android:drawablePadding="@dimen/padding_xsm"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/tv_jam_pesanan_tunggu"
+                app:layout_constraintTop_toTopOf="@id/tv_tgl_pesanan_tunggu"
+                app:layout_constraintBottom_toBottomOf="@id/tv_tgl_pesanan_tunggu"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_hapus_pesanan_tunggu"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
