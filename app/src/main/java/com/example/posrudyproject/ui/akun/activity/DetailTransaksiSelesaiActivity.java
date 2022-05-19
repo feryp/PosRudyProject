@@ -11,11 +11,13 @@ import android.view.View;
 
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
+import com.example.posrudyproject.ui.pembayaran.model.DetailPesanan;
 import com.example.posrudyproject.ui.penjualan.activity.StrukPenjualanActivity;
 import com.example.posrudyproject.ui.penjualan.adapter.TransaksiSuksesAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,33 +38,38 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
         initComponent();
 
         initToolbar();
+        keranjangItems = new ArrayList<>();
 
         //SET LISTENER
         btnCetakStruk.setOnClickListener(this);
         btnPenukaranBarang.setOnClickListener(this);
 
-        //Transaksi List
-        keranjangItems = new ArrayList<>();
-        for (int i=0; i<5; i++){
-            keranjangItems.add(new KeranjangItem(
-                    "",
-                    "CUTLINE",
-                    "645634645634",
-                    "SP633846-0011",
-                    "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
-                    "Rp 1.000.000",
-                    "2",
-                    "Rp. 2.000.000",
-                    ""
-            ));
+        Bundle bundle = getIntent().getExtras();
+        DecimalFormat formatter = new DecimalFormat("#,###.##");
+        if (bundle != null) {
+            //Transaksi List
+            for (int i = 0; i< ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).size(); i++){
+                keranjangItems.add(new KeranjangItem(
+                        "",
+                        ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getType_name(),
+                        ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getSku_code(),
+                        ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getArtikel(),
+                        ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getNama_barang(),
+                        formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga())),
+                        formatter.format(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas()),
+                        formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga()) * Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())),
+                        formatter.format(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())
+                ));
+            }
+
+            //Setup adapter
+            adapter = new TransaksiSuksesAdapter(keranjangItems, this);
+            rvDetailTransaksi.setLayoutManager(new LinearLayoutManager(this));
+            rvDetailTransaksi.setAdapter(adapter);
+            rvDetailTransaksi.setHasFixedSize(true);
+        } else {
+            keranjangItems = new ArrayList<>();
         }
-
-        //Setup adapter
-        adapter = new TransaksiSuksesAdapter(keranjangItems, this);
-        rvDetailTransaksi.setLayoutManager(new LinearLayoutManager(this));
-        rvDetailTransaksi.setAdapter(adapter);
-        rvDetailTransaksi.setHasFixedSize(true);
-
 
     }
 

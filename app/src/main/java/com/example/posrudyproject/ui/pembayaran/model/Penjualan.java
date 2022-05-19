@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Penjualan implements Serializable {
+    @SerializedName("tanggal_transaksi")
+    private String tanggal_transaksi;
+
     @SerializedName("id_transaksi")
     private String id_transaksi;
 
@@ -54,9 +57,10 @@ public class Penjualan implements Serializable {
     @SerializedName("detailPesananList")
     private List<DetailPesanan> detailPesananList;
 
-    public Penjualan(String id_transaksi,int id_store, String lokasi_store, String no_hp_pelanggan, String nama_pelanggan, int id_karyawan, String nama_karyawan, double diskon,
+    public Penjualan(String tanggal_transaksi,String id_transaksi,int id_store, String lokasi_store, String no_hp_pelanggan, String nama_pelanggan, int id_karyawan, String nama_karyawan, double diskon,
                      String metode_bayar, String bankName, String noRek,
                      String ekspedisi, Double ongkir, Double total, Double kembalian, List<DetailPesanan> detailPesananList) {
+        this.tanggal_transaksi = tanggal_transaksi;
         this.id_transaksi = id_transaksi;
         this.id_store = id_store;
         this.lokasi_store = lokasi_store;
@@ -73,6 +77,30 @@ public class Penjualan implements Serializable {
         this.total = total;
         this.kembalian = kembalian;
         this.detailPesananList = detailPesananList;
+    }
+
+    public String getTanggal_transaksi() {
+        return tanggal_transaksi;
+    }
+
+    public void setTanggal_transaksi(String tanggal_transaksi) {
+        this.tanggal_transaksi = tanggal_transaksi;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getNoRek() {
+        return noRek;
+    }
+
+    public void setNoRek(String noRek) {
+        this.noRek = noRek;
     }
 
     public String getId_transaksi() {

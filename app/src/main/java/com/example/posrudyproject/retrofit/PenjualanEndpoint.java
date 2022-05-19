@@ -26,11 +26,14 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface PenjualanEndpoint {
-    @GET("/store/penjualan")
-    Call<List<PenjualanItem>> getAll(@Header("AUTHORIZATION") String token);
+    @GET("/store/penjualanPerStore")
+    Call<List<Penjualan>> getAllPenjualanPerStore(@Header("AUTHORIZATION") String token, @Query("id_store") int id_store);
 
     @GET("/store/search")
     Call<List<PenjualanItem>> search(@Header("AUTHORIZATION") String token, @Query("keyword") String keyword);
+
+    @GET("/store/searchPerStore")
+    Call<List<Penjualan>> searchPerStore(@Header("AUTHORIZATION") String token, @Query("id_store") int id_store, @Query("keyword") String keyword);
 
     @POST("/store/add")
     Call<List<Penjualan>> savePenjualan(@Header("AUTHORIZATION") String token, @Body Penjualan penjualan);

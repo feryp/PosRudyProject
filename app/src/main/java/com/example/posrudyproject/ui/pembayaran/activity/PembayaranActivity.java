@@ -177,6 +177,7 @@ public class PembayaranActivity extends AppCompatActivity {
         }
         penjualan = new Penjualan(
                 "",
+                "",
                 id_store,
                 lokasi_store,
                 noHpPelanggan,
