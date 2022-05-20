@@ -214,7 +214,6 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         }
     }
 
-
     public void browseBluetoothDevice() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             return;

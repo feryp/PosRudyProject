@@ -97,6 +97,17 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                         public void onItemClickListener(View view, int position) {
                             Toast.makeText(getActivity(), "Pilih " + transaksiSelesaiItems.get(position).getNoInvoice(), Toast.LENGTH_SHORT).show();
                             Intent detailTransaksi = new Intent(getActivity(), DetailTransaksiSelesaiActivity.class);
+                            detailTransaksi.putExtra("id_transaksi", response.body().get(position).getId_transaksi());
+                            detailTransaksi.putExtra("bank_name", response.body().get(position).getBankName());
+                            detailTransaksi.putExtra("norek", response.body().get(position).getNoRek());
+                            detailTransaksi.putExtra("metode_bayar", response.body().get(position).getMetode_bayar());
+                            detailTransaksi.putExtra("tanggal_transaksi", response.body().get(position).getTanggal_transaksi());
+                            detailTransaksi.putExtra("nama_penjual", response.body().get(position).getNama_karyawan());
+                            detailTransaksi.putExtra("nama_pelanggan", response.body().get(position).getNama_pelanggan());
+                            detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? decim.format(response.body().get(position).getDiskon()) + "%" : ("Rp" + decim.format(response.body().get(position).getDiskon())));
+                            detailTransaksi.putExtra("kembalian", response.body().get(position).getKembalian());
+                            detailTransaksi.putExtra("total", response.body().get(position).getTotal());
+                            detailTransaksi.putExtra("ongkir", response.body().get(position).getOngkir());
                             detailTransaksi.putExtra("detailPesanan", (Serializable) response.body().get(position).getDetailPesananList());
                             startActivity(detailTransaksi);
                         }
