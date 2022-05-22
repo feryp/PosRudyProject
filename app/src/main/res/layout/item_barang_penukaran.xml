@@ -55,6 +55,16 @@
             android:fontFamily="@font/work_sans_regular"
             android:layout_marginTop="@dimen/margin_xsm" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_harga_barang_penukaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Rp2,000,000"
+            android:textSize="@dimen/font_sm"
+            android:textColor="@color/black_coral"
+            android:fontFamily="@font/work_sans_regular"
+            android:layout_marginTop="@dimen/margin_xsm" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,6 +79,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_minus_penukaran"
             style="@style/Widget.MaterialComponents.Button"
+            android:enabled="false"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:insetLeft="0dp"
@@ -108,6 +119,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_plus_penukaran"
             style="@style/Widget.MaterialComponents.Button"
+            android:enabled="false"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:insetLeft="0dp"

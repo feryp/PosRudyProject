@@ -38,6 +38,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,6 +79,7 @@ public class RekapKasFragment extends Fragment implements View.OnClickListener{
         long date = System.currentTimeMillis();
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd MM yyyy | HH:mm");
+        DecimalFormat decim = new DecimalFormat("#,###.##");
         String dateString = sdf.format(date);
 
         Bundle bundle = getArguments();
@@ -118,7 +120,7 @@ public class RekapKasFragment extends Fragment implements View.OnClickListener{
                     valueWeek.add(new Entry(5, Float.parseFloat(Sat.get("total").toString()), "Sat"));
                     valueWeek.add(new Entry(6, Float.parseFloat(Sun.get("total").toString()), "Sun"));
 
-                    totalHarian.setText(String.valueOf(Float.parseFloat(Mon.get("total").toString()) + Float.parseFloat(Tue.get("total").toString()) + Float.parseFloat(Wed.get("total").toString()) + Float.parseFloat(Thu.get("total").toString()) + Float.parseFloat(Fri.get("total").toString()) + Float.parseFloat(Sat.get("total").toString()) + Float.parseFloat(Sun.get("total").toString())));
+                    totalHarian.setText("Rp"+ decim.format(Float.parseFloat(Mon.get("total").toString()) + Float.parseFloat(Tue.get("total").toString()) + Float.parseFloat(Wed.get("total").toString()) + Float.parseFloat(Thu.get("total").toString()) + Float.parseFloat(Fri.get("total").toString()) + Float.parseFloat(Sat.get("total").toString()) + Float.parseFloat(Sun.get("total").toString())));
 
                     Map<String, Map<String, Object>> mingguan = inner.get("mingguan");
                     Map<String, Object> week1 = mingguan.get("Week 1") == null ? defValue : mingguan.get("Week 1");
@@ -132,7 +134,7 @@ public class RekapKasFragment extends Fragment implements View.OnClickListener{
                     valueMonth.add(new Entry(2, Float.parseFloat(week3.get("total").toString()), "Week 3"));
                     valueMonth.add(new Entry(3, Float.parseFloat(week4.get("total").toString()), "Week 4"));
 
-                    totalMingguan.setText(String.valueOf(Float.parseFloat(week1.get("total").toString()) + Float.parseFloat(week2.get("total").toString()) + Float.parseFloat(week3.get("total").toString()) + Float.parseFloat(week4.get("total").toString())));
+                    totalMingguan.setText("Rp"+ decim.format(Float.parseFloat(week1.get("total").toString()) + Float.parseFloat(week2.get("total").toString()) + Float.parseFloat(week3.get("total").toString()) + Float.parseFloat(week4.get("total").toString())));
 
                     Map<String, Map<String, Object>> bulanan = inner.get("bulanan");
                     Map<String, Object> Jan = bulanan.get("Jan") == null ? defValue : bulanan.get("Jan");
@@ -165,7 +167,7 @@ public class RekapKasFragment extends Fragment implements View.OnClickListener{
                     valueYear.add(new BarEntry(10, Float.parseFloat(Nov.get("total").toString()), "Nov"));
                     valueYear.add(new BarEntry(11, Float.parseFloat(Dec.get("total").toString()), "Dec"));
 
-                    totalBulanan.setText(String.valueOf(Float.parseFloat(Jan.get("total").toString()) +Float.parseFloat(Feb.get("total").toString())+Float.parseFloat(Mar.get("total").toString())+Float.parseFloat(Apr.get("total").toString())+Float.parseFloat(Mei.get("total").toString())+Float.parseFloat(Jun.get("total").toString())+Float.parseFloat(Jul.get("total").toString())+Float.parseFloat(Agt.get("total").toString())+Float.parseFloat(Sep.get("total").toString())+Float.parseFloat(Oct.get("total").toString())+Float.parseFloat(Nov.get("total").toString())+Float.parseFloat(Dec.get("total").toString())));
+                    totalBulanan.setText("Rp"+ decim.format(Float.parseFloat(Jan.get("total").toString()) +Float.parseFloat(Feb.get("total").toString())+Float.parseFloat(Mar.get("total").toString())+Float.parseFloat(Apr.get("total").toString())+Float.parseFloat(Mei.get("total").toString())+Float.parseFloat(Jun.get("total").toString())+Float.parseFloat(Jul.get("total").toString())+Float.parseFloat(Agt.get("total").toString())+Float.parseFloat(Sep.get("total").toString())+Float.parseFloat(Oct.get("total").toString())+Float.parseFloat(Nov.get("total").toString())+Float.parseFloat(Dec.get("total").toString())));
 
                     //DATA STRING X AXIS LABEL CHART WEEK
                     ArrayList<String> xAxisWeek = new ArrayList<>();

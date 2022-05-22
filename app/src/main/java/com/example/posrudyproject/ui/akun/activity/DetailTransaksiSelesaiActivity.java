@@ -39,6 +39,7 @@ import com.example.posrudyproject.ui.penjualan.async.AsyncEscPosPrinter;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
     TransaksiSuksesAdapter adapter;
     List<KeranjangItem> keranjangItems;
     AppCompatTextView tvMetodePembayaran,tvTanggalTransaksi,tvNamaPenjual,tvNamaPelanggan,tvDiskon,tvTotal,tvDibayar,tvKembalian;
-    String alamat_store,items,uang_diterima,bank_name,norek,id_transaksi,ongkir,auth_token,point;
+    String alamat_store,items,bank_name,norek,id_transaksi,ongkir,auth_token,point;
     PelangganEndpoint pelangganEndpoint;
     public static final int PERMISSION_BLUETOOTH = 1;
     public static final int PERMISSION_BLUETOOTH_ADMIN = 2;
@@ -97,7 +98,7 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
             tvDiskon.setText(bundle.getString("diskon"));
             tvKembalian.setText( "Rp" + formatter.format(bundle.getDouble("kembalian")));
             tvTotal.setText("Rp" + formatter.format(bundle.getDouble("total")));
-            ongkir = bundle.getString("ongkir");
+            ongkir = "Rp" + formatter.format(bundle.getDouble("ongkir"));
             tvDibayar.setText("Rp" + formatter.format((bundle.getDouble("kembalian") + bundle.getDouble("total"))));
 
             //Transaksi List
@@ -108,9 +109,9 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
                         ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getSku_code(),
                         ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getArtikel(),
                         ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getNama_barang(),
-                        formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga())),
+                        "Rp"+ formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga())),
                         formatter.format(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas()),
-                        formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga()) * Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())),
+                        "Rp"+ formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga()) * Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())),
                         formatter.format(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())
                 ));
             }
@@ -171,6 +172,8 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
 
             case R.id.btn_penukaran_barang:
                 Intent penukaranBarang = new Intent(this, PenukaranBarangActivity.class);
+                penukaranBarang.putExtra("id_transaksi", id_transaksi);
+                penukaranBarang.putExtra("items" , (Serializable) keranjangItems);
                 startActivity(penukaranBarang);
                 break;
         }
@@ -303,9 +306,8 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
                         "[L]Metode Bayar  : "+ tvMetodePembayaran.getText().toString()+ "\n" +
                         "[L]Nama Bank     : "+ bank_name+ "\n" +
                         "[L]No Rekening   : "+ norek+ "\n" +
-                        "[L]Uang Diterima : " + uang_diterima + "\n" +
+                        "[L]Uang Diterima : " + tvDibayar.getText().toString() + "\n" +
                         "[L]Kembalian     : "+ tvKembalian.getText().toString() +"\n" +
-                        "\n" +
                         "\n" +
                         "\n" +
                         "[C]Powered By GB System\n"

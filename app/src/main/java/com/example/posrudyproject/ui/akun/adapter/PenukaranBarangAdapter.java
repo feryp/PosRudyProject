@@ -39,6 +39,7 @@ public class PenukaranBarangAdapter extends RecyclerView.Adapter<PenukaranBarang
         holder.artikelBarang.setText(item.getArtikelBarang());
         holder.namaBarang.setText(item.getNamaBarang());
         holder.jumlahBarang.setText(item.getJumlahBarang());
+        holder.hargaBarang.setText(item.getHargaBarang());
     }
 
     @Override

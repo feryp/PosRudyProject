@@ -15,6 +15,7 @@ import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PenyimpananEndpoint;
+import com.example.posrudyproject.ui.akun.model.BarangKembali;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.keranjang.adapter.KeranjangAdapter;
 import com.example.posrudyproject.ui.laporan.adapter.RiwayatTransaksiPenjualAdapter;
@@ -116,6 +117,16 @@ public class NotifikasiActivity extends AppCompatActivity implements OnItemClick
                                 "Stok Masuk",
                                 "Barang " + t.get("nama_barang").toString() + " telah masuk sebanyak " + t.get("kuantitas").toString(),
                                 new SimpleDateFormat("dd-MMM-yyyy").format(new Date())
+                        ));
+                    }
+
+                    for (int i = 0; i<((List<BarangKembali>) inner.get("penukaran")).size(); i++){
+                        Object item = ((List<ProdukTersediaItem>) inner.get("penukaran")).get(i);
+                        LinkedTreeMap<Object,Object> t = (LinkedTreeMap) item;
+                        notifikasiItems.add(new NotifikasiItem(
+                                "Penukaran Barang",
+                                "Barang " + t.get("nama_barang").toString() + " telah ditukar oleh pelanggan sebanyak " + t.get("kuantitas").toString(),
+                                t.get("tanggal_masuk").toString()
                         ));
                     }
 

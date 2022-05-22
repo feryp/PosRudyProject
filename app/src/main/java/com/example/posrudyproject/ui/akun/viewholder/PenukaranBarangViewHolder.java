@@ -19,6 +19,7 @@ public class PenukaranBarangViewHolder extends RecyclerView.ViewHolder{
     public AppCompatTextView artikelBarang;
     public AppCompatTextView namaBarang;
     public AppCompatEditText jumlahBarang;
+    public  AppCompatTextView hargaBarang;
     public MaterialButton btnPlus, btnMinus;
 
     public PenukaranBarangViewHolder(@NonNull View itemView) {
@@ -29,7 +30,9 @@ public class PenukaranBarangViewHolder extends RecyclerView.ViewHolder{
         artikelBarang = itemView.findViewById(R.id.tv_artikel_barang_penukaran);
         namaBarang = itemView.findViewById(R.id.tv_nama_barang_penukaran);
         jumlahBarang = itemView.findViewById(R.id.et_jumlah_barang_penukaran);
+        hargaBarang = itemView.findViewById(R.id.tv_harga_barang_penukaran);
         btnPlus = itemView.findViewById(R.id.btn_plus_penukaran);
         btnMinus = itemView.findViewById(R.id.btn_minus_penukaran);
+
     }
 }
