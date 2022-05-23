@@ -122,6 +122,8 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                             ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getArtikel(),
                             ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getNama_barang(),
                             "Rp" + formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga()),
+                            "Rp" + formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga_baru()),
+                            ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga_baru_remark(),
                             formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas()),
                             "Rp" + formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga() * ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas()),
                             formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas())
@@ -291,10 +293,11 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
     @SuppressLint("SimpleDateFormat")
     public AsyncEscPosPrinter getAsyncEscPosPrinter(DeviceConnection printerConnection) {
         SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy, HH:mm");
+        DecimalFormat formatter = new DecimalFormat("#,###.##");
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         items = "";
         for (int i=0; i<keranjangItems.size(); i++) {
-            items += keranjangItems.get(i).getNamaBarang()+"\n"+keranjangItems.get(i).getHargaBarang()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
+            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf((keranjangItems.get(i).getHargaBarang().replace(",", "")).replace("Rp","")) - Double.valueOf((keranjangItems.get(i).getHarga_baru().replace(",", "")).replace("Rp","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
         }
         return printer.addTextToPrint(
                 "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
@@ -328,8 +331,6 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                         "[L]No Rekening   : "+ norek+ "\n" +
                         "[L]Uang Diterima : " + uang_diterima + "\n" +
                         "[L]Kembalian     : "+ tvKembalianTransaksiSukses.getText().toString() +"\n" +
-                        "\n" +
-                        "\n" +
                         "\n" +
                         "[C]Powered By GB System\n"
         );

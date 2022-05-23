@@ -53,6 +53,7 @@ public class PercentFragment extends Fragment implements View.OnClickListener{
                 //FUNCTION
                 Intent someIntent = new Intent(INTENT_DISKON);
                 someIntent.putExtra("diskon_persen",etJumlahDiskon.getText().toString());
+                someIntent.putExtra("diskon_remark", etDeskripsi.getText().toString());
                 LocalBroadcastManager.getInstance(getActivity().getApplicationContext()).sendBroadcast(someIntent);
 
                 BotSheetDiskonFragment.getInstance().DismissParent();

@@ -78,7 +78,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     PesananTungguEndpoint pesananTungguEndpoint;
     List<PesananTungguItem> pesananTungguItems;
     PesananTungguItem pesananTungguItem;
-    String noHpPelanggan,namaPelanggan,namaPenjual,ongkir,ekspedisi,diskonRupiah,diskonPersen;
+    String noHpPelanggan,namaPelanggan,namaPenjual,ongkir,ekspedisi,diskonRupiah,diskonPersen,diskon_remark;
     Integer idPenjual,id_store,id_karyawan;
     Double subtotal = 0.00;
     String auth_token,lokasi_store,nama_karyawan,id_kategori;
@@ -138,6 +138,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                 ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                 ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                 formatter.format(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang())),
+                                formatter.format(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru())),
+                                ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru_remark(),
                                 ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
                                 formatter.format(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
                                 ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
@@ -197,6 +199,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                             ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getArtikel(),
                             ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getNamaBarang(),
                             formatter.format(Double.valueOf(((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getHarga())),
+                            formatter.format(Double.valueOf(((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getHarga_baru())),
+                            ((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getHarga_baru_remark(),
                             ((((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getKuantitasBarang()).toString()).replace(".0",""),
                             formatter.format(Double.valueOf(((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getHarga()) * Double.valueOf(((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getKuantitasBarang())),
                             ((((List<BarangPesananTungguItem>) extras.getSerializable("itemFromQueue")).get(j).getKuantitasBarang()).toString()).replace(".0","")
@@ -372,6 +376,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                         String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang())),
+                                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru())),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru_remark(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
                                         String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
@@ -435,6 +441,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 konfirmasi.putExtra("ongkir", ongkir);
                 konfirmasi.putExtra("diskonRupiah", diskonRupiah);
                 konfirmasi.putExtra("diskonPersen", diskonPersen);
+                konfirmasi.putExtra("diskon_remark", diskon_remark);
                 konfirmasi.putExtra("namaPelanggan", namaPelanggan);
                 konfirmasi.putExtra("noHpPelanggan", noHpPelanggan);
                 konfirmasi.putExtra("namaPenjual", namaPenjual);
@@ -472,6 +479,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     total = Double.valueOf(tvSubtotalKeranjang.getText().toString().replace(",","")) - Double.valueOf(intent.getStringExtra("diskon_rupiah"));
                 }
                 diskonRupiah = intent.getStringExtra("diskon_rupiah");
+                diskon_remark = intent.getStringExtra("diskon_remark");
                 diskonPersen = null;
 
             } else if (intent.getStringExtra("diskon_persen") != null) {
@@ -484,6 +492,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     total = Double.valueOf(tvSubtotalKeranjang.getText().toString().replace(",","")) * ((100 - Double.valueOf(intent.getStringExtra("diskon_persen"))) / 100);
                 }
                 diskonPersen = intent.getStringExtra("diskon_persen");
+                diskon_remark = intent.getStringExtra("diskon_remark");
                 diskonRupiah = null;
             }
 
@@ -674,6 +683,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     keranjangItems.get(i).getArtikelBarang(),
                     keranjangItems.get(i).getNamaBarang(),
                     Double.valueOf(keranjangItems.get(i).getHargaBarang().replace(",","")),
+                    Double.valueOf(keranjangItems.get(i).getHarga_baru().replace(",","")),
+                    keranjangItems.get(i).getHarga_baru_remark(),
                     Double.valueOf(keranjangItems.get(i).getKuantitasBarang().replace(",","")),
                     Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(",",""))
             ));
@@ -700,6 +711,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru_remark(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
                                         String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
@@ -728,6 +741,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru(),
+                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru_remark(),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
                                         String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
                                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
@@ -751,6 +766,8 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru(),
+                                            ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru_remark(),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
                                             String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
                                             ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()

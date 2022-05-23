@@ -32,13 +32,22 @@ public class BarangPesananTungguItem implements Serializable {
     @SerializedName("harga")
     private Double harga;
 
+    @SerializedName("harga_baru")
+    private Double harga_baru;
+
+    @SerializedName("harga_baru_remark")
+    private String harga_baru_remark;
+
     @SerializedName("kuantitas")
     private Double kuantitasBarang;
 
     @SerializedName("total")
     private Double total;
 
-    public BarangPesananTungguItem(String image,int id_store, String lokasi_store, String sku_code, String type_name, String nama_kategori, String artikel, String namaBarang, Double harga, Double kuantitasBarang, Double total) {
+    public BarangPesananTungguItem(String image,int id_store, String lokasi_store,
+                                   String sku_code, String type_name, String nama_kategori,
+                                   String artikel, String namaBarang, Double harga, Double harga_baru,
+                                   String harga_baru_remark, Double kuantitasBarang, Double total) {
         this.image = image;
         this.id_store = id_store;
         this.lokasi_store = lokasi_store;
@@ -48,6 +57,8 @@ public class BarangPesananTungguItem implements Serializable {
         this.artikel = artikel;
         this.namaBarang = namaBarang;
         this.harga = harga;
+        this.harga_baru = harga_baru;
+        this.harga_baru_remark = harga_baru_remark;
         this.kuantitasBarang = kuantitasBarang;
         this.total = total;
     }
@@ -122,6 +133,22 @@ public class BarangPesananTungguItem implements Serializable {
 
     public void setHarga(Double harga) {
         this.harga = harga;
+    }
+
+    public Double getHarga_baru() {
+        return harga_baru;
+    }
+
+    public void setHarga_baru(Double harga_baru) {
+        this.harga_baru = harga_baru;
+    }
+
+    public String getHarga_baru_remark() {
+        return harga_baru_remark;
+    }
+
+    public void setHarga_baru_remark(String harga_baru_remark) {
+        this.harga_baru_remark = harga_baru_remark;
     }
 
     public Double getTotal() {

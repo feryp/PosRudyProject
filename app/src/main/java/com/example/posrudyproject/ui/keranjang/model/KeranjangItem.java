@@ -23,6 +23,12 @@ public class KeranjangItem implements Serializable {
     @SerializedName("harga_jual")
     private String hargaBarang;
 
+    @SerializedName("harga_baru")
+    private String harga_baru;
+
+    @SerializedName("harga_baru_remark")
+    private String harga_baru_remark;
+
     @SerializedName("kuantitas")
     private String jumlahBarang;
 
@@ -32,13 +38,18 @@ public class KeranjangItem implements Serializable {
     @SerializedName("kuantitas")
     private String kuantitasBarang;
 
-    public KeranjangItem(String foto_barang, String tipeBarang,String skuCode, String artikelBarang, String namaBarang, String hargaBarang, String jumlahBarang, String totalHargaBarang, String kuantitasBarang) {
+    public KeranjangItem(String foto_barang, String tipeBarang,String skuCode,
+                         String artikelBarang, String namaBarang, String hargaBarang,
+                         String harga_baru,String harga_baru_remark, String jumlahBarang,
+                         String totalHargaBarang, String kuantitasBarang) {
         this.foto_barang = foto_barang;
         this.tipeBarang = tipeBarang;
         this.skuCode = skuCode;
         this.artikelBarang = artikelBarang;
         this.namaBarang = namaBarang;
         this.hargaBarang = hargaBarang;
+        this.harga_baru = harga_baru;
+        this.harga_baru_remark = harga_baru_remark;
         this.jumlahBarang = jumlahBarang;
         this.totalHargaBarang = totalHargaBarang;
         this.kuantitasBarang = kuantitasBarang;
@@ -98,6 +109,22 @@ public class KeranjangItem implements Serializable {
 
     public void setHargaBarang(String hargaBarang) {
         this.hargaBarang = hargaBarang;
+    }
+
+    public String getHarga_baru() {
+        return harga_baru;
+    }
+
+    public void setHarga_baru(String harga_baru) {
+        this.harga_baru = harga_baru;
+    }
+
+    public String getHarga_baru_remark() {
+        return harga_baru_remark;
+    }
+
+    public void setHarga_baru_remark(String harga_baru_remark) {
+        this.harga_baru_remark = harga_baru_remark;
     }
 
     public String getJumlahBarang() {

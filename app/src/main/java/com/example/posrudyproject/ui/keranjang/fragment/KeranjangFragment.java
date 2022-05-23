@@ -105,6 +105,8 @@ public class KeranjangFragment extends Fragment implements View.OnClickListener 
                     "SP633846-0011",
                     "Mandarin Fade/Coral Matte - RP Optics Multilaser Red",
                     "Rp 1.000.000",
+                    "Rp 1.000.000",
+                    "Potongan Hari Kemerdekaan",
                     "2",
                     "Rp 2.000.000",
                     "2"

@@ -33,6 +33,9 @@ public class Penjualan implements Serializable {
     @SerializedName("diskon")
     private double diskon;
 
+    @SerializedName("diskon_remark")
+    private String diskon_remark;
+
     @SerializedName("metode_bayar")
     private String metode_bayar;
 
@@ -57,7 +60,8 @@ public class Penjualan implements Serializable {
     @SerializedName("detailPesananList")
     private List<DetailPesanan> detailPesananList;
 
-    public Penjualan(String tanggal_transaksi,String id_transaksi,int id_store, String lokasi_store, String no_hp_pelanggan, String nama_pelanggan, int id_karyawan, String nama_karyawan, double diskon,
+    public Penjualan(String tanggal_transaksi,String id_transaksi,int id_store, String lokasi_store, String no_hp_pelanggan, String nama_pelanggan, int id_karyawan, String nama_karyawan,
+                     double diskon, String diskon_remark,
                      String metode_bayar, String bankName, String noRek,
                      String ekspedisi, Double ongkir, Double total, Double kembalian, List<DetailPesanan> detailPesananList) {
         this.tanggal_transaksi = tanggal_transaksi;
@@ -69,6 +73,7 @@ public class Penjualan implements Serializable {
         this.id_karyawan = id_karyawan;
         this.nama_karyawan = nama_karyawan;
         this.diskon = diskon;
+        this.diskon_remark = diskon_remark;
         this.metode_bayar = metode_bayar;
         this.bankName = bankName;
         this.noRek = noRek;
@@ -165,6 +170,14 @@ public class Penjualan implements Serializable {
 
     public void setDiskon(double diskon) {
         this.diskon = diskon;
+    }
+
+    public String getDiskon_remark() {
+        return diskon_remark;
+    }
+
+    public void setDiskon_remark(String diskon_remark) {
+        this.diskon_remark = diskon_remark;
     }
 
     public String getMetode_bayar() {

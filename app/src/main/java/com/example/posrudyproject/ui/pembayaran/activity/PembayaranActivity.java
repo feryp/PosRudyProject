@@ -54,8 +54,7 @@ public class PembayaranActivity extends AppCompatActivity {
     AppCompatTextView tvTotalHargaPembayaran,tvKembalianPembayaran;
     public static final String INTENT_TUNAI_PAS = "INTENT_TUNAI_PAS";
     List<KeranjangItem> keranjangItems;
-    String ongkir,diskonPersen,diskonRupiah,ekspedisi,namaPelanggan,noHpPelanggan,namaPenjual;
-    String auth_token,lokasi_store,nama_karyawan;
+    String ongkir,diskonPersen,diskonRupiah,ekspedisi,namaPelanggan,noHpPelanggan,namaPenjual,diskon_remark,auth_token,lokasi_store,nama_karyawan;
     Integer id_store,id_karyawan,idPenjual;
     Penjualan penjualan;
     List<DetailPesanan> detailPesananList;
@@ -124,6 +123,7 @@ public class PembayaranActivity extends AppCompatActivity {
             tvTotalHargaPembayaran.setText(("Rp").concat(decim.format(Double.valueOf(bundle.getString("total_harga","0.00").replace(",","")))));
             diskonPersen = bundle.getString("diskonPersen");
             diskonRupiah = bundle.getString("diskonRupiah");
+            diskon_remark = bundle.getString("diskon_remark");
             ekspedisi = bundle.getString("ekspedisi");
             ongkir = bundle.getString("ongkir");
             namaPelanggan = bundle.getString("namaPelanggan");
@@ -142,6 +142,8 @@ public class PembayaranActivity extends AppCompatActivity {
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getArtikelBarang(),
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getNamaBarang(),
                         Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")),
+                        Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHarga_baru().replace("Rp","")).replace(",","")),
+                        ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHarga_baru_remark(),
                         Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getKuantitasBarang()),
                         Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getKuantitasBarang())
                 ));
@@ -185,6 +187,7 @@ public class PembayaranActivity extends AppCompatActivity {
                 id_karyawan,
                 nama_karyawan,
                 diskon,
+                diskon_remark,
                 metode_bayar,
                 bankName,
                 noRek,

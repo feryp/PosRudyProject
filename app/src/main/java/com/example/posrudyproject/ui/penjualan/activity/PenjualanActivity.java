@@ -176,6 +176,8 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                                 artikelBarang.getText().toString(),
                                                 namaBarang.getText().toString(),
                                                 hargaBarang.getText().toString(),
+                                                hargaBarang.getText().toString(),
+                                                "",
                                                 total.getText().toString(),
                                                 String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
                                                 total.getText().toString()
@@ -276,6 +278,8 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                                 artikelBarang.getText().toString(),
                                                 namaBarang.getText().toString(),
                                                 hargaBarang.getText().toString(),
+                                                hargaBarang.getText().toString(),
+                                                "",
                                                 total.getText().toString(),
                                                 String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
                                                 total.getText().toString()

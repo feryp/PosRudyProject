@@ -75,6 +75,8 @@ public class UbahHargaAdapter extends RecyclerView.Adapter<UbahHargaViewHolder> 
                         Toast.makeText(mContext, "Simpan", Toast.LENGTH_SHORT).show();
                         holder.hargaBarang.setText(etNominal.getText());
                         keranjangItems.get(holder.getAdapterPosition()).setHargaBarang(etNominal.getText().toString());
+                        keranjangItems.get(holder.getAdapterPosition()).setHarga_baru(etNominal.getText().toString());
+                        keranjangItems.get(holder.getAdapterPosition()).setHarga_baru_remark(etKeterangan.getText().toString());
                         alertDialog.dismiss();
                     }
                 });
