@@ -38,8 +38,8 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     @Override
     public void handleResult(Result rawResult) {
         //KODE YANG AKAN DIKIRIMKAN KE ACTIVITY LAIN
-        Intent intent = new Intent();
-        intent.putExtra("result", rawResult.getText());
+        Intent intent = getIntent();
+        intent.putExtra("key", rawResult.getText());
         setResult(RESULT_OK, intent);
         finish();
     }

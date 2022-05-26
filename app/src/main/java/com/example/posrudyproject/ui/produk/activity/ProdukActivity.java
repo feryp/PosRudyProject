@@ -56,6 +56,7 @@ public class ProdukActivity extends AppCompatActivity implements View.OnClickLis
     ProdukAdapter adapter;
     String auth_token;
     int id_store;
+    public static final int REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -268,17 +269,46 @@ public class ProdukActivity extends AppCompatActivity implements View.OnClickLis
 
     private void startScan() {
         Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
-        startActivityForResult(intent, 20);
+        startActivityForResult(intent , REQUEST_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 20){
-            if (resultCode == RESULT_OK && data != null){
-                String code = data.getStringExtra("result");
-                //SET CODE
-            }
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == REQUEST_CODE  && resultCode  == RESULT_OK) {
+                    Call<List<ProdukTersediaItem>> call = penyimpananEndpoint.searchStockStore(auth_token,id_store,data.getStringExtra("key"));
+                    call.enqueue(new Callback<List<ProdukTersediaItem>>() {
+                        @Override
+                        public void onResponse(Call<List<ProdukTersediaItem>> call, Response<List<ProdukTersediaItem>> response) {
+                            produkItems = new ArrayList<>();
+                            for (int i=0; i<response.body().size(); i++){
+                                produkItems.add(new ProdukItem(
+                                        response.body().get(i).getFoto_barang(),
+                                        response.body().get(i).getTipeBarang(),
+                                        response.body().get(i).getSkuCode(),
+                                        response.body().get(i).getArtikelBarang(),
+                                        response.body().get(i).getNamaBarang(),
+                                        response.body().get(i).getJumlahStok()
+                                ));
+                            }
+                            //Setup Adapter Produk Tersedia
+                            ProdukAdapter adapter = new ProdukAdapter(produkItems,ProdukActivity.this);
+                            rvProduk.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
+                            new SweetAlertDialog(ProdukActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
+                                    .show();
+                        }
+                    });
+                }
+        } catch (Exception ex) {
+            Toast.makeText(ProdukActivity.this, ex.toString(),
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

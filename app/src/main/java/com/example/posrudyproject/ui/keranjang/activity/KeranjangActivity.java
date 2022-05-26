@@ -45,7 +45,6 @@ import com.example.posrudyproject.ui.pembayaran.activity.PembayaranActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
 import com.example.posrudyproject.ui.pesananTunggu.activity.PesananTungguActivity;
-import com.example.posrudyproject.ui.pesananTunggu.adapter.PesananTungguAdapter;
 import com.example.posrudyproject.ui.pesananTunggu.model.BarangPesananTungguItem;
 import com.example.posrudyproject.ui.pesananTunggu.model.PesananTungguItem;
 import com.example.posrudyproject.ui.produk.activity.CustomBarangActivity;
@@ -66,7 +65,6 @@ import retrofit2.Response;
 
 public class KeranjangActivity extends AppCompatActivity implements View.OnClickListener {
 
-    SearchView searchView;
     AppCompatImageButton btnBarcode;
     AppCompatTextView tvSubtotalKeranjang,tvTotalHargaKeranjang;
     MaterialToolbar mToolbar;
@@ -84,7 +82,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
     String auth_token,lokasi_store,nama_karyawan,id_kategori;
     List<BarangPesananTungguItem> barangPesananTungguItems;
     public static final String INTENT_DISKON = "INTENT_DISKON";
-
+    private static String code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +99,6 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         pesananTungguItems = new ArrayList<>();
         //INIT VIEW
         initComponent();
-
         initToolbar();
 
         //SET LISTENER
@@ -118,8 +115,6 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         //SETTING BUTTON
         btnPotonganHarga.setPaintFlags(btnPotonganHarga.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         btnSimpanPesanan.setPaintFlags(btnSimpanPesanan.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
-        SetupSearchView();
 
         //Keranjang List
         Bundle extras = getIntent().getExtras();
@@ -218,7 +213,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             }
         }
         //Setup Adapter
-        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
+        adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
         rvKeranjang.setAdapter(adapter);
         rvKeranjang.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -228,21 +223,21 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 if (itemCount != null) {
                     for (int i = 0; i<itemCount; i++) {
                         TextView total = rvKeranjang.getChildAt(i).findViewById(R.id.tv_total_harga_barang_keranjang);
-                        subtotal  = subtotal + Double.valueOf(total.getText().toString().replace(",",""));
+                        subtotal  = subtotal + Double.parseDouble(total.getText().toString().replace(",",""));
                     }
                     tvSubtotalKeranjang.setText(formatter.format(subtotal));
                     if (ongkir != null) {
-                        tvTotalHargaKeranjang.setText(formatter.format(subtotal + Double.valueOf(ongkir)));
+                        tvTotalHargaKeranjang.setText(formatter.format(subtotal + Double.parseDouble(ongkir)));
                     }
                     if (diskonPersen != null) {
-                        tvTotalHargaKeranjang.setText(formatter.format(subtotal * ((100 - Double.valueOf(diskonPersen)) / 100)));
+                        tvTotalHargaKeranjang.setText(formatter.format(subtotal * ((100 - Double.parseDouble(diskonPersen)) / 100)));
                     }
                     if (diskonRupiah != null) {
-                        tvTotalHargaKeranjang.setText(formatter.format(subtotal - Double.valueOf(diskonRupiah)));
+                        tvTotalHargaKeranjang.setText(formatter.format(subtotal - Double.parseDouble(diskonRupiah)));
                     }
 
                     if (ongkir != null && diskonPersen != null) {
-                        tvTotalHargaKeranjang.setText(formatter.format((subtotal * ((100 - Double.valueOf(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
+                        tvTotalHargaKeranjang.setText(formatter.format((subtotal * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
                     }
                     if (ongkir != null && diskonRupiah != null) {
                         tvTotalHargaKeranjang.setText(formatter.format((subtotal - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
@@ -525,7 +520,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
 
     private void startScan() {
         Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
-        startActivityForResult(intent, 20);
+        startActivity(intent);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -692,7 +687,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         return barangPesananTungguItems;
     }
 
-    private void SetupSearchView() {
+    private void Scanning(String cd) {
 
         final SearchView searchView = findViewById(R.id.search_barang_keranjang);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -720,7 +715,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                             }
                         }
                     }
-                    KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
+                    adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
                     rvKeranjang.setAdapter(adapter);
                 }
                 return false;
@@ -749,7 +744,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                 ));
                             }
                         }
-                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
+                        adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
                         rvKeranjang.setAdapter(adapter);
                     }
                 } else {
@@ -775,7 +770,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                 }
                             }
                         }
-                        KeranjangAdapter adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
+                        adapter = new KeranjangAdapter(keranjangItems, KeranjangActivity.this);
                         rvKeranjang.setAdapter(adapter);
                     }
                 }
@@ -783,12 +778,15 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 20){
             if (resultCode == RESULT_OK && data != null){
                 String code = data.getStringExtra("result");
+                System.out.println(code);
+                System.out.println(data.getStringExtra("result"));
                 //SET CODE
             }
         }
