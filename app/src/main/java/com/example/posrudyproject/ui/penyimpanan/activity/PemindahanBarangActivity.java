@@ -125,7 +125,13 @@ public class PemindahanBarangActivity extends AppCompatActivity implements View.
     }
 
     private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PemindahanBarangActivity.this, PenyimpananActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @SuppressLint("NonConstantResourceId")
