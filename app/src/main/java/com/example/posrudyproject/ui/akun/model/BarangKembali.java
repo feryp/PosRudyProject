@@ -14,6 +14,9 @@ public class BarangKembali implements Serializable {
     @SerializedName("sku_code")
     private String sku_code;
 
+    @SerializedName("artikel")
+    private String artikel;
+
     @SerializedName("kuantitas")
     private Double kuantitas;
 
@@ -23,10 +26,11 @@ public class BarangKembali implements Serializable {
     @SerializedName("keterangan")
     private String keterangan;
 
-    public BarangKembali(String id_transaksi, int id_store, String sku_code, Double kuantitas, Double harga_jual, String keterangan) {
+    public BarangKembali(String id_transaksi, int id_store, String sku_code, String artikel, Double kuantitas, Double harga_jual, String keterangan) {
         this.id_transaksi = id_transaksi;
         this.id_store = id_store;
         this.sku_code = sku_code;
+        this.artikel = artikel;
         this.kuantitas = kuantitas;
         this.harga_jual = harga_jual;
         this.keterangan = keterangan;
@@ -54,6 +58,14 @@ public class BarangKembali implements Serializable {
 
     public void setSku_code(String sku_code) {
         this.sku_code = sku_code;
+    }
+
+    public String getArtikel() {
+        return artikel;
+    }
+
+    public void setArtikel(String artikel) {
+        this.artikel = artikel;
     }
 
     public Double getKuantitas() {

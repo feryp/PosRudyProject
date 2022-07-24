@@ -109,7 +109,7 @@ public class BotSheetProdukFragment extends BottomSheetDialogFragment implements
                                             ));
                                         }
                                         for (int j=0; j < ((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).size(); j++) {
-                                            if (((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(j).getSkuCode().equals(produkItems.get(position).getSkuCode())){
+                                            if (((List<PemindahanBarangItem>)bundle.getSerializable("prevBarangPindah")).get(j).getArtikelProduk().equals(produkItems.get(position).getArtikelProduk())){
                                                 found = true;
                                             }
                                         }

@@ -90,7 +90,7 @@ public interface PenjualanEndpoint {
     Call<List<RiwayatTransaksiPelangganItem>> rekapPelangganPerTanggal (@Header("AUTHORIZATION") String token, @Query("id_store") int id_store, @Query("start_date") String start_date, @Query("end_date") String end_date, @Query("no_hp_pelanggan") String no_hp_pelanggan);
 
     @GET("/pelanggan/totalPoin")
-    Call<Double> totalPoin(@Header("AUTHORIZATION") String token,@Query("no_hp_pelanggan") String no_hp_pelanggan);
+    Call<Double> totalPoin(@Header("AUTHORIZATION") String token, @Query("nama_pelanggan") String nama_pelanggan, @Query("no_hp_pelanggan") String no_hp_pelanggan);
 
     @GET("/store/subRiwayatPelanggan")
     Call <List<SubRiwayatTransaksiPelangganItem>> subRiwayatPelanggan(@Header("AUTHORIZATION") String token, @Query("id_store") int id_store, @Query("start_date") String start_date, @Query("end_date") String end_date, @Query("no_hp_pelanggan") String no_hp_pelanggan);

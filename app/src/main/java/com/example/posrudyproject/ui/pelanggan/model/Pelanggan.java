@@ -12,6 +12,9 @@ public class Pelanggan implements Serializable {
     @SerializedName("nama_pelanggan")
     private String nama_pelanggan;
 
+    @SerializedName("nik")
+    private String nik;
+
     @SerializedName("no_hp")
     private String no_hp;
 
@@ -33,9 +36,10 @@ public class Pelanggan implements Serializable {
     @SerializedName("total_pembelian")
     private double total_pembelian;
 
-    public Pelanggan(Long id, String nama_pelanggan, String no_hp, String email, String alamat, double total_kunjungan, double kuantitas, double poin, double total_pembelian) {
+    public Pelanggan(Long id, String nama_pelanggan, String nik, String no_hp, String email, String alamat, double total_kunjungan, double kuantitas, double poin, double total_pembelian) {
         this.id = id;
         this.nama_pelanggan = nama_pelanggan;
+        this.nik = nik;
         this.no_hp = no_hp;
         this.email = email;
         this.alamat = alamat;
@@ -63,6 +67,14 @@ public class Pelanggan implements Serializable {
 
     public void setNama_pelanggan(String nama_pelanggan) {
         this.nama_pelanggan = nama_pelanggan;
+    }
+
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
     }
 
     public String getNo_hp() {
@@ -119,19 +131,5 @@ public class Pelanggan implements Serializable {
 
     public void setTotal_pembelian(double total_pembelian) {
         this.total_pembelian = total_pembelian;
-    }
-
-    @Override
-    public String toString() {
-        return "Pelanggan{" +
-                "nama_pelanggan='" + nama_pelanggan + '\'' +
-                ", no_hp='" + no_hp + '\'' +
-                ", email='" + email + '\'' +
-                ", alamat='" + alamat + '\'' +
-                ", total_kunjungan=" + total_kunjungan +
-                ", kuantitas=" + kuantitas +
-                ", poin=" + poin +
-                ", total_pembelian=" + total_pembelian +
-                '}';
     }
 }

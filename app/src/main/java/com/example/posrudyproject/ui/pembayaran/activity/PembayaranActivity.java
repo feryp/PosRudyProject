@@ -120,7 +120,7 @@ public class PembayaranActivity extends AppCompatActivity {
         DecimalFormat decim = new DecimalFormat("#,###.##");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            tvTotalHargaPembayaran.setText(("Rp").concat(decim.format(Double.valueOf(bundle.getString("total_harga","0.00").replace(",","")))));
+            tvTotalHargaPembayaran.setText(("Rp").concat(decim.format(Double.valueOf((bundle.getString("total_harga","0.00").replace(",","")).replace(".","")))));
             diskonPersen = bundle.getString("diskonPersen");
             diskonRupiah = bundle.getString("diskonRupiah");
             diskon_remark = bundle.getString("diskon_remark");
@@ -141,11 +141,11 @@ public class PembayaranActivity extends AppCompatActivity {
                         "",
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getArtikelBarang(),
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getNamaBarang(),
-                        Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")),
-                        Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHarga_baru().replace("Rp","")).replace(",","")),
+                        Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")).replace(".","")),
+                        Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHarga_baru().replace("Rp","")).replace(",","")).replace(".","")),
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHarga_baru_remark(),
                         Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getKuantitasBarang()),
-                        Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getKuantitasBarang())
+                        Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")).replace(".","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getKuantitasBarang())
                 ));
             }
         }
@@ -173,7 +173,7 @@ public class PembayaranActivity extends AppCompatActivity {
         }
 
         if (ongkir != null) {
-            ongkir_val = Double.valueOf((ongkir.replace(",","")).replace("Rp",""));
+            ongkir_val = Double.valueOf(((ongkir.replace(",","")).replace("Rp","")).replace(".",""));
         } else {
             ongkir_val = 0.00;
         }
@@ -184,8 +184,8 @@ public class PembayaranActivity extends AppCompatActivity {
                 lokasi_store,
                 noHpPelanggan,
                 namaPelanggan,
-                id_karyawan,
-                nama_karyawan,
+                idPenjual,
+                namaPenjual,
                 diskon,
                 diskon_remark,
                 metode_bayar,
@@ -193,8 +193,8 @@ public class PembayaranActivity extends AppCompatActivity {
                 noRek,
                 ekspedisi,
                 ongkir_val,
-                Double.valueOf((tvTotalHargaPembayaran.getText().toString().replace(",","")).replace("Rp","")),
-                Double.valueOf((tvKembalianPembayaran.getText().toString().replace(",","")).replace("Rp","")),
+                Double.valueOf(((tvTotalHargaPembayaran.getText().toString().replace(",","")).replace("Rp","")).replace(".","")),
+                Double.valueOf(((tvKembalianPembayaran.getText().toString().replace(",","")).replace("Rp","")).replace(".","")),
                 detailPesananList
         );
         return penjualan;
@@ -276,7 +276,14 @@ public class PembayaranActivity extends AppCompatActivity {
             if (intent.getStringExtra("uang_diterima") == null ) {
                 tvKembalianPembayaran.setText(decim.format(0.00));
             } else {
-                tvKembalianPembayaran.setText(decim.format(Double.valueOf((intent.getStringExtra("uang_diterima").replace(",","")).replace("Rp","")) - Double.valueOf((tvTotalHargaPembayaran.getText().toString().replace("Rp","")).replace(",",""))));
+                tvKembalianPembayaran.setText(decim.format(
+                        Double.valueOf(
+                                (((intent.getStringExtra("uang_diterima").replace(",","")).replace("Rp","")).replace(".","")).equals("") ? "0.0" : ((intent.getStringExtra("uang_diterima").replace(",","")).replace("Rp","")).replace(".","")
+                        ) -
+                        Double.valueOf(
+                                (((tvTotalHargaPembayaran.getText().toString().replace("Rp","")).replace(",","")).replace(".","")).equals("") ? "0.0" : ((tvTotalHargaPembayaran.getText().toString().replace("Rp","")).replace(",","")).replace(".","")
+                        )
+                ));
             }
         }
     };

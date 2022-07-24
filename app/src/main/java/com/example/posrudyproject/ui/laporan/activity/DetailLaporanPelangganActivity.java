@@ -71,7 +71,7 @@ public class DetailLaporanPelangganActivity extends AppCompatActivity {
         if (bundle != null) {
             tvNamaPelanggan.setText(bundle.getString("namaPelanggan"));
             tvNoHpPelanggan.setText(bundle.getString("noHpPelanggan"));
-            Call<Double> call = penjualanEndpoint.totalPoin(auth_token,bundle.getString("noHpPelanggan"));
+            Call<Double> call = penjualanEndpoint.totalPoin(auth_token,bundle.getString("namaPelanggan"), bundle.getString("noHpPelanggan"));
             SweetAlertDialog pDialog = new SweetAlertDialog(DetailLaporanPelangganActivity.this, SweetAlertDialog.PROGRESS_TYPE);
             pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
             pDialog.setTitleText("Loading ...");

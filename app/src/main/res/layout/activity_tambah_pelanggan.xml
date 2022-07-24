@@ -58,6 +58,26 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_et_nik_pelanggan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:errorEnabled="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_et_nama_pelanggan">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_nik_pelanggan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_hint_nik_pelanggan"
+                android:imeOptions="actionDone"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_et_no_hp_pelanggan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +86,7 @@
             app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_et_nama_pelanggan">
+            app:layout_constraintTop_toBottomOf="@id/layout_et_nik_pelanggan">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_no_hp_pelanggan"

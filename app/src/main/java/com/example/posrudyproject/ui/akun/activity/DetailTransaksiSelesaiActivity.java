@@ -176,6 +176,11 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
                 Intent penukaranBarang = new Intent(this, PenukaranBarangActivity.class);
                 penukaranBarang.putExtra("id_transaksi", id_transaksi);
                 penukaranBarang.putExtra("items" , (Serializable) keranjangItems);
+
+                SharedPreferences preferencesItem = getSharedPreferences("penukaranBarang", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorCart = preferencesItem.edit();
+                editorCart.clear().apply();
+
                 startActivity(penukaranBarang);
                 break;
         }

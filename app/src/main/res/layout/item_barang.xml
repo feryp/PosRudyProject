@@ -110,6 +110,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_skuCode_barang_penjualan"/>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_qty_barang_penjualan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1"
+            android:textSize="@dimen/font_lg"
+            android:textColor="@color/black"
+            android:fontFamily="@font/work_sans_medium"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_harga_barang_penjualan"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +131,7 @@
             android:layout_marginEnd="@dimen/margin_sm"
             android:layout_marginBottom="@dimen/margin_sm"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_harga_barang_penjualan">
+            app:layout_constraintTop_toBottomOf="@id/tv_qty_barang_penjualan">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_minus"

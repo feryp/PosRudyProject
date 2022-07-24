@@ -71,6 +71,7 @@
     <string name="menu_riwayat">Riwayat</string>
     <string name="btn_tambah_pelanggan">Tambah Pelanggan</string>
     <string name="et_hint_nama_pelanggan">Nama Pelanggan</string>
+    <string name="et_hint_nik_pelanggan">Nik Pelanggan</string>
     <string name="et_hint_no_handphone">No. Handphone</string>
     <string name="et_hint_email">Email</string>
     <string name="et_hint_alamat">Alamat</string>

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
@@ -19,14 +20,18 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.posrudyproject.Interface.OnBackPressedListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.ui.akun.fragment.AkunFragment;
 import com.example.posrudyproject.ui.barcode.ScannerActivity;
 import com.example.posrudyproject.ui.beranda.fragment.BerandaFragment;
 import com.example.posrudyproject.ui.keranjang.fragment.KeranjangFragment;
+import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
 import com.example.posrudyproject.ui.rekapKas.fragment.RekapKasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //SET LISTENER
         btnBarcode.setOnClickListener(this);
-
     }
 
     private void initComponent() {

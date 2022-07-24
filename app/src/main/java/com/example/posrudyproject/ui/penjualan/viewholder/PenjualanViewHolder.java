@@ -14,12 +14,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 public class PenjualanViewHolder extends RecyclerView.ViewHolder {
 
     public RoundedImageView imBarang;
-    public AppCompatTextView tipeBarang;
-    public AppCompatTextView skuCode;
-    public AppCompatTextView artikelBarang;
-    public AppCompatTextView namaBarang;
-    public AppCompatTextView hargaBarang;
-    public AppCompatTextView kuantitasBarang;
+    public AppCompatTextView tipeBarang,skuCode,artikelBarang,namaBarang,hargaBarang,kuantitasBarang, qtyBarang;
     public MaterialButton btnPlus,btnMinus;
 
     public PenjualanViewHolder(@NonNull View itemView) {
@@ -31,6 +26,7 @@ public class PenjualanViewHolder extends RecyclerView.ViewHolder {
         artikelBarang = itemView.findViewById(R.id.tv_artikel_barang_penjualan);
         namaBarang = itemView.findViewById(R.id.tv_nama_barang_penjualan);
         hargaBarang = itemView.findViewById(R.id.tv_harga_barang_penjualan);
+        qtyBarang = itemView.findViewById(R.id.tv_qty_barang_penjualan);
         kuantitasBarang = itemView.findViewById(R.id.tv_qty_item_penjualan);
         btnPlus = itemView.findViewById(R.id.btn_plus);
         btnMinus = itemView.findViewById(R.id.btn_minus);

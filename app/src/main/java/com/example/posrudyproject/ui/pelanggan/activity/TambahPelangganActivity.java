@@ -13,11 +13,15 @@ import android.widget.EditText;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PelangganEndpoint;
+import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -31,10 +35,13 @@ public class TambahPelangganActivity extends AppCompatActivity {
     PelangganEndpoint pelangganEndpoint;
 
     MaterialToolbar mToolbar;
-    TextInputEditText etNamaPelanggan, etNoHpPelanggan, etEmailPelanggan, etAlamatPelanggan;
+    TextInputEditText etNamaPelanggan, etNikPelanggan, etNoHpPelanggan, etEmailPelanggan, etAlamatPelanggan;
     MaterialButton btnSimpan;
     Long id;
     Double totalKunjungan,kuantitas,poin,totalPembelian;
+    Integer isPenjualan;
+    List<KeranjangItem> keranjangItemList;
+    String ongkir,ekspedisi,diskonPersen,diskonRupiah,diskon_remark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +54,18 @@ public class TambahPelangganActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar_tambah_pelanggan);
         etNamaPelanggan = findViewById(R.id.et_nama_pelanggan);
+        etNikPelanggan = findViewById(R.id.et_nik_pelanggan);
         etNoHpPelanggan = findViewById(R.id.et_no_hp_pelanggan);
         etEmailPelanggan = findViewById(R.id.et_email_pelanggan);
         etAlamatPelanggan = findViewById(R.id.et_alamat_pelanggan);
         btnSimpan = findViewById(R.id.btn_simpan_pelanggan);
+        keranjangItemList = new ArrayList<>();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getLong("id");
             etNamaPelanggan.setText(extras.getString("namaPelanggan"));
+            etNikPelanggan.setText(extras.getString("nik"));
             etNoHpPelanggan.setText(extras.getString("noHp"));
             etEmailPelanggan.setText(extras.getString("email"));
             etAlamatPelanggan.setText(extras.getString("alamat"));
@@ -63,6 +73,20 @@ public class TambahPelangganActivity extends AppCompatActivity {
             kuantitas = extras.getDouble("kuantitas");
             poin = extras.getDouble("poin");
             totalPembelian = extras.getDouble("totalPembelian");
+            isPenjualan = extras.getInt("isPenjualan");
+            keranjangItemList = (List<KeranjangItem>) extras.getSerializable("itemForBuy");
+            if (extras.getString("ongkir") != null) {
+                ongkir = extras.getString("ongkir");
+                ekspedisi = extras.getString("ekspedisi");
+            }
+            if (extras.getString("diskonPersen") != null) {
+                diskonPersen = extras.getString("diskonPersen");
+                diskon_remark = extras.getString("diskon_remark");
+            }
+            if (extras.getString("diskonRupiah") != null) {
+                diskonRupiah = extras.getString("diskonRupiah");
+                diskon_remark = extras.getString("diskon_remark");
+            }
         }
         btnSimpan.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -72,6 +96,7 @@ public class TambahPelangganActivity extends AppCompatActivity {
                     Pelanggan pelanggan = new Pelanggan(
                             id == null? null: id,
                             etNamaPelanggan.getEditableText().toString(),
+                            etNikPelanggan.getEditableText().toString(),
                             etNoHpPelanggan.getEditableText().toString(),
                             etEmailPelanggan.getEditableText().toString(),
                             etAlamatPelanggan.getEditableText().toString(),
@@ -84,7 +109,7 @@ public class TambahPelangganActivity extends AppCompatActivity {
                     pDialog.setTitleText("Loading ...");
                     pDialog.setCancelable(false);
                     pDialog.show();
-                    if (id == null) {
+                    if (id == null || id == 0) {
                         Call<Map> call = pelangganEndpoint.savePelanggan(
                                 auth_token,
                                 pelanggan);
@@ -98,6 +123,20 @@ public class TambahPelangganActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(SweetAlertDialog sDialog) {
                                         Intent intent = new Intent(TambahPelangganActivity.this, PelangganActivity.class);
+                                        intent.putExtra("isPenjualan", isPenjualan);
+                                        intent.putExtra("itemForBuy", (Serializable) keranjangItemList);
+                                        if (ongkir != "") {
+                                            intent.putExtra("ongkir", ongkir);
+                                            intent.putExtra("ekspedisi", ekspedisi);
+                                        }
+                                        if (diskonPersen != "") {
+                                            intent.putExtra("diskonPersen", diskonPersen);
+                                            intent.putExtra("diskon_remark", diskon_remark);
+                                        }
+                                        if (diskonRupiah != "") {
+                                            intent.putExtra("diskonRupiah", diskonRupiah);
+                                            intent.putExtra("diskon_remark", diskon_remark);
+                                        }
                                         startActivity(intent);
                                     }
                                 });
@@ -114,6 +153,20 @@ public class TambahPelangganActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(SweetAlertDialog sDialog) {
                                                 Intent intent = new Intent(TambahPelangganActivity.this, PelangganActivity.class);
+                                                intent.putExtra("isPenjualan", isPenjualan);
+                                                intent.putExtra("itemForBuy", (Serializable) keranjangItemList);
+                                                if (ongkir != "") {
+                                                    intent.putExtra("ongkir", ongkir);
+                                                    intent.putExtra("ekspedisi", ekspedisi);
+                                                }
+                                                if (diskonPersen != "") {
+                                                    intent.putExtra("diskonPersen", diskonPersen);
+                                                    intent.putExtra("diskon_remark", diskon_remark);
+                                                }
+                                                if (diskonRupiah != "") {
+                                                    intent.putExtra("diskonRupiah", diskonRupiah);
+                                                    intent.putExtra("diskon_remark", diskon_remark);
+                                                }
                                                 startActivity(intent);
                                             }
                                         })
@@ -134,6 +187,20 @@ public class TambahPelangganActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(SweetAlertDialog sDialog) {
                                         Intent intent = new Intent(TambahPelangganActivity.this, PelangganActivity.class);
+                                        intent.putExtra("isPenjualan", isPenjualan);
+                                        intent.putExtra("itemForBuy", (Serializable) keranjangItemList);
+                                        if (ongkir != "") {
+                                            intent.putExtra("ongkir", ongkir);
+                                            intent.putExtra("ekspedisi", ekspedisi);
+                                        }
+                                        if (diskonPersen != "") {
+                                            intent.putExtra("diskonPersen", diskonPersen);
+                                            intent.putExtra("diskon_remark", diskon_remark);
+                                        }
+                                        if (diskonRupiah != "") {
+                                            intent.putExtra("diskonRupiah", diskonRupiah);
+                                            intent.putExtra("diskon_remark", diskon_remark);
+                                        }
                                         startActivity(intent);
                                     }
                                 });
@@ -150,6 +217,20 @@ public class TambahPelangganActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(SweetAlertDialog sDialog) {
                                                 Intent intent = new Intent(TambahPelangganActivity.this, PelangganActivity.class);
+                                                intent.putExtra("isPenjualan", isPenjualan);
+                                                intent.putExtra("itemForBuy", (Serializable) keranjangItemList);
+                                                if (ongkir != "") {
+                                                    intent.putExtra("ongkir", ongkir);
+                                                    intent.putExtra("ekspedisi", ekspedisi);
+                                                }
+                                                if (diskonPersen != "") {
+                                                    intent.putExtra("diskonPersen", diskonPersen);
+                                                    intent.putExtra("diskon_remark", diskon_remark);
+                                                }
+                                                if (diskonRupiah != "") {
+                                                    intent.putExtra("diskonRupiah", diskonRupiah);
+                                                    intent.putExtra("diskon_remark", diskon_remark);
+                                                }
                                                 startActivity(intent);
                                             }
                                         })
@@ -165,6 +246,20 @@ public class TambahPelangganActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TambahPelangganActivity.this, PelangganActivity.class);
+                intent.putExtra("isPenjualan", isPenjualan);
+                intent.putExtra("itemForBuy", (Serializable) keranjangItemList);
+                if (ongkir != "") {
+                    intent.putExtra("ongkir", ongkir);
+                    intent.putExtra("ekspedisi", ekspedisi);
+                }
+                if (diskonPersen != "") {
+                    intent.putExtra("diskonPersen", diskonPersen);
+                    intent.putExtra("diskon_remark", diskon_remark);
+                }
+                if (diskonRupiah != "") {
+                    intent.putExtra("diskonRupiah", diskonRupiah);
+                    intent.putExtra("diskon_remark", diskon_remark);
+                }
                 startActivity(intent);
                 finish();
             }

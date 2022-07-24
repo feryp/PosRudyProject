@@ -134,6 +134,13 @@ public class KategoriActivity extends AppCompatActivity implements OnItemClickLi
     }
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(KategoriActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     public void onItemClickListener(View view, int position) {
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -143,6 +150,11 @@ public class KategoriActivity extends AppCompatActivity implements OnItemClickLi
         Intent kategori = new Intent(this, PenjualanActivity.class);
         kategori.putExtra("id_kategori", kategoriItems.get(position).getId());
         kategori.putExtra("id_store", preferences.getInt("id_store", 0));
+
+        SharedPreferences preferencesCart = getSharedPreferences("keranjang", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorCart = preferencesCart.edit();
+        editorCart.clear().apply();
+
         startActivity(kategori);
     }
 

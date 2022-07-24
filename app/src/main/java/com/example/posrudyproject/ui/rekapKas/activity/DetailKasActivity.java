@@ -24,6 +24,8 @@ import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.TambahPelangganActivity;
 import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.penjual.fragment.BotSheetTokoTujuanFragment;
+import com.example.posrudyproject.ui.penjualan.activity.KategoriActivity;
+import com.example.posrudyproject.ui.penjualan.activity.TransaksiSuksesActivity;
 import com.example.posrudyproject.ui.penyimpanan.activity.RiwayatPenyimpananActivity;
 import com.example.posrudyproject.ui.penyimpanan.adapter.PagerMenuAdapter;
 import com.example.posrudyproject.ui.penyimpanan.fragment.BarangKeluarFragment;
@@ -182,6 +184,8 @@ public class DetailKasActivity extends AppCompatActivity{
                 bundle.putString("nama_pengguna", nama_pengguna);
                 rekapKasFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.app_bar_layout, rekapKasFragment).commit();
+                Intent intent = new Intent(DetailKasActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

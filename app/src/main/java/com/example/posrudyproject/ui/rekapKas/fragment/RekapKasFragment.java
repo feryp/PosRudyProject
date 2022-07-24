@@ -10,7 +10,9 @@ import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,8 @@ import android.widget.Toast;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.RekapKasEndpoint;
+import com.example.posrudyproject.ui.beranda.fragment.BerandaFragment;
+import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.TambahPelangganActivity;
 import com.example.posrudyproject.ui.rekapKas.activity.DetailKasActivity;
 import com.example.posrudyproject.ui.rekapKas.model.KasKeluarItem;
@@ -34,6 +38,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
@@ -376,6 +381,32 @@ public class RekapKasFragment extends Fragment implements View.OnClickListener{
         btnUangKeluar.setOnClickListener(RekapKasFragment.this);
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(getView() == null){
+            return;
+        }
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                    getActivity().finish();
+                    getActivity().overridePendingTransition(0, 0);
+                    startActivity(getActivity().getIntent());
+                    getActivity().overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @SuppressLint("NonConstantResourceId")

@@ -30,6 +30,7 @@ import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PelangganEndpoint;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 
+import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.pembayaran.model.DetailPesanan;
 import com.example.posrudyproject.ui.penjualan.adapter.TransaksiSuksesAdapter;
 import com.example.posrudyproject.ui.penjualan.async.AsyncBluetoothEscPosPrint;
@@ -160,7 +161,14 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
     }
 
     private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TransaksiSuksesActivity.this, KategoriActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void initComponent() {
@@ -186,9 +194,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         switch (view.getId()) {
             case R.id.btn_cetak_struk:
                 try {
-                    printBluetooth();
-                    /*Intent struk = new Intent(this, StrukPenjualanActivity.class);
-                    startActivity(struk);*/
+                    browseBluetoothDevice();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -221,7 +227,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
             return;
         }
         final BluetoothConnection[] bluetoothDevicesList = (new BluetoothPrintersConnections()).getList();
-        System.out.println(bluetoothDevicesList);
+
         if (bluetoothDevicesList != null) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                 return;
@@ -247,8 +253,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                     } else {
                         selectedDevice = bluetoothDevicesList[index];
                     }
-                    Button button = (Button) findViewById(R.id.button_bluetooth_browse);
-                    button.setText(items[i]);
+                    printBluetooth();
                 }
             });
 
@@ -280,10 +285,10 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                         @Override
                         public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
                             Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+
                         }
                     }
-            )
-                    .execute(this.getAsyncEscPosPrinter(selectedDevice));
+            ).execute(this.getAsyncEscPosPrinter(selectedDevice));
         }
     }
 
@@ -297,7 +302,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         items = "";
         for (int i=0; i<keranjangItems.size(); i++) {
-            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf((keranjangItems.get(i).getHargaBarang().replace(",", "")).replace("Rp","")) - Double.valueOf((keranjangItems.get(i).getHarga_baru().replace(",", "")).replace("Rp","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
+            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf(((keranjangItems.get(i).getHargaBarang().replace(",", "")).replace("Rp","")).replace(".","")) - Double.valueOf(((keranjangItems.get(i).getHarga_baru().replace(",", "")).replace("Rp","")).replace(".","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru().replace("Rp","")+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
         }
         return printer.addTextToPrint(
                 "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
@@ -334,5 +339,12 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                         "\n" +
                         "[C]Powered By GB System\n"
         );
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TransaksiSuksesActivity.this, KategoriActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

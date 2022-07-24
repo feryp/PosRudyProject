@@ -1,6 +1,7 @@
 package com.example.posrudyproject.ui.penyimpanan.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +11,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.posrudyproject.Interface.OnItemClickListener;
@@ -17,10 +19,12 @@ import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PelangganEndpoint;
 import com.example.posrudyproject.retrofit.PenyimpananEndpoint;
+import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.TambahPelangganActivity;
 import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
 import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
+import com.example.posrudyproject.ui.penjual.activity.PenjualActivity;
 import com.example.posrudyproject.ui.penyimpanan.adapter.KategoriPenyimpananAdapter;
 import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.KategoriPenyimpananItem;
@@ -42,11 +46,13 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
     MaterialToolbar mToolbar;
     MaterialButton btnPemindahanBarang;
     RecyclerView rvKategoriPenyimpanan, rvProdukTersedia;
+    AppCompatTextView title;
     KategoriPenyimpananAdapter katPenyimpananAdapter;
     List<KategoriPenyimpananItem> kategoriPenyimpananItems;
     ProdukTersediaAdapter proTersediaAdapter;
     List<ProdukTersediaItem> produkTersediaItems;
     PenyimpananEndpoint penyimpananEndpoint;
+    Double total_stock = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,9 +136,12 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
                                 response.body().get(i).getHargaBarang(),
                                 response.body().get(i).getJumlahStok()
                         ));
+
+                        total_stock += Double.valueOf(response.body().get(i).getJumlahStok());
                     }
                     ProdukTersediaAdapter adapter = new ProdukTersediaAdapter(produkTersediaItems, PenyimpananActivity.this);
                     rvProdukTersedia.setAdapter(adapter);
+                    title.setText("Produk yang tersedia " + String.valueOf(total_stock).replace(".0", ""));
                 }
             }
 
@@ -153,13 +162,20 @@ public class PenyimpananActivity extends AppCompatActivity implements OnItemClic
     }
 
     private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PenyimpananActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void initComponent() {
         mToolbar = findViewById(R.id.toolbar_penyimpanan);
         btnPemindahanBarang = findViewById(R.id.btn_pemindahan_barang);
-
+        title = findViewById(R.id.title_produk_tersedia);
         rvProdukTersedia = findViewById(R.id.rv_produk_tersedia);
     }
 

@@ -103,7 +103,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
         if (curr.isEmpty()) {
             etUangDiterima.setText("Rp " + decim.format(0.00));
         } else {
-            etUangDiterima.setText("Rp " + decim.format(Double.valueOf(curr)));
+            etUangDiterima.setText("Rp " + decim.format(Double.valueOf((curr).replace(".",""))));
         }
     }
     public void clear(){

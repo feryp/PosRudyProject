@@ -47,7 +47,7 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
     List<Pelanggan> pelangganItems;
     List<KeranjangItem> keranjangItems;
     PelangganEndpoint pelangganEndpoint;
-    String noHpPelanggan,namaPelanggan,namaPenjual;
+    String noHpPelanggan,namaPelanggan,namaPenjual,ongkir,ekspedisi,diskonPersen,diskonRupiah,diskon_remark;
     Integer idPenjual,isPenjualan;
 
     @Override
@@ -75,6 +75,18 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
             if (bundle.getString("namaPelanggan") != null) {
                 namaPelanggan = bundle.getString("namaPelanggan");
                 noHpPelanggan = bundle.getString("noHpPelanggan");
+            }
+            if (bundle.getString("ongkir") != null) {
+                ongkir = bundle.getString("ongkir");
+                ekspedisi = bundle.getString("ekspedisi");
+            }
+            if (bundle.getString("diskonPersen") != null) {
+                diskonPersen = bundle.getString("diskonPersen");
+                diskon_remark = bundle.getString("diskon_remark");
+            }
+            if (bundle.getString("diskonRupiah") != null) {
+                diskonRupiah = bundle.getString("diskonRupiah");
+                diskon_remark = bundle.getString("diskon_remark");
             }
         } else {
             keranjangItems = new ArrayList<>();
@@ -111,6 +123,7 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                         pelangganItems.add(new Pelanggan(
                                 response.body().get(i).getId(),
                                 response.body().get(i).getNama_pelanggan(),
+                                response.body().get(i).getNik(),
                                 response.body().get(i).getNo_hp(),
                                 response.body().get(i).getEmail(),
                                 response.body().get(i).getAlamat(),
@@ -147,6 +160,18 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                     if (namaPenjual != "") {
                         tambahPelanggan.putExtra("namaPenjualFromPelanggan", namaPenjual);
                         tambahPelanggan.putExtra("idPenjualFromPelanggan", idPenjual);
+                    }
+                    if (ongkir != "") {
+                        tambahPelanggan.putExtra("ongkir", ongkir);
+                        tambahPelanggan.putExtra("ekspedisi", ekspedisi);
+                    }
+                    if (diskonPersen != "") {
+                        tambahPelanggan.putExtra("diskonPersen", diskonPersen);
+                        tambahPelanggan.putExtra("diskon_remark", diskon_remark);
+                    }
+                    if (diskonRupiah != "") {
+                        tambahPelanggan.putExtra("diskonRupiah", diskonRupiah);
+                        tambahPelanggan.putExtra("diskon_remark", diskon_remark);
                     }
                     startActivity(tambahPelanggan);
                     finish();
@@ -194,6 +219,18 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                     tambahPelanggan.putExtra("namaPenjualFromPelanggan", namaPenjual);
                     tambahPelanggan.putExtra("idPenjualFromPelanggan", idPenjual);
                 }
+                if (ongkir != "") {
+                    tambahPelanggan.putExtra("ongkir", ongkir);
+                    tambahPelanggan.putExtra("ekspedisi", ekspedisi);
+                }
+                if (diskonPersen != "") {
+                    tambahPelanggan.putExtra("diskonPersen", diskonPersen);
+                    tambahPelanggan.putExtra("diskon_remark", diskon_remark);
+                }
+                if (diskonRupiah != "") {
+                    tambahPelanggan.putExtra("diskonRupiah", diskonRupiah);
+                    tambahPelanggan.putExtra("diskon_remark", diskon_remark);
+                }
                 startActivity(tambahPelanggan);
                 break;
             case R.id.btn_edit_pelanggan:
@@ -202,6 +239,7 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
 
                 editPelanggan.putExtra("id",pelangganItems.get(position).getId());
                 editPelanggan.putExtra("namaPelanggan",pelangganItems.get(position).getNama_pelanggan());
+                editPelanggan.putExtra("nik",pelangganItems.get(position).getNik());
                 editPelanggan.putExtra("noHp",pelangganItems.get(position).getNo_hp());
                 editPelanggan.putExtra("email",pelangganItems.get(position).getEmail());
                 editPelanggan.putExtra("alamat",pelangganItems.get(position).getAlamat());
@@ -209,6 +247,18 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                 editPelanggan.putExtra("kuantitas",pelangganItems.get(position).getKuantitas());
                 editPelanggan.putExtra("poin",pelangganItems.get(position).getPoin());
                 editPelanggan.putExtra("totalPembelian",pelangganItems.get(position).getTotal_pembelian());
+                if (ongkir != "") {
+                    editPelanggan.putExtra("ongkir", ongkir);
+                    editPelanggan.putExtra("ekspedisi", ekspedisi);
+                }
+                if (diskonPersen != "") {
+                    editPelanggan.putExtra("diskonPersen", diskonPersen);
+                    editPelanggan.putExtra("diskon_remark", diskon_remark);
+                }
+                if (diskonRupiah != "") {
+                    editPelanggan.putExtra("diskonRupiah", diskonRupiah);
+                    editPelanggan.putExtra("diskon_remark", diskon_remark);
+                }
                 startActivity(editPelanggan);
                 break;
         }
@@ -219,6 +269,20 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
     public void onClick(View view) {
         Toast.makeText(this, "Tambah Pelanggan", Toast.LENGTH_SHORT).show();
         Intent tambahPelanggan = new Intent(this, TambahPelangganActivity.class);
+        tambahPelanggan.putExtra("isPenjualan", isPenjualan);
+        tambahPelanggan.putExtra("itemForBuy", (Serializable) keranjangItems);
+        if (ongkir != "") {
+            tambahPelanggan.putExtra("ongkir", ongkir);
+            tambahPelanggan.putExtra("ekspedisi", ekspedisi);
+        }
+        if (diskonPersen != "") {
+            tambahPelanggan.putExtra("diskonPersen", diskonPersen);
+            tambahPelanggan.putExtra("diskon_remark", diskon_remark);
+        }
+        if (diskonRupiah != "") {
+            tambahPelanggan.putExtra("diskonRupiah", diskonRupiah);
+            tambahPelanggan.putExtra("diskon_remark", diskon_remark);
+        }
         startActivity(tambahPelanggan);
     }
 
@@ -234,15 +298,16 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                         pelangganItems = new ArrayList<>();
                         for (int i=0; i<response.body().size(); i++){
                             pelangganItems.add(new Pelanggan(
-                                            response.body().get(i).getId(),
-                                            response.body().get(i).getNama_pelanggan(),
-                                            response.body().get(i).getNo_hp(),
-                                            response.body().get(i).getEmail(),
-                                            response.body().get(i).getAlamat(),
-                                            response.body().get(i).getTotal_kunjungan(),
-                                            response.body().get(i).getKuantitas(),
-                                            response.body().get(i).getPoin(),
-                                            response.body().get(i).getTotal_pembelian()
+                                    response.body().get(i).getId(),
+                                    response.body().get(i).getNama_pelanggan(),
+                                    response.body().get(i).getNik(),
+                                    response.body().get(i).getNo_hp(),
+                                    response.body().get(i).getEmail(),
+                                    response.body().get(i).getAlamat(),
+                                    response.body().get(i).getTotal_kunjungan(),
+                                    response.body().get(i).getKuantitas(),
+                                    response.body().get(i).getPoin(),
+                                    response.body().get(i).getTotal_pembelian()
                                     )
                             );
                         }
@@ -272,15 +337,16 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                             pelangganItems = new ArrayList<>();
                             for (int i=0; i<response.body().size(); i++){
                                 pelangganItems.add(new Pelanggan(
-                                                response.body().get(i).getId(),
-                                                response.body().get(i).getNama_pelanggan(),
-                                                response.body().get(i).getNo_hp(),
-                                                response.body().get(i).getEmail(),
-                                                response.body().get(i).getAlamat(),
-                                                response.body().get(i).getTotal_kunjungan(),
-                                                response.body().get(i).getKuantitas(),
-                                                response.body().get(i).getPoin(),
-                                                response.body().get(i).getTotal_pembelian()
+                                        response.body().get(i).getId(),
+                                        response.body().get(i).getNama_pelanggan(),
+                                        response.body().get(i).getNik(),
+                                        response.body().get(i).getNo_hp(),
+                                        response.body().get(i).getEmail(),
+                                        response.body().get(i).getAlamat(),
+                                        response.body().get(i).getTotal_kunjungan(),
+                                        response.body().get(i).getKuantitas(),
+                                        response.body().get(i).getPoin(),
+                                        response.body().get(i).getTotal_pembelian()
                                         )
                                 );
                             }
@@ -304,15 +370,16 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
                             pelangganItems = new ArrayList<>();
                             for (int i=0; i<response.body().size(); i++){
                                 pelangganItems.add(new Pelanggan(
-                                                response.body().get(i).getId(),
-                                                response.body().get(i).getNama_pelanggan(),
-                                                response.body().get(i).getNo_hp(),
-                                                response.body().get(i).getEmail(),
-                                                response.body().get(i).getAlamat(),
-                                                response.body().get(i).getTotal_kunjungan(),
-                                                response.body().get(i).getKuantitas(),
-                                                response.body().get(i).getPoin(),
-                                                response.body().get(i).getTotal_pembelian()
+                                        response.body().get(i).getId(),
+                                        response.body().get(i).getNama_pelanggan(),
+                                        response.body().get(i).getNik(),
+                                        response.body().get(i).getNo_hp(),
+                                        response.body().get(i).getEmail(),
+                                        response.body().get(i).getAlamat(),
+                                        response.body().get(i).getTotal_kunjungan(),
+                                        response.body().get(i).getKuantitas(),
+                                        response.body().get(i).getPoin(),
+                                        response.body().get(i).getTotal_pembelian()
                                         )
                                 );
                             }

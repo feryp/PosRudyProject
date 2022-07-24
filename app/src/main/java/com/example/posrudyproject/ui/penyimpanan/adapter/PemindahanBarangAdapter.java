@@ -2,6 +2,7 @@ package com.example.posrudyproject.ui.penyimpanan.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -41,6 +42,12 @@ public class PemindahanBarangAdapter extends RecyclerView.Adapter<PemindahanBara
     @Override
     public void onBindViewHolder(@NonNull PemindahanBarangViewHolder holder, int position) {
         PemindahanBarangItem item = pemindahanBarangItems.get(position);
+
+        SharedPreferences preferences = mContext.getSharedPreferences("pindahItems", mContext.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        Integer kuantitas = Integer.valueOf(preferences.getString(item.getArtikelProduk(), "0"));
+
         String fotoBarang = item.getFoto_barang() == null? "" : item.getFoto_barang();
         byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
         Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -49,6 +56,24 @@ public class PemindahanBarangAdapter extends RecyclerView.Adapter<PemindahanBara
         holder.artikelBarang.setText(item.getArtikelProduk());
         holder.namaBarang.setText(item.getNamaProduk());
         holder.jumlahBarang.setText(item.getJumlahProduk());
+
+        holder.btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.jumlahBarang.setText(String.valueOf(Integer.valueOf(holder.jumlahBarang.getText().toString()) + 1));
+                editor.putString(item.getArtikelProduk(), holder.jumlahBarang.getText().toString());
+                editor.apply();
+            }
+        });
+
+        holder.btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.jumlahBarang.setText(String.valueOf(Integer.valueOf(holder.jumlahBarang.getText().toString()) - 1));
+                editor.putString(item.getArtikelProduk(), holder.jumlahBarang.getText().toString());
+                editor.apply();
+            }
+        });
 
         //bind data by tipe
         viewBinderHelper.bind(holder.swipeRevealLayout, pemindahanBarangItems.get(position).getTipeProduk());

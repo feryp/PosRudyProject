@@ -2,6 +2,7 @@ package com.example.posrudyproject.ui.penjualan.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -9,23 +10,29 @@ import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -82,6 +89,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     PenjualanAdapter adapter;
     Map<String,Integer> qty = new HashMap<>();
     public static final int REQUEST_CODE = 1;
+    public static final String INTENT_KERANJANG = "INTENT_KERANJANG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,17 +97,20 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_penjualan);
 
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences preferencesCart = getSharedPreferences("keranjang", Context.MODE_PRIVATE);
+
         id_kategori = preferences.getString("id_kategori","");
         String token = preferences.getString("token","");
         id_store = preferences.getInt("id_store", 0);
         auth_token = ("Bearer ").concat(token);
-
+        keranjangItems = new ArrayList<>();
         penjualanEndpoint = ApiClient.getClient().create(PenjualanEndpoint.class);
         penyimpananEndpoint = ApiClient.getClient().create(PenyimpananEndpoint.class);
 
         rvPenjualan = findViewById(R.id.rv_penjualan);
         rvKeranjang = findViewById(R.id.rv_keranjang);
         totalQty = findViewById(R.id.tv_total_qty);
+
         GridLayoutManager manager = new GridLayoutManager(this,2);
         rvPenjualan.setLayoutManager(manager);
         rvPenjualan.setHasFixedSize(true);
@@ -116,6 +127,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
 
         SetupSearchView(auth_token, id_store, id_kategori);
         DecimalFormat formatter = new DecimalFormat("#,###.##");
+
 
         Call<List<ProdukTersediaItem>> call_stock = penyimpananEndpoint.stockAvailPerStoreByCategory(auth_token,id_store,id_kategori);
         SweetAlertDialog pDialog = new SweetAlertDialog(PenjualanActivity.this, SweetAlertDialog.PROGRESS_TYPE);
@@ -147,67 +159,9 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                 "0"
                         ));
                     }
+
                     adapter = new PenjualanAdapter(penjualanItems, PenjualanActivity.this);
                     rvPenjualan.setAdapter(adapter);
-                    rvPenjualan.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                        @Override
-                        public void onGlobalLayout() {
-                            final Integer itemCount = adapter.getItemCount();
-                            keranjangItems = new ArrayList<>();
-                            if (itemCount != null) {
-                                for (int i = 0; i<itemCount; i++) {
-                                    TextView total = rvPenjualan.getChildAt(i).findViewById(R.id.tv_qty_item_penjualan);
-                                    ImageView foto = rvPenjualan.getChildAt(i).findViewById(R.id.im_barang_penjualan);
-                                    TextView tipeBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_tipe_barang_penjualan);
-                                    TextView skuCode = rvPenjualan.getChildAt(i).findViewById(R.id.tv_skuCode_barang_penjualan);
-                                    TextView artikelBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_artikel_barang_penjualan);
-                                    TextView namaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_nama_barang_penjualan);
-                                    TextView hargaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_harga_barang_penjualan);
-
-                                    Button btnMinus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_minus);
-                                    Button btnPlus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_plus);
-                                    btnPlus.setOnClickListener(new View.OnClickListener() {
-                                        public void onClick(View v) {
-                                            total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
-                                            totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText() == ""? 0:totalQty.getText())) + 1));
-                                            qty.put(String.valueOf(skuCode.getText()),Integer.valueOf(total.getText().toString()));
-                                        }
-                                    });
-                                    btnMinus.setOnClickListener(new View.OnClickListener() {
-                                        public void onClick(View v) {
-                                            if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
-                                                total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
-                                                totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText())) - 1));
-                                            }
-                                        }
-                                    });
-                                    keranjangItems.add(new KeranjangItem(
-                                            penjualanItems.get(i).getFoto_barang(),
-                                            tipeBarang.getText().toString(),
-                                            skuCode.getText().toString(),
-                                            artikelBarang.getText().toString(),
-                                            namaBarang.getText().toString(),
-                                            hargaBarang.getText().toString(),
-                                            hargaBarang.getText().toString(),
-                                            "",
-                                            total.getText().toString(),
-                                            String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
-                                            total.getText().toString()
-                                    ));
-                                }
-                            }
-
-                        }
-                    });
-                    btnMasukKeranjang.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent masukKeranjang = new Intent(PenjualanActivity.this, KeranjangActivity.class);
-                            masukKeranjang.putExtra("itemForBuy", (Serializable) keranjangItems);
-                            masukKeranjang.putExtra("id_kategori",id_kategori);
-                            startActivity(masukKeranjang);
-                        }
-                    });
                 }
             }
 
@@ -221,6 +175,30 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
+        btnMasukKeranjang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i=0; i<penjualanItems.size(); i++) {
+                    keranjangItems.add(new KeranjangItem(
+                            penjualanItems.get(i).getFoto_barang(),
+                            penjualanItems.get(i).getTipeBarang(),
+                            penjualanItems.get(i).getSkuCode(),
+                            penjualanItems.get(i).getArtikelBarang(),
+                            penjualanItems.get(i).getNamaBarang(),
+                            penjualanItems.get(i).getHargaBarang(),
+                            penjualanItems.get(i).getHargaBarang(),
+                            "",
+                            preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0"),
+                            String.valueOf(Double.valueOf(penjualanItems.get(i).getHargaBarang()) * Double.valueOf(preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0"))),
+                            preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0")
+                    ));
+                }
+                Intent masukKeranjang = new Intent(PenjualanActivity.this, KeranjangActivity.class);
+                masukKeranjang.putExtra("itemForBuy", (Serializable) keranjangItems);
+                masukKeranjang.putExtra("id_kategori",id_kategori);
+                startActivity(masukKeranjang);
+            }
+        });
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,7 +207,6 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 finish();
             }
         });
-
     }
 
     private void initToolbar() {
@@ -252,11 +229,12 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void SetupSearchView(String authToken, int id_store, String kategori){
-
         final SearchView searchView = findViewById(R.id.search_barang_penjualan);
+        SharedPreferences preferencesCart = getSharedPreferences("keranjang", Context.MODE_PRIVATE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 Call<List<ProdukTersediaItem>> call = penyimpananEndpoint.searchByCategory(authToken,id_store,kategori,query);
                 call.enqueue(new Callback<List<ProdukTersediaItem>>() {
                     @Override
@@ -270,60 +248,11 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                     response.body().get(i).getArtikelBarang(),
                                     response.body().get(i).getNamaBarang(),
                                     response.body().get(i).getHargaBarang(),
-                                    String.valueOf(qty.get(response.body().get(i).getSkuCode()) == null ? 0 : qty.get(response.body().get(i).getSkuCode()))
+                                    preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0")
                             ));
                         }
                         adapter = new PenjualanAdapter(penjualanItems, PenjualanActivity.this);
                         rvPenjualan.setAdapter(adapter);
-                        rvPenjualan.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                            @Override
-                            public void onGlobalLayout() {
-                                final Integer itemCount = adapter.getItemCount();
-                                keranjangItems = new ArrayList<>();
-                                if (itemCount != null) {
-                                    for (int i = 0; i<itemCount; i++) {
-                                        TextView total = rvPenjualan.getChildAt(i).findViewById(R.id.tv_qty_item_penjualan);
-                                        ImageView foto = rvPenjualan.getChildAt(i).findViewById(R.id.im_barang_penjualan);
-                                        TextView tipeBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_tipe_barang_penjualan);
-                                        TextView skuCode = rvPenjualan.getChildAt(i).findViewById(R.id.tv_skuCode_barang_penjualan);
-                                        TextView artikelBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_artikel_barang_penjualan);
-                                        TextView namaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_nama_barang_penjualan);
-                                        TextView hargaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_harga_barang_penjualan);
-
-                                        Button btnMinus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_minus);
-                                        Button btnPlus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_plus);
-                                        btnPlus.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
-                                                totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText() == ""? 0:totalQty.getText())) + 1));
-                                            }
-                                        });
-                                        btnMinus.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
-                                                    total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
-                                                    totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText())) - 1));
-                                                }
-                                            }
-                                        });
-                                        keranjangItems.add(new KeranjangItem(
-                                                penjualanItems.get(i).getFoto_barang(),
-                                                tipeBarang.getText().toString(),
-                                                skuCode.getText().toString(),
-                                                artikelBarang.getText().toString(),
-                                                namaBarang.getText().toString(),
-                                                hargaBarang.getText().toString(),
-                                                hargaBarang.getText().toString(),
-                                                "",
-                                                total.getText().toString(),
-                                                String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
-                                                total.getText().toString()
-                                        ));
-                                    }
-                                }
-
-                            }
-                        });
                     }
 
                     @Override
@@ -346,6 +275,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                         public void onResponse(Call<List<ProdukTersediaItem>> call, Response<List<ProdukTersediaItem>> response) {
                             penjualanItems = new ArrayList<>();
                             for (int i=0; i<response.body().size(); i++){
+
                                 penjualanItems.add(new PenjualanItem(
                                         response.body().get(i).getFoto_barang(),
                                         response.body().get(i).getTipeBarang(),
@@ -353,138 +283,11 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                         response.body().get(i).getArtikelBarang(),
                                         response.body().get(i).getNamaBarang(),
                                         response.body().get(i).getHargaBarang(),
-                                        String.valueOf(qty.get(response.body().get(i).getSkuCode()) == null ? 0 : qty.get(response.body().get(i).getSkuCode()))
+                                        preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0")
                                 ));
                             }
                             adapter = new PenjualanAdapter(penjualanItems, PenjualanActivity.this);
                             rvPenjualan.setAdapter(adapter);
-                            rvPenjualan.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                                @Override
-                                public void onGlobalLayout() {
-                                    final Integer itemCount = adapter.getItemCount();
-                                    keranjangItems = new ArrayList<>();
-                                    if (itemCount != null) {
-                                        for (int i = 0; i<itemCount; i++) {
-                                            TextView total = rvPenjualan.getChildAt(i).findViewById(R.id.tv_qty_item_penjualan);
-                                            ImageView foto = rvPenjualan.getChildAt(i).findViewById(R.id.im_barang_penjualan);
-                                            TextView tipeBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_tipe_barang_penjualan);
-                                            TextView skuCode = rvPenjualan.getChildAt(i).findViewById(R.id.tv_skuCode_barang_penjualan);
-                                            TextView artikelBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_artikel_barang_penjualan);
-                                            TextView namaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_nama_barang_penjualan);
-                                            TextView hargaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_harga_barang_penjualan);
-
-                                            Button btnMinus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_minus);
-                                            Button btnPlus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_plus);
-                                            btnPlus.setOnClickListener(new View.OnClickListener() {
-                                                public void onClick(View v) {
-                                                    total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
-                                                    totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText() == ""? 0:totalQty.getText())) + 1));
-                                                }
-                                            });
-                                            btnMinus.setOnClickListener(new View.OnClickListener() {
-                                                public void onClick(View v) {
-                                                    if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
-                                                        total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
-                                                        totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText())) - 1));
-                                                    }
-                                                }
-                                            });
-                                            keranjangItems.add(new KeranjangItem(
-                                                    penjualanItems.get(i).getFoto_barang(),
-                                                    tipeBarang.getText().toString(),
-                                                    skuCode.getText().toString(),
-                                                    artikelBarang.getText().toString(),
-                                                    namaBarang.getText().toString(),
-                                                    hargaBarang.getText().toString(),
-                                                    hargaBarang.getText().toString(),
-                                                    "",
-                                                    total.getText().toString(),
-                                                    String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
-                                                    total.getText().toString()
-                                            ));
-                                        }
-                                    }
-
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
-                            new SweetAlertDialog(PenjualanActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                    .setTitleText("Oops...")
-                                    .setContentText(t.getMessage())
-                                    .show();
-                        }
-                    });
-                } else {
-                    Call<List<ProdukTersediaItem>> call = penyimpananEndpoint.searchByCategory(authToken,id_store,kategori,newText);
-                    call.enqueue(new Callback<List<ProdukTersediaItem>>() {
-                        @Override
-                        public void onResponse(Call<List<ProdukTersediaItem>> call, Response<List<ProdukTersediaItem>> response) {
-                            penjualanItems = new ArrayList<>();
-                            for (int i=0; i<response.body().size(); i++){
-                                penjualanItems.add(new PenjualanItem(
-                                        response.body().get(i).getFoto_barang(),
-                                        response.body().get(i).getTipeBarang(),
-                                        response.body().get(i).getSkuCode(),
-                                        response.body().get(i).getArtikelBarang(),
-                                        response.body().get(i).getNamaBarang(),
-                                        response.body().get(i).getHargaBarang(),
-                                        String.valueOf(qty.get(response.body().get(i).getSkuCode()) == null ? 0 : qty.get(response.body().get(i).getSkuCode()))
-                                ));
-                            }
-                            adapter = new PenjualanAdapter(penjualanItems, PenjualanActivity.this);
-                            rvPenjualan.setAdapter(adapter);
-                            rvPenjualan.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                                @Override
-                                public void onGlobalLayout() {
-                                    final Integer itemCount = adapter.getItemCount();
-                                    keranjangItems = new ArrayList<>();
-                                    if (itemCount != null) {
-                                        for (int i = 0; i<itemCount; i++) {
-                                            TextView total = rvPenjualan.getChildAt(i).findViewById(R.id.tv_qty_item_penjualan);
-                                            ImageView foto = rvPenjualan.getChildAt(i).findViewById(R.id.im_barang_penjualan);
-                                            TextView tipeBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_tipe_barang_penjualan);
-                                            TextView skuCode = rvPenjualan.getChildAt(i).findViewById(R.id.tv_skuCode_barang_penjualan);
-                                            TextView artikelBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_artikel_barang_penjualan);
-                                            TextView namaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_nama_barang_penjualan);
-                                            TextView hargaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_harga_barang_penjualan);
-
-                                            Button btnMinus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_minus);
-                                            Button btnPlus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_plus);
-                                            btnPlus.setOnClickListener(new View.OnClickListener() {
-                                                public void onClick(View v) {
-                                                    total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
-                                                    totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText() == ""? 0:totalQty.getText())) + 1));
-                                                }
-                                            });
-                                            btnMinus.setOnClickListener(new View.OnClickListener() {
-                                                public void onClick(View v) {
-                                                    if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
-                                                        total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
-                                                        totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText())) - 1));
-                                                    }
-                                                }
-                                            });
-                                            keranjangItems.add(new KeranjangItem(
-                                                    penjualanItems.get(i).getFoto_barang(),
-                                                    tipeBarang.getText().toString(),
-                                                    skuCode.getText().toString(),
-                                                    artikelBarang.getText().toString(),
-                                                    namaBarang.getText().toString(),
-                                                    hargaBarang.getText().toString(),
-                                                    hargaBarang.getText().toString(),
-                                                    "",
-                                                    total.getText().toString(),
-                                                    String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
-                                                    total.getText().toString()
-                                            ));
-                                        }
-                                    }
-
-                                }
-                            });
                         }
 
                         @Override
@@ -515,9 +318,9 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 startScan();
             }
         } else if (view == btnMasukKeranjang){
-                Intent masukKeranjang = new Intent(this, KeranjangActivity.class);
-                startActivity(masukKeranjang);
-            }
+            Intent masukKeranjang = new Intent(this, KeranjangActivity.class);
+            startActivity(masukKeranjang);
+        }
     }
 
     private void startScan() {
@@ -531,6 +334,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
             super.onActivityResult(requestCode, resultCode, data);
 
             if (requestCode == REQUEST_CODE  && resultCode  == RESULT_OK) {
+                SharedPreferences preferencesCart = getSharedPreferences("keranjang", Context.MODE_PRIVATE);
                 Call<List<ProdukTersediaItem>> call = penyimpananEndpoint.searchByCategory(auth_token,id_store,id_kategori,data.getStringExtra("key"));
                 call.enqueue(new Callback<List<ProdukTersediaItem>>() {
                     @Override
@@ -544,60 +348,11 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                                     response.body().get(i).getArtikelBarang(),
                                     response.body().get(i).getNamaBarang(),
                                     response.body().get(i).getHargaBarang(),
-                                    String.valueOf(qty.get(response.body().get(i).getSkuCode()) == null ? 0 : qty.get(response.body().get(i).getSkuCode()))
+                                    preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0")
                             ));
                         }
                         adapter = new PenjualanAdapter(penjualanItems, PenjualanActivity.this);
                         rvPenjualan.setAdapter(adapter);
-                        rvPenjualan.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                            @Override
-                            public void onGlobalLayout() {
-                                final Integer itemCount = adapter.getItemCount();
-                                keranjangItems = new ArrayList<>();
-                                if (itemCount != null) {
-                                    for (int i = 0; i<itemCount; i++) {
-                                        TextView total = rvPenjualan.getChildAt(i).findViewById(R.id.tv_qty_item_penjualan);
-                                        ImageView foto = rvPenjualan.getChildAt(i).findViewById(R.id.im_barang_penjualan);
-                                        TextView tipeBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_tipe_barang_penjualan);
-                                        TextView skuCode = rvPenjualan.getChildAt(i).findViewById(R.id.tv_skuCode_barang_penjualan);
-                                        TextView artikelBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_artikel_barang_penjualan);
-                                        TextView namaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_nama_barang_penjualan);
-                                        TextView hargaBarang = rvPenjualan.getChildAt(i).findViewById(R.id.tv_harga_barang_penjualan);
-
-                                        Button btnMinus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_minus);
-                                        Button btnPlus = rvPenjualan.getChildAt(i).findViewById(R.id.btn_plus);
-                                        btnPlus.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) + 1));
-                                                totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText() == ""? 0:totalQty.getText())) + 1));
-                                            }
-                                        });
-                                        btnMinus.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                if (Integer.parseInt(String.valueOf(total.getText())) != 0) {
-                                                    total.setText(String.valueOf(Integer.parseInt(String.valueOf(total.getText())) - 1));
-                                                    totalQty.setText(String.valueOf(Integer.parseInt(String.valueOf(totalQty.getText())) - 1));
-                                                }
-                                            }
-                                        });
-                                        keranjangItems.add(new KeranjangItem(
-                                                penjualanItems.get(i).getFoto_barang(),
-                                                tipeBarang.getText().toString(),
-                                                skuCode.getText().toString(),
-                                                artikelBarang.getText().toString(),
-                                                namaBarang.getText().toString(),
-                                                hargaBarang.getText().toString(),
-                                                hargaBarang.getText().toString(),
-                                                "",
-                                                total.getText().toString(),
-                                                String.valueOf(Double.valueOf(hargaBarang.getText().toString()) * Double.valueOf(total.getText().toString())),
-                                                total.getText().toString()
-                                        ));
-                                    }
-                                }
-
-                            }
-                        });
                     }
 
                     @Override

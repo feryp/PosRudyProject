@@ -28,7 +28,9 @@ import com.example.posrudyproject.retrofit.PenyimpananEndpoint;
 import com.example.posrudyproject.ui.barcode.ScannerActivity;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterProdukFragment;
 import com.example.posrudyproject.ui.filter.fragment.BotSheetFilterTipeFragment;
+import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.penjualan.activity.PenjualanActivity;
+import com.example.posrudyproject.ui.penyimpanan.activity.PenyimpananActivity;
 import com.example.posrudyproject.ui.penyimpanan.adapter.ProdukTersediaAdapter;
 import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
 import com.example.posrudyproject.ui.produk.adapter.ProdukAdapter;
@@ -133,7 +135,15 @@ public class ProdukActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initToolbar() {
-        mToolbar.setNavigationOnClickListener(view -> finish());
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProdukActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         mToolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.menu_filter){
                 BotSheetFilterProdukFragment botSheetProduk = new BotSheetFilterProdukFragment();

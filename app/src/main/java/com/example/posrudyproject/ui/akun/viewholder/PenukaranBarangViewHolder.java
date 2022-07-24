@@ -14,7 +14,6 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 public class PenukaranBarangViewHolder extends RecyclerView.ViewHolder{
 
-    public MaterialCheckBox checkBox;
     public AppCompatTextView tipeBarang;
     public AppCompatTextView artikelBarang;
     public AppCompatTextView namaBarang;
@@ -25,7 +24,6 @@ public class PenukaranBarangViewHolder extends RecyclerView.ViewHolder{
     public PenukaranBarangViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        checkBox = itemView.findViewById(R.id.checkbox_barang_tukar);
         tipeBarang = itemView.findViewById(R.id.tv_tipe_barang_penukaran);
         artikelBarang = itemView.findViewById(R.id.tv_artikel_barang_penukaran);
         namaBarang = itemView.findViewById(R.id.tv_nama_barang_penukaran);

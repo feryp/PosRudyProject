@@ -60,6 +60,9 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penukaran_barang);
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences preferencesItem = getSharedPreferences("penukaranBarang", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferencesItem.edit();
+
         String token = preferences.getString("token","");
         id_store = preferences.getInt("id_store", 0);
         auth_token = ("Bearer ").concat(token);
@@ -86,7 +89,11 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang(),
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()
                 ));
+                total += (Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")).replace(".","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()));
             }
+            tvTotalHarga.setText("Rp" + formatter.format(total));
+            editor.putString("totalHarga", String.valueOf(total));
+            editor.apply();
         }
 
         //Setup Adapter Produk Tersedia
@@ -97,75 +104,12 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
         rvPenukaranBarang.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                final Integer itemcount = adapter.getItemCount();
-                if (itemcount != null) {
-                    for (int i=0; i<itemcount; i++) {
-                        int finalI = i;
-                        CheckBox checkBox = rvPenukaranBarang.getChildAt(i).findViewById(R.id.checkbox_barang_tukar);
-                        Button btnMinus = rvPenukaranBarang.getChildAt(i).findViewById(R.id.btn_minus_penukaran);
-                        Button btnPlus = rvPenukaranBarang.getChildAt(i).findViewById(R.id.btn_plus_penukaran);
-                        TextView qty_barang = rvPenukaranBarang.getChildAt(i).findViewById(R.id.et_jumlah_barang_penukaran);
 
-                        btnPlus.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                qty_barang.setText(String.valueOf(Integer.parseInt(String.valueOf(qty_barang.getText())) + 1));
-                                if (Integer.parseInt(String.valueOf(qty_barang.getText())) > Integer.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(finalI).getJumlahBarang().replace(".0",""))) {
-                                    qty_barang.setText(String.valueOf(Integer.parseInt(String.valueOf(qty_barang.getText())) - 1));
-                                } else {
-                                    total += Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(finalI).getHargaBarang().replace(",","")).replace("Rp",""));
-                                    tvTotalHarga.setText("Rp" + formatter.format(total));
-                                }
-                                penukaranBarangItems.get(finalI).setJumlahBarang(String.valueOf(qty_barang.getText()));
-                            }
-                        });
+                tvTotalHarga.setText("Rp" + formatter.format(Double.valueOf(preferencesItem.getString("totalHarga", "0.00"))));
 
-                        btnMinus.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                qty_barang.setText(String.valueOf(Integer.parseInt(String.valueOf(qty_barang.getText())) - 1));
-                                total -= Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(finalI).getHargaBarang().replace(",","")).replace("Rp",""));
-                                //tvTotalHarga.setText("Rp" + formatter.format(Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(finalI).getHargaBarang().replace(",","")) * Integer.parseInt(String.valueOf(qty_barang.getText()))));
-                                tvTotalHarga.setText("Rp" + formatter.format(total));
-
-                                if (Integer.parseInt(String.valueOf(qty_barang.getText())) == 0) {
-                                    checkBox.setChecked(false);
-                                }
-                                penukaranBarangItems.get(finalI).setJumlahBarang(String.valueOf(qty_barang.getText()));
-                            }
-                        });
-
-                        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                                if (b) {
-                                    total += Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(finalI).getHargaBarang().replace(",","")).replace("Rp","")) * Integer.valueOf(String.valueOf(qty_barang.getText()));
-                                    btnMinus.setEnabled(true);
-                                    btnPlus.setEnabled(true);
-                                    barangKembali.add(new BarangKembali(
-                                            id_transaksi,
-                                            id_store,
-                                            penukaranBarangItems.get(finalI).getSku_code(),
-                                            Double.valueOf(String.valueOf(qty_barang.getText())),
-                                            Double.valueOf((penukaranBarangItems.get(finalI).getHargaBarang().replace("Rp","")).replace(",","")),
-                                            String.valueOf(etAlasanPenukaran.getText())
-                                    ));
-                                } else {
-                                    total = Double.valueOf(
-                                            (String.valueOf(tvTotalHarga.getText()).replace("Rp","")).replace(",","")) - (Double.valueOf((((List<KeranjangItem>) bundle.getSerializable("items")).get(finalI).getHargaBarang().replace(",","")).replace("Rp","")) * Integer.valueOf(String.valueOf(qty_barang.getText())));
-                                    qty_barang.setText(((List<KeranjangItem>) bundle.getSerializable("items")).get(finalI).getJumlahBarang().replace(",",""));
-                                    btnMinus.setEnabled(false);
-                                    btnPlus.setEnabled(false);
-                                }
-
-                                tvTotalHarga.setText("Rp" + formatter.format(total));
-                            }
-                        });
-                    }
-                }
             }
         });
-
+        tvTotalHarga.setText("Rp" + formatter.format(Double.valueOf(preferencesItem.getString("totalHarga", "0.00"))));
         //SET LISTENER
         btnTukar.setOnClickListener(this);
     }
@@ -184,40 +128,55 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "Tukar Barang", Toast.LENGTH_SHORT).show();
-        for (int i=0; i<barangKembali.size(); i++) {
-            barangKembali.get(i).setKeterangan(String.valueOf(etAlasanPenukaran.getText()));
-        }
-        Call<Map> call = penukaranBaranEndpoint.savePenukaran(auth_token,barangKembali);
-        SweetAlertDialog pDialog = new SweetAlertDialog(PenukaranBarangActivity.this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText("Loading ...");
-        pDialog.setCancelable(false);
-        pDialog.show();
-        call.enqueue(new Callback<Map>() {
-            @Override
-            public void onResponse(Call<Map> call, Response<Map> response) {
-                if (!response.isSuccessful()){
-                    pDialog.dismiss();
-                    new SweetAlertDialog(PenukaranBarangActivity.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText(String.valueOf(response.code()))
-                            .setContentText(response.message())
-                            .show();
-                } else {
-                    pDialog.dismiss();
-                    Intent back = new Intent(PenukaranBarangActivity.this, RiwayatTransaksiActivity.class);
-                    startActivity(back);
-                }
+        if (tvTotalHarga.getText().toString().equals("Rp0")) {
+            Toast.makeText(this, "Tidak ada barang yang ditukar.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Tukar Barang", Toast.LENGTH_SHORT).show();
+            SharedPreferences preferencesItem = getSharedPreferences("penukaranBarang", Context.MODE_PRIVATE);
+            for (int i=0; i<penukaranBarangItems.size(); i++) {
+                barangKembali.add(new BarangKembali(
+                        id_transaksi,
+                        id_store,
+                        penukaranBarangItems.get(i).getSku_code(),
+                        penukaranBarangItems.get(i).getArtikelBarang(),
+                        Double.valueOf(preferencesItem.getString(penukaranBarangItems.get(i).getArtikelBarang(), "0")),
+                        Double.valueOf(((penukaranBarangItems.get(i).getHargaBarang().replace("Rp","")).replace(",","")).replace(".","")),
+                        String.valueOf(etAlasanPenukaran.getText())
+                ));
             }
 
-            @Override
-            public void onFailure(Call<Map> call, Throwable t) {
-                pDialog.dismiss();
-                new SweetAlertDialog(PenukaranBarangActivity.this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Oops...")
-                        .setContentText(t.getMessage())
-                        .show();
-            }
-        });
+            Call<Map> call = penukaranBaranEndpoint.savePenukaran(auth_token,barangKembali);
+            SweetAlertDialog pDialog = new SweetAlertDialog(PenukaranBarangActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("Loading ...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+            call.enqueue(new Callback<Map>() {
+                @Override
+                public void onResponse(Call<Map> call, Response<Map> response) {
+                    if (!response.isSuccessful()){
+                        pDialog.dismiss();
+                        new SweetAlertDialog(PenukaranBarangActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText(String.valueOf(response.code()))
+                                .setContentText(response.message())
+                                .show();
+                    } else {
+                        pDialog.dismiss();
+                        Intent back = new Intent(PenukaranBarangActivity.this, RiwayatTransaksiActivity.class);
+                        startActivity(back);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Map> call, Throwable t) {
+                    pDialog.dismiss();
+                    new SweetAlertDialog(PenukaranBarangActivity.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Oops...")
+                            .setContentText(t.getMessage())
+                            .show();
+                }
+            });
+        }
+
     }
 }

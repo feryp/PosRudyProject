@@ -119,6 +119,7 @@
                         android:fontFamily="@font/work_sans_medium"
                         android:gravity="center"
                         android:background="@drawable/bg_border_rounded_primary"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
