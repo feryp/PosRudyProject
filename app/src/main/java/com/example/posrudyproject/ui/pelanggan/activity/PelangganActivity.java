@@ -22,6 +22,7 @@ import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PelangganEndpoint;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
+import com.example.posrudyproject.ui.laporan.activity.DetailLaporanPelangganActivity;
 import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.pelanggan.adapter.PelangganAdapter;
 import com.example.posrudyproject.ui.pelanggan.model.Pelanggan;
@@ -209,29 +210,36 @@ public class PelangganActivity extends AppCompatActivity implements OnItemClickL
     public void onItemClickListener(View view, int position) {
         switch (view.getId()){
             case R.id.item_pelanggan:
-                Toast.makeText(this, "Pilih " + pelangganItems.get(position).getNama_pelanggan(), Toast.LENGTH_SHORT).show();
-                Intent tambahPelanggan = new Intent(this, KeranjangActivity.class);
-                tambahPelanggan.putExtra("namaPelanggan",pelangganItems.get(position).getNama_pelanggan());
-                tambahPelanggan.putExtra("noHp",pelangganItems.get(position).getNo_hp());
-                tambahPelanggan.putExtra("itemForBuyAddPelanggan", (Serializable) keranjangItems);
+                if (isPenjualan != 0 ) {
+                    Toast.makeText(this, "Pilih " + pelangganItems.get(position).getNama_pelanggan(), Toast.LENGTH_SHORT).show();
+                    Intent tambahPelanggan = new Intent(this, KeranjangActivity.class);
+                    tambahPelanggan.putExtra("namaPelanggan",pelangganItems.get(position).getNama_pelanggan());
+                    tambahPelanggan.putExtra("noHp",pelangganItems.get(position).getNo_hp());
+                    tambahPelanggan.putExtra("itemForBuyAddPelanggan", (Serializable) keranjangItems);
 
-                if (namaPenjual != "") {
-                    tambahPelanggan.putExtra("namaPenjualFromPelanggan", namaPenjual);
-                    tambahPelanggan.putExtra("idPenjualFromPelanggan", idPenjual);
+                    if (namaPenjual != "") {
+                        tambahPelanggan.putExtra("namaPenjualFromPelanggan", namaPenjual);
+                        tambahPelanggan.putExtra("idPenjualFromPelanggan", idPenjual);
+                    }
+                    if (ongkir != "") {
+                        tambahPelanggan.putExtra("ongkir", ongkir);
+                        tambahPelanggan.putExtra("ekspedisi", ekspedisi);
+                    }
+                    if (diskonPersen != "") {
+                        tambahPelanggan.putExtra("diskonPersen", diskonPersen);
+                        tambahPelanggan.putExtra("diskon_remark", diskon_remark);
+                    }
+                    if (diskonRupiah != "") {
+                        tambahPelanggan.putExtra("diskonRupiah", diskonRupiah);
+                        tambahPelanggan.putExtra("diskon_remark", diskon_remark);
+                    }
+                    startActivity(tambahPelanggan);
+                } else {
+                    Intent detail = new Intent(this, DetailLaporanPelangganActivity.class);
+                    detail.putExtra("noHpPelanggan", pelangganItems.get(position).getNo_hp());
+                    detail.putExtra("namaPelanggan", pelangganItems.get(position).getNama_pelanggan());
+                    startActivity(detail);
                 }
-                if (ongkir != "") {
-                    tambahPelanggan.putExtra("ongkir", ongkir);
-                    tambahPelanggan.putExtra("ekspedisi", ekspedisi);
-                }
-                if (diskonPersen != "") {
-                    tambahPelanggan.putExtra("diskonPersen", diskonPersen);
-                    tambahPelanggan.putExtra("diskon_remark", diskon_remark);
-                }
-                if (diskonRupiah != "") {
-                    tambahPelanggan.putExtra("diskonRupiah", diskonRupiah);
-                    tambahPelanggan.putExtra("diskon_remark", diskon_remark);
-                }
-                startActivity(tambahPelanggan);
                 break;
             case R.id.btn_edit_pelanggan:
                 Toast.makeText(this, "Ubah " + pelangganItems.get(position).getId(), Toast.LENGTH_SHORT).show();

@@ -111,6 +111,7 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                             detailTransaksi.putExtra("tanggal_transaksi", response.body().get(position).getTanggal_transaksi());
                             detailTransaksi.putExtra("nama_penjual", response.body().get(position).getNama_karyawan());
                             detailTransaksi.putExtra("nama_pelanggan", response.body().get(position).getNama_pelanggan());
+                            detailTransaksi.putExtra("no_hp_pelanggan", response.body().get(position).getNo_hp_pelanggan());
                             detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? decim.format(response.body().get(position).getDiskon()) + "%" : ("Rp" + decim.format(response.body().get(position).getDiskon())));
                             detailTransaksi.putExtra("kembalian", response.body().get(position).getKembalian());
                             detailTransaksi.putExtra("total", response.body().get(position).getTotal());

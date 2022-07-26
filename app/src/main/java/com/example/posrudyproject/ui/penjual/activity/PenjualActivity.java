@@ -1,14 +1,18 @@
 package com.example.posrudyproject.ui.penjual.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,9 +22,15 @@ import com.example.posrudyproject.Interface.OnItemClickListener;
 import com.example.posrudyproject.R;
 import com.example.posrudyproject.retrofit.ApiClient;
 import com.example.posrudyproject.retrofit.PenjualEndpoint;
+import com.example.posrudyproject.retrofit.PenjualanEndpoint;
 import com.example.posrudyproject.retrofit.TokoEndpoint;
 import com.example.posrudyproject.ui.keranjang.activity.KeranjangActivity;
 import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
+import com.example.posrudyproject.ui.laporan.activity.DetailLaporanPenjualActivity;
+import com.example.posrudyproject.ui.laporan.activity.LaporanPenjualActivity;
+import com.example.posrudyproject.ui.laporan.adapter.LaporanPenjualAdapter;
+import com.example.posrudyproject.ui.laporan.model.LaporanPenjualItem;
+import com.example.posrudyproject.ui.laporan.model.PenjualanPerTipeItem;
 import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.PelangganActivity;
 import com.example.posrudyproject.ui.pelanggan.activity.TambahPelangganActivity;
@@ -32,9 +42,14 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
@@ -52,8 +67,10 @@ public class PenjualActivity extends AppCompatActivity implements OnItemClickLis
     PenjualEndpoint penjualEndpoint;
     TokoEndpoint tokoEndpoint;
     int penjual_terpilih = 0;
-    String noHpPelanggan,namaPelanggan,namaPenjual;
-    Integer idPenjual,isPenjualan;
+    String noHpPelanggan,namaPelanggan,namaPenjual, auth_token;
+    Integer idPenjual,isPenjualan, id_store;
+    PenjualanEndpoint penjualanEndpoint;
+    String NominalTransaksi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +78,8 @@ public class PenjualActivity extends AppCompatActivity implements OnItemClickLis
         setContentView(R.layout.activity_penjual);
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         String token = preferences.getString("token","");
-        int id_store = preferences.getInt("id_store", 0);
-        String auth_token = ("Bearer ").concat(token);
+        id_store = preferences.getInt("id_store", 0);
+        auth_token = ("Bearer ").concat(token);
         rvPenjual = findViewById(R.id.rv_penjual);
         GridLayoutManager manager = new GridLayoutManager(this, 2);
         rvPenjual.setLayoutManager(manager);
@@ -186,21 +203,29 @@ public class PenjualActivity extends AppCompatActivity implements OnItemClickLis
         btnPindahPenjual = findViewById(R.id.btn_pindahkan_penjual);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onItemClickListener(View view, int position) {
-        Toast.makeText(this, "Pilih " + penjualItems.get(position).getNama_karyawan(), Toast.LENGTH_SHORT).show();
-        Intent pilihPenjual = new Intent(this, KeranjangActivity.class);
+        if (isPenjualan != 0) {
+            Toast.makeText(this, "Pilih " + penjualItems.get(position).getNama_karyawan(), Toast.LENGTH_SHORT).show();
+            Intent pilihPenjual = new Intent(this, KeranjangActivity.class);
 
-        pilihPenjual.putExtra("namaPenjual",penjualItems.get(position).getNama_karyawan());
-        pilihPenjual.putExtra("idPenjual",penjualItems.get(position).getId());
-        pilihPenjual.putExtra("itemForBuyAddPenjual", (Serializable) keranjangItems);
-        if (namaPelanggan != "") {
-            pilihPenjual.putExtra("namaPelangganFromPenjual", namaPelanggan);
-            pilihPenjual.putExtra("noHpPelangganFromPenjual", noHpPelanggan);
+            pilihPenjual.putExtra("namaPenjual",penjualItems.get(position).getNama_karyawan());
+            pilihPenjual.putExtra("idPenjual",penjualItems.get(position).getId());
+            pilihPenjual.putExtra("itemForBuyAddPenjual", (Serializable) keranjangItems);
+            if (namaPelanggan != "") {
+                pilihPenjual.putExtra("namaPelangganFromPenjual", namaPelanggan);
+                pilihPenjual.putExtra("noHpPelangganFromPenjual", noHpPelanggan);
+            }
+
+
+            startActivity(pilihPenjual);
+        } else {
+            Intent detailLaporan = new Intent(PenjualActivity.this, LaporanPenjualActivity.class);
+            detailLaporan.putExtra("idPenjual",penjualItems.get(position).getId());
+            startActivity(detailLaporan);
         }
 
-
-        startActivity(pilihPenjual);
         penjual_terpilih = penjualItems.get(position).getId();
     }
 

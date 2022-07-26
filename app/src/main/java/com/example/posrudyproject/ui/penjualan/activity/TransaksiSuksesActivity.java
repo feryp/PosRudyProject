@@ -337,6 +337,44 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                         "[L]Uang Diterima : " + uang_diterima + "\n" +
                         "[L]Kembalian     : "+ tvKembalianTransaksiSukses.getText().toString() +"\n" +
                         "\n" +
+                        "[C]Powered By GB System\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+
+                "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
+                        "[L]\n" +
+                        "[C]<u><font size='normal'>"+ alamat_store +"</font></u>\n" +
+                        "[L]\n" +
+                        "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[C]<font size='normal'><b>Terimakasih sudh belanja!</b></font>\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[L]Penjual   : "+ tvPenjualTransaksiSukses.getText().toString() + "\n" +
+                        "[L]No. Struk : "+ tvNoInvoiceDetailPesanan.getText().toString() + "\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]"+ items +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[C]================================\n" +
+                        "[L]\n" +
+                        "[L]Pelanggan     : "+ tvPelangganTransaksiSukses.getText().toString() +"\n" +
+                        "[L]Point         : "+ tvPointTransaksiSukses.getText().toString() +"\n" +
+                        "[L]Diskon        : "+ tvDiskonTransaksiSukses.getText().toString() +"\n" +
+                        "[L]Ongkir        : " + tvOngkirTransaksiSukses.getText().toString() + "\n" +
+                        "[L]Total         : " + tvJumlahNominalTransaksi.getText().toString() + "\n" +
+                        "[L]Metode Bayar  : "+ tvMetodePembayaranTransaksiSukses.getText().toString()+ "\n" +
+                        "[L]Nama Bank     : "+ bank_name+ "\n" +
+                        "[L]No Rekening   : "+ norek+ "\n" +
+                        "[L]Uang Diterima : " + uang_diterima + "\n" +
+                        "[L]Kembalian     : "+ tvKembalianTransaksiSukses.getText().toString() +"\n" +
+                        "\n" +
                         "[C]Powered By GB System\n"
         );
     }

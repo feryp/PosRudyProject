@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.Manifest;
@@ -50,6 +51,10 @@ import com.example.posrudyproject.ui.keranjang.model.KeranjangItem;
 import android.widget.Toast;
 
 import com.example.posrudyproject.ui.barcode.ScannerActivity;
+import com.example.posrudyproject.ui.laporan.activity.PenjualanPerTipeActivity;
+import com.example.posrudyproject.ui.laporan.adapter.PenjualanPerTipeAdapter;
+import com.example.posrudyproject.ui.laporan.model.PenjualanPerTipeItem;
+import com.example.posrudyproject.ui.main.MainActivity;
 import com.example.posrudyproject.ui.penjualan.adapter.PenjualanAdapter;
 import com.example.posrudyproject.ui.penjualan.model.PenjualanItem;
 import com.example.posrudyproject.ui.penyimpanan.model.ProdukTersediaItem;
@@ -66,6 +71,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -89,7 +96,8 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
     PenjualanAdapter adapter;
     Map<String,Integer> qty = new HashMap<>();
     public static final int REQUEST_CODE = 1;
-    public static final String INTENT_KERANJANG = "INTENT_KERANJANG";
+    public static final String INTENT_FILTER_TIPE = "INTENT_FILTER_TIPE";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,25 +186,45 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         btnMasukKeranjang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i=0; i<penjualanItems.size(); i++) {
-                    keranjangItems.add(new KeranjangItem(
-                            penjualanItems.get(i).getFoto_barang(),
-                            penjualanItems.get(i).getTipeBarang(),
-                            penjualanItems.get(i).getSkuCode(),
-                            penjualanItems.get(i).getArtikelBarang(),
-                            penjualanItems.get(i).getNamaBarang(),
-                            penjualanItems.get(i).getHargaBarang(),
-                            penjualanItems.get(i).getHargaBarang(),
-                            "",
-                            preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0"),
-                            String.valueOf(Double.valueOf(penjualanItems.get(i).getHargaBarang()) * Double.valueOf(preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0"))),
-                            preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0")
-                    ));
-                }
-                Intent masukKeranjang = new Intent(PenjualanActivity.this, KeranjangActivity.class);
-                masukKeranjang.putExtra("itemForBuy", (Serializable) keranjangItems);
-                masukKeranjang.putExtra("id_kategori",id_kategori);
-                startActivity(masukKeranjang);
+                new SweetAlertDialog(PenjualanActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Lanjutkan Transaksi?")
+                        .setContentText("Kembali untuk memilih Kategori yang lain!")
+                        .setCancelText("Kembali")
+                        .setConfirmText("Lanjut")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                for (int i=0; i<penjualanItems.size(); i++) {
+                                    keranjangItems.add(new KeranjangItem(
+                                            penjualanItems.get(i).getFoto_barang(),
+                                            penjualanItems.get(i).getTipeBarang(),
+                                            penjualanItems.get(i).getSkuCode(),
+                                            penjualanItems.get(i).getArtikelBarang(),
+                                            penjualanItems.get(i).getNamaBarang(),
+                                            penjualanItems.get(i).getHargaBarang(),
+                                            penjualanItems.get(i).getHargaBarang(),
+                                            "",
+                                            preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0"),
+                                            String.valueOf(Double.valueOf(penjualanItems.get(i).getHargaBarang()) * Double.valueOf(preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0"))),
+                                            preferencesCart.getString(penjualanItems.get(i).getArtikelBarang(), "0")
+                                    ));
+                                }
+                                Intent masukKeranjang = new Intent(PenjualanActivity.this, KeranjangActivity.class);
+                                startActivity(masukKeranjang);
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .showCancelButton(true)
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                Intent intent = new Intent(PenjualanActivity.this, KategoriActivity.class);
+                                startActivity(intent);
+                                sDialog.cancel();
+                            }
+                        })
+                        .show();
+
             }
         });
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -302,6 +330,60 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
                 return false;
             }
         });
+    }
+
+    private BroadcastReceiver someBroadcastReceiver = new BroadcastReceiver() {
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //TODO extract extras from intent
+
+            SharedPreferences preferencesCart = getSharedPreferences("keranjang", Context.MODE_PRIVATE);
+
+            if (intent.getStringExtra("nama_tipe") != "") {
+                Call<List<ProdukTersediaItem>> call = penyimpananEndpoint.searchByCategory(auth_token,id_store,id_kategori,intent.getStringExtra("nama_tipe"));
+                call.enqueue(new Callback<List<ProdukTersediaItem>>() {
+                    @Override
+                    public void onResponse(Call<List<ProdukTersediaItem>> call, Response<List<ProdukTersediaItem>> response) {
+                        penjualanItems = new ArrayList<>();
+                        for (int i=0; i<response.body().size(); i++){
+                            penjualanItems.add(new PenjualanItem(
+                                    response.body().get(i).getFoto_barang(),
+                                    response.body().get(i).getTipeBarang(),
+                                    response.body().get(i).getSkuCode(),
+                                    response.body().get(i).getArtikelBarang(),
+                                    response.body().get(i).getNamaBarang(),
+                                    response.body().get(i).getHargaBarang(),
+                                    preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0")
+                            ));
+                        }
+                        adapter = new PenjualanAdapter(penjualanItems, PenjualanActivity.this);
+                        rvPenjualan.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProdukTersediaItem>> call, Throwable t) {
+                        new SweetAlertDialog(PenjualanActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Oops...")
+                                .setContentText(t.getMessage())
+                                .show();
+                    }
+                });
+            }
+
+
+        }
+    };
+    @Override
+    public void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(someBroadcastReceiver,
+                new IntentFilter(INTENT_FILTER_TIPE));
+    }
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(someBroadcastReceiver);
+        super.onPause();
     }
 
     @SuppressLint("NonConstantResourceId")

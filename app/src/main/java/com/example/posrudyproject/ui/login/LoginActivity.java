@@ -59,6 +59,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    @Override
+    public void onBackPressed() {
+        this.finishAffinity();
+    }
     public void validation(){
         if(Objects.requireNonNull(etEmail.getText()).toString().equals(USER) &&
                 Objects.requireNonNull(etPassword.getText()).toString().equals(PASSWORD)){

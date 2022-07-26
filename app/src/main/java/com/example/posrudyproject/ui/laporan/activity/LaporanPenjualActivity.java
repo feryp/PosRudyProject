@@ -97,16 +97,17 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
         initComponent();
 
         initToolbar();
+
         SweetAlertDialog pDialog = new SweetAlertDialog(LaporanPenjualActivity.this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading ...");
         pDialog.setCancelable(false);
         pDialog.show();
-        Call<Map> call = penjualanEndpoint.rangkumanPenjualanMobile(auth_token, id_store,df.format(firstDayOfCurrentYear.getTime()),df.format(lastDayOfCurrentYear.getTime()));
+        Call<Map> call = penjualanEndpoint.rangkumanPenjualanMobile(auth_token, id_store, df.format(firstDayOfCurrentYear.getTime()), df.format(lastDayOfCurrentYear.getTime()));
         call.enqueue(new Callback<Map>() {
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     pDialog.dismiss();
                     new SweetAlertDialog(LaporanPenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
                             .setTitleText(String.valueOf(response.code()))
@@ -133,56 +134,109 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
             }
         });
 
-        Call<List<LaporanPenjualItem>> callPenjual = penjualanEndpoint.rekapKaryawan(auth_token, id_store,df.format(firstDayOfCurrentYear.getTime()),df.format(lastDayOfCurrentYear.getTime()));
-        callPenjual.enqueue(new Callback<List<LaporanPenjualItem>>() {
-            @Override
-            public void onResponse(Call<List<LaporanPenjualItem>> call, Response<List<LaporanPenjualItem>> response) {
-                if (!response.isSuccessful()){
+        Bundle bundle = getIntent().getExtras();
+        Call<List<LaporanPenjualItem>> callPenjual = penjualanEndpoint.rekapKaryawan(auth_token, id_store, df.format(firstDayOfCurrentYear.getTime()), df.format(lastDayOfCurrentYear.getTime()));
+        if (bundle != null) {
+            callPenjual.enqueue(new Callback<List<LaporanPenjualItem>>() {
+                @Override
+                public void onResponse(Call<List<LaporanPenjualItem>> call, Response<List<LaporanPenjualItem>> response) {
+                    if (!response.isSuccessful()) {
+                        pDialog.dismiss();
+                        new SweetAlertDialog(LaporanPenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText(String.valueOf(response.code()))
+                                .setContentText(response.message())
+                                .show();
+                    } else {
+                        pDialog.dismiss();
+                        DecimalFormat decim = new DecimalFormat("#,###.##");
+                        //DATA LAPORAN PENJUAL LIST
+                        items = new ArrayList<>();
+                        for (int i = 0; i < response.body().size(); i++) {
+                            if (response.body().get(i).getId_karyawan() == bundle.getInt("idPenjual")) {
+                                items.add(new LaporanPenjualItem(
+                                        response.body().get(i).getId_karyawan(),
+                                        response.body().get(i).getNamaPenjual(),
+                                        ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
+                                        response.body().get(i).getTotalTransaksiPenjual()));
+                            }
+                        }
+                        // Removes blinks
+                        ((SimpleItemAnimator) rvLaporanPenjual.getItemAnimator()).setSupportsChangeAnimations(false);
+
+                        //SET ADAPTER
+                        adapter = new LaporanPenjualAdapter(items, LaporanPenjualActivity.this);
+                        rvLaporanPenjual.setLayoutManager(new LinearLayoutManager(LaporanPenjualActivity.this));
+                        rvLaporanPenjual.setAdapter(adapter);
+                        rvLaporanPenjual.setHasFixedSize(true);
+
+                        //Jika ada list item ilustrasi hilang
+                        if (adapter.getItemCount() > 0) {
+                            layoutEmpty.setVisibility(View.GONE);
+                            layoutLaporan.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<LaporanPenjualItem>> call, Throwable t) {
                     pDialog.dismiss();
                     new SweetAlertDialog(LaporanPenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText(String.valueOf(response.code()))
-                            .setContentText(response.message())
+                            .setTitleText("Oops...")
+                            .setContentText(t.getMessage())
                             .show();
-                } else {
-                    pDialog.dismiss();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
-                    //DATA LAPORAN PENJUAL LIST
-                    items = new ArrayList<>();
-                    for (int i=0; i<response.body().size(); i++){
-                        items.add(new LaporanPenjualItem(
-                                response.body().get(i).getId_karyawan(),
-                                response.body().get(i).getNamaPenjual(),
-                                ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
-                                response.body().get(i).getTotalTransaksiPenjual()));
-                    }
-                    // Removes blinks
-                    ((SimpleItemAnimator) rvLaporanPenjual.getItemAnimator()).setSupportsChangeAnimations(false);
-
-                    //SET ADAPTER
-                    adapter = new LaporanPenjualAdapter(items, LaporanPenjualActivity.this);
-                    rvLaporanPenjual.setLayoutManager(new LinearLayoutManager(LaporanPenjualActivity.this));
-                    rvLaporanPenjual.setAdapter(adapter);
-                    rvLaporanPenjual.setHasFixedSize(true);
-
-                    //Jika ada list item ilustrasi hilang
-                    if (adapter.getItemCount() > 0){
-                        layoutEmpty.setVisibility(View.GONE);
-                        layoutLaporan.setVisibility(View.VISIBLE);
-                    }
-
                 }
-            }
+            });
+        } else {
+            callPenjual.enqueue(new Callback<List<LaporanPenjualItem>>() {
+                @Override
+                public void onResponse(Call<List<LaporanPenjualItem>> call, Response<List<LaporanPenjualItem>> response) {
+                    if (!response.isSuccessful()) {
+                        pDialog.dismiss();
+                        new SweetAlertDialog(LaporanPenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText(String.valueOf(response.code()))
+                                .setContentText(response.message())
+                                .show();
+                    } else {
+                        pDialog.dismiss();
+                        DecimalFormat decim = new DecimalFormat("#,###.##");
+                        //DATA LAPORAN PENJUAL LIST
+                        items = new ArrayList<>();
+                        for (int i = 0; i < response.body().size(); i++) {
+                            items.add(new LaporanPenjualItem(
+                                    response.body().get(i).getId_karyawan(),
+                                    response.body().get(i).getNamaPenjual(),
+                                    ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
+                                    response.body().get(i).getTotalTransaksiPenjual()));
+                        }
+                        // Removes blinks
+                        ((SimpleItemAnimator) rvLaporanPenjual.getItemAnimator()).setSupportsChangeAnimations(false);
 
-            @Override
-            public void onFailure(Call<List<LaporanPenjualItem>> call, Throwable t) {
-                pDialog.dismiss();
-                new SweetAlertDialog(LaporanPenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Oops...")
-                        .setContentText(t.getMessage())
-                        .show();
-            }
-        });
+                        //SET ADAPTER
+                        adapter = new LaporanPenjualAdapter(items, LaporanPenjualActivity.this);
+                        rvLaporanPenjual.setLayoutManager(new LinearLayoutManager(LaporanPenjualActivity.this));
+                        rvLaporanPenjual.setAdapter(adapter);
+                        rvLaporanPenjual.setHasFixedSize(true);
 
+                        //Jika ada list item ilustrasi hilang
+                        if (adapter.getItemCount() > 0) {
+                            layoutEmpty.setVisibility(View.GONE);
+                            layoutLaporan.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<LaporanPenjualItem>> call, Throwable t) {
+                    pDialog.dismiss();
+                    new SweetAlertDialog(LaporanPenjualActivity.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Oops...")
+                            .setContentText(t.getMessage())
+                            .show();
+                }
+            });
+        }
         //Material Date Picker
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
         builder.setTitleText("Pilih Periode");

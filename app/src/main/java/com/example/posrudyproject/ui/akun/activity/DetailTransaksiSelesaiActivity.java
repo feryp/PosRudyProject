@@ -127,14 +127,15 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
             keranjangItems = new ArrayList<>();
         }
 
-        Call<Double> callPoint = pelangganEndpoint.totalPoin(auth_token,bundle.getString("namaPelanggan"),bundle.getString("noHpPelanggan"));
+        Call<Double> callPoint = pelangganEndpoint.totalPoin(auth_token,bundle.getString("nama_pelanggan"),bundle.getString("no_hp_pelanggan"));
+
         callPoint.enqueue(new Callback<Double>() {
             @Override
             public void onResponse(Call<Double> call, Response<Double> response) {
                 if (!response.isSuccessful()){
                     point ="0";
                 } else {
-                    point = formatter.format(response.body().toString());
+                    point = formatter.format(Double.valueOf(response.body()));
                 }
             }
 
@@ -272,6 +273,18 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
         }
     }
 
+    public static void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+
     /**
      * Asynchronous printing
      */
@@ -284,7 +297,46 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
         for (int i=0; i<keranjangItems.size(); i++) {
             items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf((keranjangItems.get(i).getHargaBarang().replace(",", "")).replace("Rp","")) - Double.valueOf((keranjangItems.get(i).getHarga_baru().replace(",", "")).replace("Rp","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
         }
+
         return printer.addTextToPrint(
+                "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
+                        "[L]\n" +
+                        "[C]<u><font size='normal'>"+ alamat_store +"</font></u>\n" +
+                        "[L]\n" +
+                        "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[C]<font size='normal'><b>Terimakasih sudh belanja!</b></font>\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[L]Penjual   : "+ tvNamaPenjual.getText().toString() + "\n" +
+                        "[L]No. Struk : "+ id_transaksi + "\n" +
+                        "[C]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]"+ items +
+                        "[C]--------------------------------\n" +
+                        "[L]\n" +
+                        "[C]================================\n" +
+                        "[L]\n" +
+                        "[L]Pelanggan     : "+ tvNamaPelanggan.getText().toString() +"\n" +
+                        "[L]Point         : "+ point +"\n" +
+                        "[L]Diskon        : "+ tvDiskon.getText().toString() +"\n" +
+                        "[L]Ongkir        : " + ongkir + "\n" +
+                        "[L]Total         : " + tvTotal.getText().toString() + "\n" +
+                        "[L]Metode Bayar  : "+ tvMetodePembayaran.getText().toString()+ "\n" +
+                        "[L]Nama Bank     : "+ bank_name+ "\n" +
+                        "[L]No Rekening   : "+ norek+ "\n" +
+                        "[L]Uang Diterima : " + tvDibayar.getText().toString() + "\n" +
+                        "[L]Kembalian     : "+ tvKembalian.getText().toString() +"\n" +
+                        "\n" +
+                        "[C]Powered By GB System\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+
                 "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
                         "[L]\n" +
                         "[C]<u><font size='normal'>"+ alamat_store +"</font></u>\n" +
