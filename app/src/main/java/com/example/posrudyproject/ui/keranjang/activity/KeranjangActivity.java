@@ -136,9 +136,15 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             if ((List<KeranjangItem>) extras.getSerializable("itemForBuyAfterPotong") != null) {
                 keranjangItems = ((List<KeranjangItem>) extras.getSerializable("itemForBuyAfterPotong"));
                 for (int i=0; i<keranjangItems.size(); i++) {
-                    subtotal += Double.valueOf((keranjangItems.get(i).getTotalHargaBarang().replace(",","")).replace(".",""));
-                    editor.putString("subtotal", String.valueOf(subtotal));
-                    editor.apply();
+                    if (keranjangItems.get(i).getHarga_baru_remark() == "") {
+                        subtotal += (Double.valueOf(keranjangItems.get(i).getHarga_baru().replace(".", "")) * Double.valueOf(keranjangItems.get(i).getKuantitasBarang()));
+                        editor.putString("subtotal", String.valueOf(subtotal));
+                        editor.apply();
+                    } else if (keranjangItems.get(i).getHarga_baru_remark() != "") {
+                        subtotal += (Double.valueOf(keranjangItems.get(i).getHarga_baru().replace(".0", "")) * Double.valueOf(keranjangItems.get(i).getKuantitasBarang()));
+                        editor.putString("subtotal", String.valueOf(subtotal));
+                        editor.apply();
+                    }
                 }
 
                 adapter = new KeranjangAdapter(keranjangItems,KeranjangActivity.this);
@@ -147,24 +153,26 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onGlobalLayout() {
 
-                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",",""))));
+                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
                         if (ongkir != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) + Double.parseDouble(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) + Double.parseDouble(ongkir)));
                         }
                         if (diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
                         }
                         if (diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.parseDouble(diskonRupiah)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.parseDouble(diskonRupiah)));
                         }
 
                         if (ongkir != null && diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
                         }
                         if (ongkir != null && diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
                         }
-
+                        if (ongkir == null && diskonRupiah == null && diskonPersen == null) {
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
+                        }
                     }
                 });
 
@@ -179,7 +187,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             } else if ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPelanggan") != null) {
                 keranjangItems = ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPelanggan"));
                 for (int i=0; i<keranjangItems.size(); i++) {
-                    subtotal += Double.valueOf((keranjangItems.get(i).getTotalHargaBarang().replace(",","")).replace(".",""));
+                    subtotal += Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(".",""));
                     editor.putString("subtotal", String.valueOf(subtotal));
                     editor.apply();
                 }
@@ -190,24 +198,26 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onGlobalLayout() {
 
-                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",",""))));
+                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
                         if (ongkir != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) + Double.parseDouble(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) + Double.parseDouble(ongkir)));
                         }
                         if (diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
                         }
                         if (diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.parseDouble(diskonRupiah)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.parseDouble(diskonRupiah)));
                         }
 
                         if (ongkir != null && diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
                         }
                         if (ongkir != null && diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
                         }
-
+                        if (ongkir == null && diskonRupiah == null && diskonPersen == null) {
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
+                        }
                     }
                 });
 
@@ -240,7 +250,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
             } else if ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPenjual") != null) {
                 keranjangItems = ((List<KeranjangItem>) extras.getSerializable("itemForBuyAddPenjual"));
                 for (int i=0; i<keranjangItems.size(); i++) {
-                    subtotal += Double.valueOf((keranjangItems.get(i).getTotalHargaBarang().replace(",","")).replace(".",""));
+                    subtotal += Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(".",""));
                     editor.putString("subtotal", String.valueOf(subtotal));
                     editor.apply();
                 }
@@ -251,24 +261,26 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onGlobalLayout() {
 
-                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",",""))));
+                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
                         if (ongkir != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) + Double.parseDouble(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) + Double.parseDouble(ongkir)));
                         }
                         if (diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
                         }
                         if (diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.parseDouble(diskonRupiah)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.parseDouble(diskonRupiah)));
                         }
 
                         if (ongkir != null && diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
                         }
                         if (ongkir != null && diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
                         }
-
+                        if (ongkir == null && diskonRupiah == null && diskonPersen == null) {
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
+                        }
                     }
                 });
 
@@ -317,7 +329,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     ));
                 }
                 for (int i=0; i<keranjangItems.size(); i++) {
-                    subtotal += Double.valueOf((keranjangItems.get(i).getTotalHargaBarang().replace(",","")).replace(".",""));
+                    subtotal += Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(".",""));
                     editor.putString("subtotal", String.valueOf(subtotal));
                     editor.apply();
                 }
@@ -328,24 +340,26 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onGlobalLayout() {
 
-                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",",""))));
+                        tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
                         if (ongkir != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) + Double.parseDouble(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) + Double.parseDouble(ongkir)));
                         }
                         if (diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
                         }
                         if (diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.parseDouble(diskonRupiah)));
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.parseDouble(diskonRupiah)));
                         }
 
                         if (ongkir != null && diskonPersen != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
                         }
                         if (ongkir != null && diskonRupiah != null) {
-                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
+                            tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
                         }
-
+                        if (ongkir == null && diskonRupiah == null && diskonPersen == null) {
+                            tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
+                        }
                     }
                 });
 
@@ -385,13 +399,13 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                                         formatter.format(Double.valueOf(response.body().get(i).getHargaBarang())),
                                         "",
                                         preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0"),
-                                        String.valueOf(Double.valueOf(response.body().get(i).getHargaBarang()) * Double.valueOf(preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0"))),
+                                        formatter.format(Double.valueOf(response.body().get(i).getHargaBarang()) * Double.valueOf(preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0"))),
                                         preferencesCart.getString(response.body().get(i).getArtikelBarang(), "0")
                                 ));
                             }
                         }
                         for (int i=0; i<keranjangItems.size(); i++) {
-                            subtotal += Double.valueOf((keranjangItems.get(i).getTotalHargaBarang().replace(",","")).replace(".",""));
+                            subtotal += Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(".", ""));
                             editor.putString("subtotal", String.valueOf(subtotal));
                             editor.apply();
                         }
@@ -402,24 +416,26 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                             @Override
                             public void onGlobalLayout() {
 
-                                tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",",""))));
+                                tvSubtotalKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
                                 if (ongkir != null) {
-                                    tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) + Double.parseDouble(ongkir)));
+                                    tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) + Double.parseDouble(ongkir)));
                                 }
                                 if (diskonPersen != null) {
-                                    tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
+                                    tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)));
                                 }
                                 if (diskonRupiah != null) {
-                                    tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.parseDouble(diskonRupiah)));
+                                    tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.parseDouble(diskonRupiah)));
                                 }
 
                                 if (ongkir != null && diskonPersen != null) {
-                                    tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
+                                    tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.parseDouble(diskonPersen)) / 100)) + Double.valueOf(ongkir)));
                                 }
                                 if (ongkir != null && diskonRupiah != null) {
-                                    tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
+                                    tvTotalHargaKeranjang.setText(formatter.format((Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.valueOf(diskonRupiah)) + Double.valueOf(ongkir)));
                                 }
-
+                                if (ongkir == null && diskonRupiah == null && diskonPersen == null) {
+                                    tvTotalHargaKeranjang.setText(formatter.format(Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0",""))));
+                                }
                             }
                         });
 
@@ -543,30 +559,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_potongan_harga:
                 Intent potonganHarga = new Intent(this, UbahHargaActivity.class);
-                Bundle extras = getIntent().getExtras();
-                List<KeranjangItem> keranjangForPotong = new ArrayList<>();
-                if (extras != null) {
-                    if ((List<KeranjangItem>) extras.getSerializable("itemForBuy") != null) {
-                        for (int i = 0; i < ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).size(); i++) {
-                            if (Integer.parseInt(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()) != 0) {
-                                keranjangForPotong.add(new KeranjangItem(
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getImBarang(),
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getTipeBarang(),
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getSkuCode(),
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getArtikelBarang(),
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getNamaBarang(),
-                                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang())),
-                                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru())),
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru_remark(),
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
-                                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHargaBarang()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
-                                        ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
-                                ));
-                            }
-                        }
-                    }
-                }
-                potonganHarga.putExtra("itemForBuy", (Serializable) keranjangForPotong);
+                potonganHarga.putExtra("itemForBuy", (Serializable) keranjangItems);
                 startActivity(potonganHarga);
                 break;
             case R.id.btn_add_pelanggan:
@@ -678,9 +671,9 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 btnAddDiskon.setVisibility(View.GONE);
                 tvDiskon.setText(decim.format(Double.valueOf(intent.getStringExtra("diskon_rupiah"))));
                 if (ongkir != null) {
-                    total = (Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.valueOf(intent.getStringExtra("diskon_rupiah"))) + Double.valueOf(ongkir);
+                    total = (Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.valueOf(intent.getStringExtra("diskon_rupiah"))) + Double.valueOf(ongkir);
                 } else {
-                    total = Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) - Double.valueOf(intent.getStringExtra("diskon_rupiah"));
+                    total = Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) - Double.valueOf(intent.getStringExtra("diskon_rupiah"));
                 }
                 diskonRupiah = intent.getStringExtra("diskon_rupiah");
                 diskon_remark = intent.getStringExtra("diskon_remark");
@@ -692,9 +685,9 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                 btnAddDiskon.setVisibility(View.GONE);
                 tvDiskon.setText(intent.getStringExtra("diskon_persen") + "%");
                 if (ongkir != null) {
-                    total = (Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.valueOf(intent.getStringExtra("diskon_persen"))) / 100)) + Double.valueOf(ongkir);
+                    total = (Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.valueOf(intent.getStringExtra("diskon_persen"))) / 100)) + Double.valueOf(ongkir);
                 } else {
-                    total = Double.valueOf(preferencesCart.getString("subtotal", "0.00").replace(",","")) * ((100 - Double.valueOf(intent.getStringExtra("diskon_persen"))) / 100);
+                    total = Double.valueOf(preferencesCart.getString("subtotal", "0").replace(".0","")) * ((100 - Double.valueOf(intent.getStringExtra("diskon_persen"))) / 100);
                 }
                 diskonPersen = intent.getStringExtra("diskon_persen");
                 diskon_remark = intent.getStringExtra("diskon_remark");
@@ -823,7 +816,7 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                         lokasi_store,
                         noHpPelanggan,
                         namaPelanggan,
-                        tvTotalHargaKeranjang.getText().toString(),
+                        tvTotalHargaKeranjang.getText().toString().replace(".",""),
                         etKetPesanan.getText().toString(),
                         subItems()
                 );
@@ -887,11 +880,11 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
                     "",
                     keranjangItems.get(i).getArtikelBarang(),
                     keranjangItems.get(i).getNamaBarang(),
-                    Double.valueOf(keranjangItems.get(i).getHargaBarang().replace(",","")),
-                    Double.valueOf(keranjangItems.get(i).getHarga_baru().replace(",","")),
+                    Double.valueOf(keranjangItems.get(i).getHargaBarang().replace(".","")),
+                    Double.valueOf(keranjangItems.get(i).getHarga_baru().replace(".","")),
                     keranjangItems.get(i).getHarga_baru_remark(),
-                    Double.valueOf(keranjangItems.get(i).getKuantitasBarang().replace(",","")),
-                    Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(",",""))
+                    Double.valueOf(keranjangItems.get(i).getKuantitasBarang().replace(".","")),
+                    Double.valueOf(keranjangItems.get(i).getTotalHargaBarang().replace(".",""))
             ));
         }
         return barangPesananTungguItems;
@@ -995,8 +988,6 @@ public class KeranjangActivity extends AppCompatActivity implements View.OnClick
         if (resultCode == 20){
             if (resultCode == RESULT_OK && data != null){
                 String code = data.getStringExtra("result");
-                System.out.println(code);
-                System.out.println(data.getStringExtra("result"));
                 //SET CODE
             }
         }

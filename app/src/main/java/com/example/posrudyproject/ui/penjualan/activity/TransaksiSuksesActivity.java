@@ -193,14 +193,13 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_cetak_struk:
-                try {
-                    browseBluetoothDevice();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                printBluetooth();
                 break;
 
             case R.id.btn_buat_pesanan_baru:
+                SharedPreferences preferencesCart = getSharedPreferences("keranjang", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorCart = preferencesCart.edit();
+                editorCart.clear().apply();
                 Intent buatPesananBaru = new Intent(this, KategoriActivity.class);
                 startActivity(buatPesananBaru);
                 break;
@@ -302,7 +301,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         items = "";
         for (int i=0; i<keranjangItems.size(); i++) {
-            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf(((keranjangItems.get(i).getHargaBarang().replace(",", "")).replace("Rp","")).replace(".","")) - Double.valueOf(((keranjangItems.get(i).getHarga_baru().replace(",", "")).replace("Rp","")).replace(".","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru().replace("Rp","")+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
+            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf(((keranjangItems.get(i).getHargaBarang().replace(".", "")).replace("Rp","")).replace(".0","")) - Double.valueOf(((keranjangItems.get(i).getHarga_baru().replace(".", "")).replace("Rp","")).replace(".0","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru().replace("Rp","")+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
         }
         return printer.addTextToPrint(
                 "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
@@ -381,6 +380,9 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onBackPressed() {
+        SharedPreferences preferencesCart = getSharedPreferences("keranjang", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorCart = preferencesCart.edit();
+        editorCart.clear().apply();
         Intent intent = new Intent(TransaksiSuksesActivity.this, KategoriActivity.class);
         startActivity(intent);
         finish();

@@ -89,7 +89,7 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang(),
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()
                 ));
-                total += (Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(",","")).replace(".","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()));
+                total += (Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(".","")).replace(".0","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()));
             }
             tvTotalHarga.setText("Rp" + formatter.format(total));
             editor.putString("totalHarga", String.valueOf(total));
@@ -140,7 +140,7 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
                         penukaranBarangItems.get(i).getSku_code(),
                         penukaranBarangItems.get(i).getArtikelBarang(),
                         Double.valueOf(preferencesItem.getString(penukaranBarangItems.get(i).getArtikelBarang(), "0")),
-                        Double.valueOf(((penukaranBarangItems.get(i).getHargaBarang().replace("Rp","")).replace(",","")).replace(".","")),
+                        Double.valueOf(((penukaranBarangItems.get(i).getHargaBarang().replace("Rp","")).replace(".","")).replace(".0","")),
                         String.valueOf(etAlasanPenukaran.getText())
                 ));
             }

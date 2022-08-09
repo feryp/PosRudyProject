@@ -1,7 +1,9 @@
 package com.example.posrudyproject.ui.beranda.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -150,6 +152,9 @@ public class BerandaFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.card_penjualan:
+                SharedPreferences preferencesCart = getActivity().getSharedPreferences("keranjang", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorCart = preferencesCart.edit();
+                editorCart.clear().apply();
                 Intent penjualan = new Intent(getActivity(), KategoriActivity.class);
                 startActivity(penjualan);
                 break;

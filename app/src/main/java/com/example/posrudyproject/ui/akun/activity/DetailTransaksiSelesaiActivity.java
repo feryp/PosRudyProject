@@ -295,7 +295,7 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         items = "";
         for (int i=0; i<keranjangItems.size(); i++) {
-            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf((keranjangItems.get(i).getHargaBarang().replace(",", "")).replace("Rp","")) - Double.valueOf((keranjangItems.get(i).getHarga_baru().replace(",", "")).replace("Rp","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
+            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf((keranjangItems.get(i).getHargaBarang().replace(".", "")).replace("Rp","")) - Double.valueOf((keranjangItems.get(i).getHarga_baru().replace(".", "")).replace("Rp","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
         }
 
         return printer.addTextToPrint(

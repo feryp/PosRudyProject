@@ -60,24 +60,24 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
         holder.tipeBarang.setText(item.getTipeBarang());
         holder.artikelBarang.setText(item.getArtikelBarang());
         holder.namaBarang.setText(item.getNamaBarang());
-        holder.hargaBarang.setText(formatter.format((Double.valueOf((item.getHargaBarang().replace(",","")).replace(".","")))));
+        holder.hargaBarang.setText(formatter.format((Double.valueOf((item.getHargaBarang().replace(".","")).replace(".0","")))));
         holder.jumlahBarang.setText(item.getJumlahBarang());
-        holder.totalHargaBarang.setText(formatter.format((Double.valueOf((item.getHargaBarang().replace(",","")).replace(".","")) * Double.valueOf(item.getJumlahBarang()))));
+        holder.totalHargaBarang.setText(formatter.format((Double.valueOf((item.getHargaBarang().replace(".","")).replace(".0","")) * Double.valueOf(item.getJumlahBarang()))));
         holder.kuantitasBarang.setText(item.getKuantitasBarang());
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Double subtotal = Double.valueOf(preferences.getString("subtotal", "0.00").replace(",",""));
+                Double subtotal = Double.valueOf(preferences.getString("subtotal", "0.0").replace(".",""));
                 holder.kuantitasBarang.setText(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) + 1));
                 keranjangItems.get(holder.getAdapterPosition()).setKuantitasBarang(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) + 1));
 
                 holder.jumlahBarang.setText(holder.kuantitasBarang.getText());
                 keranjangItems.get(holder.getAdapterPosition()).setJumlahBarang(holder.kuantitasBarang.getText().toString());
 
-                holder.totalHargaBarang.setText(formatter.format(Double.valueOf((item.getHargaBarang().replace(",","")).replace(".","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
-                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf((item.getHargaBarang().replace(",","")).replace(".","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
+                holder.totalHargaBarang.setText(formatter.format(Double.valueOf((item.getHargaBarang().replace(".","")).replace(".0","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
+                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf((item.getHargaBarang().replace(".","")).replace(".0","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
 
-                editor.putString("subtotal", String.valueOf(subtotal + Double.valueOf((holder.hargaBarang.getText().toString().replace(",","")).replace(".",""))));
+                editor.putString("subtotal", String.valueOf(subtotal + Double.valueOf((holder.hargaBarang.getText().toString().replace(".","")).replace(".0",""))));
                 editor.apply();
             }
         });
@@ -85,16 +85,16 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangViewHolder> 
         holder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Double subtotal = Double.valueOf(preferences.getString("subtotal", "0.00").replace(",",""));
+                Double subtotal = Double.valueOf(preferences.getString("subtotal", "0.0").replace(".",""));
                 holder.kuantitasBarang.setText(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) - 1));
                 keranjangItems.get(holder.getAdapterPosition()).setKuantitasBarang(String.valueOf(Integer.valueOf(item.getKuantitasBarang()) - 1));
 
                 holder.jumlahBarang.setText(holder.kuantitasBarang.getText());
                 keranjangItems.get(holder.getAdapterPosition()).setJumlahBarang(holder.kuantitasBarang.getText().toString());
 
-                holder.totalHargaBarang.setText(formatter.format(Double.valueOf((item.getHargaBarang().replace(",","")).replace(".","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
-                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf((item.getHargaBarang().replace(",","")).replace(".","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
-                editor.putString("subtotal", String.valueOf(subtotal - Double.valueOf(( holder.hargaBarang.getText().toString().replace(",","")).replace(".",""))));
+                holder.totalHargaBarang.setText(formatter.format(Double.valueOf((item.getHargaBarang().replace(".","")).replace(".0","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
+                keranjangItems.get(holder.getAdapterPosition()).setTotalHargaBarang(formatter.format(Double.valueOf((item.getHargaBarang().replace(".","")).replace(".0","")) * Double.valueOf(holder.kuantitasBarang.getText().toString())));
+                editor.putString("subtotal", String.valueOf(subtotal - Double.valueOf(( holder.hargaBarang.getText().toString().replace(".","")).replace(".0",""))));
                 editor.apply();
             }
         });

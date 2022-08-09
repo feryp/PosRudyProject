@@ -103,7 +103,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
         if (curr.isEmpty()) {
             etUangDiterima.setText("Rp " + decim.format(0.00));
         } else {
-            etUangDiterima.setText("Rp " + decim.format(Double.valueOf((curr).replace(".",""))));
+            etUangDiterima.setText("Rp " + decim.format(Double.valueOf((curr).replace(".0",""))));
         }
     }
     public void clear(){
@@ -130,7 +130,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_uang_pas:
                 //Function uang pas
-                curr = (pembayaranActivity.getTotal().replace("Rp","")).replace(",","");
+                curr = (pembayaranActivity.getTotal().replace("Rp","")).replace(".","");
                 display();
                 someIntent.putExtra("uang_diterima",pembayaranActivity.getTotal());
                 break;
