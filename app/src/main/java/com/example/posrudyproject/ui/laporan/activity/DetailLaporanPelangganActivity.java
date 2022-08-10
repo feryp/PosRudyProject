@@ -29,12 +29,14 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -126,14 +128,15 @@ public class DetailLaporanPelangganActivity extends AppCompatActivity {
                                 .show();
                     } else {
                         pDialog.dismiss();
-                        DecimalFormat decim = new DecimalFormat("#,###.##");
+                        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                        df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
 
                         List<RiwayatTransaksiPelangganItem> riwayatTransaksiPelangganItems = new ArrayList<>();
 
                         for (int i=0; i<response.body().size(); i++){
                             riwayatTransaksiPelangganItems.add(new RiwayatTransaksiPelangganItem(
                                     response.body().get(i).getTglTransaksi(),
-                                    ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotalTransaksi()))),
+                                    ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotalTransaksi()))),
                                     response.body().get(i).getSubRiwayatTransaksiPelangganItems()
                             ));
                         }
@@ -202,14 +205,15 @@ public class DetailLaporanPelangganActivity extends AppCompatActivity {
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
 
                             List<RiwayatTransaksiPelangganItem> riwayatTransaksiPelangganItems = new ArrayList<>();
 
                             for (int i=0; i<response.body().size(); i++){
                                     riwayatTransaksiPelangganItems.add(new RiwayatTransaksiPelangganItem(
                                             response.body().get(i).getTglTransaksi(),
-                                            ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotalTransaksi()))),
+                                            ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotalTransaksi()))),
                                             response.body().get(i).getSubRiwayatTransaksiPelangganItems()
                                     ));
                             }

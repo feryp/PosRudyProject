@@ -36,11 +36,13 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -112,9 +114,10 @@ public class PenjualanPerArtikelActivity extends AppCompatActivity {
                     pDialog.dismiss();
                     Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
-                    tvTotalTerjual.setText(decim.format(Float.valueOf(String.valueOf(inner.get("totalTerjual")))));
-                    tvTotalPenjualan.setText(("Rp").concat(decim.format(Float.valueOf(String.valueOf(inner.get("omset"))))));
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                    tvTotalTerjual.setText(df.format(Double.valueOf(String.valueOf(inner.get("totalTerjual")))));
+                    tvTotalPenjualan.setText(("Rp").concat(df.format(Double.valueOf(String.valueOf(inner.get("omset"))))));
 
                 }
             }
@@ -141,7 +144,8 @@ public class PenjualanPerArtikelActivity extends AppCompatActivity {
                             .show();
                 } else {
                     pDialog.dismiss();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                     //DATA LAPORAN PENJUAL LIST
                     items = new ArrayList<>();
 
@@ -149,9 +153,9 @@ public class PenjualanPerArtikelActivity extends AppCompatActivity {
                     for (int i=0; i<response.body().size(); i++){
                         items.add(new PenjualanPerArtikelItem(
                                 response.body().get(i).getNamaArtikel(),
-                                ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotPenjualanArtikel()))),
+                                ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotPenjualanArtikel()))),
                                 response.body().get(i).getJmlTerjualArtikel(),
-                                ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotPenjualanArtikel())))));
+                                ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotPenjualanArtikel())))));
                     }
                     // Removes blinks
                     ((SimpleItemAnimator) rvPenjualanPerArtikel.getItemAnimator()).setSupportsChangeAnimations(false);
@@ -220,9 +224,10 @@ public class PenjualanPerArtikelActivity extends AppCompatActivity {
                             pDialog.dismiss();
                             Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
-                            tvTotalTerjual.setText(decim.format(Float.valueOf(String.valueOf(inner.get("totalTerjual")))));
-                            tvTotalPenjualan.setText(("Rp").concat(decim.format(Float.valueOf(String.valueOf(inner.get("omset"))))));
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                            tvTotalTerjual.setText(df.format(Double.valueOf(String.valueOf(inner.get("totalTerjual")))));
+                            tvTotalPenjualan.setText(("Rp").concat(df.format(Double.valueOf(String.valueOf(inner.get("omset"))))));
 
                         }
                     }
@@ -249,7 +254,8 @@ public class PenjualanPerArtikelActivity extends AppCompatActivity {
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                             //DATA LAPORAN PENJUAL LIST
                             items = new ArrayList<>();
 
@@ -257,9 +263,9 @@ public class PenjualanPerArtikelActivity extends AppCompatActivity {
                             for (int i=0; i<response.body().size(); i++){
                                 items.add(new PenjualanPerArtikelItem(
                                         response.body().get(i).getNamaArtikel(),
-                                        ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotPenjualanArtikel()))),
+                                        ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotPenjualanArtikel()))),
                                         response.body().get(i).getJmlTerjualArtikel(),
-                                        ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotPenjualanArtikel())))));
+                                        ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotPenjualanArtikel())))));
                             }
                             // Removes blinks
                             ((SimpleItemAnimator) rvPenjualanPerArtikel.getItemAnimator()).setSupportsChangeAnimations(false);

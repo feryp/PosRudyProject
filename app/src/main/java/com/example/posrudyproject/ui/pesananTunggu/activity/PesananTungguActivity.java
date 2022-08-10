@@ -25,8 +25,10 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -76,7 +78,8 @@ public class PesananTungguActivity extends AppCompatActivity implements OnItemCl
                 } else {
                     pDialog.dismiss();
                     pesananTungguItems = new ArrayList<>();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                     for (int i=0; i<response.body().size(); i++) {
                         pesananTungguItems.add(new PesananTungguItem(
                                 response.body().get(i).getId(),
@@ -86,7 +89,7 @@ public class PesananTungguActivity extends AppCompatActivity implements OnItemCl
                                 response.body().get(i).getLokasi_store(),
                                 response.body().get(i).getNo_hp_pelanggan(),
                                 response.body().get(i).getPelangganPesanan(),
-                                ("Rp").concat(decim.format(Double.valueOf(response.body().get(i).getTotalHargaPesanan()))),
+                                ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotalHargaPesanan()))),
                                 response.body().get(i).getKetPesanan(),
                                 response.body().get(i).getBarangPesanan()
                         ));

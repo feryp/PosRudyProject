@@ -88,11 +88,11 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                 } else {
                     pDialog.dismiss();
                     transaksiSelesaiItems = new ArrayList<>();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+
                     for (int i=0; i<response.body().size(); i++){
                         transaksiSelesaiItems.add(new TransaksiSelesaiItem(
                                 response.body().get(i).getId_transaksi(),
-                                ("Rp").concat(decim.format(Double.valueOf(response.body().get(i).getTotal()))),
+                                ("Rp").concat(String.valueOf(Double.valueOf(response.body().get(i).getTotal()))),
                                 response.body().get(i).getMetode_bayar(),
                                 response.body().get(i).getTanggal_transaksi()
                         ));
@@ -112,7 +112,7 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                             detailTransaksi.putExtra("nama_penjual", response.body().get(position).getNama_karyawan());
                             detailTransaksi.putExtra("nama_pelanggan", response.body().get(position).getNama_pelanggan());
                             detailTransaksi.putExtra("no_hp_pelanggan", response.body().get(position).getNo_hp_pelanggan());
-                            detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? decim.format(response.body().get(position).getDiskon()) + "%" : ("Rp" + decim.format(response.body().get(position).getDiskon())));
+                            detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? String.valueOf(response.body().get(position).getDiskon()) + "%" : ("Rp" + String.valueOf(response.body().get(position).getDiskon())));
                             detailTransaksi.putExtra("kembalian", response.body().get(position).getKembalian());
                             detailTransaksi.putExtra("total", response.body().get(position).getTotal());
                             detailTransaksi.putExtra("ongkir", response.body().get(position).getOngkir());
@@ -159,11 +159,11 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                     @Override
                     public void onResponse(Call<List<Penjualan>> call, Response<List<Penjualan>> response) {
                         transaksiSelesaiItems = new ArrayList<>();
-                        DecimalFormat decim = new DecimalFormat("#,###.##");
+
                         for (int i=0; i<response.body().size(); i++){
                             transaksiSelesaiItems.add(new TransaksiSelesaiItem(
                                     response.body().get(i).getId_transaksi(),
-                                    ("Rp").concat(decim.format(Double.valueOf(response.body().get(i).getTotal()))),
+                                    ("Rp").concat(String.valueOf(Double.valueOf(response.body().get(i).getTotal()))),
                                     response.body().get(i).getMetode_bayar(),
                                     response.body().get(i).getTanggal_transaksi()
                             ));
@@ -182,7 +182,7 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                                 detailTransaksi.putExtra("tanggal_transaksi", response.body().get(position).getTanggal_transaksi());
                                 detailTransaksi.putExtra("nama_penjual", response.body().get(position).getNama_karyawan());
                                 detailTransaksi.putExtra("nama_pelanggan", response.body().get(position).getNama_pelanggan());
-                                detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? decim.format(response.body().get(position).getDiskon()) + "%" : ("Rp" + decim.format(response.body().get(position).getDiskon())));
+                                detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? String.valueOf(response.body().get(position).getDiskon()) + "%" : ("Rp" + String.valueOf(response.body().get(position).getDiskon())));
                                 detailTransaksi.putExtra("kembalian", response.body().get(position).getKembalian());
                                 detailTransaksi.putExtra("total", response.body().get(position).getTotal());
                                 detailTransaksi.putExtra("ongkir", response.body().get(position).getOngkir());
@@ -220,11 +220,11 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                         @Override
                         public void onResponse(Call<List<Penjualan>> call, Response<List<Penjualan>> response) {
                             transaksiSelesaiItems = new ArrayList<>();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+
                             for (int i=0; i<response.body().size(); i++){
                                 transaksiSelesaiItems.add(new TransaksiSelesaiItem(
                                         response.body().get(i).getId_transaksi(),
-                                        ("Rp").concat(decim.format(Double.valueOf(response.body().get(i).getTotal()))),
+                                        ("Rp").concat(String.valueOf(Double.valueOf(response.body().get(i).getTotal()))),
                                         response.body().get(i).getMetode_bayar(),
                                         response.body().get(i).getTanggal_transaksi()
                                 ));
@@ -243,7 +243,7 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                                     detailTransaksi.putExtra("tanggal_transaksi", response.body().get(position).getTanggal_transaksi());
                                     detailTransaksi.putExtra("nama_penjual", response.body().get(position).getNama_karyawan());
                                     detailTransaksi.putExtra("nama_pelanggan", response.body().get(position).getNama_pelanggan());
-                                    detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? decim.format(response.body().get(position).getDiskon()) + "%" : ("Rp" + decim.format(response.body().get(position).getDiskon())));
+                                    detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? String.valueOf(response.body().get(position).getDiskon()) + "%" : ("Rp" + String.valueOf(response.body().get(position).getDiskon())));
                                     detailTransaksi.putExtra("kembalian", response.body().get(position).getKembalian());
                                     detailTransaksi.putExtra("total", response.body().get(position).getTotal());
                                     detailTransaksi.putExtra("ongkir", response.body().get(position).getOngkir());
@@ -275,11 +275,11 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                         @Override
                         public void onResponse(Call<List<Penjualan>> call, Response<List<Penjualan>> response) {
                             transaksiSelesaiItems = new ArrayList<>();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+
                             for (int i=0; i<response.body().size(); i++){
                                 transaksiSelesaiItems.add(new TransaksiSelesaiItem(
                                         response.body().get(i).getId_transaksi(),
-                                        ("Rp").concat(decim.format(Double.valueOf(response.body().get(i).getTotal()))),
+                                        ("Rp").concat(String.valueOf(Double.valueOf(response.body().get(i).getTotal()))),
                                         response.body().get(i).getMetode_bayar(),
                                         response.body().get(i).getTanggal_transaksi()
                                 ));
@@ -298,7 +298,7 @@ public class RiwayatSelesaiFragment extends Fragment implements OnItemClickListe
                                     detailTransaksi.putExtra("tanggal_transaksi", response.body().get(position).getTanggal_transaksi());
                                     detailTransaksi.putExtra("nama_penjual", response.body().get(position).getNama_karyawan());
                                     detailTransaksi.putExtra("nama_pelanggan", response.body().get(position).getNama_pelanggan());
-                                    detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? decim.format(response.body().get(position).getDiskon()) + "%" : ("Rp" + decim.format(response.body().get(position).getDiskon())));
+                                    detailTransaksi.putExtra("diskon", response.body().get(position).getDiskon() < 100 ? String.valueOf(response.body().get(position).getDiskon()) + "%" : ("Rp" + String.valueOf(response.body().get(position).getDiskon())));
                                     detailTransaksi.putExtra("kembalian", response.body().get(position).getKembalian());
                                     detailTransaksi.putExtra("total", response.body().get(position).getTotal());
                                     detailTransaksi.putExtra("ongkir", response.body().get(position).getOngkir());

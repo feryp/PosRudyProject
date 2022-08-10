@@ -26,11 +26,13 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -97,9 +99,10 @@ public class DetailRiwayatTransaksiActivity extends AppCompatActivity {
                     pDialog.dismiss();
                     Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
-                    tvTotalTerjual.setText(decim.format(Float.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
-                    tvTotalPenjualan.setText(("Rp").concat(decim.format(Float.valueOf(String.valueOf(inner.get("omset"))))));
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                    tvTotalTerjual.setText(df.format(Double.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
+                    tvTotalPenjualan.setText(("Rp").concat(df.format(Double.valueOf(String.valueOf(inner.get("omset"))))));
 
                 }
             }
@@ -126,12 +129,13 @@ public class DetailRiwayatTransaksiActivity extends AppCompatActivity {
                             .show();
                 } else {
                     pDialog.dismiss();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
 
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                     for (int i=0; i<response.body().size(); i++){
                         riwayatTransaksiItems.add(new RiwayatTransaksiItem(
                                 response.body().get(i).getTglTransaksi(),
-                                ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotalTransaksi()))),
+                                ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotalTransaksi()))),
                                 response.body().get(i).getSubRiwayatTransaksiItems()
 
                         ));
@@ -197,9 +201,10 @@ public class DetailRiwayatTransaksiActivity extends AppCompatActivity {
                             pDialog.dismiss();
                             Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
-                            tvTotalTerjual.setText(decim.format(Float.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
-                            tvTotalPenjualan.setText(("Rp").concat(decim.format(Float.valueOf(String.valueOf(inner.get("omset"))))));
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                            tvTotalTerjual.setText(df.format(Double.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
+                            tvTotalPenjualan.setText(("Rp").concat(df.format(Double.valueOf(String.valueOf(inner.get("omset"))))));
 
                         }
                     }
@@ -226,12 +231,13 @@ public class DetailRiwayatTransaksiActivity extends AppCompatActivity {
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
 
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                             for (int i=0; i<response.body().size(); i++){
                                 riwayatTransaksiItems.add(new RiwayatTransaksiItem(
                                         response.body().get(i).getTglTransaksi(),
-                                        ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getTotalTransaksi()))),
+                                        ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getTotalTransaksi()))),
                                         response.body().get(i).getSubRiwayatTransaksiItems()
 
                                 ));

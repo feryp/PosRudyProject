@@ -38,6 +38,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.gson.internal.LinkedTreeMap;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -48,6 +49,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -117,9 +119,10 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
                     pDialog.dismiss();
                     Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
-                    tv_jumlah_transaksi_penjual.setText(decim.format(Float.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
-                    tv_total_omset_penjual.setText(("Rp").concat(decim.format(Float.valueOf(String.valueOf(inner.get("omset"))))));
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                    tv_jumlah_transaksi_penjual.setText(df.format(Double.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
+                    tv_total_omset_penjual.setText(("Rp").concat(df.format(Double.valueOf(String.valueOf(inner.get("omset"))))));
 
                 }
             }
@@ -148,7 +151,8 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
                                 .show();
                     } else {
                         pDialog.dismiss();
-                        DecimalFormat decim = new DecimalFormat("#,###.##");
+                        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                        df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                         //DATA LAPORAN PENJUAL LIST
                         items = new ArrayList<>();
                         for (int i = 0; i < response.body().size(); i++) {
@@ -156,7 +160,7 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
                                 items.add(new LaporanPenjualItem(
                                         response.body().get(i).getId_karyawan(),
                                         response.body().get(i).getNamaPenjual(),
-                                        ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
+                                        ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
                                         response.body().get(i).getTotalTransaksiPenjual()));
                             }
                         }
@@ -199,14 +203,15 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
                                 .show();
                     } else {
                         pDialog.dismiss();
-                        DecimalFormat decim = new DecimalFormat("#,###.##");
+                        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                        df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                         //DATA LAPORAN PENJUAL LIST
                         items = new ArrayList<>();
                         for (int i = 0; i < response.body().size(); i++) {
                             items.add(new LaporanPenjualItem(
                                     response.body().get(i).getId_karyawan(),
                                     response.body().get(i).getNamaPenjual(),
-                                    ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
+                                    ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
                                     response.body().get(i).getTotalTransaksiPenjual()));
                         }
                         // Removes blinks
@@ -278,9 +283,10 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
                             pDialog.dismiss();
                             Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
-                            tv_jumlah_transaksi_penjual.setText(decim.format(Float.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
-                            tv_total_omset_penjual.setText(("Rp").concat(decim.format(Float.valueOf(String.valueOf(inner.get("omset"))))));
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                            tv_jumlah_transaksi_penjual.setText(df.format(Double.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
+                            tv_total_omset_penjual.setText(("Rp").concat(df.format(Double.valueOf(String.valueOf(inner.get("omset"))))));
 
                         }
                     }
@@ -307,14 +313,15 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                             //DATA LAPORAN PENJUAL LIST
                             items = new ArrayList<>();
                             for (int i=0; i<response.body().size(); i++){
                                 items.add(new LaporanPenjualItem(
                                         response.body().get(i).getId_karyawan(),
                                         response.body().get(i).getNamaPenjual(),
-                                        ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
+                                        ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getNominalTransaksiPenjual()))),
                                         response.body().get(i).getTotalTransaksiPenjual()));
                             }
                             // Removes blinks
@@ -393,9 +400,10 @@ public class LaporanPenjualActivity extends AppCompatActivity implements OnItemC
                         pDialog.dismiss();
                         Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                        DecimalFormat decim = new DecimalFormat("#,###.##");
-                        tv_jumlah_transaksi_penjual.setText(decim.format(Float.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
-                        tv_total_omset_penjual.setText(("Rp").concat(decim.format(Float.valueOf(String.valueOf(inner.get("omset"))))));
+                        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                        df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                        tv_jumlah_transaksi_penjual.setText(df.format(Double.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
+                        tv_total_omset_penjual.setText(("Rp").concat(df.format(Double.valueOf(String.valueOf(inner.get("omset"))))));
 
                     }
                 }

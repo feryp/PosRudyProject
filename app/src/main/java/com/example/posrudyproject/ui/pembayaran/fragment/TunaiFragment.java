@@ -99,11 +99,11 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     public void display(){
-        DecimalFormat decim = new DecimalFormat("#,###.##");
+        DecimalFormat decim = new DecimalFormat("#,###");
         if (curr.isEmpty()) {
-            etUangDiterima.setText("Rp " + decim.format(0.00));
+            etUangDiterima.setText("Rp " + 0);
         } else {
-            etUangDiterima.setText("Rp " + decim.format(Double.valueOf((curr).replace(".0",""))));
+            etUangDiterima.setText("Rp " + decim.format(Double.valueOf(curr)));
         }
     }
     public void clear(){
@@ -118,7 +118,7 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                 curr = curr.substring(0, curr.length()-1);
             }
         } else {
-            curr = "0.00";
+            curr = "0.0";
         }
     }
 
@@ -130,7 +130,12 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_uang_pas:
                 //Function uang pas
-                curr = (pembayaranActivity.getTotal().replace("Rp","")).replace(".","");
+                int count = (pembayaranActivity.getTotal().replace("Rp","")).length() - (pembayaranActivity.getTotal().replace("Rp","")).replace(".", "").length();
+                if (count > 1) {
+                    curr = (pembayaranActivity.getTotal().replace("Rp","")).replace(".","");
+                } else {
+                    curr = (pembayaranActivity.getTotal().replace("Rp","")).replace(",","");
+                }
                 display();
                 someIntent.putExtra("uang_diterima",pembayaranActivity.getTotal());
                 break;
@@ -199,63 +204,71 @@ public class TunaiFragment extends Fragment implements View.OnClickListener {
                 someIntent.putExtra("uang_diterima",curr);
                 break;
             case R.id.btn_lanjut:
-                penjualanEndpoint = ApiClient.getClient().create(PenjualanEndpoint.class);
-                Call<List<Penjualan>> call = penjualanEndpoint.savePenjualan(auth_token, pembayaranActivity.konfirmasiPenjualan("Tunai","-","-"));
-                SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
-                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                pDialog.setTitleText("Loading ...");
-                pDialog.setCancelable(false);
-                pDialog.show();
+                if (curr.isEmpty()) {
+                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Oops...")
+                            .setContentText("Uang diterima 0")
+                            .show();
+                } else {
+                    penjualanEndpoint = ApiClient.getClient().create(PenjualanEndpoint.class);
+                    Call<List<Penjualan>> call = penjualanEndpoint.savePenjualan(auth_token, pembayaranActivity.konfirmasiPenjualan("Tunai","-","-"));
+                    SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    pDialog.setTitleText("Loading ...");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
 
-                call.enqueue(new Callback<List<Penjualan>>() {
-                    @Override
-                    public void onResponse(Call<List<Penjualan>> call, Response<List<Penjualan>> response) {
-                        if (!response.isSuccessful()){
+                    call.enqueue(new Callback<List<Penjualan>>() {
+                        @Override
+                        public void onResponse(Call<List<Penjualan>> call, Response<List<Penjualan>> response) {
+                            if (!response.isSuccessful()){
+                                pDialog.dismiss();
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText(String.valueOf(response.code()))
+                                        .setContentText(response.message())
+                                        .show();
+                            } else {
+                                Intent lanjut = new Intent(getActivity(), TransaksiSuksesActivity.class);
+                                for (int i=0; i<response.body().size(); i++) {
+                                    System.out.println((Serializable) response.body().get(i).getDetailPesananList());
+                                    lanjut.putExtra("id_transaksi", response.body().get(i).getId_transaksi());
+                                    lanjut.putExtra("items",(Serializable) response.body().get(i).getDetailPesananList());
+                                    lanjut.putExtra("diskon", response.body().get(i).getDiskon());
+                                    lanjut.putExtra("kembalian",response.body().get(i).getKembalian());
+                                    lanjut.putExtra("total",response.body().get(i).getTotal());
+                                    lanjut.putExtra("ongkir", response.body().get(i).getOngkir());
+                                    lanjut.putExtra("ekspedisi", response.body().get(i).getEkspedisi());
+                                    lanjut.putExtra("namaPelanggan", response.body().get(i).getNama_pelanggan());
+                                    lanjut.putExtra("noHpPelanggan", response.body().get(i).getNo_hp_pelanggan());
+                                    lanjut.putExtra("namaPenjual", response.body().get(i).getNama_karyawan());
+                                    lanjut.putExtra("idPenjual", response.body().get(i).getId_karyawan());
+                                }
+                                lanjut.putExtra("metode_bayar", "Tunai");
+                                lanjut.putExtra("bank_name", "-");
+                                lanjut.putExtra("no_rek", "-");
+
+                                if (pembayaranActivity.Details().get("diskonRupiah") != null) {
+                                    lanjut.putExtra("tipe_diskon", "Rp");
+                                } else if (pembayaranActivity.Details().get("diskonPersen") != null){
+                                    lanjut.putExtra("tipe_diskon", "%");
+                                }
+                                startActivity(lanjut);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Penjualan>> call, Throwable t) {
                             pDialog.dismiss();
                             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                    .setTitleText(String.valueOf(response.code()))
-                                    .setContentText(response.message())
+                                    .setTitleText("Oops...")
+                                    .setContentText(t.getMessage())
                                     .show();
-                        } else {
-                            Intent lanjut = new Intent(getActivity(), TransaksiSuksesActivity.class);
-                            for (int i=0; i<response.body().size(); i++) {
-                                System.out.println((Serializable) response.body().get(i).getDetailPesananList());
-                                lanjut.putExtra("id_transaksi", response.body().get(i).getId_transaksi());
-                                lanjut.putExtra("items",(Serializable) response.body().get(i).getDetailPesananList());
-                                lanjut.putExtra("diskon", response.body().get(i).getDiskon());
-                                lanjut.putExtra("kembalian",response.body().get(i).getKembalian());
-                                lanjut.putExtra("total",response.body().get(i).getTotal());
-                                lanjut.putExtra("ongkir", response.body().get(i).getOngkir());
-                                lanjut.putExtra("ekspedisi", response.body().get(i).getEkspedisi());
-                                lanjut.putExtra("namaPelanggan", response.body().get(i).getNama_pelanggan());
-                                lanjut.putExtra("noHpPelanggan", response.body().get(i).getNo_hp_pelanggan());
-                                lanjut.putExtra("namaPenjual", response.body().get(i).getNama_karyawan());
-                                lanjut.putExtra("idPenjual", response.body().get(i).getId_karyawan());
-                            }
-                            lanjut.putExtra("metode_bayar", "Tunai");
-                            lanjut.putExtra("bank_name", "-");
-                            lanjut.putExtra("no_rek", "-");
-
-                            if (pembayaranActivity.Details().get("diskonRupiah") != null) {
-                                lanjut.putExtra("tipe_diskon", "Rp");
-                            } else if (pembayaranActivity.Details().get("diskonPersen") != null){
-                                lanjut.putExtra("tipe_diskon", "%");
-                            }
-                            startActivity(lanjut);
                         }
-                    }
+                    });
+                    display();
+                    someIntent.putExtra("uang_diterima",curr);
+                }
 
-                    @Override
-                    public void onFailure(Call<List<Penjualan>> call, Throwable t) {
-                        pDialog.dismiss();
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("Oops...")
-                                .setContentText(t.getMessage())
-                                .show();
-                    }
-                });
-                display();
-                someIntent.putExtra("uang_diterima",curr);
                 break;
 
         }

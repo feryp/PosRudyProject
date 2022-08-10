@@ -73,7 +73,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi_sukses);
         keranjangItems = new ArrayList<>();
-        DecimalFormat formatter = new DecimalFormat("#,###.##");
+        
         pelangganEndpoint = ApiClient.getClient().create(PelangganEndpoint.class);
         SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         String token = preferences.getString("token", "");
@@ -94,6 +94,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
+            DecimalFormat formatter = new DecimalFormat("#,###.##");
             tvJumlahNominalTransaksi.setText("Rp" + formatter.format(bundle.getDouble("total")));
             tvKembalianTransaksiSukses.setText("Rp" + formatter.format(bundle.getDouble("kembalian")));
             tvMetodePembayaranTransaksiSukses.setText(bundle.getString("metode_bayar"));
@@ -103,7 +104,7 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
             tvPelangganTransaksiSukses.setText(bundle.getString("namaPelanggan"));
             uang_diterima = "Rp" + formatter.format(bundle.getDouble("total") + bundle.getDouble("kembalian"));
             if (bundle.getDouble("diskon") < 100.0 ) {
-                tvDiskonTransaksiSukses.setText(formatter.format(bundle.getDouble("diskon")) + "%");
+                tvDiskonTransaksiSukses.setText((bundle.getDouble("diskon")) + "%");
             } else if (bundle.getDouble("diskon") >= 100.0 ) {
                 tvDiskonTransaksiSukses.setText("Rp" + formatter.format(bundle.getDouble("diskon")));
             } else {
@@ -122,12 +123,12 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
                             ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getSku_code(),
                             ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getArtikel(),
                             ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getNama_barang(),
-                            "Rp" + formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga()),
-                            "Rp" + formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga_baru()),
+                            "Rp" + (((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga()),
+                            "Rp" + (((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga_baru()),
                             ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga_baru_remark(),
-                            formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas()),
-                            "Rp" + formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga() * ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas()),
-                            formatter.format(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas())
+                            String.valueOf(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas()),
+                            "Rp" + (((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getHarga() * ((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas()),
+                            String.valueOf(((List<DetailPesanan>) bundle.getSerializable("items")).get(i).getKuantitas())
                     ));
                 }
             }
@@ -301,8 +302,9 @@ public class TransaksiSuksesActivity extends AppCompatActivity implements View.O
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         items = "";
         for (int i=0; i<keranjangItems.size(); i++) {
-            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf(((keranjangItems.get(i).getHargaBarang().replace(".", "")).replace("Rp","")).replace(".0","")) - Double.valueOf(((keranjangItems.get(i).getHarga_baru().replace(".", "")).replace("Rp","")).replace(".0","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru().replace("Rp","")+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
+            items += keranjangItems.get(i).getNamaBarang()+"\n"+ "Rp" +formatter.format(Double.valueOf(keranjangItems.get(i).getHargaBarang().replace("Rp","")))+" - Rp"+formatter.format(Double.valueOf(((keranjangItems.get(i).getHargaBarang()).replace("Rp",""))) - Double.valueOf(((keranjangItems.get(i).getHarga_baru()).replace("Rp",""))))+"\n"+"Rp"+formatter.format(Double.valueOf(keranjangItems.get(i).getHarga_baru().replace("Rp","")))+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
         }
+        System.out.println(items);
         return printer.addTextToPrint(
                 "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo_rp, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
                         "[L]\n" +

@@ -30,8 +30,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -73,10 +75,14 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
         initToolbar();
         barangKembali = new ArrayList<>();
         id_transaksi = "";
-        DecimalFormat formatter = new DecimalFormat("#,###.##");
+
+        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+
         //Penukaran Barang List
         penukaranBarangItems = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
+
         if (bundle != null) {
             id_transaksi = bundle.getString("id_transaksi");
             for (int i = 0; i< ((List<KeranjangItem>) bundle.getSerializable("items")).size(); i++){
@@ -89,9 +95,9 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang(),
                         ((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()
                 ));
-                total += (Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")).replace(".","")).replace(".0","")) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()));
+                total += (Double.valueOf(((((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getHargaBarang().replace("Rp","")))) * Double.valueOf(((List<KeranjangItem>) bundle.getSerializable("items")).get(i).getJumlahBarang()));
             }
-            tvTotalHarga.setText("Rp" + formatter.format(total));
+            tvTotalHarga.setText("Rp" + total);
             editor.putString("totalHarga", String.valueOf(total));
             editor.apply();
         }
@@ -105,11 +111,11 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
             @Override
             public void onGlobalLayout() {
 
-                tvTotalHarga.setText("Rp" + formatter.format(Double.valueOf(preferencesItem.getString("totalHarga", "0.00"))));
+                tvTotalHarga.setText("Rp" + Double.valueOf(preferencesItem.getString("totalHarga", "0.00")));
 
             }
         });
-        tvTotalHarga.setText("Rp" + formatter.format(Double.valueOf(preferencesItem.getString("totalHarga", "0.00"))));
+        tvTotalHarga.setText("Rp" + Double.valueOf(preferencesItem.getString("totalHarga", "0.00")));
         //SET LISTENER
         btnTukar.setOnClickListener(this);
     }
@@ -140,7 +146,7 @@ public class PenukaranBarangActivity extends AppCompatActivity implements View.O
                         penukaranBarangItems.get(i).getSku_code(),
                         penukaranBarangItems.get(i).getArtikelBarang(),
                         Double.valueOf(preferencesItem.getString(penukaranBarangItems.get(i).getArtikelBarang(), "0")),
-                        Double.valueOf(((penukaranBarangItems.get(i).getHargaBarang().replace("Rp","")).replace(".","")).replace(".0","")),
+                        Double.valueOf(((penukaranBarangItems.get(i).getHargaBarang().replace("Rp","")))),
                         String.valueOf(etAlasanPenukaran.getText())
                 ));
             }

@@ -79,7 +79,7 @@ public class RiwayatProsesFragment extends Fragment implements OnItemClickListen
                 } else {
                     pDialog.dismiss();
                     pesananTungguItems = new ArrayList<>();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+
                     for (int i=0; i<response.body().size(); i++) {
                         pesananTungguItems.add(new PesananTungguItem(
                                 response.body().get(i).getId(),
@@ -89,7 +89,7 @@ public class RiwayatProsesFragment extends Fragment implements OnItemClickListen
                                 response.body().get(i).getLokasi_store(),
                                 response.body().get(i).getNo_hp_pelanggan(),
                                 response.body().get(i).getPelangganPesanan(),
-                                ("Rp").concat(decim.format(Double.valueOf(response.body().get(i).getTotalHargaPesanan()))),
+                                ("Rp").concat(String.valueOf(Double.valueOf(response.body().get(i).getTotalHargaPesanan()))),
                                 response.body().get(i).getKetPesanan(),
                                 response.body().get(i).getBarangPesanan()
                         ));

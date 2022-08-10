@@ -52,7 +52,7 @@ public class UbahHargaActivity extends AppCompatActivity {
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru(),
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru_remark(),
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang(),
-                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru().replace(".","")) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
+                        String.valueOf(Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getHarga_baru()) * Double.valueOf(((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang())),
                         ((List<KeranjangItem>) extras.getSerializable("itemForBuy")).get(i).getKuantitasBarang()
                 ));
             }

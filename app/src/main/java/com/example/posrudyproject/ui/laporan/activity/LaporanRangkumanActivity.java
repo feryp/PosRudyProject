@@ -35,11 +35,13 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -134,8 +136,9 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                     pDialog.dismiss();
                     Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
-                    totalTransaksi.setText(decim.format(Float.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                    totalTransaksi.setText(df.format(Double.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
 
                 }
             }
@@ -162,7 +165,7 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                             .show();
                 } else {
                     pDialog.dismiss();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+                    
                     //DATA PRODUK TERLARIS LIST
                     for (int i=0; i<response.body().size(); i++){
 
@@ -206,7 +209,7 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                             .show();
                 } else {
                     pDialog.dismiss();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+                    
                     //DATA KATEGORI TERLARIS LIST
                     for (int i=0; i<response.body().size(); i++){
 
@@ -249,7 +252,7 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                             .show();
                 } else {
                     pDialog.dismiss();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+                    
                     //DATA KATEGORI TERLARIS LIST
                     for (int i=0; i<response.body().size(); i++){
 
@@ -292,12 +295,13 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                             .show();
                 } else {
                     pDialog.dismiss();
-                    DecimalFormat decim = new DecimalFormat("#,###.##");
+                    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                    df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                     //DATA TRANSAKSI TERAKHIR LIST
 
                     for (int i=0; i<response.body().size(); i++){
                         transaksiTerakhirItems.add(new TransaksiTerakhirItem(
-                                ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksi()))),
+                                ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getNominalTransaksi()))),
                                 response.body().get(i).getInvoiceTransaksi(),
                                 response.body().get(i).getStatusTransaksi(),
                                 response.body().get(i).getWaktuTransaksi()));
@@ -364,8 +368,9 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                             pDialog.dismiss();
                             Map<String, Map<String, Object>> inner = (Map<String, Map<String, Object>>) response.body().get("result");
 
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
-                            totalTransaksi.setText(decim.format(Float.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
+                            totalTransaksi.setText(df.format(Double.valueOf(String.valueOf(inner.get("jmlPenjualan")))));
 
                         }
                     }
@@ -392,7 +397,7 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+                            
                             //DATA PRODUK TERLARIS LIST
                             for (int i=0; i<response.body().size(); i++){
 
@@ -436,7 +441,7 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+                            
                             //DATA KATEGORI TERLARIS LIST
                             for (int i=0; i<response.body().size(); i++){
 
@@ -479,7 +484,7 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+                            
                             //DATA KATEGORI TERLARIS LIST
                             for (int i=0; i<response.body().size(); i++){
 
@@ -522,12 +527,13 @@ public class LaporanRangkumanActivity extends AppCompatActivity implements View.
                                     .show();
                         } else {
                             pDialog.dismiss();
-                            DecimalFormat decim = new DecimalFormat("#,###.##");
+                            DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+                            df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS
                             //DATA TRANSAKSI TERAKHIR LIST
 
                             for (int i=0; i<response.body().size(); i++){
                                 transaksiTerakhirItems.add(new TransaksiTerakhirItem(
-                                        ("Rp").concat(decim.format(Float.valueOf(response.body().get(i).getNominalTransaksi()))),
+                                        ("Rp").concat(df.format(Double.valueOf(response.body().get(i).getNominalTransaksi()))),
                                         response.body().get(i).getInvoiceTransaksi(),
                                         response.body().get(i).getStatusTransaksi(),
                                         response.body().get(i).getWaktuTransaksi()));

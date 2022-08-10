@@ -86,8 +86,9 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
         btnPenukaranBarang.setOnClickListener(this);
 
         Bundle bundle = getIntent().getExtras();
-        DecimalFormat formatter = new DecimalFormat("#,###.##");
+        
         if (bundle != null) {
+            DecimalFormat formatter = new DecimalFormat("#,###.##");
             id_transaksi = bundle.getString("id_transaksi");
             bank_name = bundle.getString("bank_name");
             norek = bundle.getString("norek");
@@ -109,12 +110,12 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
                         ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getSku_code(),
                         ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getArtikel(),
                         ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getNama_barang(),
-                        "Rp"+ formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga())),
-                        "Rp"+ formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga_baru())),
+                        "Rp"+ ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga(),
+                        "Rp"+ ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga_baru(),
                         ((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga_baru_remark(),
-                        formatter.format(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas()),
-                        "Rp"+ formatter.format(Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga()) * Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())),
-                        formatter.format(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())
+                        String.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas()),
+                        "Rp"+ Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getHarga()) * Double.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas()),
+                        String.valueOf(((List<DetailPesanan>) bundle.getSerializable("detailPesanan")).get(i).getKuantitas())
                 ));
             }
 
@@ -135,7 +136,7 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
                 if (!response.isSuccessful()){
                     point ="0";
                 } else {
-                    point = formatter.format(Double.valueOf(response.body()));
+                    point = response.body().toString();
                 }
             }
 
@@ -295,7 +296,7 @@ public class DetailTransaksiSelesaiActivity extends AppCompatActivity implements
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         items = "";
         for (int i=0; i<keranjangItems.size(); i++) {
-            items += keranjangItems.get(i).getNamaBarang()+"\n"+ keranjangItems.get(i).getHargaBarang()+" - Rp"+formatter.format(Double.valueOf((keranjangItems.get(i).getHargaBarang().replace(".", "")).replace("Rp","")) - Double.valueOf((keranjangItems.get(i).getHarga_baru().replace(".", "")).replace("Rp","")))+"\n"+"Rp"+keranjangItems.get(i).getHarga_baru()+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
+            items += keranjangItems.get(i).getNamaBarang()+"\n"+ "Rp" +formatter.format(Double.valueOf(keranjangItems.get(i).getHargaBarang().replace("Rp","")))+" - Rp"+formatter.format(Double.valueOf(((keranjangItems.get(i).getHargaBarang()).replace("Rp",""))) - Double.valueOf(((keranjangItems.get(i).getHarga_baru()).replace("Rp",""))))+"\n"+"Rp"+formatter.format(Double.valueOf(keranjangItems.get(i).getHarga_baru().replace("Rp","")))+" x "+keranjangItems.get(i).getKuantitasBarang() + "\n" + "[L]\n";
         }
 
         return printer.addTextToPrint(

@@ -134,7 +134,7 @@ public class PenjualanActivity extends AppCompatActivity implements View.OnClick
         Bundle extras = getIntent().getExtras();
 
         SetupSearchView(auth_token, id_store, id_kategori);
-        DecimalFormat formatter = new DecimalFormat("#,###.##");
+        
 
 
         Call<List<ProdukTersediaItem>> call_stock = penyimpananEndpoint.stockAvailPerStoreByCategory(auth_token,id_store,id_kategori);
