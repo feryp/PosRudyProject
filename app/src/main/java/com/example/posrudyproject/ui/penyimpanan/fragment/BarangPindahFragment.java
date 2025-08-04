@@ -173,8 +173,8 @@ public class BarangPindahFragment extends Fragment implements OnItemClickListene
 
         detailRiwayat.putExtra("tanggal_pengiriman", t.get("tanggal_pengiriman").toString());
         detailRiwayat.putExtra("lokasi_store_tujuan", t.get("lokasi_store_tujuan").toString());
-        detailRiwayat.putExtra("keterangan", t.get("keterangan").toString());
-        detailRiwayat.putExtra("nama_karyawan", t.get("nama_karyawan").toString());
+        detailRiwayat.putExtra("keterangan", t.get("keterangan") == null? "":t.get("keterangan").toString());
+        detailRiwayat.putExtra("nama_karyawan", t.get("nama_karyawan") == null? "":t.get("nama_karyawan").toString());
 
         detailRiwayat.putParcelableArrayListExtra("detail", (ArrayList<? extends Parcelable>) t.get("detailPengirimanList"));
         startActivity(detailRiwayat);

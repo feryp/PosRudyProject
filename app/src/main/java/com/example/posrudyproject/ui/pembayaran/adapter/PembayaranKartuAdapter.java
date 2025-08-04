@@ -38,13 +38,44 @@ public class PembayaranKartuAdapter extends RecyclerView.Adapter<PembayaranKartu
     @Override
     public void onBindViewHolder(@NonNull PembayaranKartuViewHolder holder, int position) {
         BankItem item = bankItems.get(position);
-        String fotoBarang = item.getLogoBank() == null? "" : item.getLogoBank();
-        byte[] bytes = Base64.decode(fotoBarang.getBytes(), Base64.DEFAULT);
-        Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        holder.logoBank.setImageBitmap(btm);
+        String fotoBarang = item.getLogoBank();
+        if (fotoBarang != null && !fotoBarang.isEmpty()) {
+            byte[] bytes = Base64.decode(fotoBarang, Base64.DEFAULT);
+
+            // Decode bitmap with inJustDecodeBounds = true to get dimensions
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+
+            // Calculate sample size (scale down the image)
+            options.inSampleSize = calculateInSampleSize(options, 200, 200); // Target size
+            options.inJustDecodeBounds = false;
+
+            // Decode the actual bitmap
+            Bitmap btm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+            holder.logoBank.setImageBitmap(btm);
+        }
+
         holder.namaBank.setText(item.getNamaBank());
         holder.noRek.setText(item.getNoRekening());
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(view, position));
+    }
+
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        int height = options.outHeight;
+        int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            int halfHeight = height / 2;
+            int halfWidth = width / 2;
+
+            // Scale down while keeping power of 2
+            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+        return inSampleSize;
     }
 
     @Override
